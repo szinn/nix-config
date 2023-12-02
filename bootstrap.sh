@@ -62,6 +62,10 @@ if ! command -v nix &>/dev/null; then
     success "Nix installed successfully!"
 fi
 
+# if ! [ -d /nix/var/nix/profiles/per-user/root/channels ]; then
+#     sudo mkdir -p /nix/var/nix/profiles/per-user/root/channels
+# fi
+
 # log "Checking if nix-index is installed..."
 # if ! [ -f ~/.cache/nix-index/files ]; then
 #     filename="index-$(uname -m | sed 's/^arm64$/aarch64/')-$(uname | tr A-Z a-z)"

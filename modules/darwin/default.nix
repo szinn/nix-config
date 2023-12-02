@@ -1,5 +1,8 @@
-{ config, ... }: {
+{ config, pkgs, lib, ... }: {
   imports = [
+    ./fish
+    ./fonts.nix
+    ./git.nix
     ./user.nix
   ];
 
@@ -7,5 +10,8 @@
     programs = {
       home-manager.enable = true;
     };
+    xdg.enable = true;
+    # home.packages = with pkgs; [
+    # ];
   };
 }
