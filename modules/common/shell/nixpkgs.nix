@@ -5,4 +5,7 @@
     #   enableFishIntegration = true;
     # };
   };
+  nix = {
+    nixPath = [ "nixpkgs=${pkgs.path}" ];
+  };
 }

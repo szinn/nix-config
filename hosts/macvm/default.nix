@@ -9,6 +9,9 @@
         fullName = "Scotte Zinn";
         gitName = "Scotte Zinn";
         gitEmail = "scotte@zinn.ca";
+
+        modules.devops.enable = true;
+        modules.gnupg.enable = true;
       }
       inputs.home-manager.darwinModules.home-manager
       ../../modules/common

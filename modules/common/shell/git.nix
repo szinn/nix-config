@@ -65,7 +65,7 @@
         ];
       };
 
-      home.packages = with pkgs; [delta fish fzf bat pinentry];
+      home.packages = with pkgs; [delta fzf];
     };
   };
 }

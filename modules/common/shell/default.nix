@@ -1,8 +1,10 @@
 { pkgs, ... }: {
     imports = [
       ./alacritty
+      ./devops
       ./fish
       ./git.nix
+      ./gnupg
       ./nixpkgs.nix
       ./tmux
       ./utilities.nix
