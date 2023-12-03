@@ -3,6 +3,7 @@
     ./fish
     ./fonts.nix
     ./git.nix
+    ./system.nix
     ./user.nix
   ];
 

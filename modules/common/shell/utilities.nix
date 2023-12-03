@@ -40,6 +40,10 @@ in {
         atuin = {
           enable = true;
           flags = ["--disable-up-arrow"];
+          settings = {
+            workspaces = "true";
+            ctrl_n_shortcuts = "true";
+          };
         };
         ripgrep = {
           enable = true;
