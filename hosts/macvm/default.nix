@@ -4,17 +4,11 @@
       {
         networking.hostName = "macvm";
         nixpkgs.hostPlatform = "aarch64-darwin";
-        time.timeZone = "America/Toronto";
-        user = "scotte";
-        fullName = "Scotte Zinn";
-        gitName = "Scotte Zinn";
-        gitEmail = "scotte@zinn.ca";
-
-        modules.devops.enable = true;
-        modules.gnupg.enable = true;
       }
+      ../../users/scotte_home.nix
       inputs.home-manager.darwinModules.home-manager
       ../../modules/common
       ../../modules/darwin
     ];
+    specialArgs = { inherit inputs; };
   }

@@ -18,6 +18,7 @@ in {
         du-dust
         fd
         fzf
+        go-task
         ripgrep
         sops
         yq-go

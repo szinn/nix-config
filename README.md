@@ -20,6 +20,7 @@ Enable Remote Login for SSH access to the VM. Install XCode tools.
 
 ```sh
 mkdir ~/.ssh
+mkdir -p ~/.config/age
 xcode-select --install
 ```
 
@@ -29,6 +30,7 @@ Copy SSH keys and configuration as required.
  scp ~/.ssh/authorized_keys scotte@macvm:/Users/scotte/.ssh/authorized_keys
  scp ~/.ssh/id_ed25519 scotte@macvm:/Users/scotte/.ssh/id_ed25519
  scp ~/.ssh/id_ed25519.pub scotte@macvm:/Users/scotte/.ssh/id_ed25519.pub
+ scp ~/.config/age/keys.txt scotte@macvm:/Users/scotte/.config/age/keys.txt
 ```
 
 ## Bootstrapping

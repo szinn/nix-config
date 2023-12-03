@@ -37,7 +37,7 @@
 
         dock = {
           # Automatically show and hide the dock
-          autohide = true;
+          autohide = false;
           # Add translucency in dock for hidden applications
           showhidden = true;
           # Enable spring loading on all dock items
@@ -62,22 +62,31 @@
         # Where to save screenshots
         screencapture.location = "~/Downloads";
       };
+
       # Settings that don't have an option in nix-darwin
-      activationScripts.postActivation.text = ''
-        echo "Avoid creating .DS_Store files on network volumes"
-        defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-      '';
-
-      # User-level settings
       activationScripts.postUserActivation.text = ''
-        echo "Show the ~/Library folder"
+        # Avoid creating .DS_Store files on network or USB volumes
+        defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+        defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+        # Show the ~/Library folder
         chflags nohidden ~/Library
-        echo "Enable dock magnification"
+        # Enable dock magnification
         defaults write com.apple.dock magnification -bool true
-        echo "Set dock magnification size"
+        # Set dock magnification size
         defaults write com.apple.dock largesize -int 48
+        # Show dock immediately
+        defaults write com.apple.Dock autohide-delay -float 0
+        # Remove animation
+        defaults write com.apple.dock autohide-time-modifier -float 0
+        # Show all filename extensions
+        defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+        # Disable the warning when changing a file extension
+        defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+        # Don's show network or CD drives on desktop
+        defaults write com.apple.finder ShowExternalHardDrivesOnDesktop 0
+        defaults write com.apple.finder ShowRemovableMediaOnDesktop 0
 
-        echo "Define dock icon function"
+        # Define dock icon function
         __dock_item() {
           printf "%s%s%s%s%s" \
             "<dict><key>tile-data</key><dict><key>file-data</key><dict>" \
@@ -87,13 +96,14 @@
             "</dict></dict></dict>"
         }
 
-        echo "Choose and order dock icons"
+        # Choose and order dock icons
         defaults write com.apple.dock persistent-apps -array \
           "$(__dock_item /Applications/Safari.app)" \
           "$(__dock_item ${pkgs.alacritty}/Applications/Alacritty.app)" \
           "$(__dock_item /System/Applications/App\ Store.app)" \
           "$(__dock_item /System/Applications/System\ Settings.app)"
 
+        sudo killall Finder
         sudo killall Dock
       '';
     };
