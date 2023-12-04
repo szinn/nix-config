@@ -99,6 +99,7 @@
         # Choose and order dock icons
         defaults write com.apple.dock persistent-apps -array \
           "$(__dock_item /Applications/Safari.app)" \
+          "$(__dock_item ${pkgs.vscode}/Applications/Visual\ Studio\ Code.app)" \
           "$(__dock_item ${pkgs.alacritty}/Applications/Alacritty.app)" \
           "$(__dock_item /System/Applications/App\ Store.app)" \
           "$(__dock_item /System/Applications/System\ Settings.app)"

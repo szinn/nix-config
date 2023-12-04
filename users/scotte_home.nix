@@ -1,4 +1,7 @@
-{ inputs, config, ... }: {
+{ pkgs, inputs, config, ... }:
+let
+  default-vscode-settings = builtins.fromJSON (builtins.readFile ./vscode_settings.json);
+in {
   time.timeZone = "America/Toronto";
   user = "scotte";
   fullName = "Scotte Zinn";
@@ -16,4 +19,13 @@
   };
   modules.devops.enable = true;
   modules.gnupg.enable = true;
+  modules.vscode = {
+    enable = true;
+    package = pkgs.vscode;
+    config = default-vscode-settings;
+    extensions = (with pkgs.vscode-extensions; [
+      ms-vscode-remote.remote-containers
+      ms-vscode-remote.remote-ssh
+    ]);
+  };
 }
