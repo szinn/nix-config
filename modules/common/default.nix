@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }: {
     imports = [
+      ./editor/vscode
       ./shell
       ./sops
     ];
@@ -47,6 +48,8 @@
     home-manager.useUserPackages = true;
     home-manager.useGlobalPkgs = true;
     home-manager.users.${config.user}.home.stateVersion = "23.11";
+
+    nixpkgs.config.allowUnfree = true;
 
     system.stateVersion = 4;
   };
