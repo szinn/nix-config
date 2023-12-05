@@ -6,6 +6,7 @@
       ./git.nix
       ./gnupg
       ./nixpkgs.nix
+      ./ssh
       ./tmux
       ./utilities.nix
     ];
