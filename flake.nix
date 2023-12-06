@@ -21,13 +21,28 @@
     let 
       overlays = [];
 
-      supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-    in {
+    in rec {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#macvm
       darwinConfigurations = {
         macvm = import ./hosts/macvm { inherit inputs overlays; };
       };
+
+      # home-manager switch --flake .#"scotte@macvm"
+      homeConfigurations = {
+        "scotte@macvm" = darwinConfigurations.macvm.config.home-manager.users.scotte.home;
+      };
+
+      # Development environments
+      devShells = forAllSystems (system:
+        let pkgs = import nixpkgs { inherit system overlays; };
+        in {
+          # Used to run commands and edit files in this repo
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [ git age gnupg sops nixfmt shfmt home-manager shellcheck ];
+          };
+        });
     };
 }
