@@ -30,11 +30,25 @@ cleanup() {
     exit ${result}
 }
 
+isDarwin() {
+    [[ $(uname) == "Darwin" ]]
+}
+
 trap cleanup EXIT ERR
 log "Welcome to the bootstrap script!"
 
 WORK_DIR=$(mktemp -d)
 log "Using work directory: ${WORK_DIR}"
+
+if [[ isDarwin ]]; then
+    if ! $(xcode-select --print-path &> /dev/null); then
+        log "Installing XCode tools..."
+        xcode-select --install &> /dev/null
+        until $(xcode-select --print-path &> /dev/null); do
+            sleep 5;
+        done
+    fi
+fi
 
 # log "Checking if homebrew is installed..."
 # if ! command -v brew &>/dev/null; then

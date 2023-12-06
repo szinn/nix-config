@@ -17,32 +17,50 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, ... }: 
-    let 
-      overlays = [];
+  outputs = { self, nixpkgs, nix-darwin, home-manager, ... }@inputs:
+    let
+      inherit (self) outputs;
+      lib = nixpkgs.lib // home-manager.lib;
+      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin"];
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      });
+    in
+    {
+      inherit lib;
+      # templates = import ./templates;
 
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-    in rec {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#macvm
+      overlays = {};
+      # overlays = import ./overlays { inherit inputs outputs; };
+
+      # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
+
+      # nixosConfigurations = {
+      #   atlas =  lib.nixosSystem {
+      #     modules = [ ./hosts/atlas ];
+      #     specialArgs = { inherit inputs outputs; };
+      #   };
+      # };
+
       darwinConfigurations = {
-        macvm = import ./hosts/macvm { inherit inputs overlays; };
+        # $ darwin-rebuild build --flake .#macvm
+        macvm =  nix-darwin.lib.darwinSystem {
+          modules = [ ./hosts/macvm ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
-      # home-manager switch --flake .#"scotte@macvm"
       homeConfigurations = {
-        "scotte@macvm" = darwinConfigurations.macvm.config.home-manager.users.scotte.home;
+        # $ home-manager switch --flake .#"scotte@macvm"
+        "scotte@macvm" = lib.homeManagerConfiguration {
+          modules = [ ./home/scotte/macvm.nix ];
+          pkgs = pkgsFor.aarch64-darwin;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
       };
-
-      # Development environments
-      devShells = forAllSystems (system:
-        let pkgs = import nixpkgs { inherit system overlays; };
-        in {
-          # Used to run commands and edit files in this repo
-          default = pkgs.mkShell {
-            buildInputs = with pkgs; [ git age gnupg sops nixfmt shfmt home-manager shellcheck ];
-          };
-        });
     };
 }

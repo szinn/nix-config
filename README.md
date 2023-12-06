@@ -53,6 +53,12 @@ nix run --extra-experimental-features nix-command --extra-experimental-features 
 
 There might be a few files in /etc that need renaming to complete the installation.
 
+```sh
+sudo mv /etc/nix/nix.conf /etc/nix.conf.before-nix-darwin
+sudo mv /etc/shells /etc/shells.before-nix-darwin
+sudo mv /etc/zshenv /etc/zshenv.before-nix-darwin
+```
+
 Afterwards, darwin-rebuild is required to run the updates.
 
 ```sh

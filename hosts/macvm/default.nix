@@ -1,14 +1,12 @@
-{ inputs, ... }:
-  inputs.nix-darwin.lib.darwinSystem {
-    modules = [
-      {
-        networking.hostName = "macvm";
-        nixpkgs.hostPlatform = "aarch64-darwin";
-      }
-      ../../users/scotte_home.nix
-      inputs.home-manager.darwinModules.home-manager
-      ../../modules/common
-      ../../modules/darwin
-    ];
-    specialArgs = { inherit inputs; };
-  }
+{ pkgs, inputs, ... }: {
+  imports = [
+    {
+      nixpkgs.hostPlatform = "aarch64-darwin";
+    }
+    ../common/global
+    ../common/darwin
+    ../common/users/scotte/darwin.nix
+  ];
+
+  networking.hostName = "macvm";
+}
