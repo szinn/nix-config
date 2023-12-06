@@ -9,4 +9,5 @@
   ];
 
   networking.hostName = "macvm";
+  system.stateVersion = 4;
 }
