@@ -92,14 +92,16 @@ fi
 log "Configuring environment..."
 set +o nounset
 # shellcheck disable=SC1091
-source "/etc/bashrc"
+if [[ isDarwin ]]; then
+    source "/etc/zshrc"
+fi
 set -o nounset
 
 log "Check if repo is cloned..."
 if [[ ! -d ~/.local/nix-config ]]; then
     log "Cloning repo..."
     mkdir -p ~/.local
-    git clone git@github.com:szinn/nix-config.git ~/.local/nix-config
+    git clone https://github.com/szinn/nix-config.git ~/.local/nix-config
 fi
 
 log "Activating configuration..."

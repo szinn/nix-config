@@ -16,12 +16,11 @@ prlctl set "macOS" --cpus 4
 
 Once the VM is up and running with the correct DHCP configuration, install Parallels VMTools. This enables clipboard access with the VM and will require a reboot.
 
-Enable Remote Login for SSH access to the VM. Install XCode tools.
+Enable Remote Login for SSH access to the VM.
 
 ```sh
 mkdir ~/.ssh
 mkdir -p ~/.config/age
-xcode-select --install
 ```
 
 Copy SSH keys and configuration as required.
