@@ -17,9 +17,11 @@
           features = "decorations";
           side-by-side = "true";
         };
+        init = { defaultBranch = "main"; };
+        commit = { gpgSign = true; };
+        user = { signing.key = "B2F1677DB0348B42"; };
         diff = { colorMoved = "default"; };
         fetch = { prune = "true"; };
-        init = { defaultBranch = "main"; };
         interactive = { diffFilter = "delta --color-only"; };
         merge = { conflictstyle = "diff3"; };
         pager = { branch = "false"; };

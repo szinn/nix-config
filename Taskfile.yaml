@@ -7,6 +7,12 @@ includes:
     dir: .taskfiles/sops
 
 tasks:
+  fix-git:
+    desc: Set the git remote URL to be used via ssh
+    silent: true
+    cmds:
+      - git remote set-url origin git@github.com:szinn/nix-config.git
+
   default:
     silent: true
     cmds:

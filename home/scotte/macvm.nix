@@ -18,15 +18,16 @@ in {
         configPath = "/Users/scotte/.local/nix-config/home/scotte/settings.json";
         extensions = extensions;
     })
-    (import ./features/sops {
-      ageFile = "${config.xdg.configHome}/age/keys.txt";
-      sopsFile = ./secrets.sops.yaml;
-      secrets = {
-        abc = {
-          path = "${config.xdg.configHome}/abc";
-        };
-      };
-    })
+    # Uncomment if using sops secrets
+    # (import ./features/sops {
+    #   ageFile = "${config.xdg.configHome}/age/keys.txt";
+    #   sopsFile = ./secrets.sops.yaml;
+    #   secrets = {
+    #     abc = {
+    #       path = "${config.xdg.configHome}/abc";
+    #     };
+    #   };
+    # })
     ./features/_1password
     ./features/alacritty
     ./features/devops
@@ -43,6 +44,7 @@ in {
     # ./darwin/_1password
     ./darwin/fish
     ./darwin/fonts
+    ./darwin/gnupg
     ./darwin/git
   ];
 }
