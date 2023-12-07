@@ -21,5 +21,15 @@
   ],
   "platform": "github",
   "username": "repo-jeeves[bot]",
-  "gitAuthor": "repo-jeeves <106431701+repo-jeeves[bot]@users.noreply.github.com>"
+  "repositories": ["szinn/nix-config"],
+  "gitAuthor": "repo-jeeves <106431701+repo-jeeves[bot]@users.noreply.github.com>",
+  "onboarding": false,
+  "requireConfig": "optional",
+  "timezone": "America/Toronto",
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  "suppressNotifications": ["prIgnoreNotification"],
+
+  "nix": {
+    "enabled": true
+  }
 }
