@@ -1,0 +1,9 @@
+{
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": ["cloudnative-pg/postgresql"],
+      "allowedVersions": "<17"
+    }
+  ]
+}
