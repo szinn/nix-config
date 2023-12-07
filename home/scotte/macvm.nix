@@ -37,6 +37,7 @@ in {
       email = "scotte@zinn.ca";
     })
     ./features/gnupg
+    ./features/rust
     ./features/ssh
     ./features/tmux
     ./features/utilities
