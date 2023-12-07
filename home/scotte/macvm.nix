@@ -27,6 +27,7 @@ in {
         };
       };
     })
+    ./features/_1password
     ./features/alacritty
     ./features/devops
     ./features/fish
@@ -38,6 +39,8 @@ in {
     ./features/ssh
     ./features/tmux
     ./features/utilities
+    # Can't do this since it needs to install in /Applications  
+    # ./darwin/_1password
     ./darwin/fish
     ./darwin/fonts
     ./darwin/git

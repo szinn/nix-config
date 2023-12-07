@@ -47,7 +47,7 @@
       # };
 
       darwinConfigurations = {
-        # $ darwin-rebuild build --flake .#macvm
+        # $ git add . ; darwin-rebuild switch --flake .#macvm
         macvm =  nix-darwin.lib.darwinSystem {
           modules = [ ./hosts/macvm ];
           specialArgs = { inherit inputs outputs; };
@@ -55,7 +55,7 @@
       };
 
       homeConfigurations = {
-        # $ home-manager switch --flake .#"scotte@macvm"
+        # $ git add . ; home-manager switch --flake .#"scotte@macvm"
         "scotte@macvm" = lib.homeManagerConfiguration {
           modules = [ ./home/scotte/macvm.nix ];
           pkgs = pkgsFor.aarch64-darwin;

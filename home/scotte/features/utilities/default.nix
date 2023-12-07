@@ -18,6 +18,7 @@ in {
       fd
       fzf
       go-task
+      jq
       ripgrep
       sops
       yq-go
