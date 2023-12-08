@@ -1,6 +1,7 @@
 { inputs, outputs, ... }: {
   imports = [
     inputs.home-manager.darwinModules.home-manager
+    ./homebrew
   ];
 
   config = {

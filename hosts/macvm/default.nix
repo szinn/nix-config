@@ -33,6 +33,7 @@
 
       sudo killall Finder
       sudo killall Dock
+      sudo killall gpg-agent
     '';
   };
 }

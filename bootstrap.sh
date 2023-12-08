@@ -51,7 +51,7 @@ if [[ isDarwin ]]; then
 fi
 
 log "Checking if homebrew is installed..."
-if ! command -v brew &>/dev/null; then
+if ! test -f /opt/homebrew/bin/brew; then
     log "Installing homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo "eval $(/opt/homebrew/bin/brew shellenv)" >>~/.zprofile
@@ -93,7 +93,7 @@ log "Configuring environment..."
 set +o nounset
 # shellcheck disable=SC1091
 if [[ isDarwin ]]; then
-    source "/etc/zshrc"
+    source "/etc/bashrc"
 fi
 set -o nounset
 
