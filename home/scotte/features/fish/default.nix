@@ -40,7 +40,6 @@
 
     interactiveShellInit = ''
       # Ensure nix paths are at the head of the list
-      echo "$PATH"
       fish_add_path -a '/opt/homebrew/bin'
       fish_add_path '/nix/var/nix/profiles/default/bin'
       fish_add_path '/run/current-system/sw/bin'

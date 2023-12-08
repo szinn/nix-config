@@ -15,7 +15,7 @@ in {
     ./global
 
     (import ./features/vscode {
-        configPath = "/Users/scotte/.local/nix-config/home/scotte/settings.json";
+        configPath = "${config.home.homeDirectory}/.local/nix-config/home/scotte/settings.json";
         extensions = extensions;
     })
     # Uncomment if using sops secrets

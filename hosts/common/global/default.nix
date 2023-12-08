@@ -1,17 +1,13 @@
-{ inputs, outputs, ... }: {
+{ config, inputs, outputs, ... }:
+{
   imports = [
-    ./locale.nix
     ./nix.nix
-    ./shell.nix
+    ./shells.nix
   ];
 
-  home-manager.extraSpecialArgs = { inherit inputs outputs; };
+  services.nix-daemon.enable = true;
 
-  nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = (_: true);
-    };
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
   };
 }
