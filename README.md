@@ -18,28 +18,10 @@ Once the VM is up and running with the correct DHCP configuration, install Paral
 
 Enable Remote Login for SSH access to the VM.
 
-```sh
-mkdir ~/.ssh
-mkdir -p ~/.config/age
-```
-
-Copy SSH keys and configuration as required.
-
-```sh
- scp ~/.ssh/authorized_keys scotte@macvm:/Users/scotte/.ssh/authorized_keys
- scp ~/.ssh/id_ed25519 scotte@macvm:/Users/scotte/.ssh/id_ed25519
- scp ~/.ssh/id_ed25519.pub scotte@macvm:/Users/scotte/.ssh/id_ed25519.pub
- scp ~/.config/age/keys.txt scotte@macvm:/Users/scotte/.config/age/keys.txt
-```
-
 ## Bootstrapping
 
 ```sh
-mkdir ~/.local
-cd ~/.local
-git clone git@github.com:szinn/nix-config.git
-cd nix-config
-./bootstrap.sh
+bash -c "$(curl -LsS https://raw.githubusercontent.com/szinn/nix-config/main/bootstrap.sh)"
 ```
 
 At this point, NIX should be installed. Restart the shell.
