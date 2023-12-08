@@ -50,12 +50,12 @@ if [[ isDarwin ]]; then
     fi
 fi
 
-# log "Checking if homebrew is installed..."
-# if ! command -v brew &>/dev/null; then
-#     log "Installing homebrew..."
-#     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-#     echo "eval $(/opt/homebrew/bin/brew shellenv)" >>~/.zprofile
-# fi
+log "Checking if homebrew is installed..."
+if ! command -v brew &>/dev/null; then
+    log "Installing homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo "eval $(/opt/homebrew/bin/brew shellenv)" >>~/.zprofile
+fi
 
 log "Checking if Nix is installed..."
 if ! command -v nix &>/dev/null; then
