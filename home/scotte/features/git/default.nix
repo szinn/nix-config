@@ -5,6 +5,7 @@
       userName = name;
       userEmail = email;
       extraConfig = {
+        gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
         color = { ui = "auto"; };
         core = {
           autocrlf = "input";
@@ -56,5 +57,6 @@
     };
 
     home.packages = with pkgs; [delta fzf];
+    home.file.".ssh/allowed_signers".source = ./allowed_signers;
   };
 }
