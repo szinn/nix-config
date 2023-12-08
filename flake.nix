@@ -52,12 +52,24 @@
           modules = [ ./hosts/macvm ];
           specialArgs = { inherit inputs outputs; };
         };
+        # $ git add . ; darwin-rebuild switch --flake .#odin
+        odin =  nix-darwin.lib.darwinSystem {
+          modules = [ ./hosts/odin ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
       homeConfigurations = {
         # $ git add . ; home-manager switch --flake .#"scotte@macvm"
         "scotte@macvm" = lib.homeManagerConfiguration {
           modules = [ ./home/scotte/macvm.nix ];
+          pkgs = pkgsFor.aarch64-darwin;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+      homeConfigurations = {
+        # $ git add . ; home-manager switch --flake .#"scotte@odin"
+        "scotte@odin" = lib.homeManagerConfiguration {
+          modules = [ ./home/scotte/odin.nix ];
           pkgs = pkgsFor.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
         };
