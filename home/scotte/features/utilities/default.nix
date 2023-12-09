@@ -15,12 +15,15 @@ in {
       bat
       dig
       du-dust
+      duf
+      eza
       fd
       fzf
       go-task
       jq
       ripgrep
       sops
+      wget
       yq-go
     ];
 

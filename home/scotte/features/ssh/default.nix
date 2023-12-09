@@ -36,6 +36,7 @@ in {
         };
       };
     };
-    home.file.".ssh/authorized_keys".source = ./authorized_keys;
+    # Macs need authorized_keys to be a real, non-symlinked file
+    # home.file.".ssh/authorized_keys".source = ./authorized_keys;
   };
 }

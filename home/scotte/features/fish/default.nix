@@ -12,6 +12,7 @@
 
     shellAbbrs = {
       gitp = "git push";
+      gitpf = "git push -f";
       tf = "terraform";
     };
 
@@ -40,6 +41,7 @@
 
     interactiveShellInit = ''
       # Ensure nix paths are at the head of the list
+      fish_add_path '${config.home.homeDirectory}/.krew/bin'
       fish_add_path -a '/opt/homebrew/bin'
       fish_add_path '/nix/var/nix/profiles/default/bin'
       fish_add_path '/run/current-system/sw/bin'

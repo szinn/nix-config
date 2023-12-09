@@ -45,3 +45,30 @@ Afterwards, darwin-rebuild is required to run the updates.
 ```sh
 darwin-rebuild switch --flake .#$(hostname -s)
 ```
+
+## Secrets
+
+I store secrets in 1Password and fetch them through the script [fetch_secrets](./scripts/fetch_secrets).
+
+All secrets are stored as documents with the file as the document. Secrets that are for machine alpha are tagged with "alpha".
+As well, there must be a path for the secret and an optional script.
+
+Paths are specified in the 1Password item as additional info text fields. The label is one of:
+* `alpha:path`
+* `Darwin:path`
+* `default:path`
+
+alpha:path will specify the path on machine alpha. If alpha:path is missing, then a Darwin machine will look for Darwin:path and use that.
+Similarly, Linux:path will be used on a Linux (or NixOS) machine. If both of those are missing, default:path will be used.
+
+Optional scripts are named the same way with `:script` as the suffix. The script will be executed after the secret is fetched to the specified path.
+
+The combination of path and script is useful for tasks such as loading GPG secret keys. Set the path to `.` and then for a secret file named `secret-keys.asc`
+the script
+
+```
+gpg --import ./secret-keys.asc
+rm ./secret-keys.asc
+```
+
+will load the secrets into GPG and then erase the armoured file afterwards.

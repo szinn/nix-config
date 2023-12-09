@@ -81,7 +81,7 @@
         # 75% = 0.7788008
         # 50% = 0.6065307
         # 25% = 0.4723665
-        "com.apple.sound.beep.volume" = 0.6065307;
+        "com.apple.sound.beep.volume" = 0.50;
         # Apple menu > System Preferences > Sound
         # Make a feedback sound when the system volume changed. This setting accepts
         # the integers 0 or 1. Defaults to 1.
@@ -302,11 +302,12 @@
     };
 
     activationScripts.preUserActivation.text = ''
-      sudo rm /etc/bashrc /etc/zshrc /etc/zshenv
+      sudo rm -f /etc/bashrc /etc/zshrc /etc/zshenv
     '';
 
+    # See https://github.com/mathiasbynens/dotfiles/blob/master/.macos
     activationScripts.postUserActivation.text = ''
-      mkdir -p /Users/scotte/Download/Screenshots
+      mkdir -p /Users/scotte/Downloads/Screenshots
       ###############################################################################
       # General UI/UX                                                               #
       ###############################################################################
