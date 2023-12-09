@@ -12,9 +12,16 @@
   homebrew = {
     taps = [
     ];
+    brews = [
+    ];
     casks = [
       "1password" # 1Password packaging on Nix is broken for macOS
     ];
+    masApps = {
+      "1Password for Safari" = 1569813296;
+      "AutoMounter" = 1160435653;
+      "OmniFocus 3" = 1346203938;
+    };
   };
 
   system.activationScripts.postActivation.text = ''

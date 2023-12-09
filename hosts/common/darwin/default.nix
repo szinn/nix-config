@@ -23,7 +23,6 @@
       lockfiles = false; # Don't save lockfile (since running from anywhere)
     };
     taps = [
-      "homebrew/cask" # Required for casks
     ];
   };
 }
