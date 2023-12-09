@@ -66,7 +66,6 @@
           pkgs = pkgsFor.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
         };
-      homeConfigurations = {
         # $ git add . ; home-manager switch --flake .#"scotte@odin"
         "scotte@odin" = lib.homeManagerConfiguration {
           modules = [ ./home/scotte/odin.nix ];
