@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.home-manager.darwinModules.home-manager
+    ./ui-defaults.nix
   ];
 
   security = {
