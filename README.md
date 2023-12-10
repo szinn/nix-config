@@ -9,7 +9,7 @@ For my network, this lets the VM pick up DHCP configuration in an appropraite VL
 
 ```sh
 prlctl set "macOS" --device-set net0 --type bridged
-prlctl set "macOS" --device-set net0 --mac DECAFF20001C
+prlctl set "macOS" --device-set net0 --mac DECAFF200019
 prlctl set "macOS" --memsize 16384
 prlctl set "macOS" --cpus 4
 ```
@@ -54,6 +54,7 @@ All secrets are stored as documents with the file as the document. Secrets that 
 As well, there must be a path for the secret and an optional script.
 
 Paths are specified in the 1Password item as additional info text fields. The label is one of:
+
 * `alpha:path`
 * `Darwin:path`
 * `default:path`
@@ -66,7 +67,7 @@ Optional scripts are named the same way with `:script` as the suffix. The script
 The combination of path and script is useful for tasks such as loading GPG secret keys. Set the path to `.` and then for a secret file named `secret-keys.asc`
 the script
 
-```
+```sh
 gpg --import ./secret-keys.asc
 rm ./secret-keys.asc
 ```
