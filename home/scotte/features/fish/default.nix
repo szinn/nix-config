@@ -11,6 +11,7 @@
     };
 
     shellAbbrs = {
+      gfp = "git fetch -p && git pull";
       gitp = "git push";
       gitpf = "git push -f";
       tf = "terraform";
@@ -28,10 +29,6 @@
       fish_title = {
         description = "Set the title";
         body = builtins.readFile ./functions/fish_title.fish;
-      };
-      gfp = {
-        description = "Git fetch and pull";
-        body = builtins.readFile ./functions/gfp.fish;
       };
       git_current_branch = {
         description = "Display the current branch";
