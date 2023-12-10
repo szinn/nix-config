@@ -22,8 +22,13 @@ in
       fzf
       go-task
       jq
+      pre-commit
+      protobuf
+      redis
+      restic
       ripgrep
       sops
+      unixtools.watch
       wget
       yq-go
     ];

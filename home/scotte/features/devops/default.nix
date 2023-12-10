@@ -1,11 +1,14 @@
 { config, lib, pkgs, ... }: {
   config = {
     home.packages = with pkgs; [
+      cilium-cli
+      cloudflared
       fluxcd
       k9s
       krew
       kubectl
       kubectl-cnpg
+      kubernetes-helm
       kustomize_4
       talosctl
       terraform

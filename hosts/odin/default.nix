@@ -16,6 +16,7 @@
       "epk/epk" # font-sf-mono-nerd-font
     ];
     brews = [
+      "prettier"
     ];
     casks = [
       "1password"
@@ -46,6 +47,7 @@
       "Amphetamine" = 937984704;
       "AutoMounter" = 1160435653;
       "Drafts" = 1435957248;
+      "FLAC MP3 Converter" = 982124349;
       "forScore" = 363738376;
       "GarageBand" = 682658836;
       "iMovie" = 408981434;
@@ -58,6 +60,7 @@
       "Save to Reader" = 1640236961;
       "Slack" = 803453959;
       "Spark Desktop" = 6445813049;
+      "WhatsApp" = 1147396723;
       "Wireguard" = 1451685025;
       "XCode" = 497799835;
     };
