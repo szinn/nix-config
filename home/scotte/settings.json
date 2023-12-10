@@ -147,6 +147,9 @@
   },
 
   "projectManager.any.maxDepthRecursion": 2,
+  "projectManager.git.baseFolders": [
+    "/Users/scotte/Development/Projects"
+  ],
 
   "redhat.telemetry.enabled": false,
 
@@ -226,7 +229,6 @@
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 6,
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Dracula Pro (Van Helsing)",
 
   "window.menuBarVisibility": "compact",
   "window.commandCenter": true,
@@ -248,6 +250,10 @@
   "[lua]": {
     "editor.tabSize": 2,
     "editor.formatOnSave": true
+  },
+
+  "[nix]": {
+    "editor.tabSize": 2
   },
 
   "[rust]": {
@@ -276,5 +282,6 @@
     "editor.tabSize": 4,
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "workbench.colorTheme": "Dracula Pro (Van Helsing)"
 }

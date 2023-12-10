@@ -1,8 +1,25 @@
 { pkgs, inputs, outputs, config, lib, ... }:
 let
-  extensions = (with pkgs.vscode-extensions; [
-    ms-vscode-remote.remote-ssh
-  ]);
+  extensions =
+    let
+      vscode = inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
+      open-vsx = inputs.nix-vscode-extensions.extensions.${pkgs.system}.open-vsx;
+      nixpkgs = pkgs.vscode-extensions;
+    in
+    [
+      vscode.aaron-bond.better-comments
+      vscode.alefragnani.bookmarks
+      vscode.alefragnani.project-manager
+      vscode.belfz.search-crates-io
+      vscode.golang.go
+      vscode.gruntfuggly.todo-tree
+      vscode.hashicorp.terraform
+      vscode.rust-lang.rust-analyzer
+      vscode.serayuzgur.crates
+      vscode.signageos.signageos-vscode-sops
+      vscode.usernamehw.errorlens
+      vscode.vadimcn.vscode-lldb
+    ];
 in
 {
   imports = [
