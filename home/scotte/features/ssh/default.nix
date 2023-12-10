@@ -1,13 +1,15 @@
 { config, pkgs, lib, ... }:
 let
-  extraConfigDarwin = if pkgs.stdenv.isDarwin then
-    ''
-      AddKeysToAgent yes
-      UseKeychain yes
-    ''
-  else
-    "";
-in {
+  extraConfigDarwin =
+    if pkgs.stdenv.isDarwin then
+      ''
+        AddKeysToAgent yes
+        UseKeychain yes
+      ''
+    else
+      "";
+in
+{
   config = {
     programs.ssh = {
       enable = true;

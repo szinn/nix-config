@@ -21,7 +21,7 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin"];
+      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs systems (system: import nixpkgs {
         inherit system;
@@ -32,7 +32,7 @@
       inherit lib;
       # templates = import ./templates;
 
-      overlays = {};
+      overlays = { };
       # overlays = import ./overlays { inherit inputs outputs; };
 
       # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
@@ -48,12 +48,12 @@
 
       darwinConfigurations = {
         # $ git add . ; darwin-rebuild switch --flake .#macvm
-        macvm =  nix-darwin.lib.darwinSystem {
+        macvm = nix-darwin.lib.darwinSystem {
           modules = [ ./hosts/macvm ];
           specialArgs = { inherit inputs outputs; };
         };
         # $ git add . ; darwin-rebuild switch --flake .#odin
-        odin =  nix-darwin.lib.darwinSystem {
+        odin = nix-darwin.lib.darwinSystem {
           modules = [ ./hosts/odin ];
           specialArgs = { inherit inputs outputs; };
         };

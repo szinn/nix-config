@@ -1,4 +1,4 @@
-{name, email}: { config, pkgs, lib, ... }: {
+{ name, email }: { config, pkgs, lib, ... }: {
   config = {
     programs.git = {
       enable = true;
@@ -56,7 +56,7 @@
       ];
     };
 
-    home.packages = with pkgs; [delta fzf];
+    home.packages = with pkgs; [ delta fzf ];
     home.file.".ssh/allowed_signers".source = ./allowed_signers;
   };
 }

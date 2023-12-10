@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: 
+{ config, pkgs, lib, ... }:
 let
   t-smart-manager = pkgs.tmuxPlugins.mkTmuxPlugin
     {
@@ -26,7 +26,8 @@ let
         hash = "sha256-HqSaOcnb4oC0AtS0aags2A5slsPiikccUSuZ1sVuago=";
       };
     };
-in {
+in
+{
   config = {
     programs.tmux = {
       enable = true;
@@ -41,7 +42,7 @@ in {
       ];
       extraConfig = builtins.readFile ./tmux.conf;
     };
-    
+
     home.packages = with pkgs; [
       gitmux
     ];

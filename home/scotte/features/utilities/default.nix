@@ -8,7 +8,8 @@ let
     .terraform/
     .target/
     /Library/'';
-in {
+in
+{
   config = {
     home.packages = with pkgs; [
       age
@@ -43,7 +44,7 @@ in {
       };
       atuin = {
         enable = true;
-        flags = ["--disable-up-arrow"];
+        flags = [ "--disable-up-arrow" ];
         settings = {
           workspaces = "true";
           ctrl_n_shortcuts = "true";
@@ -51,7 +52,7 @@ in {
       };
       ripgrep = {
         enable = true;
-        arguments = ["--glob=!vendor" "--hidden" "--line-number" "--no-heading" "--sort=path"];
+        arguments = [ "--glob=!vendor" "--hidden" "--line-number" "--no-heading" "--sort=path" ];
       };
       neovim = {
         enable = true;

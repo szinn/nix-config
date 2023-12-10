@@ -3,7 +3,8 @@ let
   extensions = (with pkgs.vscode-extensions; [
     ms-vscode-remote.remote-ssh
   ]);
-in {
+in
+{
   imports = [
     {
       home = {
@@ -15,8 +16,8 @@ in {
     ./global
 
     (import ./features/vscode {
-        configPath = "${config.home.homeDirectory}/.local/nix-config/home/scotte/settings.json";
-        extensions = extensions;
+      configPath = "${config.home.homeDirectory}/.local/nix-config/home/scotte/settings.json";
+      extensions = extensions;
     })
     # Uncomment if using sops secrets
     # (import ./features/sops {

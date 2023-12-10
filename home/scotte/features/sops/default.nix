@@ -1,4 +1,4 @@
-{ageFile, sopsFile, secrets}: {lib, pkgs, config, inputs, ... }: {
+{ ageFile, sopsFile, secrets }: { lib, pkgs, config, inputs, ... }: {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];

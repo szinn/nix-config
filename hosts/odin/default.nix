@@ -83,7 +83,7 @@
     # Folders
     __add_folder_to_dock /Users/scotte/Documents/ 1 1 0
     __add_folder_to_dock /Users/scotte/Downloads/ 1 1 0
-    '';
+  '';
 
   system.stateVersion = 4;
 }
