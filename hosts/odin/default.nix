@@ -77,6 +77,7 @@
     __add_app_to_dock /Applications/Drafts.app
     __add_app_to_dock ${pkgs.vscode}/Applications/Visual\ Studio\ Code.app
     __add_app_to_dock ${pkgs.alacritty}/Applications/Alacritty.app
+    __add_app_to_dock ${pkgs.wezterm}/Applications/WezTerm.app
     __add_app_to_dock /Applications/Discord.app
     __add_app_to_dock /Applications/Slack.app
     __add_app_to_dock /System/Applications/Messages.app

@@ -60,6 +60,7 @@ in
     ./features/ssh
     ./features/tmux
     ./features/utilities
+    ./features/wezterm
 
     ./darwin/fish
     ./darwin/fonts
