@@ -249,11 +249,13 @@
 
   "[lua]": {
     "editor.tabSize": 2,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "yinfei.luahelper"
   },
 
   "[nix]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
   },
 
   "[rust]": {

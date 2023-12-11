@@ -40,4 +40,7 @@ in
       extensions
     ];
   };
+  config.home.packages = with pkgs; [
+    nixpkgs-fmt
+  ];
 }
