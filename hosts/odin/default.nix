@@ -36,6 +36,7 @@
       "google-drive"
       "hazel"
       "jetbrains-toolbox"
+      "lens"
       "parallels"
       "private-internet-access"
       "rectangle-pro"
