@@ -10,6 +10,7 @@
       kubectl-cnpg
       kubernetes-helm
       kustomize_4
+      minio-client
       talosctl
       terraform
     ];

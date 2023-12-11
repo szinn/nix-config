@@ -49,7 +49,6 @@ in
     # })
 
     ./features/_1password
-    ./features/alacritty
     ./features/devops
     ./features/fish
     (import ./features/git {
@@ -57,10 +56,10 @@ in
       email = "scotte@zinn.ca";
     })
     ./features/gnupg
+    ./features/go
     ./features/postgres
     ./features/rust
     ./features/ssh
-    ./features/tmux
     ./features/utilities
     ./features/wezterm
 

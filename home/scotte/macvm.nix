@@ -30,7 +30,6 @@ in
     #   };
     # })
     ./features/_1password
-    ./features/alacritty
     ./features/devops
     ./features/fish
     (import ./features/git {
@@ -42,6 +41,8 @@ in
     ./features/ssh
     ./features/tmux
     ./features/utilities
+    ./features/wezterm
+
     # Can't do this since it needs to install in /Applications  
     # ./darwin/_1password
     ./darwin/fish

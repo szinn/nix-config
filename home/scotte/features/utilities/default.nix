@@ -24,6 +24,7 @@ in
       jq
       pre-commit
       protobuf
+      qrencode
       redis
       restic
       ripgrep

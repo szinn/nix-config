@@ -38,10 +38,15 @@
       "hazel"
       "jetbrains-toolbox"
       "lens"
+      "obsidian"
       "parallels"
+      "plex"
       "private-internet-access"
       "rectangle-pro"
+      "sonos"
       "switchresx"
+      "visual-studio-code"
+      "wezterm"
       "yubico-authenticator"
     ];
     masApps = {
@@ -78,7 +83,6 @@
     __add_app_to_dock /Applications/OmniFocus.app
     __add_app_to_dock /Applications/Drafts.app
     __add_app_to_dock ${pkgs.vscode}/Applications/Visual\ Studio\ Code.app
-    __add_app_to_dock ${pkgs.alacritty}/Applications/Alacritty.app
     __add_app_to_dock ${pkgs.wezterm}/Applications/WezTerm.app
     __add_app_to_dock /Applications/Discord.app
     __add_app_to_dock /Applications/Slack.app
