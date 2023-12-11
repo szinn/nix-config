@@ -16,6 +16,7 @@
       "epk/epk" # font-sf-mono-nerd-font
     ];
     brews = [
+      "postgresql@16"
       "prettier"
     ];
     casks = [

@@ -19,6 +19,7 @@ let
       vscode.signageos.signageos-vscode-sops
       vscode.usernamehw.errorlens
       vscode.vadimcn.vscode-lldb
+      vscode.yinfei.luahelper
     ];
 in
 {
