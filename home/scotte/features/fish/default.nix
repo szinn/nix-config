@@ -64,4 +64,6 @@
   };
 
   config.home.sessionVariables.fish_greeting = "";
+
+  config.programs.nix-index.enable = true;
 }
