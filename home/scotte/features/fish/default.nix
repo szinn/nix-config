@@ -38,7 +38,7 @@
 
     interactiveShellInit = ''
       if test -d /opt/homebrew/opt/postgresql@16/bin
-        fish_add_path /opt/homebrew/opt/postgresql@16/bin
+        fish_add_path -a /opt/homebrew/opt/postgresql@16/bin
       end
 
       # Ensure nix paths are at the head of the list

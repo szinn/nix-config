@@ -57,6 +57,7 @@ in
       email = "scotte@zinn.ca";
     })
     ./features/gnupg
+    ./features/postgres
     ./features/rust
     ./features/ssh
     ./features/tmux

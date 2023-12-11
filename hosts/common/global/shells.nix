@@ -3,9 +3,6 @@
   environment.shells = with pkgs; [ fish ];
 
   programs = {
-    bash = {
-      enable = true;
-    };
     fish = {
       enable = true;
       vendor = {
@@ -14,8 +11,7 @@
         functions.enable = true;
       };
     };
-    zsh = {
-      enable = true;
-    };
+    bash.enable = true;
+    zsh.enable = true;
   };
 }
