@@ -11,6 +11,8 @@
     };
 
     shellAbbrs = {
+      ap = "ansible-playbook";
+      apb = "ansible-playbook --ask-become";
       gfp = "git fetch -p && git pull";
       gitp = "git push";
       gitpf = "git push -f";
