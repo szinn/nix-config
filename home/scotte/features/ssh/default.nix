@@ -15,12 +15,12 @@ in
       enable = true;
       extraConfig = extraConfigDarwin;
       matchBlocks = {
-        "gateway" = {
+        "gateway.zinn.tech" = {
           port = 22;
           user = "vyos";
           identityFile = "~/.ssh/id_ed25519";
         };
-        "zeus" = {
+        "zeus.zinn.tech" = {
           port = 22;
           user = "root";
           identityFile = "~/.ssh/id_ed25519";
@@ -29,11 +29,6 @@ in
           host = "ssh.github.com";
           port = 443;
           user = "git";
-          identityFile = "~/.ssh/id_ed25519";
-        };
-        "*.zinn.tech" = {
-          port = 22;
-          user = "scotte";
           identityFile = "~/.ssh/id_ed25519";
         };
       };

@@ -249,7 +249,7 @@
 
   "[lua]": {
     "editor.tabSize": 2,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.defaultFormatter": "yinfei.luahelper"
   },
 

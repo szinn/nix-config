@@ -2,108 +2,32 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 local fish_path = "/run/current-system/sw/bin/fish"
+
+-- local workspace_switcher = wezterm.plugin.require("file:///Users/scotte/Development/Projects/smart_workspace_switcher.wezterm")
+-- local workspace_switcher = wezterm.plugin.require("https://github.com/szinn/smart_workspace_switcher.wezterm")
+local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
+workspace_switcher.set_zoxide_path("/Users/scotte/.nix-profile/bin/zoxide")
+workspace_switcher.set_workspace_formatter(function(label)
+    return wezterm.format({
+        { Attribute = { Italic = true } },
+        { Foreground = { Color = "#9580FF" } },
+        { Background = { Color = "black" } },
+        { Text = "󱂬: " .. label },
+    })
+end)
+
 -- Use config builder object if possible
 if wezterm.config_builder then
     config = wezterm.config_builder()
-end
-
--- local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
--- Need a local copy of this to specify location of zoxide
-local function get_zoxide_workspaces(workspace_formatter)
-	local _, stdout, _ = wezterm.run_child_process({ "/Users/scotte/.nix-profile/bin/zoxide", "query", "-l" })
-
-	local workspace_table = {}
-	for _, workspace in ipairs(wezterm.mux.get_workspace_names()) do
-		table.insert(workspace_table, {
-			id = workspace,
-			label = workspace_formatter(workspace),
-		})
-	end
-	for _, path in ipairs(wezterm.split_by_newlines(stdout)) do
-		local updated_path = string.gsub(path, wezterm.home_dir, "~")
-		table.insert(workspace_table, {
-			id = path,
-			label = updated_path,
-		})
-	end
-	return workspace_table
-end
-
-local function workspace_switcher(workspace_formatter)
-	return wezterm.action_callback(function(window, pane)
-		local workspaces = get_zoxide_workspaces(workspace_formatter)
-
-		window:perform_action(
-			act.InputSelector({
-				action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
-					if not id and not label then -- do nothing
-					else
-						local fullPath = string.gsub(label, "^~", wezterm.home_dir)
-						if fullPath:sub(1, 1) == "/" or fullPath:sub(3, 3) == "\\" then
-							-- if path is choosen
-							inner_window:perform_action(
-								act.SwitchToWorkspace({
-									name = label,
-									spawn = {
-										label = "Workspace: " .. label,
-										cwd = fullPath,
-									},
-								}),
-								inner_pane
-							)
-							window:set_right_status(window:active_workspace())
-							-- increment path score
-							wezterm.run_child_process({
-								"zoxide",
-								"add",
-								fullPath,
-							})
-						else
-							-- if workspace is choosen
-							inner_window:perform_action(
-								act.SwitchToWorkspace({
-									name = id,
-								}),
-								inner_pane
-							)
-							window:set_right_status(window:active_workspace() .. "  ")
-						end
-					end
-				end),
-				title = "Choose Workspace",
-				choices = workspaces,
-				fuzzy = true,
-			}),
-			pane
-		)
-	end)
-end
-
-local function apply_to_config(config, key, mods, formatter)
-	if key == nil then
-		key = "s"
-	end
-	if mods == nil then
-		mods = "s"
-	end
-	if formatter == nil then
-		formatter = function(label)
-			return wezterm.format({
-				{ Text = "󱂬: " .. label },
-			})
-		end
-	end
-	table.insert(config.keys, {
-		key = key,
-		mods = mods,
-		action = workspace_switcher(formatter),
-	})
 end
 
 -- Settings
 config.default_prog = {fish_path, "-l"}
 
 config.font = wezterm.font('FiraCode Nerd Font', { weight = 'Medium' })
+config.font_size = 11.0
+config.line_height = 1.0
+config.harfbuzz_features = {"calt=1", "clig=1", "liga=1"}
 
 config.window_background_opacity = 1.0
 config.window_decorations = "RESIZE"
@@ -150,11 +74,9 @@ config.colors = {
 	}
 }
 
-config.leader = {
-    key = "t",
-    mods = "CTRL",
-    timeout_milliseconds = 1000
-}
+config.use_fancy_tab_bar = true
+
+config.leader = { key = "t", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
     -- Send C-t when pressing C-a twice
     { key = "t",          mods = "LEADER|CTRL", action = act.SendKey { key = "t", mods = "CTRL" } },
@@ -163,7 +85,7 @@ config.keys = {
 
     -- Pane keybindings
     { key = "-",          mods = "LEADER",      action = act.SplitVertical { domain = "CurrentPaneDomain" } },
-    { key = "\\",          mods = "LEADER",      action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+    { key = "\\",         mods = "LEADER",      action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
     { key = "n",          mods = "LEADER",      action = act.ActivatePaneDirection("Left") },
     { key = "e",          mods = "LEADER",      action = act.ActivatePaneDirection("Down") },
     { key = "i",          mods = "LEADER",      action = act.ActivatePaneDirection("Up") },
@@ -202,16 +124,30 @@ config.keys = {
     { key = "{", mods = "LEADER|SHIFT", action = act.MoveTabRelative(-1) },
     { key = "}", mods = "LEADER|SHIFT", action = act.MoveTabRelative(1) },
     -- Lastly, workspace
+    { key = 'j', mods = "CMD", action = workspace_switcher.switch_workspace() },
     { key = "w", mods = "LEADER", action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } }
 }
 
-apply_to_config(config, "j", "CMD", function(label)
-    return wezterm.format({
-        { Attribute = { Italic = true } },
-        { Foreground = { Color = "#9580FF" } },
-        { Background = { Color = "black" } },
-        { Text = "󱂬: " .. label },
-    })
+local function basename(s)
+    return string.gsub(s, "(.*[/\\])(.*)", "%2")
+end
+
+local function update_right_status(window)
+    title = basename(window:active_workspace())
+    if window:is_focused() then
+        window:set_right_status(wezterm.format {
+            { Foreground = { Color = "#F8F8F2" } },
+            { Text = title .. "  " }
+        })
+    end
+end
+
+wezterm.on('window-focus-changed', function(window, pane)
+    update_right_status(window)
+end)
+
+wezterm.on('update-right-status', function(window, pane)
+    update_right_status(window)
 end)
 
 return config

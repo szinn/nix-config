@@ -36,6 +36,7 @@
       "google-chrome"
       "google-drive"
       "hazel"
+      "iina"
       "jetbrains-toolbox"
       "lens"
       "obsidian"
