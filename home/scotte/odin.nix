@@ -50,6 +50,7 @@ in
 
     ./features/_1password
     ./features/devops
+    ./features/dosync
     ./features/fish
     (import ./features/git {
       name = "Scotte Zinn";

@@ -1,0 +1,89 @@
+#!/bin/bash
+
+MEDIA_NFS="ubuntu@ragnar:/mnt/atlas/media"
+BACKUP_NFS="ubuntu@ragnar:/mnt/atlas/backup/scotte"
+
+#RSYNC='rsync -vrlt --exclude=".*" --modify-window=2'
+#RSYNC='rsync -vrlt --exclude=".*" --modify-window=2 --chmod=Dog+rx,Fog+r'
+RSYNC='rsync -rvulz --exclude=".*" --modify-window=2 --chmod=Dog+rx,Fog+r'
+LOGFILE="/Users/Scotte/Downloads/rsync.log"
+YEARS="2022 2023"
+IMMICH_YEARS="2022 2023"
+
+MUSIC="/Users/scotte/Music/Music/Media.localized/Music"
+PHOTOS="/Users/scotte/Multimedia/Photos"
+BOOKS="/Users/scotte/Multimedia/Books"
+DATABASES="/Users/scotte/Databases"
+GAMES="/Users/scotte/Games"
+AUDIO_BOOKS="/Users/scotte/Multimedia/AudioBooks"
+
+# Verify logfile present
+if ! [ -f ${LOGFILE} ]; then
+  touch ${LOGFILE}
+fi
+
+# Log into 1password
+# eval $(op signin)
+
+# Start the sync
+echo " " | tee -a ${LOGFILE}
+echo "**************************" | tee -a ${LOGFILE}
+echo " " | tee -a ${LOGFILE}
+
+# Sync music
+echo "*** Syncing music" | tee -a ${LOGFILE}
+echo " " | tee -a ${LOGFILE}
+${RSYNC} ${MUSIC}/. ${MEDIA_NFS}/Music/ | tee -a ${LOGFILE}
+
+# Sync audio books
+echo "*** Syncing audio books" | tee -a ${LOGFILE}
+echo " " | tee -a ${LOGFILE}
+${RSYNC} ${AUDIO_BOOKS}/. ${MEDIA_NFS}/AudioBooks/ | tee -a ${LOGFILE}
+
+# Sync Immich Photos
+echo " " | tee -a ${LOGFILE}
+echo "*** Syncing mobile pictures" | tee -a ${LOGFILE}
+echo " " | tee -a ${LOGFILE}
+for year in ${IMMICH_YEARS}; do
+  ${RSYNC} ${MEDIA_NFS}/Immich/library/2064a6dd-2175-4e81-8de9-d8fa7b6378f5/${year}/ ${PHOTOS}/${year}/Phone/. | tee -a ${LOGFILE}
+done
+
+# Sync pictures
+echo " " | tee -a ${LOGFILE}
+echo "*** Syncing pictures (Archive)" | tee -a ${LOGFILE}
+echo " " | tee -a ${LOGFILE}
+${RSYNC} ${PHOTOS}/. ${MEDIA_NFS}/Photos/Archive/ | tee -a ${LOGFILE}
+for i in ${YEARS}; do
+  if test -d ${PHOTOS}/$i; then
+    echo " " | tee -a ${LOGFILE}
+    echo "*** Syncing pictures ($i)..." | tee -a ${LOGFILE}
+    echo " " | tee -a ${LOGFILE}
+    ${RSYNC} ${PHOTOS}/$i/. ${MEDIA_NFS}/Photos/Current/ | tee -a ${LOGFILE}
+  fi
+done
+
+# Sync books
+echo " " | tee -a ${LOGFILE}
+echo "*** Syncing books..." | tee -a ${LOGFILE}
+echo " " | tee -a ${LOGFILE}
+echo "*** Pausing calibre-web..." | tee -a ${LOGFILE}
+flux -n flux-system suspend kustomization media-calibre-web
+flux -n media suspend helmrelease calibre-web
+kubectl -n media scale statefulset/calibre-web --replicas 0
+kubectl -n media wait pod --for delete --selector="app.kubernetes.io/name=calibre-web" --timeout=2m
+${RSYNC} ${BOOKS}/. ${MEDIA_NFS}/Books/Library/ | tee -a ${LOGFILE}
+echo "*** Resuming calibre-web..."  | tee -a ${LOGFILE}
+flux -n media resume helmrelease calibre-web
+flux -n flux-system resume kustomization media-calibre-web
+
+# Sync databases
+echo " " | tee -a ${LOGFILE}
+echo "*** Syncing databases..." | tee -a ${LOGFILE}
+echo " " | tee -a ${LOGFILE}
+${RSYNC} ${DATABASES}/Backups/. ${BACKUP_NFS}/Databases/ | tee -a ${LOGFILE}
+
+# Sync games
+echo " " | tee -a ${LOGFILE}
+echo "*** Syncing games..." | tee -a ${LOGFILE}
+echo " " | tee -a ${LOGFILE}
+${RSYNC} ${GAMES}/. ${BACKUP_NFS}/Games/ | tee -a ${LOGFILE}
