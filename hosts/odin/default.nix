@@ -45,7 +45,9 @@
       "private-internet-access"
       "rectangle-pro"
       "sonos"
+      "spotify"
       "switchresx"
+      "ultimaker-cura"
       "visual-studio-code"
       "wezterm"
       "yubico-authenticator"
@@ -88,6 +90,8 @@
     __add_app_to_dock /Applications/Discord.app
     __add_app_to_dock /Applications/Slack.app
     __add_app_to_dock /System/Applications/Messages.app
+    __add_app_to_dock /Applications/Spotify.app
+    __add_app_to_dock /System/Applications/Music.app
     __add_app_to_dock /System/Applications/App\ Store.app
     __add_app_to_dock /System/Applications/System\ Settings.app
 
