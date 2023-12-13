@@ -11,6 +11,8 @@
     };
 
     shellAbbrs = {
+      dup = "git add . ; darwin-rebuild switch --flake .#$(hostname -s)";
+      hmup = "git add . ; home-manager switch --flake .#$(whoami)@$(hostname -s)";
       ap = "ansible-playbook";
       apb = "ansible-playbook --ask-become";
       gfp = "git fetch -p && git pull";
@@ -20,6 +22,10 @@
     };
 
     functions = {
+      brewup = {
+        description = "Update homebrew applications";
+        body = builtins.readFile ./functions/brewup.fish;
+      };
       fish_prompt = {
         description = "Set the fish prompt";
         body = builtins.readFile ./functions/fish_prompt.fish;
@@ -31,6 +37,10 @@
       fish_title = {
         description = "Set the title";
         body = builtins.readFile ./functions/fish_title.fish;
+      };
+      fwatch = {
+        description = "Watch with fish alias support";
+        body = builtins.readFile ./functions/fwatch.fish;
       };
       git_current_branch = {
         description = "Display the current branch";

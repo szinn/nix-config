@@ -24,6 +24,20 @@
       interactiveShellInit = ''
         flux completion fish | source
       '';
+      functions = {
+        flretry = {
+          description = "Retry a flux update";
+          body = builtins.readFile ./functions/flretry.fish;
+        };
+        kcon = {
+          description = "Switch active talos/kubctl environments";
+          body = builtins.readFile ./functions/kcon.fish;
+        };
+        leases = {
+          description = "Show VyOS DHCP leases";
+          body = builtins.readFile ./functions/leases.fish;
+        };
+      };
     };
   };
 }

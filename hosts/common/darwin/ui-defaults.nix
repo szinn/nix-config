@@ -308,11 +308,19 @@
     # See https://github.com/mathiasbynens/dotfiles/blob/master/.macos
     activationScripts.postUserActivation.text = ''
         mkdir -p /Users/scotte/Downloads/Screenshots
+
+        # Never go into computer sleep mode
+        sudo /usr/sbin/systemsetup -setcomputersleep Off > /dev/null
+
+        # Restart automatically if the computer freezes
+        sudo /usr/sbin/systemsetup -setrestartfreeze on
+
         ###############################################################################
         # General UI/UX                                                               #
         ###############################################################################
         # Automatically quit printer app once the print jobs complete
         defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
       #   ###############################################################################
       #   # Screen                                                                      #
       #   ###############################################################################

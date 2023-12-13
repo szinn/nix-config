@@ -125,7 +125,7 @@ config.keys = {
     { key = "}", mods = "LEADER|SHIFT", action = act.MoveTabRelative(1) },
     -- Lastly, workspace
     { key = 'j', mods = "CMD", action = workspace_switcher.switch_workspace() },
-    { key = "w", mods = "LEADER", action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } }
+    { key = "s", mods = "LEADER", action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } }
 }
 
 local function basename(s)

@@ -20,6 +20,7 @@ in
       eza
       fd
       fzf
+      gh
       go-task
       jq
       pre-commit
@@ -28,6 +29,7 @@ in
       redis
       restic
       ripgrep
+      shellcheck
       sops
       unixtools.watch
       wget

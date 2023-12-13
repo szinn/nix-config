@@ -20,6 +20,21 @@ in
           user = "vyos";
           identityFile = "~/.ssh/id_ed25519";
         };
+        "ragnar.zinn.tech" = {
+          port = 22;
+          user = "scotte";
+          identityFile = "~/.ssh/id_ed25519";
+        };
+        "octo.zinn.tech" = {
+          port = 22;
+          user = "pi";
+          identityFile = "~/.ssh/id_ed25519";
+        };
+        "pione.zinn.tech" = {
+          port = 22;
+          user = "pi";
+          identityFile = "~/.ssh/id_ed25519";
+        };
         "zeus.zinn.tech" = {
           port = 22;
           user = "root";
@@ -29,6 +44,27 @@ in
           host = "ssh.github.com";
           port = 443;
           user = "git";
+          identityFile = "~/.ssh/id_ed25519";
+        };
+        "github-magized" = {
+          host = "ssh.github.com";
+          port = 443;
+          user = "git";
+          identityFile = "~/.ssh/id_magized";
+        };
+        "pikvm.zinn.tech" = {
+          port = 22;
+          user = "root";
+          identityFile = "~/.ssh/id_ed25519";
+        };
+        "ares.zinn.tech" = {
+          port = 22;
+          user = "root";
+          identityFile = "~/.ssh/id_ed25519";
+        };
+        "magized.com" = {
+          port = 22;
+          user = "mailu";
           identityFile = "~/.ssh/id_ed25519";
         };
       };

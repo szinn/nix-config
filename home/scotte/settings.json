@@ -285,5 +285,7 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.colorTheme": "Dracula Pro (Van Helsing)"
+  "workbench.colorTheme": "Dracula Pro (Van Helsing)",
+  "sops.binPath": "/Users/scotte/.nix-profile/bin/sops",
+  "sops.defaults.ageKeyFile": "/Users/scotte/.config/age/keys.txt"
 }

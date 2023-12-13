@@ -18,6 +18,7 @@
     brews = [
       "postgresql@16"
       "prettier"
+      "talhelper"
     ];
     casks = [
       "1password"
