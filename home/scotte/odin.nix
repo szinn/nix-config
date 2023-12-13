@@ -49,6 +49,9 @@ in
     # })
 
     ./features/_1password
+    (import ./features/colima {
+      startService = false;
+    })
     ./features/devops
     ./features/dosync
     ./features/fish
