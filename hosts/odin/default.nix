@@ -52,6 +52,7 @@
       "visual-studio-code"
       "wezterm"
       "yubico-authenticator"
+      "zoom"
     ];
     masApps = {
       "1Password for Safari" = 1569813296;
