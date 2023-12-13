@@ -14,6 +14,7 @@ let
       vscode.golang.go
       vscode.gruntfuggly.todo-tree
       vscode.hashicorp.terraform
+      vscode.ieni.glimpse
       vscode.rust-lang.rust-analyzer
       vscode.serayuzgur.crates
       vscode.signageos.signageos-vscode-sops
