@@ -68,7 +68,7 @@
       "LogicPro" = 634148309;
       "Numbers" = 409203825;
       "Pages" = 409201541;
-      "OmniFocus 3" = 1346203938;
+      "OmniFocus 4" = 1542143627;
       "Save to Reader" = 1640236961;
       "Slack" = 803453959;
       "Spark Desktop" = 6445813049;
@@ -85,7 +85,7 @@
     __add_app_to_dock /Applications/Safari.app
     __add_app_to_dock /Applications/Spark\ Desktop.app
     __add_app_to_dock /Applications/DEVONthink\ 3.app
-    __add_app_to_dock /Applications/OmniFocus.app
+    __add_app_to_dock /Applications/OmniFocus.localized/OmniFocus.app
     __add_app_to_dock /Applications/Drafts.app
     __add_app_to_dock ${pkgs.vscode}/Applications/Visual\ Studio\ Code.app
     __add_app_to_dock ${pkgs.wezterm}/Applications/WezTerm.app
