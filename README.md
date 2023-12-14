@@ -5,7 +5,7 @@
 A great test environment (if you have Parallels) is to create a MacVM to try things out in.
 It lets you blow it away and start fresh as many times as you want to ensure you have a repeatable environment without destroying your current working environment,
 
-For my network, this lets the VM pick up DHCP configuration in an appropraite VLAN.
+For my network, this lets the VM pick up DHCP configuration in an appropriate VLAN.
 
 ```sh
 prlctl set "macOS" --device-set net0 --type bridged
@@ -40,10 +40,16 @@ sudo mv /etc/shells /etc/shells.before-nix-darwin
 sudo mv /etc/zshenv /etc/zshenv.before-nix-darwin
 ```
 
-Afterwards, darwin-rebuild is required to run the updates.
+Afterwards, if the `hosts` tree is touched, darwin-rebuild is required to run the updates.
 
 ```sh
-darwin-rebuild switch --flake .#$(hostname -s)
+git add . ; darwin-rebuild switch --flake .#$(hostname -s)
+```
+
+If just the `home` tree is touched, then home-manager is sufficient to run the updates.
+
+```sh
+git add . ; home-manager switch --flake.#$(whoami)@(hostname -s)
 ```
 
 ## Secrets
