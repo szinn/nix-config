@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }: {
   config = {
     home.packages = with pkgs; [
-      ansible
       cilium-cli
       cloudflared
       fluxcd

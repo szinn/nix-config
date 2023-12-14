@@ -128,6 +128,26 @@ config.keys = {
     { key = "s", mods = "LEADER", action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } }
 }
 
+-- Configure for Colemak keyboard
+config.key_tables = {
+    resize_pane = {
+        { key = "n",      action = act.AdjustPaneSize { "Left", 1 } },
+        { key = "e",      action = act.AdjustPaneSize { "Down", 1 } },
+        { key = "i",      action = act.AdjustPaneSize { "Up", 1 } },
+        { key = "o",      action = act.AdjustPaneSize { "Right", 1 } },
+        { key = "Escape", action = "PopKeyTable" },
+        { key = "Enter",  action = "PopKeyTable" },
+    },
+    move_tab = {
+        { key = "n",      action = act.MoveTabRelative(-1) },
+        { key = "e",      action = act.MoveTabRelative(-1) },
+        { key = "i",      action = act.MoveTabRelative(1) },
+        { key = "o",      action = act.MoveTabRelative(1) },
+        { key = "Escape", action = "PopKeyTable" },
+        { key = "Enter",  action = "PopKeyTable" },
+    }
+}
+
 local function basename(s)
     return string.gsub(s, "(.*[/\\])(.*)", "%2")
 end
