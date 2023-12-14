@@ -6,7 +6,7 @@
     }
     ../common/global
     ../common/darwin
-    ../common/users/scotte
+    ./scotte.nix
   ];
 
   networking.hostName = "odin";
