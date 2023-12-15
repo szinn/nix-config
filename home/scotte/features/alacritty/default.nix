@@ -1,6 +1,17 @@
-{ config, pkgs, lib, ... }: {
-  config.programs.alacritty = {
-    enable = true;
+{ config, pkgs, lib, ... }:
+with lib;
+let
+  cfg = config.features.alacritty;
+in
+{
+  options.features.alacritty = {
+    enable = mkEnableOption "alacritty";
   };
-  config.xdg.configFile."alacritty/alacritty.yml".source = ./alacritty.yml;
+
+  config = mkIf (cfg.enable) {
+    programs.alacritty = {
+      enable = true;
+    };
+    xdg.configFile."alacritty/alacritty.yml".source = ./alacritty.yml;
+  };
 }

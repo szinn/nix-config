@@ -1,8 +1,19 @@
-{ config, pkgs, lib, ... }: {
-  # Temporary make .config/wezterm/wezterm.lua link to the local copy
-  config.xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/nix-config/home/scotte/features/wezterm/wezterm.lua";
+{ config, pkgs, lib, ... }:
+with lib;
+let
+  cfg = config.features.wezterm;
+in
+{
+  options.features.wezterm = {
+    enable = mkEnableOption "wezterm";
+  };
 
-  config.programs.fish.shellAliases = {
-    newmain = "wezterm cli spawn --workspace main --cwd ~ --new-window";
+  # Temporary make .config/wezterm/wezterm.lua link to the local copy
+  config = mkIf (cfg.enable) {
+    xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/nix-config/home/scotte/features/wezterm/wezterm.lua";
+
+    programs.fish.shellAliases = mkIf (config.features.fish.enable) {
+      newmain = "wezterm cli spawn --workspace main --cwd ~ --new-window";
+    };
   };
 }

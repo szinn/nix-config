@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }:
+with lib;
 let
+  cfg = config.features.ssh;
+
   extraConfigDarwin =
     if pkgs.stdenv.isDarwin then
       ''
@@ -10,7 +13,11 @@ let
       "";
 in
 {
-  config = {
+  options.features.ssh = {
+    enable = mkEnableOption "ssh";
+  };
+
+  config = mkIf (cfg.enable) {
     programs.ssh = {
       enable = true;
       extraConfig = extraConfigDarwin;
@@ -76,6 +83,7 @@ in
         };
       };
     };
+
     # Macs need authorized_keys to be a real, non-symlinked file
     # home.file.".ssh/authorized_keys".source = ./authorized_keys;
   };

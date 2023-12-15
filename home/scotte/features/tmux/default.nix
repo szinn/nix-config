@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
 let
+  cfg = config.features.tmux;
+
   t-smart-manager = pkgs.tmuxPlugins.mkTmuxPlugin
     {
       pluginName = "t-smart-tmux-session-manager";
@@ -28,7 +30,11 @@ let
     };
 in
 {
-  config = {
+  options.features.tmux = {
+    enable = mkEnableOption "tmux";
+  };
+
+  config = mkIf (cfg.enable) {
     programs.tmux = {
       enable = true;
       shell = "${pkgs.fish}/bin/fish";

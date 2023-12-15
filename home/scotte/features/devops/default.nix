@@ -1,5 +1,14 @@
-{ config, lib, pkgs, ... }: {
-  config = {
+{ config, lib, pkgs, ... }:
+with lib;
+let
+  cfg = config.features.devops;
+in
+{
+  options.features.devops = {
+    enable = mkEnableOption "devops";
+  };
+
+  config = mkIf (cfg.enable) {
     home.packages = with pkgs; [
       cilium-cli
       cloudflared

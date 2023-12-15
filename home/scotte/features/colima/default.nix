@@ -1,9 +1,17 @@
-{ startService }: { config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
+let
+  cfg = config.features.colima;
+in
 {
-  config = mkMerge [
-    (mkIf (startService) {
-      launchd.agents.colima = mkIf {
+  options.features.colima = {
+    enable = mkEnableOption "colima";
+    startService = mkEnableOption "colima service";
+  };
+
+  config = mkIf (cfg.enable) (mkMerge [
+    (mkIf (cfg.startService) {
+      launchd.agents.colima = {
         enable = true;
         config = {
           EnvironmentVariables = {
@@ -13,9 +21,11 @@ with lib;
             "${pkgs.colima}/bin/colima"
             "start"
             "--foreground"
-              "--arch" "aarch64"
-              "--vm-type" "vz"
-              "--vz-rosetta"
+            "--arch"
+            "aarch64"
+            "--vm-type"
+            "vz"
+            "--vz-rosetta"
           ];
           KeepAlive = {
             Crashed = true;
@@ -33,5 +43,5 @@ with lib;
         docker-compose
       ];
     }
-  ];
+  ]);
 }

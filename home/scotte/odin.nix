@@ -33,44 +33,42 @@ in
       };
     }
     ./global
-
-    (import ./features/vscode {
-      configPath = "${config.home.homeDirectory}/.local/nix-config/home/scotte/settings.json";
-      extensions = extensions;
-    })
-    # Uncomment if using sops secrets
-    # (import ./features/sops {
-    #   ageFile = "${config.xdg.configHome}/age/keys.txt";
-    #   sopsFile = ./secrets.sops.yaml;
-    #   secrets = {
-    #     abc = {
-    #       path = "${config.xdg.configHome}/abc";
-    #     };
-    #   };
-    # })
-
-    ./features/_1password
-    (import ./features/colima {
-      startService = false;
-    })
-    ./features/devops
-    ./features/dosync
-    ./features/fish
-    (import ./features/git {
-      name = "Scotte Zinn";
-      email = "scotte@zinn.ca";
-    })
-    ./features/gnupg
-    ./features/go
-    ./features/postgres
-    ./features/rust
-    ./features/ssh
-    ./features/utilities
-    ./features/wezterm
-
-    ./darwin/fish
-    ./darwin/fonts
-    ./darwin/gnupg
-    ./darwin/git
+    ./features
+    ./darwin
   ];
+
+  features._1password.enable = true;
+  features.alacritty.enable = false;
+  features.colima = {
+    enable = false;
+    startService = false;
+  };
+  features.devops.enable = true;
+  features.dosync.enable = true;
+  features.fish.enable = true;
+  features.git = {
+    enable = true;
+    username = "Scotte Zinn";
+    email = "scotte@zinn.ca";
+  };
+  features.gnupg.enable = true;
+  features.go.enable = true;
+  features.postgres.enable = true;
+  features.rust.enable = true;
+  features.sops = {
+    enable = false;
+    ageKeyFile = "${config.xdg.configHome}/age/keys.txt";
+    defaultSopsFile = ./secrets.sops.yaml;
+    secrets = {
+      abc = {
+        path = "${config.xdg.configHome}/abc";
+      };
+    };
+  };
+  features.vscode = {
+    enable = true;
+    configPath = "${config.home.homeDirectory}/.local/nix-config/home/scotte/settings.json";
+    extensions = extensions;
+  };
+  features.wezterm.enable = true;
 }

@@ -1,9 +1,24 @@
-{ name, email }: { config, pkgs, lib, ... }: {
-  config = {
+{ config, pkgs, lib, ... }:
+with lib;
+let
+  cfg = config.features.git;
+in
+{
+  options.features.git = {
+    enable = mkEnableOption "git";
+    username = mkOption {
+      type = types.str;
+    };
+    email = mkOption {
+      type = types.str;
+    };
+  };
+
+  config = mkIf (cfg.enable) {
     programs.git = {
       enable = true;
-      userName = name;
-      userEmail = email;
+      userName = cfg.username;
+      userEmail = cfg.email;
       extraConfig = {
         gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
         color = { ui = "auto"; };

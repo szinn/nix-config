@@ -1,20 +1,41 @@
-{ ageFile, sopsFile, secrets }: { lib, pkgs, config, inputs, ... }: {
+{ lib, pkgs, config, inputs, ... }:
+with lib;
+let
+  cfg = config.features.sops;
+in
+{
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
 
-  config.home.packages = with pkgs; [
-    sops
-    age
-  ];
-
-  config.sops = {
-    defaultSopsFile = sopsFile;
-    age.keyFile = ageFile;
-    secrets = secrets;
+  options.features.sops = {
+    enable = mkEnableOption "sops";
+    defaultSopsFile = mkOption {
+      type = types.path;
+    };
+    secrets = mkOption {
+      type = types.attrs;
+      default = { };
+    };
+    ageKeyFile = mkOption {
+      type = types.str;
+      default = "${config.xdg.configHome}/age/keys.txt";
+    };
   };
+  config = mkIf (cfg.enable) {
+    home.packages = with pkgs; [
+      sops
+      age
+    ];
 
-  config.home.sessionVariables = {
-    SOPS_AGE_KEY_FILE = ageFile;
+    sops = {
+      defaultSopsFile = cfg.defaultSopsFile;
+      age.keyFile = cfg.ageKeyFile;
+      secrets = cfg.secrets;
+    };
+
+    home.sessionVariables = {
+      SOPS_AGE_KEY_FILE = cfg.ageKeyFile;
+    };
   };
 }

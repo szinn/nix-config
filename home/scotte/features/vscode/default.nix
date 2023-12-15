@@ -1,6 +1,8 @@
-{ configPath, extensions }: { pkgs, lib, config, inputs, ... }:
+{ pkgs, lib, config, inputs, ... }:
 with lib;
 let
+  cfg = config.features.vscode;
+
   defaultExtensions =
     let
       vscode = inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
@@ -28,19 +30,31 @@ let
     ];
 in
 {
-  # Point settings.json to configPath
-  config.home.file."/Library/Application Support/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink configPath;
-  config.programs.vscode = {
-    enable = true;
-    package = pkgs.vscode;
-    mutableExtensionsDir = true;
+  options.features.vscode = {
+    enable = mkEnableOption "vscode";
+    extensions = mkOption {
+      type = types.listOf types.package;
+      default = [ ];
+    };
+    configPath = mkOption {
+      type = types.str;
+    };
+  };
 
-    extensions = mkMerge [
-      defaultExtensions
-      extensions
+  # Point settings.json to configPath
+  config = mkIf (cfg.enable) {
+    programs.vscode = {
+      enable = true;
+      package = pkgs.vscode;
+      mutableExtensionsDir = true;
+
+      extensions = mkMerge [
+        defaultExtensions
+        cfg.extensions
+      ];
+    };
+    home.packages = with pkgs; [
+      nixpkgs-fmt
     ];
   };
-  config.home.packages = with pkgs; [
-    nixpkgs-fmt
-  ];
 }
