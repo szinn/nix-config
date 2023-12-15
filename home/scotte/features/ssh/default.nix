@@ -15,27 +15,32 @@ in
       enable = true;
       extraConfig = extraConfigDarwin;
       matchBlocks = {
-        "gateway.zinn.tech" = {
+        gateway = {
+          host = "gateway.zinn.tech";
           port = 22;
           user = "vyos";
           identityFile = "~/.ssh/id_ed25519";
         };
-        "ragnar.zinn.tech" = {
+        ragnar = {
+          host = "ragnar.zinn.tech";
           port = 22;
           user = "scotte";
           identityFile = "~/.ssh/id_ed25519";
         };
-        "octo.zinn.tech" = {
+        octo = {
+          host = "octo.zinn.tech";
           port = 22;
           user = "pi";
           identityFile = "~/.ssh/id_ed25519";
         };
-        "pione.zinn.tech" = {
+        pione = {
+          host = "pione.zinn.tech";
           port = 22;
           user = "pi";
           identityFile = "~/.ssh/id_ed25519";
         };
-        "zeus.zinn.tech" = {
+        zeus = {
+          host = "zeus.zinn.tech";
           port = 22;
           user = "root";
           identityFile = "~/.ssh/id_ed25519";
@@ -52,12 +57,14 @@ in
           user = "git";
           identityFile = "~/.ssh/id_magized";
         };
-        "pikvm.zinn.tech" = {
+        pikvm = {
+          host = "pikvm.zinn.tech";
           port = 22;
           user = "root";
           identityFile = "~/.ssh/id_ed25519";
         };
-        "ares.zinn.tech" = {
+        ares = {
+          host = "ares.zinn.tech";
           port = 22;
           user = "root";
           identityFile = "~/.ssh/id_ed25519";
