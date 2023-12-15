@@ -6,7 +6,6 @@ let
   extraConfigDarwin =
     if pkgs.stdenv.isDarwin then
       ''
-        AddKeysToAgent yes
         UseKeychain yes
       ''
     else
@@ -21,57 +20,58 @@ in
     programs.ssh = {
       enable = true;
       extraConfig = extraConfigDarwin;
+      addKeysToAgent = "yes";
       matchBlocks = {
         gateway = {
-          host = "gateway.zinn.tech";
+          hostname = "gateway.zinn.tech";
           port = 22;
           user = "vyos";
           identityFile = "~/.ssh/id_ed25519";
         };
         ragnar = {
-          host = "ragnar.zinn.tech";
+          hostname = "ragnar.zinn.tech";
           port = 22;
           user = "scotte";
           identityFile = "~/.ssh/id_ed25519";
         };
         octo = {
-          host = "octo.zinn.tech";
+          hostname = "octo.zinn.tech";
           port = 22;
           user = "pi";
           identityFile = "~/.ssh/id_ed25519";
         };
         pione = {
-          host = "pione.zinn.tech";
+          hostname = "pione.zinn.tech";
           port = 22;
           user = "pi";
           identityFile = "~/.ssh/id_ed25519";
         };
         zeus = {
-          host = "zeus.zinn.tech";
+          hostname = "zeus.zinn.tech";
           port = 22;
           user = "root";
           identityFile = "~/.ssh/id_ed25519";
         };
         "github.com" = {
-          host = "ssh.github.com";
+          hostname = "ssh.github.com";
           port = 443;
           user = "git";
           identityFile = "~/.ssh/id_ed25519";
         };
         "github-magized" = {
-          host = "ssh.github.com";
+          hostname = "ssh.github.com";
           port = 443;
           user = "git";
           identityFile = "~/.ssh/id_magized";
         };
         pikvm = {
-          host = "pikvm.zinn.tech";
+          hostname = "pikvm.zinn.tech";
           port = 22;
           user = "root";
           identityFile = "~/.ssh/id_ed25519";
         };
         ares = {
-          host = "ares.zinn.tech";
+          hostname = "ares.zinn.tech";
           port = 22;
           user = "root";
           identityFile = "~/.ssh/id_ed25519";

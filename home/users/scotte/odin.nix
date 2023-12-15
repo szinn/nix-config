@@ -55,6 +55,7 @@ in
   features.go.enable = true;
   features.postgres.enable = true;
   features.rust.enable = true;
+  features.ssh.enable = true;
   features.sops = {
     enable = false;
     ageKeyFile = "${config.xdg.configHome}/age/keys.txt";

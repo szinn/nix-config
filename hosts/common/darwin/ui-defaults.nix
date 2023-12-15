@@ -299,6 +299,52 @@
         # The default is 1.
         SecondClickThreshold = 1;
       };
+
+      CustomUserPreferences = {
+        "com.apple.finder" = {
+          ShowExternalHardDrivesOnDesktop = false;
+          ShowHardDrivesOnDesktop = false;
+          ShowMountedServersOnDesktop = false;
+          ShowRemovableMediaOnDesktop = false;
+          _FXSortFoldersFirst = true;
+        };
+
+        "com.apple.Safari" = {
+          # Privacy: don’t send search queries to Apple
+          UniversalSearchEnabled = false;
+          SuppressSearchSuggestions = true;
+          # Press Tab to highlight each item on a web page
+          WebKitTabToLinksPreferenceKey = true;
+          ShowFullURLInSmartSearchField = true;
+          # Prevent Safari from opening ‘safe’ files automatically after downloading
+          AutoOpenSafeDownloads = false;
+          ShowFavoritesBar = true;
+          IncludeInternalDebugMenu = true;
+          IncludeDevelopMenu = true;
+          WebKitDeveloperExtrasEnabledPreferenceKey = true;
+          WebContinuousSpellCheckingEnabled = true;
+          WebAutomaticSpellingCorrectionEnabled = false;
+          AutoFillFromAddressBook = false;
+          AutoFillCreditCardData = false;
+          AutoFillMiscellaneousForms = false;
+          WarnAboutFraudulentWebsites = true;
+          WebKitJavaEnabled = false;
+          WebKitJavaScriptCanOpenWindowsAutomatically = false;
+          "com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks" = true;
+          "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" = true;
+          "com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled" = false;
+          "com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled" = false;
+          "com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles" = false;
+          "com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically" = false;
+        };
+
+        # Don't offer TimeMachine backups for new disks that get plugged in
+        "com.apple.TimeMachine".DoNotOfferNewDisksForBackup = true;
+        # Prevent Photos from opening automatically when devices are plugged in
+        "com.apple.ImageCapture".disableHotPlug = true;
+        # Turn on app auto-update
+        "com.apple.commerce".AutoUpdate = true;
+      };
     };
 
     activationScripts.preUserActivation.text = ''
@@ -320,6 +366,9 @@
         ###############################################################################
         # Automatically quit printer app once the print jobs complete
         defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+        # Following line should allow us to avoid a logout/login cycle
+        /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
       #   ###############################################################################
       #   # Screen                                                                      #
