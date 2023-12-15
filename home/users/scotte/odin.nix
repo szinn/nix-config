@@ -32,9 +32,9 @@ in
         sessionPath = [ "$HOME/.local/bin" ];
       };
     }
-    ./global
-    ./features
-    ./darwin
+    ../../global
+    ../../features
+    ../../darwin
   ];
 
   features._1password.enable = true;
@@ -67,7 +67,7 @@ in
   };
   features.vscode = {
     enable = true;
-    configPath = "${config.home.homeDirectory}/.local/nix-config/home/scotte/settings.json";
+    configPath = "${config.home.homeDirectory}/.local/nix-config/home/users/scotte/settings.json";
     extensions = extensions;
   };
   features.wezterm.enable = true;

@@ -66,13 +66,13 @@
       homeConfigurations = {
         # $ git add . ; home-manager switch --flake .#"scotte@macvm"
         "scotte@macvm" = lib.homeManagerConfiguration {
-          modules = [ ./home/scotte/macvm.nix ];
+          modules = [ ./home/users/scotte/macvm.nix ];
           pkgs = pkgsFor.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
         };
         # $ git add . ; home-manager switch --flake .#"scotte@odin"
         "scotte@odin" = lib.homeManagerConfiguration {
-          modules = [ ./home/scotte/odin.nix ];
+          modules = [ ./home/users/scotte/odin.nix ];
           pkgs = pkgsFor.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
         };
