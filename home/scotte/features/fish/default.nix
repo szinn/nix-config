@@ -3,6 +3,7 @@
     enable = true;
 
     shellAliases = {
+      code = "/opt/homebrew/bin/code";
       m = "less";
       ls = "${pkgs.eza}/bin/eza --group";
       ll = "${pkgs.eza}/bin/eza --long --all --group --header";
