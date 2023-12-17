@@ -19,6 +19,7 @@
     casks = [
       "1password"
       "alacritty"
+      "visual-studio-code"
     ];
     masApps = { };
   };
@@ -28,7 +29,7 @@
     __clear_dock
     __add_app_to_dock /Applications/1Password.app
     __add_app_to_dock /Applications/Safari.app
-    __add_app_to_dock ${pkgs.vscode}/Applications/Visual\ Studio\ Code.app
+    __add_app_to_dock /Applications/Visual\ Studio\ Code.app
     __add_app_to_dock /Applications/Alacritty.app
     __add_app_to_dock /System/Applications/App\ Store.app
     __add_app_to_dock /System/Applications/System\ Settings.app

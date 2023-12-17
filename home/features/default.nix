@@ -24,6 +24,7 @@ in
     ./rust
     ./sops
     ./ssh
+    ./tmux
     ./vscode
     ./wezterm
   ];
