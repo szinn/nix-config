@@ -12,6 +12,7 @@ in
     home.packages = with pkgs; [
       rustup
       sccache
+      sea-orm-cli
     ];
 
     home.file.".cargo/config.toml".source = ./cargo.toml;
