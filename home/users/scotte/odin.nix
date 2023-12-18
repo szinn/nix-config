@@ -43,6 +43,7 @@ in
     enable = false;
     startService = false;
   };
+  features.devonthink.enable = true;
   features.devops.enable = true;
   features.dosync.enable = true;
   features.fish.enable = true;

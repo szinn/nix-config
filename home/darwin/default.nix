@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }: {
   imports = [
+    ./devonthink
     ./fish
     ./git
     ./gnupg

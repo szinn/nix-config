@@ -14,6 +14,7 @@ in
     ./_1password
     ./alacritty
     ./colima
+    ./devonthink
     ./devops
     ./dosync
     ./fish

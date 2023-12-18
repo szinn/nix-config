@@ -34,7 +34,7 @@
       "calibre"
       "devonthink"
       "discord"
-      "espanso"
+      # "espanso"
       "font-sf-mono-nerd-font"
       "google-chrome"
       "google-drive"

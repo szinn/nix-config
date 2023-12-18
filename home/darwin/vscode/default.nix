@@ -5,7 +5,7 @@ let
 in
 {
   config.home.file = mkIf (cfg.enable) {
-    "/Library/Application Support/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink cfg.configPath;
+    "Library/Application Support/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink cfg.configPath;
   };
 
   config.programs.fish.shellAliases = mkIf (config.features.fish.enable) {
