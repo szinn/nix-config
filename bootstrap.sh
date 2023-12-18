@@ -51,29 +51,33 @@ if [[ isDarwin ]]; then
   softwareupdate --install-rosetta --agree-to-license
 fi
 
-log "Checking if homebrew is installed..."
-if ! test -f /opt/homebrew/bin/brew; then
-  log "Installing homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo "eval $(/opt/homebrew/bin/brew shellenv)" >>~/.zprofile
+if [[ isDarwin ]]; then
+  log "Checking if homebrew is installed..."
+  if ! test -f /opt/homebrew/bin/brew; then
+    log "Installing homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo "eval $(/opt/homebrew/bin/brew shellenv)" >>~/.zprofile
+  fi
 fi
 
-log "Checking if Nix is installed..."
-if ! command -v nix &>/dev/null; then
-  log "Installing Nix..."
-  curl -sL -o nix-installer https://install.determinate.systems/nix/nix-installer-aarch64-darwin
-  chmod +x nix-installer
+if [[ isDarwin ]]; then
+  log "Checking if Nix is installed..."
+  if ! command -v nix &>/dev/null; then
+    log "Installing Nix..."
+    curl -sL -o nix-installer https://install.determinate.systems/nix/nix-installer-aarch64-darwin
+    chmod +x nix-installer
 
-  ./nix-installer install macos \
-    --logger pretty \
-    --extra-conf "sandbox = false" \
-    --extra-conf "experimental-features = nix-command flakes" \
-    --extra-conf "trusted-users = scotte"
-  log "Validating Nix installation..."
-  ./nix-installer self-test --logger pretty
-  rm ./nix-installer
+    ./nix-installer install macos \
+      --logger pretty \
+      --extra-conf "sandbox = false" \
+      --extra-conf "experimental-features = nix-command flakes" \
+      --extra-conf "trusted-users = scotte"
+    log "Validating Nix installation..."
+    ./nix-installer self-test --logger pretty
+    rm ./nix-installer
 
-  success "Nix installed successfully!"
+    success "Nix installed successfully!"
+  fi
 fi
 
 # if ! [ -d /nix/var/nix/profiles/per-user/root/channels ]; then
