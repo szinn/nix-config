@@ -43,12 +43,12 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
-      # nixosConfigurations = {
-      #   atlas =  lib.nixosSystem {
-      #     modules = [ ./hosts/atlas ];
-      #     specialArgs = { inherit inputs outputs; };
-      #   };
-      # };
+      nixosConfigurations = {
+        nixvm =  lib.nixosSystem {
+          modules = [ ./hosts/nixvm ];
+          specialArgs = { inherit inputs outputs; };
+        };
+      };
 
       darwinConfigurations = {
         # $ git add . ; darwin-rebuild switch --flake .#macvm
@@ -74,6 +74,12 @@
         "scotte@odin" = lib.homeManagerConfiguration {
           modules = [ ./home/users/scotte/odin.nix ];
           pkgs = pkgsFor.aarch64-darwin;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+        # $ git add . ; home-manager switch --flake .#"scotte@nixvm"
+        "scotte@nixvm" = lib.homeManagerConfiguration {
+          modules = [ ./home/users/scotte/nixvm.nix ];
+          pkgs = pkgsFor.aarch64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
       };

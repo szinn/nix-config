@@ -5,6 +5,7 @@
     home = "/Users/scotte";
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
+    openssh.authorizedKeys.keys = [ (builtins.readFile ../../home/users/scotte/ssh.pub) ];
   };
 
   home-manager.users.scotte = import ../../home/users/scotte/${config.networking.hostName}.nix;

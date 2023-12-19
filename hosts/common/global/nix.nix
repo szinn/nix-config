@@ -12,11 +12,6 @@
     gc = {
       automatic = true;
       options = "--delete-older-than 2d";
-      interval = {
-        Hour = 12;
-        Minute = 15;
-        Day = 1;
-      };
     };
   };
 

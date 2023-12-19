@@ -1,10 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, home-manager, ... }:
 {
   users.users.scotte = {
+    isNormalUser = true;
     name = "scotte";
-    home = "/Users/scotte";
+    home = "/home/scotte";
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
+    extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = [ (builtins.readFile ../../home/users/scotte/ssh.pub) ];
   };
 
@@ -12,6 +14,6 @@
 
   system.activationScripts.postActivation.text = ''
     # Must match what is in /etc/shells
-    sudo chsh -s /run/current-system/sw/bin/fish scotte
+    chsh -s /run/current-system/sw/bin/fish scotte
   '';
 }

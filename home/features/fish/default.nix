@@ -22,6 +22,7 @@ in
 
       shellAbbrs = {
         dup = "git add . ; darwin-rebuild switch --flake .#$(hostname -s)";
+        nup = "git add . ; sudo nixos-rebuild switch --flake .#$(hostname -s)";
         hmup = "git add . ; home-manager switch --flake .#$(whoami)@$(hostname -s)";
         ap = "ansible-playbook";
         apb = "ansible-playbook --ask-become";
@@ -69,6 +70,9 @@ in
         fish_add_path '/nix/var/nix/profiles/default/bin'
         fish_add_path '/run/current-system/sw/bin'
         fish_add_path '/etc/profiles/per-user/${config.home.username}/bin'
+        if test -d /run/wrappers/bin
+          fish_add_path '/run/wrappers/bin'
+        end
         if test -d ${config.home.homeDirectory}/.nix-profile/bin
           fish_add_path '${config.home.homeDirectory}/.nix-profile/bin'
         end

@@ -5,8 +5,6 @@
     ./shells.nix
   ];
 
-  services.nix-daemon.enable = true;
-
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
   };
