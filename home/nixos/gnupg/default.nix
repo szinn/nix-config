@@ -15,7 +15,7 @@ in
     };
 
     programs =
-      let 
+      let
         fixGpg = ''
           gpgconf --launch gpg-agent
         '';

@@ -1,4 +1,4 @@
-{ config, inputs, outputs, ... }:
+{ config, inputs, ... }:
 {
   imports = [
     ./nix.nix
@@ -6,6 +6,6 @@
   ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = { inherit inputs; };
   };
 }

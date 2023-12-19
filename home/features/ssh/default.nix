@@ -7,6 +7,7 @@ let
     if pkgs.stdenv.isDarwin then
       ''
         UseKeychain yes
+        AddKeysToAgent yes
       ''
     else
       "";
@@ -20,7 +21,7 @@ in
     programs.ssh = {
       enable = true;
       extraConfig = extraConfigDarwin;
-      addKeysToAgent = "yes";
+      # addKeysToAgent = "yes";
       matchBlocks = {
         gateway = {
           hostname = "gateway.zinn.tech";

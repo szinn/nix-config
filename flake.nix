@@ -2,85 +2,74 @@
   description = "Scotte's Nix Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-darwin = {
-      url = "github:lnl7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Nixpkgs and unstable
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # nix-darwin
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # sops-nix
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Flake-parts
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
+
+    # VSCode community extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, ... }@inputs:
+  outputs = { flake-parts, ... }@inputs:
     let
-      inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib;
-      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
-      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
+      mkSystemLib = import ./lib/mkSystem.nix { inherit inputs; };
     in
-    {
-      inherit lib;
-      # templates = import ./templates;
-
-      overlays = { };
-      # overlays = import ./overlays { inherit inputs outputs; };
-
-      # packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
-
-      nixosConfigurations = {
-        nixvm =  lib.nixosSystem {
-          modules = [ ./hosts/nixvm ];
-          specialArgs = { inherit inputs outputs; };
-        };
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+      perSystem = { config, pkgs, ... }: {
+        devShells = import ./shell.nix { inherit pkgs; };
+        formatter = pkgs.nixpkgs-fmt;
       };
 
-      darwinConfigurations = {
-        # $ git add . ; darwin-rebuild switch --flake .#macvm
-        macvm = nix-darwin.lib.darwinSystem {
-          modules = [ ./hosts/macvm ];
-          specialArgs = { inherit inputs outputs; };
+      flake = {
+        nixosConfigurations = {
+          nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm";
         };
-        # $ git add . ; darwin-rebuild switch --flake .#odin
-        odin = nix-darwin.lib.darwinSystem {
-          modules = [ ./hosts/odin ];
-          specialArgs = { inherit inputs outputs; };
-        };
-      };
 
-      homeConfigurations = {
-        # $ git add . ; home-manager switch --flake .#"scotte@macvm"
-        "scotte@macvm" = lib.homeManagerConfiguration {
-          modules = [ ./home/users/scotte/macvm.nix ];
-          pkgs = pkgsFor.aarch64-darwin;
-          extraSpecialArgs = { inherit inputs outputs; };
+        darwinConfigurations = {
+          # $ git add . ; darwin-rebuild switch --flake .#macvm
+          macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm";
+          # $ git add . ; darwin-rebuild switch --flake .#odin
+          odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin";
         };
-        # $ git add . ; home-manager switch --flake .#"scotte@odin"
-        "scotte@odin" = lib.homeManagerConfiguration {
-          modules = [ ./home/users/scotte/odin.nix ];
-          pkgs = pkgsFor.aarch64-darwin;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-        # $ git add . ; home-manager switch --flake .#"scotte@nixvm"
-        "scotte@nixvm" = lib.homeManagerConfiguration {
-          modules = [ ./home/users/scotte/nixvm.nix ];
-          pkgs = pkgsFor.aarch64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
+
+        homeConfigurations = {
+          # $ git add . ; home-manager switch --flake .#"scotte@macvm"
+          "scotte@macvm" = mkSystemLib.mkHomeSystem "aarch64-darwin" "scotte" "macvm";
+          # $ git add . ; home-manager switch --flake .#"scotte@odin"
+          "scotte@odin" = mkSystemLib.mkHomeSystem "aarch64-darwin" "scotte" "odin";
+          # $ git add . ; home-manager switch --flake .#"scotte@nixvm"
+          "scotte@nixvm" = mkSystemLib.mkHomeSystem "aarch64-linux" "scotte" "nixvm";
         };
       };
     };

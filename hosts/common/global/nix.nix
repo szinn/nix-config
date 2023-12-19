@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }:
+{ inputs, ... }:
 {
   nix = {
     settings = {
@@ -16,7 +16,7 @@
   };
 
   nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
+    # overlays = builtins.attrValues outputs.overlays;
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);

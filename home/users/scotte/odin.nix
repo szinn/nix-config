@@ -1,4 +1,4 @@
-{ pkgs, inputs, outputs, config, lib, ... }:
+{ pkgs, inputs, config, lib, ... }:
 let
   extensions =
     let
