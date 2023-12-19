@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ config, pkgs, ... }: {
   imports = [
     {
       nixpkgs.hostPlatform = "aarch64-linux";
@@ -14,13 +14,13 @@
     useDHCP = true;
   };
 
+  home-manager.users.scotte = import ../../home/users/scotte/${config.networking.hostName}.nix;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
-
-  services.openssh.enable = true;
 
   system.stateVersion = "23.11";
 }

@@ -11,6 +11,8 @@
 
   networking.hostName = "macvm";
 
+  home-manager.users.scotte = import ../../home/users/scotte/${config.networking.hostName}.nix;
+
   homebrew = {
     taps = [
     ];
