@@ -51,25 +51,26 @@
         formatter = pkgs.nixpkgs-fmt;
       };
 
-      flake = {
+      flake = rec {
         nixosConfigurations = {
+          # $ git add . ; sudo nixos-rebuild --flake . switch
           nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm";
         };
 
         darwinConfigurations = {
-          # $ git add . ; darwin-rebuild switch --flake .#macvm
+          # $ git add . ; darwin-rebuild --flake . switch
           macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm";
-          # $ git add . ; darwin-rebuild switch --flake .#odin
+          # $ git add . ; darwin-rebuild switch --flake .
           odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin";
         };
 
         homeConfigurations = {
-          # $ git add . ; home-manager switch --flake .#"scotte@macvm"
-          "scotte@macvm" = mkSystemLib.mkHomeSystem "aarch64-darwin" "scotte" "macvm";
-          # $ git add . ; home-manager switch --flake .#"scotte@odin"
-          "scotte@odin" = mkSystemLib.mkHomeSystem "aarch64-darwin" "scotte" "odin";
-          # $ git add . ; home-manager switch --flake .#"scotte@nixvm"
-          "scotte@nixvm" = mkSystemLib.mkHomeSystem "aarch64-linux" "scotte" "nixvm";
+          # $ git add . ; home-manager --flake . switch
+          "scotte@macvm" = darwinConfigurations.macvm.config.home-manager.users.scotte.home;
+          # $ git add . ; home-manager --flake . switch
+          "scotte@odin" = darwinConfigurations.odin.config.home-manager.users.scotte.home;
+          # $ git add . ; home-manager --flake . switch
+          "scotte@nixvm" = nixosConfigurations.nixvm.config.home-manager.users.scotte.home;
         };
       };
     };

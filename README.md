@@ -8,10 +8,10 @@ It lets you blow it away and start fresh as many times as you want to ensure you
 For my network, this lets the VM pick up DHCP configuration in an appropriate VLAN.
 
 ```sh
-prlctl set "macOS" --device-set net0 --type bridged
-prlctl set "macOS" --device-set net0 --mac DECAFF200019
-prlctl set "macOS" --memsize 16384
-prlctl set "macOS" --cpus 4
+prlctl set macOS --device-set net0 --type bridged
+prlctl set macOS --device-set net0 --mac DECAFF200019
+prlctl set macOS --memsize 16384
+prlctl set macOS --cpus 4
 ```
 
 Once the VM is up and running with the correct DHCP configuration, install Parallels VMTools. This enables clipboard access with the VM and will require a reboot.
@@ -24,11 +24,13 @@ As with creating a MacVM in Parallels, a NixOS one can also be created. An UEFI 
 is created.
 
 ```sh
-prlctl set "nixvm" --device-set net0 --type bridged
-prlctl set "nixvm" --device-set net0 --mac DECAFF20001A
-prlctl set "nixvm" --memsize 16384
-prlctl set "nixvm" --cpus 4
-prlctl set "nixvm" --device-set hdd0 --size 128G
+prlctl create nixvm -o other
+prlctl set nixvm --device-set cdrom0 --image ~/Downloads/nixos-minimal-23.11.1697.781e2a9797ec-aarch64-linux.iso  --connect
+prlctl set nixvm --device-set net0 --type bridged
+prlctl set nixvm --device-set net0 --mac DECAFF20001A
+prlctl set nixvm --memsize 16384
+prlctl set nixvm --cpus 4
+prlctl set nixvm --device-set hdd0 --size 128G
 ```
 
 Change into root and set a password for now.

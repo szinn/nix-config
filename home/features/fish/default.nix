@@ -21,9 +21,9 @@ in
       };
 
       shellAbbrs = {
-        dup = "git add . ; darwin-rebuild switch --flake .#$(hostname -s)";
-        nup = "git add . ; sudo nixos-rebuild switch --flake .#$(hostname -s)";
-        hmup = "git add . ; home-manager switch --flake .#$(whoami)@$(hostname -s)";
+        dup = "git add . ; darwin-rebuild --flake .  switch";
+        nup = "git add . ; sudo nixos-rebuild --flake . switch";
+        hmup = "git add . ; home-manager --flake . switch";
         ap = "ansible-playbook";
         apb = "ansible-playbook --ask-become";
         gfp = "git fetch -p && git pull";
