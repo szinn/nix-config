@@ -1,5 +1,6 @@
 { config, inputs, ... }:
 {
+  users.mutableUsers = false;
   services.openssh = {
     enable = true;
     settings = {

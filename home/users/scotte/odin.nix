@@ -59,7 +59,7 @@ in
   features.ssh.enable = true;
   features.sops = {
     enable = false;
-    ageKeyFile = "${config.xdg.configHome}/age/keys.txt";
+    ageKeyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     defaultSopsFile = ./secrets.sops.yaml;
     secrets = {
       abc = {
