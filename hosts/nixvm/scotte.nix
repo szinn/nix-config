@@ -1,6 +1,6 @@
 { config, pkgs, home-manager, ... }:
 {
-  users.mutableUsers = false;
+  users.mutableUsers = true;
   users.users.scotte = {
     name = "scotte";
     home = "/home/scotte";
