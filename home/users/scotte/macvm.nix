@@ -53,4 +53,8 @@ in
     configPath = "${config.home.homeDirectory}/.local/nix-config/home/users/scotte/settings.json";
     extensions = extensions;
   };
+
+  home.sessionVariables = {
+    SOPS_AGE_KEY_FILE = "${config.xdg.configHome}/sops/age/keys.txt";
+  };
 }

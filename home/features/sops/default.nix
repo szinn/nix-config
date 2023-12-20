@@ -33,9 +33,5 @@ in
       age.keyFile = cfg.ageKeyFile;
       secrets = cfg.secrets;
     };
-
-    home.sessionVariables = {
-      SOPS_AGE_KEY_FILE = cfg.ageKeyFile;
-    };
   };
 }
