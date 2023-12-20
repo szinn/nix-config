@@ -1,9 +1,11 @@
 ---
 keys:
   - &scotte age1p28u8xjm5sf7jdavc8xsqtw7lxgscefxs7a5dtqszr2885xeputsh9y64y
+  - &nixvm age1gcv68ddjnusvx2c7qd7ft53y2vgh4k5tcnwk4wavny6u8rcqgdusunw72c
 
 creation_rules:
   - path_regex: .*\.sops\.yaml$
     key_groups:
       - age:
           - *scotte
+          - *nixvm

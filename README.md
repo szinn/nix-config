@@ -93,6 +93,13 @@ cd nix-config
 sudo nixos-rebuild switch --flake .
 ```
 
+### Login Secrets Management
+
+The password for a user can be set by encrypting a specific password with the host key on the target machine.
+
+Use `ssh-to-age` to convert /etc/ssh/ssh_host_ed25519_key.pub to an age public key and add to .sops.yaml.
+Run task sops:re-encrypt to re-encrypt secrets with the appropriate keys.
+
 ## Bootstrapping
 
 ```sh

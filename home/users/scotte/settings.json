@@ -287,6 +287,6 @@
   },
   "workbench.colorTheme": "Dracula Pro (Van Helsing)",
   "sops.binPath": "/Users/scotte/.nix-profile/bin/sops",
-  "sops.defaults.ageKeyFile": "/Users/scotte/.config/age/keys.txt",
+  "sops.defaults.ageKeyFile": "/Users/scotte/.config/sops/age/keys.txt",
   "sops.configPath": "./.sops.yaml"
 }

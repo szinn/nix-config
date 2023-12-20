@@ -57,16 +57,16 @@ in
   features.postgres.enable = true;
   features.rust.enable = true;
   features.ssh.enable = true;
+
   features.sops = {
     enable = false;
     ageKeyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     defaultSopsFile = ./secrets.sops.yaml;
     secrets = {
-      abc = {
-        path = "${config.xdg.configHome}/abc";
-      };
+      abcd.path = "${config.xdg.configHome}/abcdef";
     };
   };
+
   features.vscode = {
     enable = true;
     configPath = "${config.home.homeDirectory}/.local/nix-config/home/users/scotte/settings.json";

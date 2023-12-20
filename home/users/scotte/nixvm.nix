@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     {
@@ -22,4 +22,13 @@
   };
   features.gnupg.enable = true;
   features.ssh.enable = true;
+
+  features.sops = {
+    enable = false;
+    ageKeyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+    defaultSopsFile = ./secrets.sops.yaml;
+    secrets = {
+      abcd.path = "${config.xdg.configHome}/abcdef";
+    };
+  };
 }
