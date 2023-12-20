@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "postgres";
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     home.file.".psqlrc".source = ./psqlrc;
   };
 }

@@ -4,7 +4,7 @@ let
   cfg = config.features.fish;
 in
 {
-  config.programs.fish = mkIf (cfg.enable) {
+  config.programs.fish = mkIf cfg.enable {
     functions = {
       flushdns = {
         description = "Flush DNS cache";

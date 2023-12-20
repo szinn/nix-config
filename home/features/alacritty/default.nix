@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "alacritty";
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     programs.alacritty = {
       enable = true;
     };

@@ -4,7 +4,7 @@ let
   cfg = config.features.git;
 in
 {
-  config.programs.git = mkIf (cfg.enable) {
+  config.programs.git = mkIf cfg.enable {
     extraConfig = {
       credential = { helper = "osxkeychain"; };
     };

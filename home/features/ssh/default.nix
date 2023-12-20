@@ -17,7 +17,7 @@ in
     enable = mkEnableOption "ssh";
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     programs.ssh = {
       enable = true;
       extraConfig = extraConfigDarwin;

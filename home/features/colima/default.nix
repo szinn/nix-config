@@ -9,7 +9,7 @@ in
     startService = mkEnableOption "colima service";
   };
 
-  config = mkIf (cfg.enable) (mkMerge [
+  config = mkIf cfg.enable (mkMerge [
     (mkIf (cfg.startService) {
       launchd.agents.colima = {
         enable = true;

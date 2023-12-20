@@ -7,7 +7,7 @@ in
   options.features._1password = {
     enable = mkEnableOption "_1password";
   };
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
       _1password
     ];

@@ -42,7 +42,7 @@ in
   };
 
   # Point settings.json to configPath
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     programs.vscode = {
       enable = true;
       package = pkgs.vscode;

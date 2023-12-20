@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "dosync";
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     home.file.".local/bin/dosync".source = ./dosync;
     home.file.".local/bin/restore".source = ./restore;
   };

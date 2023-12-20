@@ -4,7 +4,7 @@ let
   cfg = config.features.fish;
 in
 {
-  config.programs.fish = mkIf (cfg.enable) {
+  config.programs.fish = mkIf cfg.enable {
     functions = {
       agent = {
         description = "Start SSH agent";

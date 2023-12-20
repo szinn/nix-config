@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "gnupg";
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     programs.gpg = {
       enable = true;
       mutableKeys = true;

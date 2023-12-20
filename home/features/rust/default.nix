@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "rust";
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
       rustup
       sccache

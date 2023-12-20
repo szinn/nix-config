@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "go";
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
       go
     ];

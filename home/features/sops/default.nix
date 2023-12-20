@@ -22,7 +22,7 @@ in
       default = "${config.xdg.configHome}/age/keys.txt";
     };
   };
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
       sops
       age

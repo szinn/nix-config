@@ -14,7 +14,7 @@ in
     };
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     programs.git = {
       enable = true;
       userName = cfg.username;

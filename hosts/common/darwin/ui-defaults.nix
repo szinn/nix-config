@@ -348,7 +348,7 @@
     };
 
     activationScripts.preUserActivation.text = ''
-      sudo rm -f /etc/bashrc /etc/zshrc /etc/zshenv
+      sudo rm -f /etc/bashrc /etc/zshrc /etc/zshenv /etc/shells /etc/nfs.conf
     '';
 
     # See https://github.com/mathiasbynens/dotfiles/blob/master/.macos

@@ -35,7 +35,7 @@ in
     enable = mkEnableOption "tmux";
   };
 
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     programs.tmux = {
       enable = true;
       shell = "${pkgs.fish}/bin/fish";

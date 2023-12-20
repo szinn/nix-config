@@ -4,7 +4,7 @@ let
   cfg = config.features.gnupg;
 in
 {
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
       pinentry-curses
     ];

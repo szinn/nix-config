@@ -9,10 +9,10 @@ in
   };
 
   # Temporary make .config/wezterm/wezterm.lua link to the local copy
-  config = mkIf (cfg.enable) {
+  config = mkIf cfg.enable {
     xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/nix-config/home/features/wezterm/wezterm.lua";
 
-    programs.fish.shellAliases = mkIf (config.features.fish.enable) {
+    programs.fish.shellAliases = mkIf config.features.fish.enable {
       newmain = "wezterm cli spawn --workspace main --cwd ~ --new-window";
     };
   };
