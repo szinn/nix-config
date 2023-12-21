@@ -44,11 +44,9 @@ in
   features.devonthink.enable = true;
   features.devops.enable = true;
   features.dosync.enable = true;
-  features.gnupg.enable = true;
   features.go.enable = true;
   features.postgres.enable = true;
   features.rust.enable = true;
-  features.ssh.enable = true;
 
   features.sops = {
     enable = false;
@@ -59,10 +57,5 @@ in
     };
   };
 
-  features.vscode = {
-    enable = true;
-    configPath = "${config.home.homeDirectory}/.local/nix-config/home/users/scotte/settings.json";
-    extensions = extensions;
-  };
   features.wezterm.enable = true;
 }

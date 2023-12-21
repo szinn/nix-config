@@ -11,16 +11,33 @@ let
       vscode.alefragnani.bookmarks
       vscode.alefragnani.project-manager
       vscode.belfz.search-crates-io
+      vscode.bmalehorn.vscode-fish
+      vscode.davidanson.vscode-markdownlint
+      vscode.esbenp.prettier-vscode
+      vscode.fcrespo82.markdown-table-formatter
+      vscode.foxundermoon.shell-format
+      vscode.github.vscode-github-actions
+      vscode.github.vscode-pull-request-github
       vscode.golang.go
       vscode.gruntfuggly.todo-tree
       vscode.hashicorp.terraform
       vscode.ieni.glimpse
+      vscode.jnoortheen.nix-ide
+      vscode.mhutchie.git-graph
+      vscode.ms-vscode-remote.remote-ssh
+      vscode.ms-vscode-remote.remote-ssh-edit
+      vscode.ms-vscode.remote-explorer
+      vscode.oderwat.indent-rainbow
+      vscode.pkief.material-icon-theme
+      vscode.redhat.vscode-yaml
       vscode.rust-lang.rust-analyzer
       vscode.serayuzgur.crates
       vscode.signageos.signageos-vscode-sops
+      vscode.tamasfe.even-better-toml
       vscode.usernamehw.errorlens
       vscode.vadimcn.vscode-lldb
       vscode.yinfei.luahelper
+      vscode.yzhang.markdown-all-in-one
     ];
 in
 {
@@ -59,6 +76,13 @@ in
       username = "Scotte Zinn";
       email = "scotte@zinn.ca";
       allowedSigners = builtins.readFile ./allowed_signers;
+    };
+    gnupg.enable = true;
+    ssh.enable = true;
+    vscode = {
+      enable = true;
+      configPath = "${config.home-manager.users.scotte.home.homeDirectory}/.local/nix-config/users/scotte/settings.json";
+      extensions = extensions;
     };
   };
 }

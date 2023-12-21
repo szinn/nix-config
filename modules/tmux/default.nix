@@ -1,7 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ username }: { config, pkgs, lib, ... }:
 with lib;
 let
-  cfg = config.features.tmux;
+  cfg = config.modules.${username}.tmux;
 
   t-smart-manager = pkgs.tmuxPlugins.mkTmuxPlugin
     {
@@ -31,28 +31,30 @@ let
     };
 in
 {
-  options.features.tmux = {
+  options.modules.${username}.tmux = {
     enable = mkEnableOption "tmux";
   };
 
   config = mkIf cfg.enable {
-    programs.tmux = {
-      enable = true;
-      shell = "${pkgs.fish}/bin/fish";
-      terminal = "xterm-256color";
-      historyLimit = 100000;
-      plugins = with pkgs; [
-        t-smart-manager
-        t-nerd-font
-        tmuxPlugins.vim-tmux-navigator
-        tmuxPlugins.fzf-tmux-url
-      ];
-      extraConfig = builtins.readFile ./tmux.conf;
-    };
+    home-manager.users.${username} = {
+      programs.tmux = {
+        enable = true;
+        shell = "${pkgs.fish}/bin/fish";
+        terminal = "xterm-256color";
+        historyLimit = 100000;
+        plugins = with pkgs; [
+          t-smart-manager
+          t-nerd-font
+          tmuxPlugins.vim-tmux-navigator
+          tmuxPlugins.fzf-tmux-url
+        ];
+        extraConfig = builtins.readFile ./tmux.conf;
+      };
 
-    home.packages = with pkgs; [
-      gitmux
-    ];
-    xdg.configFile."tmux/gitmux.conf".source = ./gitmux.conf;
+      home.packages = with pkgs; [
+        gitmux
+      ];
+      xdg.configFile."tmux/gitmux.conf".source = ./gitmux.conf;
+    };
   };
 }

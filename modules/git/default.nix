@@ -79,7 +79,13 @@ in
         home.packages = with pkgs; [ delta fzf ];
         home.file.".ssh/allowed_signers".text = cfg.allowedSigners;
       }
-      (mkIf pkgs.stdenv.isDarwin (import ./darwin.nix args))
+      (mkIf pkgs.stdenv.isDarwin {
+        programs.git = {
+          extraConfig = {
+            credential = { helper = "osxkeychain"; };
+          };
+        };
+      })
     ]);
   };
 }

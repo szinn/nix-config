@@ -5,6 +5,11 @@
     ( import ./alacritty { username = username; } )
     ( import ./fish { username = username; } )
     ( import ./git { username = username; } )
+    ( import ./gnupg { username = username; } )
+    ( import ./ssh { username = username; } )
+    ( import ./tmux { username = username; } )
+    ( import ./utilities { username = username; } )
+    ( import ./vscode { username = username; } )
   ];
 
   home-manager.users.${username} = {
