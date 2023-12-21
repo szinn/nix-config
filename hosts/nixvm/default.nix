@@ -1,10 +1,6 @@
 { config, pkgs, ... }: {
   imports = [
-    {
-      nixpkgs.hostPlatform = "aarch64-linux";
-    }
     ./hardware-configuration.nix
-    ../common/global
     ../common/nixos
     ./scotte.nix
   ];

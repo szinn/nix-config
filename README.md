@@ -16,7 +16,7 @@ prlctl set macOS --cpus 4
 
 Once the VM is up and running with the correct DHCP configuration, install Parallels VMTools. This enables clipboard access with the VM and will require a reboot.
 
-Enable Remote Login for SSH access to the VM.
+Enable Remote Login for SSH access to the VM. Give Terminal full disk access.
 
 ## Parallels NixOS VM
 

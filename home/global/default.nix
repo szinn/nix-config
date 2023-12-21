@@ -23,5 +23,6 @@
     home-manager.enable = true;
     git.enable = true;
   };
+
   xdg.enable = true;
 }

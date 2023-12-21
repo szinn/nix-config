@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 with lib;
 let
-  cfg = config.features.fish;
+  cfg = config.modules.scotte.fish;
 in
 {
   config.programs.fish = mkIf cfg.enable {

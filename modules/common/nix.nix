@@ -3,7 +3,7 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-      # warn-dirty = false;
+      warn-dirty = false;
     };
 
     # Add nixpkgs input to NIX_PATH

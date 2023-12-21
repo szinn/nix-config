@@ -11,14 +11,10 @@ let
 in
 {
   imports = [
-    ./_1password
-    ./alacritty
     ./colima
     ./devonthink
     ./devops
     ./dosync
-    ./fish
-    ./git
     ./gnupg
     ./go
     ./postgres

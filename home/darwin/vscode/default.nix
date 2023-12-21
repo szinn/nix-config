@@ -8,8 +8,8 @@ in
     "Library/Application Support/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink cfg.configPath;
   };
 
-  config.programs.fish.shellAliases = mkIf config.features.fish.enable {
-    # Prefer to use Homebrew install rather than nix package.
-    code = "/opt/homebrew/bin/code";
-  };
+  # config.programs.fish.shellAliases = mkIf config.modules.scotte.fish.enable {
+  #   # Prefer to use Homebrew install rather than nix package.
+  #   code = "/opt/homebrew/bin/code";
+  # };
 }

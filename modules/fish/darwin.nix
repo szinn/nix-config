@@ -1,10 +1,6 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.features.fish;
-in
+{ pkgs, ... }:
 {
-  config.programs.fish = mkIf cfg.enable {
+  programs.fish = {
     functions = {
       flushdns = {
         description = "Flush DNS cache";

@@ -1,12 +1,7 @@
 { pkgs, config, inputs, lib, ... }:
 {
   imports = [
-    {
-      nixpkgs.hostPlatform = "aarch64-darwin";
-    }
-    ../common/global
-    ../common/darwin
-    ./scotte.nix
+    ( import ../../users/scotte { hostname = "macvm"; username = "scotte"; homeDirectory = "/Users/scotte"; } )
   ];
 
   networking.hostName = "macvm";
@@ -40,6 +35,4 @@
     __add_folder_to_dock /Users/scotte/Documents/ 1 1 0
     __add_folder_to_dock /Users/scotte/Downloads/ 1 1 0
   '';
-
-  system.stateVersion = 4;
 }

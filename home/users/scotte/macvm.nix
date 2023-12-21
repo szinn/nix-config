@@ -25,26 +25,10 @@ let
 in
 {
   imports = [
-    {
-      home = {
-        username = "scotte";
-        homeDirectory = "/Users/scotte";
-        sessionPath = [ "$HOME/.local/bin" ];
-      };
-    }
-    ../../global
     ../../features
     ../../darwin
   ];
 
-  features._1password.enable = true;
-  features.alacritty.enable = true;
-  features.fish.enable = true;
-  features.git = {
-    enable = true;
-    username = "Scotte Zinn";
-    email = "scotte@zinn.ca";
-  };
   features.gnupg.enable = true;
   features.ssh.enable = true;
   features.tmux.enable = true;
@@ -52,9 +36,5 @@ in
     enable = true;
     configPath = "${config.home.homeDirectory}/.local/nix-config/home/users/scotte/settings.json";
     extensions = extensions;
-  };
-
-  home.sessionVariables = {
-    SOPS_AGE_KEY_FILE = "${config.xdg.configHome}/sops/age/keys.txt";
   };
 }

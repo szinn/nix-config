@@ -37,8 +37,6 @@ in
     ../../darwin
   ];
 
-  features._1password.enable = true;
-  features.alacritty.enable = false;
   features.colima = {
     enable = false;
     startService = false;
@@ -46,12 +44,6 @@ in
   features.devonthink.enable = true;
   features.devops.enable = true;
   features.dosync.enable = true;
-  features.fish.enable = true;
-  features.git = {
-    enable = true;
-    username = "Scotte Zinn";
-    email = "scotte@zinn.ca";
-  };
   features.gnupg.enable = true;
   features.go.enable = true;
   features.postgres.enable = true;
@@ -73,8 +65,4 @@ in
     extensions = extensions;
   };
   features.wezterm.enable = true;
-
-  home.sessionVariables = {
-    SOPS_AGE_KEY_FILE = "${config.xdg.configHome}/sops/age/keys.txt";
-  };
 }

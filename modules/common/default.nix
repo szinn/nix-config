@@ -1,6 +1,7 @@
-{ config, inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
+    ./locale.nix
     ./nix.nix
     ./shells.nix
   ];

@@ -47,7 +47,10 @@
         "x86_64-linux"
       ];
       perSystem = { config, pkgs, ... }: {
-        devShells = import ./shell.nix { inherit pkgs; };
+        devShells = import ./shell.nix {
+          inherit pkgs;
+          config.allowUnfree = true;
+        };
         formatter = pkgs.nixpkgs-fmt;
       };
 
