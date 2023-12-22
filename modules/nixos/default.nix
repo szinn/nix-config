@@ -1,7 +1,9 @@
 { config, inputs, ... }:
 {
   imports = [
-    ./openssh.nix
+    ./filesystems
+    ./services
+
     ./sops.nix
   ];
 

@@ -31,6 +31,8 @@ prlctl set nixvm --device-set net0 --mac DECAFF20001A
 prlctl set nixvm --memsize 16384
 prlctl set nixvm --cpus 4
 prlctl set nixvm --device-set hdd0 --size 128G
+prlctl set nixvm --device-add hdd --size 80G
+prlctl set nixvm --device-add hdd --size 80G
 prlctl start nixvm
 ```
 
