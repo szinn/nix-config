@@ -31,6 +31,7 @@ prlctl set nixvm --device-set net0 --mac DECAFF20001A
 prlctl set nixvm --memsize 16384
 prlctl set nixvm --cpus 4
 prlctl set nixvm --device-set hdd0 --size 128G
+prlctl start nixvm
 ```
 
 Change into root and set a password for now.
@@ -76,8 +77,8 @@ Then back to the VM
 
 ```sh
 nixos-install
-nixos-rebuild switch
 reboot
+nixos-rebuild switch
 ```
 
 Set the password for the user that was created.
@@ -92,6 +93,11 @@ ssh in as the user
 mkdir .local
 git clone https://github.com/szinn/nix-config.git
 cd nix-config
+nix develop
+NIXPKGS_ALLOW_UNFREE=1 nix-shell -p _1password
+op account add
+eval $(op signin)
+./scripts/fetch-secrets
 sudo nixos-rebuild switch --flake .
 ```
 

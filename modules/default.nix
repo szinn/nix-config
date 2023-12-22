@@ -18,15 +18,8 @@
       };
     };
 
-    nix = {
-      package = lib.mkDefault pkgs.nix;
-      settings = {
-        experimental-features = [ "nix-command" "flakes" ];
-        # warn-dirty = false;
-      };
-    };
-
     home.stateVersion = "23.11";
+
     programs = {
       home-manager.enable = true;
       git.enable = true;

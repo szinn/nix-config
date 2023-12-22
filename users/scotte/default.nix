@@ -56,7 +56,7 @@ in
 
   system.activationScripts.postActivation.text = ''
     # Must match what is in /etc/shells
-    sudo chsh -s /run/current-system/sw/bin/fish scotte
+    chsh -s /run/current-system/sw/bin/fish scotte
   '';
 
   home-manager.users.scotte.home = {

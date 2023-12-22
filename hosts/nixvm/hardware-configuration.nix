@@ -12,19 +12,18 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/df0812a5-2652-419e-bd2b-c0fe1bdcfe83";
+    { device = "/dev/disk/by-uuid/ae50b67d-39e3-4de2-ba57-f22191c7e6df";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/269D-F9FD";
+    { device = "/dev/disk/by-uuid/98AE-5875";
       fsType = "vfat";
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/f050ccfb-0dfa-4b51-a949-2f2ca0257eb6"; }];
+    [ { device = "/dev/disk/by-uuid/ad77cb06-99ce-42c2-839a-23b34ee58f16"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -35,5 +34,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
   hardware.parallels.enable = true;
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "prl-tools" ];
+  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "prl-tools" ];
 }
