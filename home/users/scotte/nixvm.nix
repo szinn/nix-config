@@ -8,7 +8,5 @@
         sessionPath = [ "$HOME/.local/bin" ];
       };
     }
-    ../../features
-    ../../nixos
   ];
 }

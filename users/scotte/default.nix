@@ -69,20 +69,89 @@ in
   };
 
   modules.scotte = {
-    _1password.enable = true;
-    fish.enable = true;
-    git = {
-      enable = true;
-      username = "Scotte Zinn";
-      email = "scotte@zinn.ca";
-      allowedSigners = builtins.readFile ./allowed_signers;
+    editor = {
+      vscode = {
+        extensions = extensions;
+      };
     };
-    gnupg.enable = true;
-    ssh.enable = true;
-    vscode = {
-      enable = true;
-      configPath = "${config.home-manager.users.scotte.home.homeDirectory}/.local/nix-config/users/scotte/settings.json";
-      extensions = extensions;
+
+    security = {
+      one-password.enable = true;
+      gnupg.enable = true;
+      ssh = {
+        enable = true;
+        matchBlocks = {
+          gateway = {
+            hostname = "gateway.zinn.tech";
+            port = 22;
+            user = "vyos";
+            identityFile = "~/.ssh/id_ed25519";
+          };
+          ragnar = {
+            hostname = "ragnar.zinn.tech";
+            port = 22;
+            user = "scotte";
+            identityFile = "~/.ssh/id_ed25519";
+          };
+          octo = {
+            hostname = "octo.zinn.tech";
+            port = 22;
+            user = "pi";
+            identityFile = "~/.ssh/id_ed25519";
+          };
+          pione = {
+            hostname = "pione.zinn.tech";
+            port = 22;
+            user = "pi";
+            identityFile = "~/.ssh/id_ed25519";
+          };
+          zeus = {
+            hostname = "zeus.zinn.tech";
+            port = 22;
+            user = "root";
+            identityFile = "~/.ssh/id_ed25519";
+          };
+          "github.com" = {
+            hostname = "ssh.github.com";
+            port = 443;
+            user = "git";
+            identityFile = "~/.ssh/id_ed25519";
+          };
+          "github-magized" = {
+            hostname = "ssh.github.com";
+            port = 443;
+            user = "git";
+            identityFile = "~/.ssh/id_magized";
+          };
+          pikvm = {
+            hostname = "pikvm.zinn.tech";
+            port = 22;
+            user = "root";
+            identityFile = "~/.ssh/id_ed25519";
+          };
+          ares = {
+            hostname = "ares.zinn.tech";
+            port = 22;
+            user = "root";
+            identityFile = "~/.ssh/id_ed25519";
+          };
+          "magized.com" = {
+            port = 22;
+            user = "mailu";
+            identityFile = "~/.ssh/id_ed25519";
+          };
+        };
+      };
+    };
+
+    shell = {
+      fish.enable = true;
+      git = {
+        enable = true;
+        username = "Scotte Zinn";
+        email = "scotte@zinn.ca";
+        allowedSigners = builtins.readFile ./allowed_signers;
+      };
     };
   };
 }

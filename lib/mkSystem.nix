@@ -24,6 +24,7 @@ in
           };
         };
       }
+      inputs.home-manager.nixosModules.home-manager
       ../modules/common
       ../modules/nixos
       ../hosts/${hostname}

@@ -1,7 +1,6 @@
 { config, ... }:
 {
   imports = [
-    ./fish
     ./gnupg
   ];
 }

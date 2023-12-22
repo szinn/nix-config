@@ -1,15 +1,12 @@
 { username }: { pkgs, lib, ... }:
 {
   imports = [
-    ( import ./_1password { username = username; } )
-    ( import ./alacritty { username = username; } )
-    ( import ./fish { username = username; } )
-    ( import ./git { username = username; } )
-    ( import ./gnupg { username = username; } )
-    ( import ./ssh { username = username; } )
-    ( import ./tmux { username = username; } )
-    ( import ./utilities { username = username; } )
-    ( import ./vscode { username = username; } )
+    ( import ./applications { username = username; } )
+    ( import ./development { username = username; } )
+    ( import ./devops { username = username; } )
+    ( import ./editor { username = username; } )
+    ( import ./security { username = username; } )
+    ( import ./shell { username = username; } )
   ];
 
   home-manager.users.${username} = {

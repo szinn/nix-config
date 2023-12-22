@@ -6,8 +6,6 @@
 
   networking.hostName = "odin";
 
-  home-manager.users.scotte = import ../../home/users/scotte/${config.networking.hostName}.nix;
-
   homebrew = {
     taps = [
       "epk/epk" # font-sf-mono-nerd-font
