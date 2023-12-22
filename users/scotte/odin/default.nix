@@ -25,14 +25,13 @@
     editor = {
       vscode = {
         enable = true;
-        configPath = "${config.home-manager.users.scotte.home.homeDirectory}/.local/nix-config/users/scotte/settings.json";
       };
     };
 
     shell = {
       wezterm = {
         enable = true;
-        configPath = "${config.home-manager.users.scotte.home.homeDirectory}/.local/nix-config/users/scotte/wezterm.lua";
+        configPath = "${config.home-manager.users.scotte.home.homeDirectory}/.local/nix-config/users/scotte/shell/wezterm.lua";
       };
     };
   };

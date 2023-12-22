@@ -43,7 +43,7 @@ in
 {
   imports = [
     ( import ../../modules { username = "scotte"; } )
-    ./${hostname}.nix
+    ./${hostname}
   ];
 
   users.users.scotte = {
@@ -51,7 +51,7 @@ in
     home = homeDirectory;
     shell = pkgs.fish;
     packages = [ pkgs.home-manager ];
-    openssh.authorizedKeys.keys = [ (builtins.readFile ./ssh.pub) ];
+    openssh.authorizedKeys.keys = [ (builtins.readFile ./ssh/ssh.pub) ];
   };
 
   system.activationScripts.postActivation.text = ''
@@ -71,6 +71,7 @@ in
   modules.scotte = {
     editor = {
       vscode = {
+        configPath = "${config.home-manager.users.scotte.home.homeDirectory}/.local/nix-config/users/scotte/editor/settings.json";
         extensions = extensions;
       };
     };
@@ -150,7 +151,7 @@ in
         enable = true;
         username = "Scotte Zinn";
         email = "scotte@zinn.ca";
-        allowedSigners = builtins.readFile ./allowed_signers;
+        allowedSigners = builtins.readFile ./ssh/allowed_signers;
       };
     };
   };

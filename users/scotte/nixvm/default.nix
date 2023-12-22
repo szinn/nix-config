@@ -13,7 +13,7 @@
   users.groups.scotte = {};
 
   sops.secrets.scotte-password = {
-    sopsFile = ./nixvm.sops.yaml;
+    sopsFile = ./secrets.sops.yaml;
     neededForUsers = true;
   };
 }

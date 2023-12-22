@@ -6,7 +6,6 @@
     editor = {
       vscode = {
         enable = true;
-        configPath = "${config.home-manager.users.scotte.home.homeDirectory}/.local/nix-config/users/scotte/settings.json";
       };
     };
 
