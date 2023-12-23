@@ -1,8 +1,12 @@
 { pkgs, config, ... }:
 let
   ifGroupsExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in {
-  imports = [];
+in
+{
+  system.activationScripts.postActivation.text = ''
+    # Must match what is in /etc/shells
+    chsh -s /run/current-system/sw/bin/fish scotte
+  '';
 
   users.users.scotte = {
     uid = 1000;

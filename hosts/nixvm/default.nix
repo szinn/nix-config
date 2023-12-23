@@ -1,10 +1,21 @@
 { config, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
-    ( import ../../users/scotte { hostname = "nixvm"; username = "scotte"; homeDirectory = "/home/scotte"; } )
   ];
 
+  networking = {
+    hostName = "nixvm";
+    hostId = "decaf21a";
+    useDHCP = true;
+  };
+
   modules = {
+    users.scotte = {
+      enable = true;
+      username = "scotte";
+      homeDirectory = "/home/scotte";
+    };
+
     filesystems.zfs = {
       enable = true;
       mountPoolsAtBoot = [
@@ -12,7 +23,7 @@
       ];
     };
 
-    services =  {
+    services = {
       minio = {
         enable = true;
         root-credentials = ./minio.sops.yaml;
@@ -25,15 +36,9 @@
     users.groups = {
       admins = {
         gid = 991;
-        members = ["scotte"];
+        members = [ "scotte" ];
       };
     };
-  };
-
-  networking = {
-    hostName = "nixvm";
-    hostId = "decaf21a";
-    useDHCP = true;
   };
 
   # Use the systemd-boot EFI boot loader.

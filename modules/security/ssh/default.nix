@@ -17,7 +17,7 @@ in
     enable = mkEnableOption "ssh";
     matchBlocks = mkOption {
       type = types.attrs;
-      default = {};
+      default = { };
     };
   };
 

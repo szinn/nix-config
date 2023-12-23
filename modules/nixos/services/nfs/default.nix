@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.modules.services.nfs;
-in {
+in
+{
   options.modules.services.nfs = {
     enable = mkEnableOption "nfs";
   };

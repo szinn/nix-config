@@ -66,15 +66,6 @@
           # $ git add . ; darwin-rebuild switch --flake .
           odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin";
         };
-
-        homeConfigurations = {
-          # $ git add . ; home-manager --flake . switch
-          "scotte@macvm" = darwinConfigurations.macvm.config.home-manager.users.scotte.home;
-          # $ git add . ; home-manager --flake . switch
-          "scotte@odin" = darwinConfigurations.odin.config.home-manager.users.scotte.home;
-          # $ git add . ; home-manager --flake . switch
-          "scotte@nixvm" = nixosConfigurations.nixvm.config.home-manager.users.scotte.home;
-        };
       };
     };
 }

@@ -1,6 +1,9 @@
 { pkgs, config, ... }:
 {
-  imports = [];
+  system.activationScripts.postActivation.text = ''
+    # Must match what is in /etc/shells
+    sudo chsh -s /run/current-system/sw/bin/fish scotte
+  '';
 
   modules.scotte = {
     editor = {

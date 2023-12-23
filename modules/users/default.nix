@@ -2,11 +2,16 @@
 with lib;
 let
   cfg = config.modules.users;
-in {
+in
+{
+  imports = [
+    ./scotte
+  ];
+
   options.modules.users = {
     groups = mkOption {
       type = types.attrs;
-      default = {};
+      default = { };
     };
   };
 

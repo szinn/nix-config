@@ -3,8 +3,6 @@
   imports = [
     ./filesystems
     ./services
-
-    ./sops.nix
   ];
 
   nix.gc.dates = "weekly";

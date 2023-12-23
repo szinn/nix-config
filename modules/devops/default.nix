@@ -5,7 +5,7 @@ let
 in
 {
   imports = [
-    ( import ./colima { username = username; } )
+    (import ./colima { username = username; })
   ];
 
   options.modules.${username}.devops = {

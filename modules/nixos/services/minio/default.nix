@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.modules.services.minio;
-in {
+in
+{
   options.modules.services.minio = {
     enable = mkEnableOption "minio";
     root-credentials = mkOption {

@@ -1,12 +1,12 @@
 { username }: { pkgs, lib, ... }:
 {
   imports = [
-    ( import ./applications { username = username; } )
-    ( import ./development { username = username; } )
-    ( import ./devops { username = username; } )
-    ( import ./editor { username = username; } )
-    ( import ./security { username = username; } )
-    ( import ./shell { username = username; } )
+    (import ./applications { username = username; })
+    (import ./development { username = username; })
+    (import ./devops { username = username; })
+    (import ./editor { username = username; })
+    (import ./security { username = username; })
+    (import ./shell { username = username; })
   ];
 
   home-manager.users.${username} = {

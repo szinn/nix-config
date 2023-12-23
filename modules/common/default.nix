@@ -4,7 +4,8 @@
     ./locale.nix
     ./nix.nix
     ./shells.nix
-    ../../users
+    ./sops.nix
+    ../users
   ];
 
   home-manager = {
