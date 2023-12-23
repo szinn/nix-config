@@ -3,6 +3,7 @@
   imports = [
     ./filesystems
     ./services
+    ./users
   ];
 
   nix.gc.dates = "weekly";

@@ -11,11 +11,16 @@ in
   options.modules.users = {
     groups = mkOption {
       type = types.attrs;
-      default = { };
+      default = {};
+    };
+    additionalUsers = mkOption {
+      type = types.attrs;
+      default = {};
     };
   };
 
   config = {
     users.groups = cfg.groups;
+    users.users = cfg.additionalUsers;
   };
 }
