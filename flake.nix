@@ -57,6 +57,8 @@
       flake = rec {
         nixosConfigurations = {
           # $ git add . ; sudo nixos-rebuild --flake . switch
+          hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera";
+          # $ git add . ; sudo nixos-rebuild --flake . switch
           nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm";
         };
 

@@ -36,6 +36,9 @@
       minio = {
         enable = true;
         root-credentials = ./minio.sops.yaml;
+        dataDirs = [
+          "/mnt/groucho/s3"
+        ];
       };
 
       nfs = {

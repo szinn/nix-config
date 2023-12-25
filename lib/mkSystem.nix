@@ -8,6 +8,7 @@ in
     pkgs = import inputs.nixpkgs {
       inherit system;
       config.allowUnfree = true;
+
       # overlays = [
       #   (import ../packages/overlay.nix {inherit inputs system;})
       # ];

@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixvm"; # Define your hostname.
+  networking.hostName = "hera"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -38,7 +38,7 @@
   # services.xserver.enable = true;
 
 
-
+  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -57,7 +57,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.scotte = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ];
     packages = with pkgs; [
     ];
   };
@@ -65,8 +65,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    git
+    neovim
+    git # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     curl
     wget
   ];
@@ -127,4 +127,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
 }
-

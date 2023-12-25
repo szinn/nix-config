@@ -9,6 +9,10 @@ in
     root-credentials = mkOption {
       type = types.path;
     };
+    dataDirs = mkOption {
+      type = types.listOf types.str;
+      default = [];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -21,9 +25,7 @@ in
 
     services.minio = {
       enable = true;
-      dataDir = [
-        "/mnt/groucho/s3"
-      ];
+      dataDir = cfg.dataDirs;
       rootCredentialsFile = config.sops.secrets.root-credentials.path;
     };
 
