@@ -63,6 +63,7 @@ in
     (mkIf (config.networking.hostName == "macvm") (import ./macvm args))
     (mkIf (config.networking.hostName == "hera") (import ./hera args))
     (mkIf (config.networking.hostName == "nixvm") (import ./nixvm args))
+    (mkIf (config.networking.hostName == "ragnar") (import ./ragnar args))
     {
       users.users.scotte = {
         name = cfg.username;
