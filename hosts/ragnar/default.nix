@@ -4,7 +4,7 @@
   ];
 
   networking = {
-    hostName = "hera";
+    hostName = "ragnar";
     hostId = "decaf108";
     useDHCP = true;
     firewall.enable = false;
@@ -17,16 +17,18 @@
       homeDirectory = "/home/scotte";
     };
 
-    filesystems.zfs = {
-      enable = true;
-      mountPoolsAtBoot = [
-        # "atlas"
-      ];
+    filesystems = {
+      zfs = {
+        enable = true;
+        mountPoolsAtBoot = [
+          "atlas"
+        ];
+      };
     };
 
     services = {
       minio = {
-        enable = false;
+        enable = true;
         root-credentials = ./minio.sops.yaml;
         dataDirs = [
           "/mnt/atlas/s3"
@@ -36,7 +38,7 @@
       nfs = {
         enable = true;
         exports = ''
-          /mnt/nvme 10.0.0.0/8(rw,insecure,all_squash,anonuid=569,anongid=569,no_subtree_check)
+          /mnt/nvme 10.0.0.0/8(rw,insecure,all_squash,anonuid=65534,anongid=65534,no_subtree_check)
         '';
       };
 
@@ -81,6 +83,26 @@
       };
     };
   };
+
+  fileSystems = {
+    "/mnt/hades/media" = {
+      device = "hades:/volume1/Media";
+      fsType = "nfs";
+    };
+    "/mnt/hades/backup" = {
+      device = "hades:/volume1/Backups";
+      fsType = "nfs";
+    };
+    "/mnt/nvme" = {
+      device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_1TB_S5H9NC0MC34358R-part1";
+      fsType = "ext4";
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    rclone
+    neovim
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader = {

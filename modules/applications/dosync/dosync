@@ -1,7 +1,7 @@
 #!/bin/bash
 
-MEDIA_NFS="ubuntu@ragnar:/mnt/atlas/media"
-BACKUP_NFS="ubuntu@ragnar:/mnt/atlas/backup/scotte"
+MEDIA_NFS="scotte@ragnar:/mnt/atlas/media"
+BACKUP_NFS="scotte@ragnar:/mnt/atlas/backup/scotte"
 
 #RSYNC='rsync -vrlt --exclude=".*" --modify-window=2'
 #RSYNC='rsync -vrlt --exclude=".*" --modify-window=2 --chmod=Dog+rx,Fog+r'
