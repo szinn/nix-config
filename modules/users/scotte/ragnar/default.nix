@@ -28,4 +28,11 @@ in
     sopsFile = ./secrets.sops.yaml;
     neededForUsers = true;
   };
+
+  home-manager.users.scotte.programs.fish.functions = {
+    zstat = {
+      description = "Statistics on atlas zpool";
+      body = builtins.readFile ./functions/zstat.fish;
+    };
+  };
 }

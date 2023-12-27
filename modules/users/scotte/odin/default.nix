@@ -38,4 +38,8 @@
       };
     };
   };
+
+  home-manager.users.scotte.programs.fish.shellAbbrs = {
+    zstat = "ssh ragnar -- zstat";
+  };
 }
