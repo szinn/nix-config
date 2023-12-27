@@ -73,6 +73,8 @@ in
           ignores = [
             ".direnv/**"
             "result"
+            ".DS_Store"
+            ".decrypted-*"
           ];
         };
 

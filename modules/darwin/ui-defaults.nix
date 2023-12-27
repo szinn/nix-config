@@ -394,6 +394,9 @@
         # For other paths, use `PfLo` and `file:///full/path/here/`
         defaults write com.apple.finder NewWindowTarget -string "PfLo"
         defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/scotte/"
+        # Avoid creating .DS_Store files on network or USB volumes
+        defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+        defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
       #   # Hide icons for hard drives, servers, and removable media on the desktop
       #   defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
       #   defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
@@ -401,9 +404,6 @@
       #   defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
       #   # Keep folders on top when sorting by name
       #   defaults write com.apple.finder _FXSortFoldersFirst -bool true
-      #   # Avoid creating .DS_Store files on network or USB volumes
-      #   defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-      #   defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
       #   # Disable disk image verification
       #   defaults write com.apple.frameworks.diskimages skip-verify -bool true
       #   defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
