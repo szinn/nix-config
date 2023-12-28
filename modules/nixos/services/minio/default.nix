@@ -11,7 +11,7 @@ in
     };
     dataDirs = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
     };
   };
 

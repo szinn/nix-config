@@ -2,17 +2,18 @@
 with lib;
 let
   cfg = config.modules.services.samba;
-in {
+in
+{
   options.modules.services.samba = {
     enable = mkEnableOption "samba";
     shares = mkOption {
       type = types.attrs;
-      default = {};
+      default = { };
     };
   };
 
   config = mkIf cfg.enable {
-    users.groups.samba-users = {};
+    users.groups.samba-users = { };
 
     # services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
     services.samba = {

@@ -34,11 +34,13 @@ echo " " | tee -a ${LOGFILE}
 echo "*** Syncing music" | tee -a ${LOGFILE}
 echo " " | tee -a ${LOGFILE}
 ${RSYNC} ${MUSIC}/. ${MEDIA_NFS}/Music/ | tee -a ${LOGFILE}
+ssh ragnar -- "agent ; sudo chown -R media:media /mnt/atlas/media/Music"
 
 # Sync audio books
 echo "*** Syncing audio books" | tee -a ${LOGFILE}
 echo " " | tee -a ${LOGFILE}
 ${RSYNC} ${AUDIO_BOOKS}/. ${MEDIA_NFS}/AudioBooks/ | tee -a ${LOGFILE}
+ssh ragnar -- "agent ; sudo chown -R media:media /mnt/atlas/media/AudioBooks"
 
 # Sync Immich Photos
 echo " " | tee -a ${LOGFILE}
@@ -53,6 +55,7 @@ echo " " | tee -a ${LOGFILE}
 echo "*** Syncing pictures (Archive)" | tee -a ${LOGFILE}
 echo " " | tee -a ${LOGFILE}
 ${RSYNC} ${PHOTOS}/. ${MEDIA_NFS}/Photos/Archive/ | tee -a ${LOGFILE}
+ssh ragnar -- "agent ; sudo chown -R media:media /mnt/atlas/media/Photos/Archive"
 for i in ${YEARS}; do
   if test -d ${PHOTOS}/$i; then
     echo " " | tee -a ${LOGFILE}
@@ -61,6 +64,7 @@ for i in ${YEARS}; do
     ${RSYNC} ${PHOTOS}/$i/. ${MEDIA_NFS}/Photos/Current/ | tee -a ${LOGFILE}
   fi
 done
+ssh ragnar -- "agent ; sudo chown -R media:media /mnt/atlas/media/Photos/Current"
 
 # Sync books
 echo " " | tee -a ${LOGFILE}
@@ -69,10 +73,12 @@ echo " " | tee -a ${LOGFILE}
 echo "*** Pausing calibre-web..." | tee -a ${LOGFILE}
 flux -n flux-system suspend kustomization media-calibre-web
 flux -n media suspend helmrelease calibre-web
-kubectl -n media scale statefulset/calibre-web --replicas 0
+kubectl -n media scale deployment/calibre-web --replicas 0
 kubectl -n media wait pod --for delete --selector="app.kubernetes.io/name=calibre-web" --timeout=2m
 ${RSYNC} ${BOOKS}/. ${MEDIA_NFS}/Books/Library/ | tee -a ${LOGFILE}
+ssh ragnar -- "agent ; sudo chown -R media:media /mnt/atlas/media/Books"
 echo "*** Resuming calibre-web..."  | tee -a ${LOGFILE}
+kubectl -n media scale deployment/calibre-web --replicas 1
 flux -n media resume helmrelease calibre-web
 flux -n flux-system resume kustomization media-calibre-web
 

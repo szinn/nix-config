@@ -8,7 +8,7 @@ stdenv.mkDerivation {
     sha256 = "sha256-qD85h1JMl92yP80S2JZF5q6aQ9nf8fsxKPWX7xOUN4A=";
   };
 
-  phases = ["installPhase"];
+  phases = [ "installPhase" ];
   installPhase = ''
     mkdir -p $out/bin
     tar zxf $src -O tesla_auth > $out/bin/tesla_auth

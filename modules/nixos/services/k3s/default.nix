@@ -2,13 +2,14 @@
 with lib;
 let
   cfg = config.modules.services.k3s;
-in {
+in
+{
   options.modules.services.k3s = {
     enable = mkEnableOption "k3s";
     package = mkPackageOption pkgs "k3s" { };
     extraFlags = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       description = "Extra flags to pass to k3s";
     };
   };
