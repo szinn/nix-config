@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ inputs, pkgs, config, ... }:
 {
   system.activationScripts.postActivation.text = ''
     # Must match what is in /etc/shells
@@ -39,7 +39,13 @@
     };
   };
 
-  home-manager.users.scotte.programs.fish.shellAbbrs = {
-    zstat = "ssh ragnar -- zstat";
+  home-manager.users.scotte = {
+    programs.fish.shellAbbrs = {
+      zstat = "ssh ragnar -- zstat";
+    };
+
+    home.packages = [
+      inputs.self.packages.${pkgs.system}.tesla-auth
+    ];
   };
 }

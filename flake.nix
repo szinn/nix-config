@@ -46,6 +46,11 @@
         "aarch64-linux"
         "x86_64-linux"
       ];
+
+      imports = [
+        ./pkgs
+      ];
+
       perSystem = { config, pkgs, ... }: {
         devShells = import ./shell.nix {
           inherit pkgs;
@@ -54,7 +59,7 @@
         formatter = pkgs.nixpkgs-fmt;
       };
 
-      flake = rec {
+      flake = {
         nixosConfigurations = {
           # $ git add . ; sudo nixos-rebuild --flake . switch
           hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera";

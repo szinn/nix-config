@@ -7,7 +7,10 @@ in
     inherit system;
     pkgs = import inputs.nixpkgs {
       inherit system;
-      config.allowUnfree = true;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = (_: true);
+      };
 
       # overlays = [
       #   (import ../packages/overlay.nix {inherit inputs system;})
@@ -20,7 +23,10 @@ in
           inherit inputs system;
           pkgs-unstable = import inputs.nixpkgs-unstable {
             inherit system;
-            config.allowUnfree = true;
+            config = {
+              allowUnfree = true;
+              allowUnfreePredicate = (_: true);
+            };
             # overlays = [ (import ../packages/overlay.nix {inherit inputs system;}) ];
           };
         };
@@ -37,7 +43,10 @@ in
     inherit system;
     pkgs = import inputs.nixpkgs {
       inherit system;
-      config.allowUnfree = true;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = (_: true);
+      };
       # overlays = [
       #   (import ../packages/overlay.nix {inherit inputs system;})
       # ];
@@ -49,7 +58,10 @@ in
           inherit inputs system;
           pkgs-unstable = import inputs.nixpkgs-unstable {
             inherit system;
-            config.allowUnfree = true;
+            config = {
+              allowUnfree = true;
+              allowUnfreePredicate = (_: true);
+            };
             # overlays = [ (import ../packages/overlay.nix {inherit inputs system;}) ];
           };
         };

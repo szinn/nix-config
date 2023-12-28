@@ -14,12 +14,4 @@
       options = "--delete-older-than 2d";
     };
   };
-
-  # nixpkgs = {
-  #   # overlays = builtins.attrValues outputs.overlays;
-  #   config = {
-  #     allowUnfree = true;
-  #     allowUnfreePredicate = (_: true);
-  #   };
-  # };
 }
