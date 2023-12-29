@@ -5,6 +5,7 @@
     ./minio
     ./nfs
     ./openssh
+    ./rclone-backup
     ./samba
   ];
 }

@@ -44,6 +44,8 @@
 
       openssh.enable = true;
 
+      rclone-backup.enable = true;
+
       samba = {
         enable = true;
         shares = {
@@ -100,7 +102,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    rclone
     neovim
   ];
 
