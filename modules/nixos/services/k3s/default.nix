@@ -32,7 +32,6 @@ in
 
     environment.systemPackages = [
       cfg.package
-      pkgs.kubectl
     ];
   };
 }

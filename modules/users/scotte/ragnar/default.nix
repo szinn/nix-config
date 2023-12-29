@@ -8,6 +8,12 @@ in
     chsh -s /run/current-system/sw/bin/fish scotte
   '';
 
+  modules.scotte = {
+    devops = {
+      enable = true;
+    };
+  };
+
   users.users.scotte = {
     uid = 1000;
     group = "scotte";

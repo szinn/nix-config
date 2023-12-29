@@ -27,6 +27,14 @@
     };
 
     services = {
+      k3s = {
+        enable = true;
+        package = pkgs-unstable.k3s_1_28;
+        extraFlags = [
+          "--tls-san=nas.zinn.ca"
+        ];
+      };
+
       minio = {
         enable = true;
         root-credentials = ./minio.sops.yaml;

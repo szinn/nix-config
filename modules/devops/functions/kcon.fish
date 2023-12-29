@@ -7,6 +7,8 @@ if count $argv > /dev/null
     case staging
       talosctl config context staging
       kubectl config use-context admin@staging
+    case nas
+      kubectl config use-context admin@nas
   end
 else
   echo "kcon main | staging"
