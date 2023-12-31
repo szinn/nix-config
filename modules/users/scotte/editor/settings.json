@@ -150,6 +150,7 @@
   "projectManager.git.baseFolders": [
     "/Users/scotte/Development/Projects"
   ],
+  "projectManager.git.maxDepthRecursion": 2,
 
   "redhat.telemetry.enabled": false,
 
