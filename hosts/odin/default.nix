@@ -12,13 +12,11 @@
     homebrew = {
       taps = [
         "epk/epk" # font-sf-mono-nerd-font
-        "siderolabs/talos"
       ];
       brews = [
         "postgresql@16"
         "prettier"
         "talhelper"
-        "talosctl"
       ];
       casks = [
         "1password"

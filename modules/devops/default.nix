@@ -1,4 +1,4 @@
-{ username }: { config, lib, pkgs, ... }:
+{ username }: { config, lib, pkgs, pkgs-unstable, ... }:
 with lib;
 let
   cfg = config.modules.${username}.devops;
@@ -26,8 +26,10 @@ in
         kustomize_4
         minio-client
         terraform
+      ] ++ [
+        pkgs-unstable.talosctl
       ];
-
+      
       programs.fish = {
         shellAliases = {
           k = "kubectl";
