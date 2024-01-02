@@ -1,4 +1,4 @@
-{ username }: { config, lib, pkgs, ... }:
+{ username }: { config, lib, pkgs, pkgs-unstable, ... }:
 with lib;
 let
   ignorePatterns = ''
@@ -25,6 +25,7 @@ in
         gh
         go-task
         jq
+        nvd
         pre-commit
         protobuf
         qrencode
@@ -36,7 +37,9 @@ in
         unixtools.watch
         wget
         yq-go
-      ];
+      ] ++ (with pkgs-unstable; [
+        nh
+      ]);
 
       programs = {
         direnv = {

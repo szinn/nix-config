@@ -26,7 +26,7 @@ in
           shellAbbrs = {
             dup = "git add . ; darwin-rebuild --flake .  switch";
             nup = "git add . ; sudo nixos-rebuild --flake . switch";
-            nhup = "nix run github:viperml/nh -- os switch . --dry";
+            nhup = "nh os switch . --dry";
             hmup = "git add . ; home-manager --flake . switch";
             ap = "ansible-playbook";
             apb = "ansible-playbook --ask-become";
