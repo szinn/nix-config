@@ -13,11 +13,11 @@ in
     #   systemctl list-timers
     systemd.timers."rclone-backup" = {
       wantedBy = [ "timers.target" ];
-        timerConfig = {
-          OnBootSec = "60m";
-          OnUnitActiveSec = "240m";
-          Unit = "rclone-backup.service";
-        };
+      timerConfig = {
+        OnBootSec = "60m";
+        OnUnitActiveSec = "240m";
+        Unit = "rclone-backup.service";
+      };
     };
 
     # Trigger manual run

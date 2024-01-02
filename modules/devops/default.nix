@@ -26,10 +26,10 @@ in
         kustomize_4
         minio-client
         terraform
-      ] ++ [
-        pkgs-unstable.talosctl
-      ];
-      
+      ] ++ (with pkgs-unstable; [
+        talosctl
+      ]);
+
       programs.fish = {
         shellAliases = {
           k = "kubectl";
