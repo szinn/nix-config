@@ -27,7 +27,7 @@ in
             dup = "git add . ; darwin-rebuild --flake .  switch";
             nup = "git add . ; sudo nixos-rebuild --flake . switch";
             nhup = "nh os switch . --dry";
-            hmup = "git add . ; home-manager --flake . switch";
+            nvdiff = "nvd diff /run/current-system result";
             ap = "ansible-playbook";
             apb = "ansible-playbook --ask-become";
             gfp = "git fetch -p && git pull";
