@@ -15,9 +15,7 @@ in
   config = mkIf cfg.enable {
     home-manager.users.${username} = {
       home.packages = with pkgs; [
-        cilium-cli
         cloudflared
-        fluxcd
         k9s
         krew
         kubectl
@@ -27,6 +25,9 @@ in
         minio-client
         terraform
       ] ++ (with pkgs-unstable; [
+        cilium-cli
+        fluxcd
+        hubble
         talosctl
       ]);
 
