@@ -31,7 +31,6 @@ in
         qrencode
         redis
         restic
-        ripgrep
         shellcheck
         sops
         unixtools.watch
@@ -65,6 +64,7 @@ in
         };
         ripgrep = {
           enable = true;
+          package = pkgs-unstable.ripgrep;
           arguments = [ "--glob=!vendor" "--hidden" "--line-number" "--no-heading" "--sort=path" ];
         };
         neovim = {
