@@ -29,7 +29,7 @@
     services = {
       k3s = {
         enable = true;
-        package = pkgs-unstable.k3s_1_28;
+        package = pkgs-unstable.k3s_1_29;
         extraFlags = [
           "--tls-san=nas.zinn.ca"
         ];
