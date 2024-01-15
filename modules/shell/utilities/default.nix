@@ -36,9 +36,7 @@ in
         unixtools.watch
         wget
         yq-go
-      ] ++ (with pkgs-unstable; [
-        nh
-      ]);
+      ];
 
       programs = {
         direnv = {
@@ -89,6 +87,11 @@ in
     (mkIf pkgs.stdenv.isDarwin {
       home.packages = with pkgs; [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "DejaVuSansMono" "DroidSansMono" ]; })
+      ];
+    })
+    (mkIf pkgs.stdenv.isLinux {
+      home.packages = with pkgs-unstable; [
+        nh
       ];
     })
   ]);
