@@ -16,7 +16,6 @@ in
     home-manager.users.${username} = {
       home.packages = with pkgs; [
         cloudflared
-        k9s
         krew
         kubectl
         kubectl-cnpg
@@ -28,6 +27,7 @@ in
         cilium-cli
         fluxcd
         hubble
+        k9s
         talosctl
       ]);
 
