@@ -22,6 +22,7 @@ in
         kubernetes-helm
         kustomize_4
         minio-client
+        opentofu
         terraform
       ] ++ (with pkgs-unstable; [
         cilium-cli
