@@ -1,4 +1,4 @@
-{ username }: { config, lib, pkgs, pkgs-unstable, ... }:
+{ username }: { config, lib, pkgs, pkgs-unstable, inputs, ... }:
 with lib;
 let
   cfg = config.modules.${username}.devops;
@@ -29,8 +29,9 @@ in
         fluxcd
         hubble
         k9s
-        talosctl
-      ]);
+      ]) ++ [
+        inputs.self.packages.${pkgs.system}.talosctl
+      ];
 
       programs.fish = {
         shellAliases = {
