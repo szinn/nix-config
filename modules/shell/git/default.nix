@@ -78,6 +78,15 @@ in
           ];
         };
 
+        programs.fish = {
+          functions = {
+            gcb = {
+              description = "Create a new branch from main";
+              body = "git checkout main && git pull && git checkout -b $argv";
+            };
+          };
+        };
+
         home.packages = with pkgs; [ delta fzf ];
         home.file.".ssh/allowed_signers".text = cfg.allowedSigners;
       }
