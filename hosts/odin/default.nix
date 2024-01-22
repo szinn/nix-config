@@ -43,6 +43,7 @@
         "plex"
         "private-internet-access"
         "rectangle-pro"
+        "rustdesk"
         "sonos"
         "spotify"
         "switchresx"
