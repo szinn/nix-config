@@ -24,10 +24,13 @@ end
 -- Settings
 config.default_prog = {fish_path, "-l"}
 
-config.font = wezterm.font('FiraCode Nerd Font', { weight = 'Medium' })
+config.font = wezterm.font {
+    family = 'FiraCode Nerd Font',
+    weight = 'Regular',
+    harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' },
+}
 config.font_size = 11.0
 config.line_height = 1.0
-config.harfbuzz_features = {"calt=1", "clig=1", "liga=1"}
 
 config.window_background_opacity = 1.0
 config.window_decorations = "RESIZE"
