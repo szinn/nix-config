@@ -29,9 +29,10 @@ in
         fluxcd
         hubble
         k9s
-      ]) ++ [
-        inputs.self.packages.${pkgs.system}.talosctl
-      ];
+      ]);
+      # ++ [
+      #   inputs.self.packages.${pkgs.system}.talosctl
+      # ];
 
       programs.fish = {
         shellAliases = {
