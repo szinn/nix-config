@@ -35,8 +35,6 @@
       };
 
       openssh.enable = true;
-
-      rustdesk-server.enable = true;
     };
 
     users = {

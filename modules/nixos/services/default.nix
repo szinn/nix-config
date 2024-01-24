@@ -6,7 +6,6 @@
     ./nfs
     ./openssh
     ./rclone-backup
-    ./rustdesk-server
     ./samba
   ];
 }
