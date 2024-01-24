@@ -19,16 +19,16 @@
     "github>szinn/nix-config//.github/renovate/semanticCommits.json5",
     "helpers:pinGitHubActionDigests"
   ],
-  "platform": "github",
   "username": "repo-jeeves[bot]",
   "repositories": ["szinn/nix-config"],
   "gitAuthor": "repo-jeeves <106431701+repo-jeeves[bot]@users.noreply.github.com>",
-  "onboarding": false,
-  "requireConfig": "optional",
   "timezone": "America/Toronto",
   "dependencyDashboardTitle": "Renovate Dashboard",
   "suppressNotifications": ["prIgnoreNotification"],
 
+  "lockFileMaintenance": {
+    "enabled": true
+  },
   "nix": {
     "enabled": true
   }
