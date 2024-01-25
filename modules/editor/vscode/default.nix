@@ -22,6 +22,9 @@ in
     configPath = mkOption {
       type = types.str;
     };
+    keybindingsPath = mkOption {
+      type = types.str;
+    };
   };
 
   # Point settings.json to configPath
@@ -45,6 +48,7 @@ in
       (mkIf pkgs.stdenv.isDarwin {
         home.file = {
           "Library/Application Support/Code/User/settings.json".source = config.home-manager.users.${username}.lib.file.mkOutOfStoreSymlink cfg.configPath;
+          "Library/Application Support/Code/User/keybindings.json".source = config.home-manager.users.${username}.lib.file.mkOutOfStoreSymlink cfg.keybindingsPath;
         };
 
         programs.fish.shellAliases = mkIf config.modules.scotte.shell.fish.enable {

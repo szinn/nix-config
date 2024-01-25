@@ -87,6 +87,7 @@ in
         editor = {
           vscode = {
             configPath = "${config.home-manager.users.scotte.home.homeDirectory}/.local/nix-config/modules/users/scotte/editor/settings.json";
+            keybindingsPath = "${config.home-manager.users.scotte.home.homeDirectory}/.local/nix-config/modules/users/scotte/editor/keybindings.json";
             extensions = extensions;
           };
         };
