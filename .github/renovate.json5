@@ -27,7 +27,10 @@
   "suppressNotifications": ["prIgnoreNotification"],
 
   "lockFileMaintenance": {
-    "enabled": true
+    "enabled": true,
+    "schedule": [
+      "before 11am"
+    ]
   },
   "nix": {
     "enabled": true
