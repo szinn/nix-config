@@ -45,6 +45,7 @@
         "plex"
         "private-internet-access"
         "rectangle-pro"
+        "raspberry-pi-imager"
         "sonos"
         "spotify"
         "switchresx"

@@ -146,7 +146,7 @@ git add . ; home-manager switch --flake.#$(whoami)@(hostname -s)
 
 ## Secrets
 
-I store secrets in 1Password and fetch them through the script [fetch_secrets](./scripts/fetch_secrets).
+I store secrets in 1Password and fetch them through the script [fetch-secrets](./scripts/fetch-secrets).
 
 All secrets are stored as documents with the file as the document. Secrets that are for machine alpha are tagged with "alpha".
 As well, there must be a path for the secret and an optional script.
