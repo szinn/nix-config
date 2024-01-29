@@ -49,6 +49,7 @@
         "sonos"
         "spotify"
         "switchresx"
+        "tigervnc-viewer"
         "ultimaker-cura"
         "visual-studio-code"
         "wezterm"
