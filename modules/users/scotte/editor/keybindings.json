@@ -1,2 +1,36 @@
 [
+  // move between editor pages
+  {
+    "key": "ctrl+shift+alt+meta+h",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "ctrl+shift+alt+meta+k",
+    "command": "workbench.action.previousEditor"
+  },
+  {
+    // Hyper-a: Activity bar
+    "key": "shift+alt+ctrl+shift+meta+a",
+    "command": "workbench.action.focusActivityBar"
+  },
+  {
+    // Hyper-e: Explorer
+    "key": "alt+ctrl+shift+meta+e",
+    "command": "workbench.view.explorer"
+  },
+  {
+    // Hyper-r: Repositories
+    "key": "alt+ctrl+shift+meta+r",
+    "command": "workbench.scm.repositories.focus"
+  },
+  {
+    // scm is the key below source repositories like it is in the panel
+    "key": "shift+alt+ctrl+shift+meta+f",
+    "command": "workbench.view.scm"
+  },
+  {
+    // Hyper-x: Extensions
+    "key": "alt+ctrl+shift+meta+x",
+    "command": "workbench.view.extensions"
+  }
 ]
