@@ -28,6 +28,7 @@ let
       vscode.jnoortheen.nix-ide
       vscode.mhutchie.git-graph
       vscode.mikestead.dotenv
+      vscode.ms-kubernetes-tools.vscode-kubernetes-tools
       vscode.ms-vscode-remote.remote-ssh
       vscode.ms-vscode-remote.remote-ssh-edit
       vscode.ms-vscode.remote-explorer
