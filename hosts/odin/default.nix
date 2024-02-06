@@ -40,6 +40,8 @@
         "iina"
         "jetbrains-toolbox"
         "lens"
+        "navigraph-charts"
+        "navigraph-simlink"
         "obsidian"
         "parallels"
         "plex"
