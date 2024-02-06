@@ -29,6 +29,7 @@ in
         fluxcd
         hubble
         k9s
+        pulumi-bin
       ]);
       # ++ [
       #   inputs.self.packages.${pkgs.system}.talosctl

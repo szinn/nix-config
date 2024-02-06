@@ -36,7 +36,9 @@ in
         unixtools.watch
         wget
         yq-go
-      ];
+      ] ++ (with pkgs-unstable; [
+        python3
+      ]);
 
       programs = {
         direnv = {

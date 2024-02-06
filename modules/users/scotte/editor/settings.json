@@ -47,8 +47,6 @@
     }
   ],
 
-  "breadcrumbs.enabled": false,
-
   "code-runner.executorMap": {
     "ahk": "autohotkey",
     "applescript": "osascript",
