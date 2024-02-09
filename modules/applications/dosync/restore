@@ -1,4 +1,3 @@
-#!/bin/bash
 
 MEDIA_NFS="ubuntu@ragnar:/mnt/atlas/media"
 BACKUP_NFS="ubuntu@ragnar:/mnt/atlas/backup/scotte"

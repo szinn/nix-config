@@ -1,11 +1,10 @@
-#!/bin/bash
 
-MEDIA_NFS="scotte@ragnar:/mnt/atlas/media"
-BACKUP_NFS="scotte@ragnar:/mnt/atlas/backup/scotte"
+MEDIA_NFS="ragnar:/mnt/atlas/media"
+BACKUP_NFS="ragnar:/mnt/atlas/backup/scotte"
 
 #RSYNC='rsync -vrlt --exclude=".*" --modify-window=2'
 #RSYNC='rsync -vrlt --exclude=".*" --modify-window=2 --chmod=Dog+rx,Fog+r'
-RSYNC='rsync -rvulz --exclude=".*" --modify-window=2 --chmod=Dog+rx,Fog+r'
+RSYNC='rsync -rvulz --exclude=".*" --modify-window=2 --chmod=Dog+rwx,Fog+r'
 LOGFILE="/Users/Scotte/Downloads/rsync.log"
 YEARS="2022 2023"
 IMMICH_YEARS="2022 2023"
@@ -17,13 +16,46 @@ DATABASES="/Users/scotte/Databases"
 GAMES="/Users/scotte/Games"
 AUDIO_BOOKS="/Users/scotte/Multimedia/AudioBooks"
 
+LOCAL_MEDIA="/Users/scotte/Ragnar/dosync_media"
+LOCAL_BACKUP="/Users/scotte/Ragnar/dosync_backup"
+
 # Verify logfile present
 if ! [ -f ${LOGFILE} ]; then
   touch ${LOGFILE}
 fi
 
+do_unmount() {
+  if test -n "$(mount | grep dosync_media)"; then
+    umount ${LOCAL_MEDIA}
+  fi
+  if test -n "$(mount | grep dosync_backup)"; then
+    umount ${LOCAL_BACKUP}
+  fi
+  if test -d ${LOCAL_MEDIA}; then
+    rmdir ${LOCAL_MEDIA}
+  fi
+  if test -d ${LOCAL_BACKUP}; then
+    rmdir ${LOCAL_BACKUP}
+  fi
+}
+
+do_mount() {
+  do_unmount
+  if ! test -d ${LOCAL_MEDIA}; then
+    mkdir ${LOCAL_MEDIA}
+  fi
+  if ! test -d ${LOCAL_BACKUP}; then
+    mkdir ${LOCAL_BACKUP}
+  fi
+
+  mount -t nfs ${MEDIA_NFS} ${LOCAL_MEDIA}
+  mount -t nfs ${BACKUP_NFS} ${LOCAL_BACKUP}
+}
+
 # Log into 1password
 # eval $(op signin)
+
+do_mount
 
 # Start the sync
 echo " " | tee -a ${LOGFILE}
@@ -33,38 +65,34 @@ echo " " | tee -a ${LOGFILE}
 # Sync music
 echo "*** Syncing music" | tee -a ${LOGFILE}
 echo " " | tee -a ${LOGFILE}
-${RSYNC} ${MUSIC}/. ${MEDIA_NFS}/Music/ | tee -a ${LOGFILE}
-ssh ragnar -- "agent ; sudo chown -R media:media /mnt/atlas/media/Music"
+${RSYNC} ${MUSIC}/. ${LOCAL_MEDIA}/Music/ | tee -a ${LOGFILE}
 
 # Sync audio books
 echo "*** Syncing audio books" | tee -a ${LOGFILE}
 echo " " | tee -a ${LOGFILE}
-${RSYNC} ${AUDIO_BOOKS}/. ${MEDIA_NFS}/AudioBooks/ | tee -a ${LOGFILE}
-ssh ragnar -- "agent ; sudo chown -R media:media /mnt/atlas/media/AudioBooks"
+${RSYNC} ${AUDIO_BOOKS}/. ${LOCAL_MEDIA}/AudioBooks/ | tee -a ${LOGFILE}
 
 # Sync Immich Photos
 echo " " | tee -a ${LOGFILE}
 echo "*** Syncing mobile pictures" | tee -a ${LOGFILE}
 echo " " | tee -a ${LOGFILE}
 for year in ${IMMICH_YEARS}; do
-  ${RSYNC} ${MEDIA_NFS}/Immich/library/2064a6dd-2175-4e81-8de9-d8fa7b6378f5/${year}/ ${PHOTOS}/${year}/Phone/. | tee -a ${LOGFILE}
+  ${RSYNC} ${LOCAL_MEDIA}/Immich/library/2064a6dd-2175-4e81-8de9-d8fa7b6378f5/${year}/ ${PHOTOS}/${year}/Phone/. | tee -a ${LOGFILE}
 done
 
 # Sync pictures
 echo " " | tee -a ${LOGFILE}
 echo "*** Syncing pictures (Archive)" | tee -a ${LOGFILE}
 echo " " | tee -a ${LOGFILE}
-${RSYNC} ${PHOTOS}/. ${MEDIA_NFS}/Photos/Archive/ | tee -a ${LOGFILE}
-ssh ragnar -- "agent ; sudo chown -R media:media /mnt/atlas/media/Photos/Archive"
+${RSYNC} ${PHOTOS}/. ${LOCAL_MEDIA}/Photos/Archive/ | tee -a ${LOGFILE}
 for i in ${YEARS}; do
   if test -d ${PHOTOS}/$i; then
     echo " " | tee -a ${LOGFILE}
     echo "*** Syncing pictures ($i)..." | tee -a ${LOGFILE}
     echo " " | tee -a ${LOGFILE}
-    ${RSYNC} ${PHOTOS}/$i/. ${MEDIA_NFS}/Photos/Current/ | tee -a ${LOGFILE}
+    ${RSYNC} ${PHOTOS}/$i/. ${LOCAL_MEDIA}/Photos/Current/ | tee -a ${LOGFILE}
   fi
 done
-ssh ragnar -- "agent ; sudo chown -R media:media /mnt/atlas/media/Photos/Current"
 
 # Sync books
 echo " " | tee -a ${LOGFILE}
@@ -75,8 +103,7 @@ flux -n flux-system suspend kustomization media-calibre-web
 flux -n media suspend helmrelease calibre-web
 kubectl -n media scale deployment/calibre-web --replicas 0
 kubectl -n media wait pod --for delete --selector="app.kubernetes.io/name=calibre-web" --timeout=2m
-${RSYNC} ${BOOKS}/. ${MEDIA_NFS}/Books/Library/ | tee -a ${LOGFILE}
-ssh ragnar -- "agent ; sudo chown -R media:media /mnt/atlas/media/Books"
+${RSYNC} ${BOOKS}/. ${LOCAL_MEDIA}/Books/Library/ | tee -a ${LOGFILE}
 echo "*** Resuming calibre-web..."  | tee -a ${LOGFILE}
 kubectl -n media scale deployment/calibre-web --replicas 1
 flux -n media resume helmrelease calibre-web
@@ -86,10 +113,12 @@ flux -n flux-system resume kustomization media-calibre-web
 echo " " | tee -a ${LOGFILE}
 echo "*** Syncing databases..." | tee -a ${LOGFILE}
 echo " " | tee -a ${LOGFILE}
-${RSYNC} ${DATABASES}/Backups/. ${BACKUP_NFS}/Databases/ | tee -a ${LOGFILE}
+${RSYNC} ${DATABASES}/Backups/. ${LOCAL_BACKUP}/Databases/ | tee -a ${LOGFILE}
 
 # Sync games
 echo " " | tee -a ${LOGFILE}
 echo "*** Syncing games..." | tee -a ${LOGFILE}
 echo " " | tee -a ${LOGFILE}
-${RSYNC} ${GAMES}/. ${BACKUP_NFS}/Games/ | tee -a ${LOGFILE}
+${RSYNC} ${GAMES}/. ${LOCAL_BACKUP}/Games/ | tee -a ${LOGFILE}
+
+do_unmount

@@ -1,7 +1,9 @@
-{ username }: { config, lib, ... }:
+{ username }: { pkgs, config, lib, ... }:
 with lib;
 let
   cfg = config.modules.${username}.applications.dosync;
+  dosync = pkgs.writeShellScriptBin "dosync" (builtins.readFile ./dosync);
+  restore = pkgs.writeShellScriptBin "restore" (builtins.readFile ./restore);
 in
 {
   options.modules.${username}.applications.dosync = {
@@ -10,8 +12,10 @@ in
 
   config = mkIf cfg.enable {
     home-manager.users.${username} = {
-      home.file.".local/bin/dosync".source = ./dosync;
-      home.file.".local/bin/restore".source = ./restore;
+      home.packages = [
+        dosync
+        restore
+      ];
     };
   };
 }
