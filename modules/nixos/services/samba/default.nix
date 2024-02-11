@@ -18,7 +18,7 @@ in
     # services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
     services.samba = {
       enable = true;
-      package = pkgs.samba4Full;
+      package = pkgs.samba;
       openFirewall = true;
       # securityType = "user";
       extraConfig = ''
