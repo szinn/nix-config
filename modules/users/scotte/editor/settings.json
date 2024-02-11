@@ -155,7 +155,8 @@
   "remote.SSH.connectTimeout": 30,
   "remote.SSH.remotePlatform": {
     "ragnar": "linux",
-    "macvm": "macOS"
+    "macvm": "macOS",
+    "hera": "linux"
   },
   "remote.SSH.showLoginTerminal": true,
   "remote.SSH.useLocalServer": false,
@@ -208,7 +209,6 @@
     }
   },
 
-  "terminal.external.osxExec": "Alacritty.app",
   "terminal.integrated.defaultProfile.osx": "fish",
   "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
 

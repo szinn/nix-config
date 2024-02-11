@@ -28,4 +28,10 @@ in
     sopsFile = ./secrets.sops.yaml;
     neededForUsers = true;
   };
+
+  modules.scotte = {
+    editor = {
+      vscode.server-enable = true;
+    };
+  };
 }

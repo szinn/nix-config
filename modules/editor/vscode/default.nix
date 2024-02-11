@@ -25,37 +25,47 @@ in
     keybindingsPath = mkOption {
       type = types.str;
     };
+    server-enable = mkEnableOption "vscode-server";
   };
 
   # Point settings.json to configPath
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = (mkMerge [
-      {
-        programs.vscode = {
-          enable = true;
-          package = pkgs.vscode;
-          mutableExtensionsDir = true;
+  config = mkMerge [
+    (mkIf cfg.enable {
+      home-manager.users.${username} = (mkMerge [
+        {
+          programs.vscode = {
+            enable = true;
+            package = pkgs.vscode;
+            mutableExtensionsDir = true;
 
-          extensions = mkMerge [
-            defaultExtensions
-            cfg.extensions
+            extensions = mkMerge [
+              defaultExtensions
+              cfg.extensions
+            ];
+          };
+          home.packages = with pkgs; [
+            nixpkgs-fmt
           ];
-        };
-        home.packages = with pkgs; [
-          nixpkgs-fmt
-        ];
-      }
-      (mkIf pkgs.stdenv.isDarwin {
-        home.file = {
-          "Library/Application Support/Code/User/settings.json".source = config.home-manager.users.${username}.lib.file.mkOutOfStoreSymlink cfg.configPath;
-          "Library/Application Support/Code/User/keybindings.json".source = config.home-manager.users.${username}.lib.file.mkOutOfStoreSymlink cfg.keybindingsPath;
-        };
+        }
+        (mkIf pkgs.stdenv.isDarwin {
+          home.file = {
+            "Library/Application Support/Code/User/settings.json".source = config.home-manager.users.${username}.lib.file.mkOutOfStoreSymlink cfg.configPath;
+            "Library/Application Support/Code/User/keybindings.json".source = config.home-manager.users.${username}.lib.file.mkOutOfStoreSymlink cfg.keybindingsPath;
+          };
 
-        programs.fish.shellAliases = mkIf config.modules.scotte.shell.fish.enable {
-          # Prefer to use Homebrew install rather than nix package.
-          code = "/opt/homebrew/bin/code";
-        };
-      })
-    ]);
-  };
+          programs.fish.shellAliases = mkIf config.modules.scotte.shell.fish.enable {
+            # Prefer to use Homebrew install rather than nix package.
+            code = "/opt/homebrew/bin/code";
+          };
+        })
+      ]);
+    })
+    (mkIf cfg.server-enable {
+      home-manager.users.${username} = {
+        home.packages = with pkgs; [
+          nodejs_21
+        ];
+      };
+    })
+  ];
 }
