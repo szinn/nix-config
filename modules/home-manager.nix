@@ -10,14 +10,6 @@
   ];
 
   home-manager.users.${username} = {
-    nixpkgs = {
-      # overlays = builtins.attrValues outputs.overlays;
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = (_: true);
-      };
-    };
-
     home.stateVersion = "23.11";
 
     programs = {
