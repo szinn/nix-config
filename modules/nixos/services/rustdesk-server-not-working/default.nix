@@ -34,7 +34,7 @@ in
 
     systemd.services.rustdesksignal = {
       description = "Rustdesk Signal Server (hbbs)";
-      documentation = [ 
+      documentation = [
         "https://rustdesk.com/docs/en/self-host/rustdesk-server-oss/install/"
         "https://github.com/techahold/rustdeskinstall/blob/43df6297a9b8b5ff0f3e05ec4bd6e0f4c7281f88/install.sh"
       ];
@@ -44,13 +44,13 @@ in
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Type = "simple";
-        LimitNOFILE=1000000;
-        WorkingDirectory="/opt/rustdesk";
-        StandardOutput="append:/var/log/rustdesk/hbbs.log";
-        StandardError="append:/var/log/rustdesk/hbbs.error";
-        ExecStart="${pkgs.rustdesk-server}/bin/hbbs -k _";
-        Restart="always";
-        RestartSec=10;
+        LimitNOFILE = 1000000;
+        WorkingDirectory = "/opt/rustdesk";
+        StandardOutput = "append:/var/log/rustdesk/hbbs.log";
+        StandardError = "append:/var/log/rustdesk/hbbs.error";
+        ExecStart = "${pkgs.rustdesk-server}/bin/hbbs -k _";
+        Restart = "always";
+        RestartSec = 10;
       };
       #script = with pkgs; ''
       #'';
@@ -58,7 +58,7 @@ in
 
     systemd.services.rustdeskrelay = {
       description = "Rustdesk Relay Server (hbbr)";
-      documentation = [ 
+      documentation = [
         "https://rustdesk.com/docs/en/self-host/rustdesk-server-oss/install/"
         "https://github.com/techahold/rustdeskinstall/blob/43df6297a9b8b5ff0f3e05ec4bd6e0f4c7281f88/install.sh"
       ];
@@ -68,13 +68,13 @@ in
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Type = "simple";
-        LimitNOFILE=1000000;
-        WorkingDirectory="/opt/rustdesk";
-        StandardOutput="append:/var/log/rustdesk/hbbr.log";
-        StandardError="append:/var/log/rustdesk/hbbr.error";
-        ExecStart="${pkgs.rustdesk-server}/bin/hbbr -k _";
-        Restart="always";
-        RestartSec=10;
+        LimitNOFILE = 1000000;
+        WorkingDirectory = "/opt/rustdesk";
+        StandardOutput = "append:/var/log/rustdesk/hbbr.log";
+        StandardError = "append:/var/log/rustdesk/hbbr.error";
+        ExecStart = "${pkgs.rustdesk-server}/bin/hbbr -k _";
+        Restart = "always";
+        RestartSec = 10;
       };
       #script = with pkgs; ''
       #'';
