@@ -9,7 +9,7 @@ in
     inputs.sops-nix.nixosModules.sops
   ];
 
-  sops = {
+  config.sops = {
     age.sshKeyPaths = map getKeyPath keys;
   };
 }

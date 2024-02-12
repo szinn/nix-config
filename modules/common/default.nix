@@ -4,7 +4,6 @@
     ./locale.nix
     ./nix.nix
     ./shells.nix
-    ./sops.nix
     ../users
   ];
 

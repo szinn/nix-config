@@ -7,5 +7,6 @@
     ./openssh
     ./rclone-backup
     ./samba
+    ./sops
   ];
 }
