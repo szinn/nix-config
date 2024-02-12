@@ -26,10 +26,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Flake-parts
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-    };
+    # Utilities for building our flake
+    flake-utils.url = "github:numtide/flake-utils";
 
     # VSCode community extensions
     nix-vscode-extensions = {
@@ -38,45 +36,56 @@
     };
   };
 
-  outputs = { flake-parts, ... }@inputs:
+  outputs = { self, nixpkgs, flake-utils, nix-darwin, home-manager, sops-nix, nix-vscode-extensions, ... }@inputs:
     let
+      inherit (self) outputs;
+
       mkSystemLib = import ./lib/mkSystem.nix { inherit inputs; };
-    in
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      lib = nixpkgs.lib // home-manager.lib;
       systems = [
         "aarch64-darwin"
         "aarch64-linux"
         "x86_64-linux"
       ];
-
-      imports = [
-        ./pkgs
-      ];
-
-      perSystem = { config, pkgs, ... }: {
-        devShells = import ./shell.nix {
-          inherit pkgs;
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (system:
+        import nixpkgs {
+          inherit system;
           config.allowUnfree = true;
-        };
-        formatter = pkgs.nixpkgs-fmt;
+        });
+    in
+    {
+      inherit lib;
+      overlays = {
+        default = import ./overlay { inherit inputs outputs; };
       };
 
-      flake = {
-        nixosConfigurations = {
-          # $ git add . ; sudo nixos-rebuild --flake . switch
-          hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera";
-          # $ git add . ; sudo nixos-rebuild --flake . switch
-          nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm";
-          # $ git add . ; sudo nixos-rebuild --flake . switch
-          ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar";
-        };
+      templates = import ./templates;
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      devShells = forEachSystem (pkgs:
+        import ./shell.nix {
+          inherit pkgs;
+          buildInputs = with pkgs; [
+          ];
+        });
+      formatter = forEachSystem (pkgs:
+        pkgs.nixpkgs-fmt
+      );
 
-        darwinConfigurations = {
-          # $ git add . ; darwin-rebuild --flake . switch
-          macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm";
-          # $ git add . ; darwin-rebuild switch --flake .
-          odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin";
-        };
+      nixosConfigurations = {
+        # $ git add . ; sudo nixos-rebuild --flake . switch
+        hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera";
+        # $ git add . ; sudo nixos-rebuild --flake . switch
+        nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm";
+        # $ git add . ; sudo nixos-rebuild --flake . switch
+        ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar";
+      };
+
+      darwinConfigurations = {
+        # $ git add . ; darwin-rebuild --flake . switch
+        macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm";
+        # $ git add . ; darwin-rebuild switch --flake .
+        odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin";
       };
     };
 }
