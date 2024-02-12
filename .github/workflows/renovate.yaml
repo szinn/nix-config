@@ -14,7 +14,7 @@ on:
         default: "debug"
         required: false
   schedule:
-    - cron: "0 9,22 * * *"
+    - cron: "0 6 * * *"
   push:
     branches:
       - main
