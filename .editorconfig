@@ -6,10 +6,14 @@ insert_final_newline = true
 charset = utf-8
 trim_trailing_whitespace = true
 
-[*.nix]
+[*.{lock,md,nix,sh}]
 ident_style = space
+
+[*.{md,nix}]
 ident_size = 2
 
-[*.sh]
-ident_style = space
-ident_size = 2
+[*.{sh}]
+ident_size = 4
+
+[*.lock]
+indent_size = unset
