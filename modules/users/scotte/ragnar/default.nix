@@ -41,4 +41,10 @@ in
       body = builtins.readFile ./functions/zstat.fish;
     };
   };
+
+  modules.scotte = {
+    editor = {
+      vscode.server-enable = true;
+    };
+  };
 }
