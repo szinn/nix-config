@@ -1,4 +1,4 @@
-args@{ inputs, config, pkgs, lib, ... }:
+args@{ inputs, config, pkgs, lib, hostname, ... }:
 with lib;
 let
   cfg = config.modules.users.scotte;
@@ -61,11 +61,7 @@ in
   };
 
   config = mkIf cfg.enable (mkMerge [
-    (mkIf (config.networking.hostName == "odin") (import ./odin args))
-    (mkIf (config.networking.hostName == "macvm") (import ./macvm args))
-    (mkIf (config.networking.hostName == "hera") (import ./hera args))
-    (mkIf (config.networking.hostName == "nixvm") (import ./nixvm args))
-    (mkIf (config.networking.hostName == "ragnar") (import ./ragnar args))
+    (import ./${hostname} args)
     {
       users.users.scotte = {
         name = cfg.username;

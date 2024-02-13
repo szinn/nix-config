@@ -36,7 +36,10 @@ in
       ../modules/nixos
       ../hosts/${hostname}
     ];
-    specialArgs = { inherit inputs; };
+    specialArgs = {
+      inherit inputs;
+      hostname = hostname;
+    };
   };
 
   mkDarwinSystem = system: hostname: inputs.nix-darwin.lib.darwinSystem {
@@ -71,6 +74,9 @@ in
       ../modules/darwin
       ../hosts/${hostname}
     ];
-    specialArgs = { inherit inputs; };
+    specialArgs = {
+      inherit inputs;
+      hostname = hostname;
+    };
   };
 }

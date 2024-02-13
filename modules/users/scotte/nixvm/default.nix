@@ -24,8 +24,8 @@ in
     gid = 1000;
   };
 
-  # sops.secrets.scotte-password = {
-  #   sopsFile = ./secrets.sops.yaml;
-  #   neededForUsers = true;
-  # };
+  sops.secrets.scotte-password = {
+    sopsFile = ./secrets.sops.yaml;
+    neededForUsers = true;
+  };
 }
