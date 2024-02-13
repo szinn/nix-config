@@ -36,7 +36,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, nix-darwin, home-manager, sops-nix, nix-vscode-extensions, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
 
