@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, lib, ... }:
+{ ... }:
 {
   config = {
     networking.hostName = "odin";
@@ -32,7 +32,6 @@
         "calibre"
         "devonthink"
         "discord"
-        # "espanso"
         "font-sf-mono-nerd-font"
         "google-chrome"
         "google-drive"
@@ -51,7 +50,6 @@
         "sonos"
         "spotify"
         "switchresx"
-        # "tigervnc-viewer"
         "ultimaker-cura"
         "visual-studio-code"
         "vnc-viewer"

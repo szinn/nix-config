@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, lib, ... }:
+{ ... }:
 {
   config = {
     networking.hostName = "macvm";
