@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    ".direnv/": true,
+    "result": true,
+  },
+}
