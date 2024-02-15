@@ -11,10 +11,6 @@ in
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
       };
-
-      # overlays = [
-      #   (import ../packages/overlay.nix {inherit inputs system;})
-      # ];
     };
     modules = [
       {
@@ -24,6 +20,7 @@ in
         };
       }
       inputs.home-manager.nixosModules.home-manager
+      inputs.sops-nix.nixosModules.sops
       ../modules/common
       ../modules/nixos
       ../hosts/${hostname}
@@ -42,9 +39,6 @@ in
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
       };
-      # overlays = [
-      #   (import ../packages/overlay.nix {inherit inputs system;})
-      # ];
     };
     modules = [
       {

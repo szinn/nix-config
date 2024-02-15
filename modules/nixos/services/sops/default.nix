@@ -5,10 +5,6 @@ let
   keys = builtins.filter isEd25519 config.services.openssh.hostKeys;
 in
 {
-  imports = [
-    inputs.sops-nix.nixosModules.sops
-  ];
-
   config.sops = {
     age.sshKeyPaths = map getKeyPath keys;
   };
