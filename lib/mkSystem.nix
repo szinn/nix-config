@@ -21,14 +21,6 @@ in
         nixpkgs.hostPlatform = system;
         _module.args = {
           inherit inputs system;
-          pkgs-unstable = import inputs.nixpkgs-unstable {
-            inherit system;
-            config = {
-              allowUnfree = true;
-              allowUnfreePredicate = (_: true);
-            };
-            # overlays = [ (import ../packages/overlay.nix {inherit inputs system;}) ];
-          };
         };
       }
       inputs.home-manager.nixosModules.home-manager
@@ -59,14 +51,6 @@ in
         nixpkgs.hostPlatform = system;
         _module.args = {
           inherit inputs system;
-          pkgs-unstable = import inputs.nixpkgs-unstable {
-            inherit system;
-            config = {
-              allowUnfree = true;
-              allowUnfreePredicate = (_: true);
-            };
-            # overlays = [ (import ../packages/overlay.nix {inherit inputs system;}) ];
-          };
         };
       }
       inputs.home-manager.darwinModules.home-manager

@@ -1,4 +1,4 @@
-{ username }: { config, lib, pkgs, pkgs-unstable, ... }:
+{ username }: { config, lib, pkgs, ... }:
 with lib;
 let
   ignorePatterns = ''
@@ -28,6 +28,7 @@ in
         nvd
         pre-commit
         protobuf
+        python3
         qrencode
         redis
         restic
@@ -36,9 +37,7 @@ in
         unixtools.watch
         wget
         yq-go
-      ] ++ (with pkgs-unstable; [
-        python3
-      ]);
+      ];
 
       programs = {
         direnv = {
@@ -56,7 +55,6 @@ in
         };
         atuin = {
           enable = true;
-          package = pkgs-unstable.atuin;
           flags = [ "--disable-up-arrow" ];
           settings = {
             workspaces = "true";
@@ -65,7 +63,6 @@ in
         };
         ripgrep = {
           enable = true;
-          package = pkgs-unstable.ripgrep;
           arguments = [ "--glob=!vendor" "--hidden" "--line-number" "--no-heading" "--sort=path" ];
         };
         neovim = {
@@ -93,7 +90,7 @@ in
       ];
     })
     (mkIf pkgs.stdenv.isLinux {
-      home.packages = with pkgs-unstable; [
+      home.packages = with pkgs; [
         nh
       ];
     })

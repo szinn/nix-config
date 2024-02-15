@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -29,7 +29,7 @@
     services = {
       k3s = {
         enable = true;
-        package = pkgs-unstable.k3s_1_29;
+        package = pkgs.k3s_1_29;
         extraFlags = [
           "--tls-san=nas.zinn.ca"
         ];
