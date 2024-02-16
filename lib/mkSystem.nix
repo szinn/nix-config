@@ -3,7 +3,7 @@ let
   inherit (inputs.nixpkgs) lib;
 in
 {
-  mkNixosSystem = system: hostname: inputs.nixpkgs.lib.nixosSystem {
+  mkNixosSystem = system: hostname: overlays: inputs.nixpkgs.lib.nixosSystem {
     inherit system;
     pkgs = import inputs.nixpkgs {
       inherit system;
@@ -11,6 +11,7 @@ in
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
       };
+      overlays = [ overlays.default ];
     };
     modules = [
       {
@@ -31,7 +32,7 @@ in
     };
   };
 
-  mkDarwinSystem = system: hostname: inputs.nix-darwin.lib.darwinSystem {
+  mkDarwinSystem = system: hostname: overlays: inputs.nix-darwin.lib.darwinSystem {
     inherit system;
     pkgs = import inputs.nixpkgs {
       inherit system;
@@ -39,6 +40,7 @@ in
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
       };
+      overlays = [ overlays.default ];
     };
     modules = [
       {

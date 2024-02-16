@@ -25,12 +25,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Utilities for building our flake
-    flake-utils.url = "github:numtide/flake-utils";
-
     # VSCode community extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    # Convert Nix to Neovim config
+    nix2vim = {
+      url = "github:gytis-ivaskevicius/nix2vim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -52,12 +55,11 @@
           inherit system;
           config.allowUnfree = true;
         });
+
+      overlays = import ./lib/generateOverlays.nix inputs;
     in
     {
       inherit lib;
-      overlays = {
-        default = import ./overlay { inherit inputs outputs; };
-      };
 
       templates = import ./templates;
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
@@ -73,18 +75,18 @@
 
       nixosConfigurations = {
         # $ git add . ; sudo nixos-rebuild --flake . switch
-        hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera";
+        hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera" overlays;
         # $ git add . ; sudo nixos-rebuild --flake . switch
-        nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm";
+        nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm" overlays;
         # $ git add . ; sudo nixos-rebuild --flake . switch
-        ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar";
+        ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar" overlays;
       };
 
       darwinConfigurations = {
         # $ git add . ; darwin-rebuild --flake . switch
-        macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm";
+        macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm" overlays;
         # $ git add . ; darwin-rebuild switch --flake .
-        odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin";
+        odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" overlays;
       };
     };
 }
