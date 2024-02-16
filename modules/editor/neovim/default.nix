@@ -2,27 +2,9 @@
 with lib;
 let
   cfg = config.modules.${username}.editor.neovim;
-  treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-    p.bash
-    p.comment
-    p.fish
-    p.gitattributes
-    p.gitignore
-    p.go
-    p.gomod
-    p.gowork
-    p.hcl
-    p.jq
-    p.json5
-    p.json
-    p.lua
-    p.make
-    p.markdown
-    p.nix
-    p.rust
-    p.toml
-    p.yaml
-  ]));
+  neovim = import ./package {
+    inherit pkgs;
+  };
 in
 {
   options.modules.${username}.editor.neovim = {
@@ -31,29 +13,18 @@ in
 
   config = mkIf cfg.enable {
     home-manager.users.${username} = {
-      home.packages = with pkgs; [
-        lua-language-server
+      home.packages = [
+        neovim
       ];
 
-      programs.neovim = {
-        enable = true;
-        coc.enable = false;
+      # Use Neovim as the editor for git commit messages
+      programs.git.extraConfig.core.editor = "nvim";
+      programs.jujutsu.settings.ui.editor = "nvim";
 
-        plugins = [
-          treesitterWithGrammars
-        ];
-      };
-
-      home.file."./.config/nvim/" = {
-        source = ./nvim;
-        recursive = true;
-      };
-
-      # Treesitter is configured as a locally developed module in lazy.nvim
-      # we hardcode a symlink here so that we can refer to it in our lazy config
-      home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
-        recursive = true;
-        source = treesitterWithGrammars;
+      # Set Neovim as the default app for text editing and manual pages
+      home.sessionVariables = {
+        EDITOR = "nvim";
+        MANPAGER = "nvim +Man!";
       };
     };
   };

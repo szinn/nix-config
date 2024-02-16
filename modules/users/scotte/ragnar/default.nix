@@ -44,6 +44,7 @@ in
 
   modules.scotte = {
     editor = {
+      neovim.enable = true;
       vscode.server-enable = true;
     };
   };

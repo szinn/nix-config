@@ -30,11 +30,17 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     # Convert Nix to Neovim config
     nix2vim = {
       url = "github:gytis-ivaskevicius/nix2vim";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    comment-nvim-src = {
+      # https://github.com/numToStr/Comment.nvim/releases
+      url = "github:numToStr/Comment.nvim/v0.8.0";
+      flake = false;
     };
   };
 
@@ -60,7 +66,7 @@
       overlays = [
         nix2vim.overlay
         additions
-        # (import ./overlays/neovim-plugins.nix inputs)
+        (import ./overlays/neovim-plugins.nix inputs)
       ];
     in
     {

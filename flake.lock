@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "comment-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1681214440,
+        "narHash": "sha256-48hy+hiaDJLlgWqC7IeZI3dT+VwWkRo4atQbyPxu/ys=",
+        "owner": "numToStr",
+        "repo": "Comment.nvim",
+        "rev": "e51f2b142d88bb666dcaa77d93a07f4b419aca70",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numToStr",
+        "ref": "v0.8.0",
+        "repo": "Comment.nvim",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -169,6 +186,7 @@
     },
     "root": {
       "inputs": {
+        "comment-nvim-src": "comment-nvim-src",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nix-vscode-extensions": "nix-vscode-extensions",

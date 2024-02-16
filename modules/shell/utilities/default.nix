@@ -65,9 +65,6 @@ in
           enable = true;
           arguments = [ "--glob=!vendor" "--hidden" "--line-number" "--no-heading" "--sort=path" ];
         };
-        neovim = {
-          enable = true;
-        };
         zoxide = {
           enable = true;
         };
