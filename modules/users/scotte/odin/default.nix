@@ -43,8 +43,8 @@
       zstat = "ssh ragnar -- zstat";
     };
 
-    home.packages = [
-      inputs.self.packages.${pkgs.system}.tesla-auth
+    home.packages = with pkgs; [
+      tesla-auth
     ];
   };
 }

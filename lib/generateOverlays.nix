@@ -7,6 +7,7 @@
 let
   inherit (nixpkgs) lib;
 
+  additions = final: _prev: import ../pkgs { pkgs = final; };
   importLocalOverlay = file:
     lib.composeExtensions
       (_: _: { __inputs = inputs; })
@@ -24,6 +25,7 @@ in
 localOverlays // {
   default = lib.composeManyExtensions ([
     nix2vim.overlay
+    additions
     (final: prev: {
       inherit (self.packages.${final.stdenv.hostPlatform.system}) nix-fast-build;
     })
