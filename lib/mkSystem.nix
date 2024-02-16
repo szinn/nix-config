@@ -11,7 +11,7 @@ in
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
       };
-      overlays = [ overlays.default ];
+      overlays = overlays;
     };
     modules = [
       {
@@ -40,7 +40,7 @@ in
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
       };
-      overlays = [ overlays.default ];
+      overlays = overlays;
     };
     modules = [
       {

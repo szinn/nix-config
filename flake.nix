@@ -38,7 +38,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix2vim, ... }@inputs:
     let
       inherit (self) outputs;
 
@@ -56,7 +56,12 @@
           config.allowUnfree = true;
         });
 
-      overlays = import ./lib/generateOverlays.nix inputs;
+      additions = final: _prev: import ./pkgs { pkgs = final; };
+      overlays = [
+        nix2vim.overlay
+        additions
+        # (import ./overlays/neovim-plugins.nix inputs)
+      ];
     in
     {
       inherit lib;
