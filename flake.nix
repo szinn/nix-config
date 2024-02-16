@@ -62,12 +62,7 @@
           config.allowUnfree = true;
         });
 
-      additions = final: _prev: import ./pkgs { pkgs = final; };
-      overlays = [
-        nix2vim.overlay
-        additions
-        (import ./overlays/neovim-plugins.nix inputs)
-      ];
+      overlays = (import ./overlays inputs);
     in
     {
       inherit lib;
