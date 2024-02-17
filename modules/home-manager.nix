@@ -1,4 +1,4 @@
-{ username }: { pkgs, lib, ... }:
+{ username }: { pkgs, lib, inputs, ... }:
 {
   imports = [
     (import ./applications { username = username; })
@@ -10,6 +10,10 @@
   ];
 
   home-manager.users.${username} = {
+    imports = [
+      inputs.nixvim.homeManagerModules.nixvim
+    ];
+
     home.stateVersion = "23.11";
 
     programs = {
