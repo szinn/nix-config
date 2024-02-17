@@ -1,5 +1,9 @@
 {
   imports = [
+    ./keys.nix
+    ./lualine.nix
+    ./neo-tree.nix
+    ./treesitter.nix
   ];
 
   programs.nixvim = {
