@@ -8,9 +8,9 @@
     # | A | B | C                             X | Y | Z |
     # +-------------------------------------------------+
     sections = {
-      lualine_a = ["mode"];
-      lualine_b = ["branch"];
-      lualine_c = ["filename" "diff"];
+      lualine_a = [ "mode" ];
+      lualine_b = [ "branch" ];
+      lualine_c = [ "filename" "diff" ];
 
       lualine_x = [
         "diagnostics"

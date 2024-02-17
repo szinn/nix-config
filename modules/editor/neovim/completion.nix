@@ -16,7 +16,6 @@
             path = "[path]";
             luasnip = "[snip]";
             buffer = "[buffer]";
-            neorg = "[neorg]";
           };
         };
       };
@@ -51,7 +50,6 @@
             # Words from other open buffers can also be suggested.
             option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
           }
-          { name = "neorg"; }
         ];
       };
     };
