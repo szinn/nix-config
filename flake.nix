@@ -31,20 +31,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Convert Nix to Neovim config
-    nix2vim = {
-      url = "github:gytis-ivaskevicius/nix2vim";
+    # nixvim configuration
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    comment-nvim-src = {
-      # https://github.com/numToStr/Comment.nvim/releases
-      url = "github:numToStr/Comment.nvim/v0.8.0";
-      flake = false;
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix2vim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
 
