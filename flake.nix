@@ -2,13 +2,10 @@
   description = "Scotte's Nix Configuration";
 
   inputs = {
-    # Nixpkgs and unstable
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
     home-manager = {
-      # url = "github:nix-community/home-manager/release-23.11";
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -84,7 +81,7 @@
       darwinConfigurations = {
         # $ git add . ; darwin-rebuild --flake . switch
         macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm" overlays;
-        # $ git add . ; darwin-rebuild switch --flake .
+        # $ git add . ; darwin-rebuild --flake . switch
         odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" overlays;
       };
     };
