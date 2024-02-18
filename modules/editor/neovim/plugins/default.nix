@@ -1,5 +1,6 @@
 {
   imports = [
+    ./harpoon.nix
     ./keys.nix
     ./lualine.nix
     ./lsp.nix
@@ -9,7 +10,12 @@
   ];
 
   programs.nixvim = {
-    colorschemes.dracula.enable = true;
+    colorschemes = {
+      tokyonight = {
+        enable = true;
+        style = "night";
+      };
+    };
 
     plugins = {
       gitsigns = {

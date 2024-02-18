@@ -50,13 +50,24 @@
           bashls.enable = true;
           gopls.enable = true;
           lua-ls.enable = true;
+          nil_ls.enable = true;
           rust-analyzer = {
             enable = true;
             installCargo = true;
             installRustc = false;
+            settings = {
+              cargo.features = "all";
+            };
           };
           yamlls.enable = true;
         };
+      };
+
+      lsp-format = {
+        enable = true;
+        lspServersToEnable = [
+          "rust-analyzer"
+        ];
       };
     };
   };
