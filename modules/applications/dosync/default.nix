@@ -15,6 +15,7 @@ in
       home.packages = [
         dosync
         restore
+        pkgs.rsync
       ];
     };
   };
