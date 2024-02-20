@@ -65,25 +65,32 @@ in
           };
 
           interactiveShellInit = ''
-            if test -d /opt/homebrew/opt/postgresql@16/bin
-              fish_add_path -a /opt/homebrew/opt/postgresql@16/bin
+            function remove_path
+              if set -l index (contains -i $argv[1] $PATH)
+                set --erase --universal fish_user_paths[$index]
+              end
             end
 
-            # Ensure nix paths are at the head of the list
-            fish_add_path '${homeDirectory}/.krew/bin'
-            fish_add_path -a '/opt/homebrew/bin'
-            fish_add_path '/nix/var/nix/profiles/default/bin'
-            fish_add_path '/run/current-system/sw/bin'
-            fish_add_path '/etc/profiles/per-user/${username}/bin'
-            if test -d /run/wrappers/bin
-              fish_add_path '/run/wrappers/bin'
+            function update_path
+              if test -d $argv[1]
+                echo "adding $argv[1]"
+                fish_add_path -m $argv[1]
+              else
+                echo "removing $argv[1]"
+                remove_path $argv[1]
+              end
             end
-            if test -d ${homeDirectory}/.nix-profile/bin
-              fish_add_path '${homeDirectory}/.nix-profile/bin'
-            end
-            if test -d ${homeDirectory}/.local/bin
-              fish_add_path '${homeDirectory}/.local/bin'
-            end
+
+            # Paths are in reverse priority order
+            update_path /opt/homebrew/opt/postgresql@16/bin
+            update_path /opt/homebrew/bin
+            update_path ${homeDirectory}/.krew/bin
+            update_path /nix/var/nix/profiles/default/bin
+            update_path /run/current-system/sw/bin
+            update_path /etc/profiles/per-user/${username}/bin
+            update_path /run/wrappers/bin
+            update_path ${homeDirectory}/.nix-profile/bin
+            update_path ${homeDirectory}/.local/bin
 
             set -gx EDITOR "nvim"
 

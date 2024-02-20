@@ -74,7 +74,6 @@ in
       home-manager.users.scotte.home = {
         username = cfg.username;
         homeDirectory = cfg.homeDirectory;
-        sessionPath = [ "$HOME/.local/bin" ];
         sessionVariables = {
           SOPS_AGE_KEY_FILE = "${config.home-manager.users.scotte.xdg.configHome}/sops/age/keys.txt";
         };
