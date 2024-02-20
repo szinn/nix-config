@@ -6,7 +6,7 @@ local fish_path = "/run/current-system/sw/bin/fish"
 -- local workspace_switcher = wezterm.plugin.require("file:///Users/scotte/Development/Projects/smart_workspace_switcher.wezterm")
 -- local workspace_switcher = wezterm.plugin.require("https://github.com/szinn/smart_workspace_switcher.wezterm")
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
-workspace_switcher.set_zoxide_path("/Users/scotte/.nix-profile/bin/zoxide")
+workspace_switcher.set_zoxide_path("/etc/profiles/per-user/scotte/bin/zoxide")
 workspace_switcher.set_workspace_formatter(function(label)
     return wezterm.format({
         { Attribute = { Italic = true } },
