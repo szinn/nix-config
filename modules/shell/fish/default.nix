@@ -76,10 +76,8 @@ in {
 
             function update_path
               if test -d $argv[1]
-                echo "adding $argv[1]"
                 fish_add_path -m $argv[1]
               else
-                echo "removing $argv[1]"
                 remove_path $argv[1]
               end
             end
