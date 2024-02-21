@@ -84,7 +84,7 @@
 
     darwinConfigurations = {
       # $ git add . ; darwin-rebuild --flake . switch
-      macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm" overlays;
+      macvm-old = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm" overlays;
       # $ git add . ; darwin-rebuild --flake . switch
       odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" overlays;
     };
