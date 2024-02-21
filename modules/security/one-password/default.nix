@@ -1,9 +1,12 @@
-{ username }: { config, pkgs, lib, ... }:
-with lib;
-let
+{username}: {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.security.one-password;
-in
-{
+in {
   options.modules.${username}.security.one-password = {
     enable = mkEnableOption "_1password";
   };

@@ -1,9 +1,13 @@
-{ inputs, pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.services.rclone-backup;
-in
 {
+  inputs,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.services.rclone-backup;
+in {
   options.modules.services.rclone-backup = {
     enable = mkEnableOption "rclone-backup";
   };
@@ -12,7 +16,7 @@ in
     # List all timers
     #   systemctl list-timers
     systemd.timers."rclone-backup" = {
-      wantedBy = [ "timers.target" ];
+      wantedBy = ["timers.target"];
       timerConfig = {
         OnBootSec = "60m";
         OnUnitActiveSec = "240m";

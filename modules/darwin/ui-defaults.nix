@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   system = {
     defaults = {
       NSGlobalDomain = {

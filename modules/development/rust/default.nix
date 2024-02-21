@@ -1,9 +1,12 @@
-{ username }: { config, pkgs, lib, ... }:
-with lib;
-let
+{username}: {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.development.rust;
-in
-{
+in {
   options.modules.${username}.development.rust = {
     enable = mkEnableOption "rust";
   };

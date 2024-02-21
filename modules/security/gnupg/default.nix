@@ -1,15 +1,18 @@
-{ username }: args@{ config, pkgs, lib, ... }:
-with lib;
-let
+{username}: args @ {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.security.gnupg;
-in
-{
+in {
   options.modules.${username}.security.gnupg = {
     enable = mkEnableOption "gnupg";
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${username} = (mkMerge [
+    home-manager.users.${username} = mkMerge [
       {
         programs.gpg = {
           enable = true;
@@ -21,10 +24,10 @@ in
             use-agent = true;
           };
         };
-        home.packages = with pkgs; [ pinentry ];
+        home.packages = with pkgs; [pinentry];
       }
       (mkIf pkgs.stdenv.isDarwin {
-        home.packages = with pkgs; [ pinentry_mac ];
+        home.packages = with pkgs; [pinentry_mac];
       })
       (mkIf pkgs.stdenv.isLinux {
         home.packages = with pkgs; [
@@ -36,18 +39,16 @@ in
           pinentryFlavor = "curses";
         };
 
-        programs =
-          let
-            fixGpg = ''
-              gpgconf --launch gpg-agent
-            '';
-          in
-          {
-            bash.profileExtra = fixGpg;
-            fish.loginShellInit = fixGpg;
-            zsh.loginExtra = fixGpg;
-          };
+        programs = let
+          fixGpg = ''
+            gpgconf --launch gpg-agent
+          '';
+        in {
+          bash.profileExtra = fixGpg;
+          fish.loginShellInit = fixGpg;
+          zsh.loginExtra = fixGpg;
+        };
       })
-    ]);
+    ];
   };
 }

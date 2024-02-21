@@ -1,9 +1,12 @@
-{ username }: { config, pkgs, lib, ... }:
-with lib;
-let
+{username}: {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.applications.devonthink;
-in
-{
+in {
   options.modules.${username}.applications.devonthink = {
     enable = mkEnableOption "DEVONthink";
   };

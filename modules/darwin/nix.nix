@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   nix.gc.interval = {
     Hour = 12;
     Minute = 15;

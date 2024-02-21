@@ -1,20 +1,22 @@
-{ lib, config, ... }:
-with lib;
-let
-  cfg = config.modules.filesystems.zfs;
-in
 {
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.filesystems.zfs;
+in {
   options.modules.filesystems.zfs = {
     enable = mkEnableOption "zfs";
     mountPoolsAtBoot = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ ];
+      default = [];
     };
   };
 
   config = mkIf cfg.enable {
     boot = {
-      supportedFilesystems = [ "zfs" ];
+      supportedFilesystems = ["zfs"];
       zfs = {
         forceImportRoot = false;
         extraPools = cfg.mountPoolsAtBoot;

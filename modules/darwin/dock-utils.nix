@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   system.activationScripts.preUserActivation.text = ''
     __clear_apps_from_dock() {
       defaults delete com.apple.dock persistent-apps

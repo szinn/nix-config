@@ -1,6 +1,6 @@
 {
   programs.nixvim = {
-    options.completeopt = [ "menu" "menuone" "noselect" ];
+    options.completeopt = ["menu" "menuone" "noselect"];
 
     plugins = {
       luasnip.enable = true;
@@ -31,20 +31,20 @@
           "<C-Space>" = "cmp.mapping.complete()";
           "<C-e>" = "cmp.mapping.close()";
           "<Tab>" = {
-            modes = [ "i" "s" ];
+            modes = ["i" "s"];
             action = "cmp.mapping.select_next_item()";
           };
           "<S-Tab>" = {
-            modes = [ "i" "s" ];
+            modes = ["i" "s"];
             action = "cmp.mapping.select_prev_item()";
           };
           "<CR>" = "cmp.mapping.confirm({ select = true })";
         };
 
         sources = [
-          { name = "path"; }
-          { name = "nvim_lsp"; }
-          { name = "luasnip"; }
+          {name = "path";}
+          {name = "nvim_lsp";}
+          {name = "luasnip";}
           {
             name = "buffer";
             # Words from other open buffers can also be suggested.

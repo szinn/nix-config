@@ -1,6 +1,10 @@
-{ username }: { config, lib, pkgs, ... }:
-with lib;
-let
+{username}: {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   ignorePatterns = ''
     !.env*
     !.github/
@@ -9,12 +13,12 @@ let
     .terraform/
     .target/
     /Library/'';
-in
-{
-  home-manager.users.${username} = (mkMerge [
+in {
+  home-manager.users.${username} = mkMerge [
     {
       home.packages = with pkgs; [
         age
+        alejandra
         bat
         dig
         du-dust
@@ -55,7 +59,7 @@ in
         };
         atuin = {
           enable = true;
-          flags = [ "--disable-up-arrow" ];
+          flags = ["--disable-up-arrow"];
           settings = {
             workspaces = "true";
             ctrl_n_shortcuts = "true";
@@ -63,7 +67,7 @@ in
         };
         ripgrep = {
           enable = true;
-          arguments = [ "--glob=!vendor" "--hidden" "--line-number" "--no-heading" "--sort=path" ];
+          arguments = ["--glob=!vendor" "--hidden" "--line-number" "--no-heading" "--sort=path"];
         };
         zoxide = {
           enable = true;
@@ -83,7 +87,7 @@ in
     }
     (mkIf pkgs.stdenv.isDarwin {
       home.packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "DejaVuSansMono" "DroidSansMono" ]; })
+        (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "DejaVuSansMono" "DroidSansMono"];})
       ];
     })
     (mkIf pkgs.stdenv.isLinux {
@@ -91,5 +95,5 @@ in
         nh
       ];
     })
-  ]);
+  ];
 }

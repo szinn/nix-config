@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   config = {
     users.mutableUsers = false;
   };

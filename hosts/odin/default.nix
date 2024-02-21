@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   config = {
     networking.hostName = "odin";
 

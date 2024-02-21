@@ -1,9 +1,12 @@
-{ username }: { config, pkgs, lib, ... }:
-with lib;
-let
+{username}: {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.shell.wezterm;
-in
-{
+in {
   options.modules.${username}.shell.wezterm = {
     enable = mkEnableOption "wezterm";
     configPath = mkOption {

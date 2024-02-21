@@ -248,21 +248,22 @@
   },
 
   "[lua]": {
-    "editor.tabSize": 2,
+    "editor.defaultFormatter": "yinfei.luahelper",
     "editor.formatOnSave": false,
-    "editor.defaultFormatter": "yinfei.luahelper"
+    "editor.tabSize": 2
   },
 
   "[nix]": {
-    "editor.tabSize": 2,
-    "editor.defaultFormatter": "jnoortheen.nix-ide"
+    "editor.defaultFormatter": "kamadorueda.alejandra",
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
   },
 
   "[rust]": {
-    "editor.tabSize": 4,
     "editor.defaultFormatter": "rust-lang.rust-analyzer",
     "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "file"
+    "editor.formatOnSaveMode": "file",
+    "editor.tabSize": 4
   },
 
   "[python]": {
@@ -275,9 +276,9 @@
   },
 
   "[toml]": {
-    "editor.tabSize": 4,
     "editor.defaultFormatter": "tamasfe.even-better-toml",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
   },
 
   "[sql]": {

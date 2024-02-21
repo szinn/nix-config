@@ -1,6 +1,10 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.modules.services.openssh;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.services.openssh;
 in {
   options.modules.services.openssh = {
     enable = mkEnableOption "openssh";
@@ -10,7 +14,7 @@ in {
     services.openssh = {
       enable = true;
       # Don't allow home-directory authorized_keys
-      authorizedKeysFiles = lib.mkForce [ "/etc/ssh/authorized_keys.d/%u" ];
+      authorizedKeysFiles = lib.mkForce ["/etc/ssh/authorized_keys.d/%u"];
       settings = {
         # Harden
         PasswordAuthentication = false;

@@ -1,16 +1,19 @@
-{ username }: { config, lib, pkgs, ... }:
-with lib;
-let
+{username}: {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.devops.colima;
-in
-{
+in {
   options.modules.${username}.devops.colima = {
     enable = mkEnableOption "colima";
     startService = mkEnableOption "colima service";
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${username} = (mkMerge [
+    home-manager.users.${username} = mkMerge [
       (mkIf (cfg.startService) {
         launchd.agents.colima = {
           enable = true;
@@ -44,6 +47,6 @@ in
           docker-compose
         ];
       }
-    ]);
+    ];
   };
 }

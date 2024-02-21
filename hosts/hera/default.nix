@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -41,7 +41,7 @@
       groups = {
         homelab = {
           gid = 568;
-          members = [ "scotte" ];
+          members = ["scotte"];
         };
       };
       additionalUsers = {

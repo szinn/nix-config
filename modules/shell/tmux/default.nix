@@ -1,9 +1,14 @@
-{ username }: { config, pkgs, lib, ... }:
-with lib;
-let
+{username}: {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.shell.tmux;
 
-  t-smart-manager = pkgs.tmuxPlugins.mkTmuxPlugin
+  t-smart-manager =
+    pkgs.tmuxPlugins.mkTmuxPlugin
     {
       pluginName = "t-smart-tmux-session-manager";
       version = "v2.6.0";
@@ -16,7 +21,8 @@ let
         hash = "sha256-B+NPeR0BZMX4wFtNK3M7shF2T5arXdIrFcVDRvplUT8=";
       };
     };
-  t-nerd-font = pkgs.tmuxPlugins.mkTmuxPlugin
+  t-nerd-font =
+    pkgs.tmuxPlugins.mkTmuxPlugin
     {
       pluginName = "t-nerd-font-window-name";
       version = "v2.1.0";
@@ -29,8 +35,7 @@ let
         hash = "sha256-HqSaOcnb4oC0AtS0aags2A5slsPiikccUSuZ1sVuago=";
       };
     };
-in
-{
+in {
   options.modules.${username}.shell.tmux = {
     enable = mkEnableOption "tmux";
   };

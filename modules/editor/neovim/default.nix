@@ -1,9 +1,13 @@
-{ username }: args@{ pkgs, lib, config, inputs, ... }:
-with lib;
-let
+{username}: args @ {
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.editor.neovim;
-in
-{
+in {
   options.modules.${username}.editor.neovim = {
     enable = mkEnableOption "neovim";
   };
@@ -29,7 +33,6 @@ in
 
         highlight.ExtraWhitespace.bg = "red";
         match.ExtraWhitespace = "\\s\\+$";
-
       };
 
       # Use Neovim as the editor for git commit messages

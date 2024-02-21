@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   config = {
     networking.hostName = "macvm";
 
@@ -19,7 +18,7 @@
         "alacritty"
         "visual-studio-code"
       ];
-      masApps = { };
+      masApps = {};
     };
 
     system.activationScripts.postUserActivation.text = ''

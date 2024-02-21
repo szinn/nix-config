@@ -1,23 +1,25 @@
-{ username }: { config, pkgs, lib, ... }:
-with lib;
-let
+{username}: {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.security.ssh;
 
   extraConfigDarwin =
-    if pkgs.stdenv.isDarwin then
-      ''
-        UseKeychain yes
-        AddKeysToAgent yes
-      ''
-    else
-      "";
-in
-{
+    if pkgs.stdenv.isDarwin
+    then ''
+      UseKeychain yes
+      AddKeysToAgent yes
+    ''
+    else "";
+in {
   options.modules.${username}.security.ssh = {
     enable = mkEnableOption "ssh";
     matchBlocks = mkOption {
       type = types.attrs;
-      default = { };
+      default = {};
     };
   };
 

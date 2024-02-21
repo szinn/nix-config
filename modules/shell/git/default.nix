@@ -1,9 +1,12 @@
-{ username }: args@{ config, pkgs, lib, ... }:
-with lib;
-let
+{username}: args @ {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.shell.git;
-in
-{
+in {
   options.modules.${username}.shell.git = {
     enable = mkEnableOption "git";
     username = mkOption {
@@ -18,7 +21,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${username} = (mkMerge [
+    home-manager.users.${username} = mkMerge [
       {
         programs.git = {
           enable = true;
@@ -26,7 +29,7 @@ in
           userEmail = cfg.email;
           extraConfig = {
             gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
-            color = { ui = "auto"; };
+            color = {ui = "auto";};
             core = {
               autocrlf = "input";
               editor = "nvim";
@@ -38,17 +41,17 @@ in
               features = "decorations";
               side-by-side = "true";
             };
-            init = { defaultBranch = "main"; };
-            commit = { gpgSign = true; };
-            user = { signing.key = "B2F1677DB0348B42"; };
-            diff = { colorMoved = "default"; };
-            fetch = { prune = "true"; };
-            interactive = { diffFilter = "delta --color-only"; };
-            merge = { conflictstyle = "diff3"; };
-            pager = { branch = "false"; };
-            pull = { rebase = "true"; };
-            push = { autoSetupRemote = "true"; };
-            rebase = { autoStash = "true"; };
+            init = {defaultBranch = "main";};
+            commit = {gpgSign = true;};
+            user = {signing.key = "B2F1677DB0348B42";};
+            diff = {colorMoved = "default";};
+            fetch = {prune = "true";};
+            interactive = {diffFilter = "delta --color-only";};
+            merge = {conflictstyle = "diff3";};
+            pager = {branch = "false";};
+            pull = {rebase = "true";};
+            push = {autoSetupRemote = "true";};
+            rebase = {autoStash = "true";};
           };
           aliases = {
             br = "branch";
@@ -87,16 +90,16 @@ in
           };
         };
 
-        home.packages = with pkgs; [ delta fzf ];
+        home.packages = with pkgs; [delta fzf];
         home.file.".ssh/allowed_signers".text = cfg.allowedSigners;
       }
       (mkIf pkgs.stdenv.isDarwin {
         programs.git = {
           extraConfig = {
-            credential = { helper = "osxkeychain"; };
+            credential = {helper = "osxkeychain";};
           };
         };
       })
-    ]);
+    ];
   };
 }

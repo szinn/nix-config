@@ -1,16 +1,19 @@
-{ username }: args@{ config, pkgs, lib, ... }:
-with lib;
-let
+{username}: args @ {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   homeDirectory = config.home-manager.users.${username}.home.homeDirectory;
   cfg = config.modules.${username}.shell.fish;
-in
-{
+in {
   options.modules.${username}.shell.fish = {
     enable = mkEnableOption "fish";
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.${username} = (mkMerge [
+    home-manager.users.${username} = mkMerge [
       {
         programs.fish = {
           enable = true;
@@ -125,6 +128,6 @@ in
           };
         };
       })
-    ]);
+    ];
   };
 }

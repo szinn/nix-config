@@ -1,11 +1,15 @@
-{ username }: { config, lib, pkgs, inputs, ... }:
-with lib;
-let
+{username}: {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+with lib; let
   cfg = config.modules.${username}.devops;
-in
-{
+in {
   imports = [
-    (import ./colima { username = username; })
+    (import ./colima {username = username;})
   ];
 
   options.modules.${username}.devops = {

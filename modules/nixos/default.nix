@@ -1,5 +1,8 @@
-{ config, inputs, ... }:
 {
+  config,
+  inputs,
+  ...
+}: {
   imports = [
     ./filesystems
     ./services

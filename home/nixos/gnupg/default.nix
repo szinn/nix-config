@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.features.gnupg;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.features.gnupg;
+in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       pinentry-curses
@@ -14,16 +17,14 @@ in
       pinentryFlavor = "curses";
     };
 
-    programs =
-      let
-        fixGpg = ''
-          gpgconf --launch gpg-agent
-        '';
-      in
-      {
-        bash.profileExtra = fixGpg;
-        fish.loginShellInit = fixGpg;
-        zsh.loginExtra = fixGpg;
-      };
+    programs = let
+      fixGpg = ''
+        gpgconf --launch gpg-agent
+      '';
+    in {
+      bash.profileExtra = fixGpg;
+      fish.loginShellInit = fixGpg;
+      zsh.loginExtra = fixGpg;
+    };
   };
 }

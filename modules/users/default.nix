@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.users;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.users;
+in {
   imports = [
     ./scotte
   ];
@@ -11,11 +14,11 @@ in
   options.modules.users = {
     groups = mkOption {
       type = types.attrs;
-      default = { };
+      default = {};
     };
     additionalUsers = mkOption {
       type = types.attrs;
-      default = { };
+      default = {};
     };
   };
 
