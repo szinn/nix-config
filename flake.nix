@@ -79,7 +79,7 @@
       # $ git add . ; sudo nixos-rebuild --flake . switch
       nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm" overlays;
       # $ git add . ; sudo nixos-rebuild --flake . switch
-      ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar" overlays;
+      ragnar = mkSystemLib.mkNewNixosSystem "x86_64-linux" "ragnar" overlays;
     };
 
     darwinConfigurations = {

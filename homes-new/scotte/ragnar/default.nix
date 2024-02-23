@@ -16,5 +16,16 @@
       neovim.enable = true;
       vscode.server-enable = true;
     };
+
+    devops = {
+      enable = true;
+    };
+  };
+
+  programs.fish.functions = {
+    zstat = {
+      description = "Statistics on atlas zpool";
+      body = builtins.readFile ./functions/zstat.fish;
+    };
   };
 }
