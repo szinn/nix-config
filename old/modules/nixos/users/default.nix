@@ -1,5 +1,0 @@
-{...}: {
-  config = {
-    users.mutableUsers = false;
-  };
-}
