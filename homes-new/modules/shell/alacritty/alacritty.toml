@@ -1,0 +1,157 @@
+live_config_reload = true
+
+[colors.bright]
+black = "#708CA9"
+blue = "#AA99FF"
+cyan = "#99FFEE"
+green = "#A2FF99"
+magenta = "#FF99CC"
+red = "#FFAA99"
+white = "#FFFFFF"
+yellow = "#FFFF99"
+
+[colors.cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[colors.footer_bar]
+background = "#0B0D0F"
+foreground = "#F8F8F2"
+
+[colors.hints.end]
+background = "#0B0D0F"
+foreground = "#FFFF80"
+
+[colors.hints.start]
+background = "#FFFF80"
+foreground = "#0B0D0F"
+
+[colors.line_indicator]
+background = "None"
+foreground = "None"
+
+[colors.normal]
+black = "#708CA9"
+blue = "#9580FF"
+cyan = "#80FFEA"
+green = "#8AFF80"
+magenta = "#FF80BF"
+red = "#FF9580"
+white = "#F8F8F2"
+yellow = "#FFFF80"
+
+[colors.primary]
+background = "#0B0D0F"
+bright_foreground = "#FFFFFF"
+foreground = "#F8F8F2"
+
+[colors.search.focused_match]
+background = "#FFCA80"
+foreground = "#414D58"
+
+[colors.search.matches]
+background = "#8AFF80"
+foreground = "#414D58"
+
+[colors.selection]
+background = "#414D58"
+text = "CellForeground"
+
+[colors.vi_mode_cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12.0
+
+[font.bold]
+family = "FiraCode Nerd Font"
+style = "Heavy"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font"
+style = "Heavy Italic"
+
+[font.italic]
+family = "FiraCode Nerd Font"
+style = "Medium Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Medium"
+
+[[keyboard.bindings]]
+chars = "\u0014G"
+key = "G"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014T"
+key = "J"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014L"
+key = "K"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014c"
+key = "T"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00141"
+key = "Key1"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00142"
+key = "Key2"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00143"
+key = "Key3"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00144"
+key = "Key4"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00145"
+key = "Key5"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00146"
+key = "Key6"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00147"
+key = "Key7"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00148"
+key = "Key8"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00149"
+key = "Key9"
+mods = "Command"
+
+[window]
+decorations = "buttonless"
+dynamic_padding = false
+
+[window.padding]
+x = 2
+y = 2
