@@ -43,6 +43,7 @@ with lib; let
 in {
   imports = [
     ../modules
+    ./editors/neovim
     ./${hostname}
   ];
 

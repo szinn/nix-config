@@ -5,6 +5,9 @@
 }: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
+    ./applications
+    ./development
+    ./devops
     ./editors
     ./security
     ./shell

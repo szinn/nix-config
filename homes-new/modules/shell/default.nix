@@ -5,6 +5,6 @@
     ./git
     ./tmux
     ./utilities
-    # ./wezterm
+    ./wezterm
   ];
 }

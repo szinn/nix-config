@@ -4,7 +4,7 @@
   ...
 }: {
   config = {
-    networking.hostName = "macvm";
+    networking.hostName = hostname;
 
     users.users.scotte = {
       name = "scotte";

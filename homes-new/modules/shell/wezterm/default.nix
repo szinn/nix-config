@@ -1,13 +1,13 @@
-{username}: {
+{
   config,
   pkgs,
   lib,
   ...
 }:
 with lib; let
-  cfg = config.modules.${username}.shell.wezterm;
+  cfg = config.modules.shell.wezterm;
 in {
-  options.modules.${username}.shell.wezterm = {
+  options.modules.shell.wezterm = {
     enable = mkEnableOption "wezterm";
     configPath = mkOption {
       type = types.str;
@@ -16,12 +16,10 @@ in {
 
   # Temporary make .config/wezterm/wezterm.lua link to the local copy
   config = mkIf cfg.enable {
-    home-manager.users.${username} = {
-      xdg.configFile."wezterm/wezterm.lua".source = config.home-manager.users.${username}.lib.file.mkOutOfStoreSymlink cfg.configPath;
+    xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink cfg.configPath;
 
-      programs.fish.shellAliases = mkIf config.modules.${username}.shell.fish.enable {
-        newmain = "wezterm cli spawn --workspace main --cwd ~ --new-window";
-      };
+    programs.fish.shellAliases = {
+      newmain = "wezterm cli spawn --workspace main --cwd ~ --new-window";
     };
   };
 }
