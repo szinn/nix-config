@@ -75,18 +75,18 @@
 
     nixosConfigurations = {
       # $ git add . ; sudo nixos-rebuild --flake . switch
-      hera = mkSystemLib.mkNewNixosSystem "x86_64-linux" "hera" overlays;
+      hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera" overlays;
       # $ git add . ; sudo nixos-rebuild --flake . switch
-      nixvm = mkSystemLib.mkNewNixosSystem "aarch64-linux" "nixvm" overlays;
+      nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm" overlays;
       # $ git add . ; sudo nixos-rebuild --flake . switch
-      ragnar = mkSystemLib.mkNewNixosSystem "x86_64-linux" "ragnar" overlays;
+      ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar" overlays;
     };
 
     darwinConfigurations = {
       # $ git add . ; darwin-rebuild --flake . switch
-      macvm = mkSystemLib.mkNewDarwinSystem "aarch64-darwin" "macvm" overlays;
+      macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm" overlays;
       # $ git add . ; darwin-rebuild --flake . switch
-      odin = mkSystemLib.mkNewDarwinSystem "aarch64-darwin" "odin" overlays;
+      odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" overlays;
     };
 
     # homeConfigurations = {
