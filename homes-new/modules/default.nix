@@ -1,6 +1,11 @@
-{inputs, config, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
+    ./editors
   ];
 
   config = {
