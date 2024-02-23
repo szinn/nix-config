@@ -1,0 +1,6 @@
+{hostname, ...}: {
+  imports = [
+    ../modules
+    ./${hostname}
+  ];
+}
