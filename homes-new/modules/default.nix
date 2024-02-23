@@ -6,6 +6,7 @@
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./editors
+    ./security
   ];
 
   config = {
