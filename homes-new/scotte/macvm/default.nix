@@ -9,5 +9,10 @@
 
   modules = {
     editors.vscode.enable = true;
+
+    shell = {
+      alacritty.enable = true;
+      tmux.enable = true;
+    };
   };
 }

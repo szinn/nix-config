@@ -7,6 +7,7 @@
     inputs.nixvim.homeManagerModules.nixvim
     ./editors
     ./security
+    ./shell
   ];
 
   config = {

@@ -123,5 +123,15 @@ in {
         };
       };
     };
+
+    shell = {
+      fish.enable = true;
+      git = {
+        enable = true;
+        username = "Scotte Zinn";
+        email = "scotte@zinn.ca";
+        allowedSigners = builtins.readFile ./ssh/allowed_signers;
+      };
+    };
   };
 }
