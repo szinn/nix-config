@@ -1,4 +1,11 @@
-{inputs, pkgs, config, lib, hostname, ...}:
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  hostname,
+  ...
+}:
 with lib; let
   extensions = let
     vscode = inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
