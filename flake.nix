@@ -58,7 +58,7 @@
       });
 
     overlays = import ./overlays inputs;
-  in rec {
+  in {
     inherit lib;
 
     templates = import ./templates;
@@ -88,9 +88,5 @@
       # $ git add . ; darwin-rebuild --flake . switch
       odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" overlays;
     };
-
-    # homeConfigurations = {
-    #   macvm = mkSystemLib.mkHomeManagerSystem "aarch64-darwin" "macvm" "scotte" overlays;
-    # };
   };
 }

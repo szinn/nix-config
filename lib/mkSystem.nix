@@ -83,23 +83,4 @@ in {
         hostname = hostname;
       };
     };
-
-  # mkHomeManagerSystem = system: hostname: username: overlays:
-  #   inputs.home-manager.lib.homeManagerConfiguration {
-  #     pkgs = import inputs.nixpkgs {
-  #       inherit system;
-  #       config = {
-  #         allowUnfree = true;
-  #         allowUnfreePredicate = _: true;
-  #       };
-  #       overlays = overlays;
-  #     };
-  #     modules = [
-  #       ../homes/${username}
-  #     ];
-  #     extraSpecialArgs = {
-  #       inherit inputs;
-  #       hostname = hostname;
-  #     };
-  #   };
 }
