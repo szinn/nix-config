@@ -89,8 +89,8 @@
       odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" overlays;
     };
 
-    homeConfigurations = {
-      macvm = mkSystemLib.mkHomeManagerSystem "aarch64-darwin" "macvm" "scotte" overlays;
-    };
+    # homeConfigurations = {
+    #   macvm = mkSystemLib.mkHomeManagerSystem "aarch64-darwin" "macvm" "scotte" overlays;
+    # };
   };
 }

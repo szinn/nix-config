@@ -35,7 +35,6 @@ in {
     (mkIf cfg.enable {
       programs.vscode = {
         enable = true;
-        package = pkgs.vscode;
         mutableExtensionsDir = true;
 
         extensions = mkMerge [
