@@ -7,8 +7,8 @@ in {
   ];
 
   networking = {
-    hostName = "hera";
-    hostId = "decaf108";
+    hostName = "nixvm";
+    hostId = "decaf21a";
     useDHCP = true;
     firewall.enable = false;
   };
@@ -20,7 +20,7 @@ in {
     group = "scotte";
     shell = pkgs.fish;
     packages = [pkgs.home-manager];
-    openssh.authorizedKeys.keys = [(builtins.readFile ../../homes-new/scotte/ssh/ssh.pub)];
+    openssh.authorizedKeys.keys = [(builtins.readFile ../../homes/scotte/ssh/ssh.pub)];
     hashedPasswordFile = config.sops.secrets.scotte-password.path;
     isNormalUser = true;
     extraGroups =
@@ -35,7 +35,7 @@ in {
   };
 
   sops.secrets.scotte-password = {
-    sopsFile = ../../homes-new/scotte/hera/secrets.sops.yaml;
+    sopsFile = ../../homes/scotte/nixvm/secrets.sops.yaml;
     neededForUsers = true;
   };
 
@@ -45,24 +45,54 @@ in {
   '';
 
   modules = {
+    filesystems.zfs = {
+      enable = true;
+      mountPoolsAtBoot = [
+        "groucho"
+      ];
+    };
+
     services = {
+      k3s = {
+        enable = true;
+        package = pkgs.k3s_1_29;
+        # extraFlags = [
+        #   "--tls_san=${config.networking.hostName}.zinn.tech"
+        # ];
+      };
+
       minio = {
         enable = true;
         root-credentials = ./minio.sops.yaml;
         dataDirs = [
-          "/mnt/atlas/s3"
+          "/mnt/groucho/s3"
         ];
       };
 
       nfs = {
         enable = true;
-        exports = ''
-          /mnt/atlas/k8s  10.0.0.0/8(rw,insecure,no_subtree_check,all_squash,anonuid=568,anongid=568)
-          /mnt/atlas/media  10.0.0.0/8(rw,insecure,no_subtree_check,all_squash,anonuid=568,anongid=568)
-        '';
       };
 
       openssh.enable = true;
+
+      samba = {
+        enable = true;
+        shares = {
+          homes = {
+            browseable = "no";
+            "read only" = "no";
+            "guest ok" = "no";
+            "create mask" = "0664";
+            "directory mask" = "0775";
+          };
+          Media = {
+            path = "/mnt/groucho/media";
+            "read only" = "no";
+            "force user" = "media";
+            "force group" = "media";
+          };
+        };
+      };
     };
 
     users = {
@@ -71,11 +101,20 @@ in {
           gid = 568;
           members = ["scotte"];
         };
+        media = {
+          gid = 569;
+          members = ["scotte"];
+        };
       };
       additionalUsers = {
         homelab = {
           uid = 568;
           group = "homelab";
+          isNormalUser = false;
+        };
+        media = {
+          uid = 569;
+          group = "media";
           isNormalUser = false;
         };
       };

@@ -29,13 +29,13 @@ in {
               inherit inputs;
               hostname = hostname;
             };
-            users.scotte = ../. + "/homes-new/scotte";
+            users.scotte = ../. + "/homes/scotte";
           };
           nixpkgs.overlays = overlays;
         }
-        ../hosts-new/modules/common
-        ../hosts-new/modules/nixos
-        ../hosts-new/${hostname}
+        ../hosts/modules/common
+        ../hosts/modules/nixos
+        ../hosts/${hostname}
       ];
       specialArgs = {
         inherit inputs;
@@ -70,13 +70,13 @@ in {
               inherit inputs;
               hostname = hostname;
             };
-            users.scotte = ../. + "/homes-new/scotte";
+            users.scotte = ../. + "/homes/scotte";
           };
           nixpkgs.overlays = overlays;
         }
-        ../hosts-new/modules/common
-        ../hosts-new/modules/darwin
-        ../hosts-new/${hostname}
+        ../hosts/modules/common
+        ../hosts/modules/darwin
+        ../hosts/${hostname}
       ];
       specialArgs = {
         inherit inputs;
@@ -95,7 +95,7 @@ in {
   #       overlays = overlays;
   #     };
   #     modules = [
-  #       ../homes-new/${username}
+  #       ../homes/${username}
   #     ];
   #     extraSpecialArgs = {
   #       inherit inputs;

@@ -20,7 +20,7 @@ in {
     group = "scotte";
     shell = pkgs.fish;
     packages = [pkgs.home-manager];
-    openssh.authorizedKeys.keys = [(builtins.readFile ../../homes-new/scotte/ssh/ssh.pub)];
+    openssh.authorizedKeys.keys = [(builtins.readFile ../../homes/scotte/ssh/ssh.pub)];
     hashedPasswordFile = config.sops.secrets.scotte-password.path;
     isNormalUser = true;
     extraGroups =
@@ -35,7 +35,7 @@ in {
   };
 
   sops.secrets.scotte-password = {
-    sopsFile = ../../homes-new/scotte/ragnar/secrets.sops.yaml;
+    sopsFile = ../../homes/scotte/ragnar/secrets.sops.yaml;
     neededForUsers = true;
   };
 

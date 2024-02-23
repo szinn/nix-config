@@ -7,7 +7,7 @@
       home = "/Users/scotte";
       shell = pkgs.fish;
       packages = [pkgs.home-manager];
-      openssh.authorizedKeys.keys = [(builtins.readFile ../../homes-new/scotte/ssh/ssh.pub)];
+      openssh.authorizedKeys.keys = [(builtins.readFile ../../homes/scotte/ssh/ssh.pub)];
     };
 
     system.activationScripts.postActivation.text = ''

@@ -40,7 +40,7 @@
     shell = {
       wezterm = {
         enable = true;
-        configPath = "${config.home.homeDirectory}/.local/nix-config/homes-new/scotte/shell/wezterm.lua";
+        configPath = "${config.home.homeDirectory}/.local/nix-config/homes/scotte/shell/wezterm.lua";
       };
     };
   };

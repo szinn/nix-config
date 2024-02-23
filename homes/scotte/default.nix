@@ -50,8 +50,8 @@ in {
   modules = {
     editors = {
       vscode = {
-        configPath = "${config.home.homeDirectory}/.local/nix-config/homes-new/scotte/editors/vscode/settings.json";
-        keybindingsPath = "${config.home.homeDirectory}/.local/nix-config/homes-new/scotte/editors/vscode/keybindings.json";
+        configPath = "${config.home.homeDirectory}/.local/nix-config/homes/scotte/editors/vscode/settings.json";
+        keybindingsPath = "${config.home.homeDirectory}/.local/nix-config/homes/scotte/editors/vscode/keybindings.json";
         extensions = extensions;
       };
     };
