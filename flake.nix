@@ -75,7 +75,7 @@
 
     nixosConfigurations = {
       # $ git add . ; sudo nixos-rebuild --flake . switch
-      hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera" overlays;
+      hera = mkSystemLib.mkNewNixosSystem "x86_64-linux" "hera" overlays;
       # $ git add . ; sudo nixos-rebuild --flake . switch
       nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm" overlays;
       # $ git add . ; sudo nixos-rebuild --flake . switch

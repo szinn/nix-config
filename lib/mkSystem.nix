@@ -60,6 +60,48 @@ in {
       };
     };
 
+  mkNewNixosSystem = system: hostname: overlays:
+    inputs.nixpkgs.lib.nixosSystem {
+      inherit system;
+      pkgs = import inputs.nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        };
+        overlays = overlays;
+      };
+      modules = [
+        {
+          nixpkgs.hostPlatform = system;
+          _module.args = {
+            inherit inputs system;
+          };
+        }
+        inputs.home-manager.nixosModules.home-manager
+        inputs.sops-nix.nixosModules.sops
+        {
+          home-manager = {
+            useUserPackages = true;
+            useGlobalPkgs = true;
+            extraSpecialArgs = {
+              inherit inputs;
+              hostname = hostname;
+            };
+            users.scotte = ../. + "/homes-new/scotte";
+          };
+          nixpkgs.overlays = overlays;
+        }
+        ../hosts-new/modules/common
+        ../hosts-new/modules/nixos
+        ../hosts-new/${hostname}
+      ];
+      specialArgs = {
+        inherit inputs;
+        hostname = hostname;
+      };
+    };
+
   mkNewDarwinSystem = system: hostname: overlays:
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
