@@ -1,12 +1,23 @@
-{...}: {
+{
+  pkgs,
+  hostname,
+  ...
+}: {
   config = {
-    networking.hostName = "macvm";
+    networking.hostName = hostname;
 
-    modules.users.scotte = {
-      enable = true;
-      username = "scotte";
-      homeDirectory = "/Users/scotte";
+    users.users.scotte = {
+      name = "scotte";
+      home = "/Users/scotte";
+      shell = pkgs.fish;
+      packages = [pkgs.home-manager];
+      openssh.authorizedKeys.keys = [(builtins.readFile ../../homes/scotte/ssh/ssh.pub)];
     };
+
+    system.activationScripts.postActivation.text = ''
+      # Must match what is in /etc/shells
+      sudo chsh -s /run/current-system/sw/bin/fish scotte
+    '';
 
     homebrew = {
       taps = [

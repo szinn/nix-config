@@ -21,8 +21,20 @@ in {
         }
         inputs.home-manager.nixosModules.home-manager
         inputs.sops-nix.nixosModules.sops
-        ../modules/common
-        ../modules/nixos
+        {
+          home-manager = {
+            useUserPackages = true;
+            useGlobalPkgs = true;
+            extraSpecialArgs = {
+              inherit inputs;
+              hostname = hostname;
+            };
+            users.scotte = ../. + "/homes/scotte";
+          };
+          nixpkgs.overlays = overlays;
+        }
+        ../hosts/modules/common
+        ../hosts/modules/nixos
         ../hosts/${hostname}
       ];
       specialArgs = {
@@ -50,8 +62,20 @@ in {
           };
         }
         inputs.home-manager.darwinModules.home-manager
-        ../modules/common
-        ../modules/darwin
+        {
+          home-manager = {
+            useUserPackages = true;
+            useGlobalPkgs = true;
+            extraSpecialArgs = {
+              inherit inputs;
+              hostname = hostname;
+            };
+            users.scotte = ../. + "/homes/scotte";
+          };
+          nixpkgs.overlays = overlays;
+        }
+        ../hosts/modules/common
+        ../hosts/modules/darwin
         ../hosts/${hostname}
       ];
       specialArgs = {
@@ -59,4 +83,23 @@ in {
         hostname = hostname;
       };
     };
+
+  # mkHomeManagerSystem = system: hostname: username: overlays:
+  #   inputs.home-manager.lib.homeManagerConfiguration {
+  #     pkgs = import inputs.nixpkgs {
+  #       inherit system;
+  #       config = {
+  #         allowUnfree = true;
+  #         allowUnfreePredicate = _: true;
+  #       };
+  #       overlays = overlays;
+  #     };
+  #     modules = [
+  #       ../homes/${username}
+  #     ];
+  #     extraSpecialArgs = {
+  #       inherit inputs;
+  #       hostname = hostname;
+  #     };
+  #   };
 }

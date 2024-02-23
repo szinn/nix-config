@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{pkgs, config, ...}:
+let
+  ifGroupsExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+in {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -10,13 +13,38 @@
     firewall.enable = false;
   };
 
-  modules = {
-    users.scotte = {
-      enable = true;
-      username = "scotte";
-      homeDirectory = "/home/scotte";
-    };
+  users.users.scotte = {
+    uid = 1000;
+    name = "scotte";
+    home = "/home/scotte";
+    group = "scotte";
+    shell = pkgs.fish;
+    packages = [pkgs.home-manager];
+    openssh.authorizedKeys.keys = [(builtins.readFile ../../homes/scotte/ssh/ssh.pub)];
+    hashedPasswordFile = config.sops.secrets.scotte-password.path;
+    isNormalUser = true;
+    extraGroups =
+      ["wheel"]
+      ++ ifGroupsExist [
+        "network"
+        "samba-users"
+      ];
+  };
+  users.groups.scotte = {
+    gid = 1000;
+  };
 
+  sops.secrets.scotte-password = {
+    sopsFile = ../../homes/scotte/ragnar/secrets.sops.yaml;
+    neededForUsers = true;
+  };
+
+  system.activationScripts.postActivation.text = ''
+    # Must match what is in /etc/shells
+    chsh -s /run/current-system/sw/bin/fish scotte
+  '';
+
+  modules = {
     filesystems = {
       zfs = {
         enable = true;
