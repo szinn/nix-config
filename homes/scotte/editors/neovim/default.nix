@@ -1,8 +1,6 @@
-args @ {
-  pkgs,
+{
   lib,
   config,
-  inputs,
   ...
 }:
 with lib; let
@@ -15,11 +13,12 @@ in {
 
   config = mkIf cfg.enable {
     programs.nixvim = mkMerge ([
-      {
-        enable = true;
-        defaultEditor = true;
-      }
-    ] ++ neovim-config);
+        {
+          enable = true;
+          defaultEditor = true;
+        }
+      ]
+      ++ neovim-config);
 
     # Use Neovim as the editor for git commit messages
     programs.git.extraConfig.core.editor = "nvim";
