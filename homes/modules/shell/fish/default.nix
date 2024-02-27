@@ -27,8 +27,8 @@ in {
         };
 
         shellAbbrs = {
-          dup = "git add . ; darwin-rebuild --flake .  switch";
-          dupb = "git add . ; darwin-rebuild --flake .  build ; nvd diff /run/current-system result";
+          dup = "git add . ; darwin-rebuild --flake . switch";
+          dupb = "git add . ; darwin-rebuild --flake . build --show-trace ; nvd diff /run/current-system result";
           nup = "git add . ; sudo nixos-rebuild --flake . switch";
           nhup = "nh os switch . --dry";
           nvdiff = "nvd diff /run/current-system result";
