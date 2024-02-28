@@ -49,6 +49,9 @@ in {
             description = "Set the fish prompt";
             body = builtins.readFile ./functions/fish_prompt.fish;
           };
+          fish_mode_prompt = {
+            body = "";
+          };
           fish_right_prompt = {
             description = "Set the right prompt";
             body = builtins.readFile ./functions/fish_right_prompt.fish;
