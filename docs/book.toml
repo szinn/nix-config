@@ -1,0 +1,41 @@
+[book]
+authors = ["Scotte Zinn"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Nix Machine / Dotfiles Configuration"
+
+[build]
+create-missing = false
+
+[preprocessor]
+
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "3.0.2" # do not edit: managed by `mdbook-admonish install`
+
+[preprocessor.toc]
+command = "mdbook-toc"
+renderer = ["html"]
+
+[output]
+
+[output.html]
+default-theme = "navy"
+preferred-dark-theme = "navy"
+additional-css = ["./mdbook-admonish.css"]
+git-repository-url = "https://github.com/szinn/nix-config"
+git-repository-icon = "fa-github"
+git-branch = "main"
+
+[output.html.search]
+limit-results = 15
+
+[output.html.fold]
+enable = true
+level = 1
+
+[output.html.playground]
+copyable = false
+
+[output.linkcheck]
