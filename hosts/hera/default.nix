@@ -16,6 +16,11 @@ in {
     firewall.enable = false;
   };
 
+  hardware.opengl.extraPackages = with pkgs; [
+    intel-compute-runtime
+    intel-media-driver
+  ];
+
   users.users.scotte = {
     uid = 1000;
     name = "scotte";
