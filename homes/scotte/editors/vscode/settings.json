@@ -286,7 +286,7 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "sops.binPath": "/Users/scotte/.nix-profile/bin/sops",
+  "sops.binPath": "/etc/profiles/per-user/scotte/bin/sops",
   "sops.defaults.ageKeyFile": "/Users/scotte/.config/sops/age/keys.txt",
   "sops.configPath": "./.sops.yaml"
 }
