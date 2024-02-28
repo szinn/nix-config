@@ -15,6 +15,7 @@ in {
       modules = [
         {
           nixpkgs.hostPlatform = system;
+          # nixpkgs.overlays = overlays;
           _module.args = {
             inherit inputs system;
           };
@@ -31,7 +32,6 @@ in {
             };
             users.scotte = ../. + "/homes/scotte";
           };
-          nixpkgs.overlays = overlays;
         }
         ../hosts/modules/common
         ../hosts/modules/nixos
@@ -57,6 +57,7 @@ in {
       modules = [
         {
           nixpkgs.hostPlatform = system;
+          # nixpkgs.overlays = overlays;
           _module.args = {
             inherit inputs system;
           };
@@ -72,7 +73,6 @@ in {
             };
             users.scotte = ../. + "/homes/scotte";
           };
-          nixpkgs.overlays = overlays;
         }
         ../hosts/modules/common
         ../hosts/modules/darwin
