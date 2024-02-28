@@ -49,9 +49,6 @@ in {
             description = "Set the fish prompt";
             body = builtins.readFile ./functions/fish_prompt.fish;
           };
-          fish_mode_prompt = {
-            body = "";
-          };
           fish_right_prompt = {
             description = "Set the right prompt";
             body = builtins.readFile ./functions/fish_right_prompt.fish;
@@ -71,6 +68,9 @@ in {
         };
 
         interactiveShellInit = ''
+          # Erase fish_mode_prompt function
+          functions -e fish_mode_prompt
+          
           function remove_path
             if set -l index (contains -i $argv[1] $PATH)
               set --erase --universal fish_user_paths[$index]
