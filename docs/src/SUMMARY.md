@@ -1,3 +1,8 @@
-# Summary
+# Welcome
 
-- [Chapter 1](./chapter_1.md)
+[Introduction](introduction.md)
+
+---
+
+- [VM Playgrounds](vm-playgrounds.md)
+- [Secrets Management](secrets.md)
