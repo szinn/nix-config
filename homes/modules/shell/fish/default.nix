@@ -70,7 +70,7 @@ in {
         interactiveShellInit = ''
           # Erase fish_mode_prompt function
           functions -e fish_mode_prompt
-          
+
           function remove_path
             if set -l index (contains -i $argv[1] $PATH)
               set --erase --universal fish_user_paths[$index]
