@@ -62,14 +62,6 @@ in {
         ];
       };
 
-      nfs = {
-        enable = true;
-        exports = ''
-          /mnt/atlas/k8s  10.0.0.0/8(rw,insecure,no_subtree_check,all_squash,anonuid=568,anongid=568)
-          /mnt/atlas/media  10.0.0.0/8(rw,insecure,no_subtree_check,all_squash,anonuid=568,anongid=568)
-        '';
-      };
-
       openssh.enable = true;
     };
 
