@@ -113,8 +113,16 @@ ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub
 
 Run `task sops:re-encrypt` which will re-encrypt the secrets for this VM.
 
+Remove groucho from the mountPoolsAtBoot since the zpool doesn't exist.
+
 Finally, apply the configuration.
 
 ```sh
 sudo nixos-rebuild switch --flake .
+```
+
+Create the zpool for groucho and then readd to the mountPoolsAtBoot.
+
+```sh
+sudo zpool create groucho mirror /dev/sdb /dev/sdc
 ```
