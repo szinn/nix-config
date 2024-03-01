@@ -2,7 +2,7 @@
 keys:
   - &scotte age1p28u8xjm5sf7jdavc8xsqtw7lxgscefxs7a5dtqszr2885xeputsh9y64y
   - &hera age1y5775nrh792zh2z4c8xpxf432e5xdwj03g4lgvcuv69zrzk0ju0qfruczz
-  - &nixvm age1m3tvwul5aum8vw98h3ughratrsnmkyhkj02ghcwysnhmg5k2ufzq5s2pkn
+  - &nixvm age12cwljj0azxcsre5kmf8hpmvt9m9lszmpwhp08794c5wd78ckne3qhh89cz
   - &ragnar age159dryl0uvkx3pjr0n36lf3cx0wqx96a4dpjgxmezpc8tlzppas0sdazq5h
 
 creation_rules:

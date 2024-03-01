@@ -101,5 +101,19 @@ NIXPKGS_ALLOW_UNFREE=1 nix-shell -p _1password
 op account add
 eval $(op signin)
 ./scripts/fetch-secrets
+```
+
+An encrypted age key is required for secrets required during the rebuild.
+Copy the output of the `ssh-to-age` execution to `.sops.yaml` in the appropriate entry.
+
+```sh
+ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub
+```
+
+Run `task sops:re-encrypt` which will re-encrypt the secrets for this VM.
+
+Finally, apply the configuration.
+
+```sh
 sudo nixos-rebuild switch --flake .
 ```
