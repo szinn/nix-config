@@ -14,4 +14,3 @@ connections:
     params:
       autocommit: "true"
       tls: skip-verify
-

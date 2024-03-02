@@ -47,34 +47,34 @@ config.inactive_pane_hsb = {
 -- Colors
 -- config.color_scheme = "Tokyo Night"
 config.colors = {
-	foreground = '#F8F8F2',
-	background = '#0B0D0F',
-	cursor_bg = '#F8F8F8',
-	cursor_fg = '#0B0D0F',
-	cursor_border = '#F8F8F8',
-	selection_bg = '#414D58',
-	selection_fg = '#F8F8F2',
-	scrollbar_thumb = '#44475A',
-	ansi = {
-    '#708CA9',
-    '#FF9580',
-    '#8AFF80',
-    '#FFFF80',
-    '#9580FF',
-    '#FF80BF',
-    '#80FFEA',
-    '#F8F8F2'
-	},
-	brights = {
-    '#708CA9',
-    '#FFAA99',
-    '#A2FF99',
-    '#FFFF99',
-    '#AA99FF',
-    '#FF99CC',
-    '#99FFEE',
-    '#FFFFFF'
-	}
+    foreground = '#F8F8F2',
+    background = '#0B0D0F',
+    cursor_bg = '#F8F8F8',
+    cursor_fg = '#0B0D0F',
+    cursor_border = '#F8F8F8',
+    selection_bg = '#414D58',
+    selection_fg = '#F8F8F2',
+    scrollbar_thumb = '#44475A',
+    ansi = {
+        '#708CA9',
+        '#FF9580',
+        '#8AFF80',
+        '#FFFF80',
+        '#9580FF',
+        '#FF80BF',
+        '#80FFEA',
+        '#F8F8F2'
+    },
+    brights = {
+        '#708CA9',
+        '#FFAA99',
+        '#A2FF99',
+        '#FFFF99',
+        '#AA99FF',
+        '#FF99CC',
+        '#99FFEE',
+        '#FFFFFF'
+    }
 }
 
 config.use_fancy_tab_bar = true

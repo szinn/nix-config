@@ -17,3 +17,18 @@ tasks:
     silent: true
     cmds:
       - task -l
+
+  pc-init:
+    desc: Initialize pre-commit hooks
+    cmds:
+      - pre-commit install --install-hooks
+
+  pc-update:
+    desc: Update pre-commit dependencies
+    cmds:
+      - pre-commit autoupdate
+
+  pc-run:
+    desc: Run pre-commit
+    cmds:
+      - pre-commit run --all-files

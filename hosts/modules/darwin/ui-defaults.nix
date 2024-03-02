@@ -480,12 +480,12 @@
       #   # sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
       #   # Change indexing order and disable some search results
       #   # Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
-      #   # 	MENU_DEFINITION
-      #   # 	MENU_CONVERSION
-      #   # 	MENU_EXPRESSION
-      #   # 	MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
-      #   # 	MENU_WEBSEARCH             (send search queries to Apple)
-      #   # 	MENU_OTHER
+      #   #     MENU_DEFINITION
+      #   #     MENU_CONVERSION
+      #   #     MENU_EXPRESSION
+      #   #     MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
+      #   #     MENU_WEBSEARCH             (send search queries to Apple)
+      #   #     MENU_OTHER
       #   defaults write com.apple.spotlight orderedItems -array \
       #     '{"enabled" = 1;"name" = "APPLICATIONS";}' \
       #     '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
