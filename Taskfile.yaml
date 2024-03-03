@@ -32,3 +32,9 @@ tasks:
     desc: Run pre-commit
     cmds:
       - pre-commit run --all-files
+
+  gc:
+    desc: Garbage collect Nix
+    cmds:
+      - home-manager expire-generations "-3 days"
+      - nix-store --gc
