@@ -25,10 +25,10 @@ in {
 
   config = mkIf cfg.enable {
     programs.ssh = {
+      inherit (cfg) matchBlocks;
       enable = true;
       extraConfig = extraConfigDarwin;
       addKeysToAgent = "yes";
-      matchBlocks = cfg.matchBlocks;
     };
   };
 }

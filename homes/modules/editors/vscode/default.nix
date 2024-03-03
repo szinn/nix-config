@@ -9,9 +9,7 @@ with lib; let
   cfg = config.modules.editors.vscode;
 
   defaultExtensions = let
-    vscode = inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
-    open-vsx = inputs.nix-vscode-extensions.extensions.${pkgs.system}.open-vsx;
-    nixpkgs = pkgs.vscode-extensions;
+    inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system}) vscode-marketplace open-vsx;
   in [
   ];
 in {

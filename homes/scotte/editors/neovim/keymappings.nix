@@ -71,7 +71,8 @@
         "K" = ":m '<-2<CR>gv=gv";
         "J" = ":m '>+1<CR>gv=gv";
       };
-  in (normal
+  in
+    normal
     ++ visual
     ++ [
       {
@@ -82,5 +83,5 @@
           desc = "Save";
         };
       }
-    ]);
+    ];
 }

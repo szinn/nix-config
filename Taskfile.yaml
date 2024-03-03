@@ -38,3 +38,8 @@ tasks:
     cmds:
       - home-manager expire-generations "-3 days"
       - nix-store --gc
+
+  lint:
+    desc: Run statix lint
+    cmds:
+      - statix check .

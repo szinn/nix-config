@@ -20,6 +20,8 @@ in {
 
     # services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
     services.samba = {
+      inherit (cfg) shares;
+
       enable = true;
       package = pkgs.samba;
       openFirewall = true;
@@ -50,7 +52,6 @@ in {
         veto files = /._*/.DS_Store/
         delete veto files = yes
       '';
-      shares = cfg.shares;
     };
   };
 }

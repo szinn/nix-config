@@ -5,8 +5,7 @@
   ...
 }:
 with lib; let
-  username = config.home.username;
-  homeDirectory = config.home.homeDirectory;
+  inherit (config.home) username homeDirectory;
   cfg = config.modules.shell.fish;
 in {
   options.modules.shell.fish = {

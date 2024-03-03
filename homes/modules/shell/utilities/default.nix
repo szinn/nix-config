@@ -16,32 +16,45 @@ with lib; let
 in {
   config = mkMerge [
     {
-      home.packages = with pkgs; [
-        age
-        alejandra
-        bat
-        dig
-        du-dust
-        duf
-        eza
-        fd
-        fzf
-        gh
-        go-task
-        jq
-        nvd
-        pre-commit
-        protobuf
-        python3
-        qrencode
-        redis
-        restic
-        shellcheck
-        sops
-        unixtools.watch
-        wget
-        yq-go
-      ];
+      home = {
+        packages = with pkgs; [
+          age
+          alejandra
+          bat
+          dig
+          du-dust
+          duf
+          eza
+          fd
+          fzf
+          gh
+          go-task
+          jq
+          nvd
+          pre-commit
+          protobuf
+          python3
+          qrencode
+          redis
+          restic
+          shellcheck
+          sops
+          unixtools.watch
+          wget
+          yq-go
+        ];
+
+        file = {
+          ".rgignore".text = ignorePatterns;
+          ".fdignore".text = ignorePatterns;
+          ".digrc".text = "+noall +answer"; # Cleaner dig commands
+        };
+
+        # Environment configuration
+        sessionVariables = {
+          FZF_DEFAULT_COMMAND = "fd -H -E '.git'";
+        };
+      };
 
       programs = {
         direnv = {
@@ -72,17 +85,6 @@ in {
         zoxide = {
           enable = true;
         };
-      };
-
-      home.file = {
-        ".rgignore".text = ignorePatterns;
-        ".fdignore".text = ignorePatterns;
-        ".digrc".text = "+noall +answer"; # Cleaner dig commands
-      };
-
-      # Environment configuration
-      home.sessionVariables = {
-        FZF_DEFAULT_COMMAND = "fd -H -E '.git'";
       };
     }
     (mkIf pkgs.stdenv.isDarwin {

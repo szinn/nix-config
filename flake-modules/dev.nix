@@ -1,4 +1,4 @@
-{...}: {
+_: {
   perSystem = {pkgs, ...}: {
     devShells.default = pkgs.mkShellNoCC {
       packages = with pkgs; [
@@ -9,6 +9,7 @@
         nix
         sops
         ssh-to-age
+        statix
       ];
     };
 

@@ -5,12 +5,11 @@ in {
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       pkgs = import inputs.nixpkgs {
-        inherit system;
+        inherit system overlays;
         config = {
           allowUnfree = true;
           allowUnfreePredicate = _: true;
         };
-        overlays = overlays;
       };
       modules = [
         {
@@ -27,8 +26,7 @@ in {
             useUserPackages = true;
             useGlobalPkgs = true;
             extraSpecialArgs = {
-              inherit inputs;
-              hostname = hostname;
+              inherit inputs hostname;
             };
             users.scotte = ../. + "/homes/scotte";
           };
@@ -38,8 +36,7 @@ in {
         ../hosts/${hostname}
       ];
       specialArgs = {
-        inherit inputs;
-        hostname = hostname;
+        inherit inputs hostname;
       };
     };
 
@@ -47,12 +44,11 @@ in {
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       pkgs = import inputs.nixpkgs {
-        inherit system;
+        inherit system overlays;
         config = {
           allowUnfree = true;
           allowUnfreePredicate = _: true;
         };
-        overlays = overlays;
       };
       modules = [
         {
@@ -68,8 +64,7 @@ in {
             useUserPackages = true;
             useGlobalPkgs = true;
             extraSpecialArgs = {
-              inherit inputs;
-              hostname = hostname;
+              inherit inputs hostname;
             };
             users.scotte = ../. + "/homes/scotte";
           };
@@ -79,8 +74,7 @@ in {
         ../hosts/${hostname}
       ];
       specialArgs = {
-        inherit inputs;
-        hostname = hostname;
+        inherit inputs hostname;
       };
     };
 }

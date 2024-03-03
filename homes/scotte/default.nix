@@ -8,44 +8,42 @@
 }:
 with lib; let
   extensions = let
-    vscode = inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
-    open-vsx = inputs.nix-vscode-extensions.extensions.${pkgs.system}.open-vsx;
-    nixpkgs = pkgs.vscode-extensions;
+    inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system}) vscode-marketplace open-vsx;
   in [
-    vscode.aaron-bond.better-comments
-    vscode.alefragnani.bookmarks
-    vscode.alefragnani.project-manager
-    vscode.belfz.search-crates-io
-    vscode.bmalehorn.vscode-fish
-    vscode.davidanson.vscode-markdownlint
-    vscode.esbenp.prettier-vscode
-    vscode.fcrespo82.markdown-table-formatter
-    vscode.foxundermoon.shell-format
-    vscode.github.vscode-github-actions
-    vscode.github.vscode-pull-request-github
-    vscode.golang.go
-    vscode.gruntfuggly.todo-tree
-    vscode.hashicorp.terraform
-    vscode.ieni.glimpse
-    vscode.jnoortheen.nix-ide
-    vscode.kamadorueda.alejandra
-    vscode.mhutchie.git-graph
-    vscode.mikestead.dotenv
-    vscode.ms-kubernetes-tools.vscode-kubernetes-tools
-    vscode.ms-vscode-remote.remote-ssh
-    vscode.ms-vscode-remote.remote-ssh-edit
-    vscode.ms-vscode.remote-explorer
-    vscode.oderwat.indent-rainbow
-    vscode.pkief.material-icon-theme
-    vscode.redhat.vscode-yaml
-    vscode.rust-lang.rust-analyzer
-    vscode.serayuzgur.crates
-    vscode.signageos.signageos-vscode-sops
-    vscode.tamasfe.even-better-toml
-    vscode.usernamehw.errorlens
-    vscode.vadimcn.vscode-lldb
-    vscode.yinfei.luahelper
-    vscode.yzhang.markdown-all-in-one
+    vscode-marketplace.aaron-bond.better-comments
+    vscode-marketplace.alefragnani.bookmarks
+    vscode-marketplace.alefragnani.project-manager
+    vscode-marketplace.belfz.search-crates-io
+    vscode-marketplace.bmalehorn.vscode-fish
+    vscode-marketplace.davidanson.vscode-markdownlint
+    vscode-marketplace.esbenp.prettier-vscode
+    vscode-marketplace.fcrespo82.markdown-table-formatter
+    vscode-marketplace.foxundermoon.shell-format
+    vscode-marketplace.github.vscode-github-actions
+    vscode-marketplace.github.vscode-pull-request-github
+    vscode-marketplace.golang.go
+    vscode-marketplace.gruntfuggly.todo-tree
+    vscode-marketplace.hashicorp.terraform
+    vscode-marketplace.ieni.glimpse
+    vscode-marketplace.jnoortheen.nix-ide
+    vscode-marketplace.kamadorueda.alejandra
+    vscode-marketplace.mhutchie.git-graph
+    vscode-marketplace.mikestead.dotenv
+    vscode-marketplace.ms-kubernetes-tools.vscode-kubernetes-tools
+    vscode-marketplace.ms-vscode-remote.remote-ssh
+    vscode-marketplace.ms-vscode-remote.remote-ssh-edit
+    vscode-marketplace.ms-vscode.remote-explorer
+    vscode-marketplace.oderwat.indent-rainbow
+    vscode-marketplace.pkief.material-icon-theme
+    vscode-marketplace.redhat.vscode-yaml
+    vscode-marketplace.rust-lang.rust-analyzer
+    vscode-marketplace.serayuzgur.crates
+    vscode-marketplace.signageos.signageos-vscode-sops
+    vscode-marketplace.tamasfe.even-better-toml
+    vscode-marketplace.usernamehw.errorlens
+    vscode-marketplace.vadimcn.vscode-lldb
+    vscode-marketplace.yinfei.luahelper
+    vscode-marketplace.yzhang.markdown-all-in-one
   ];
 in {
   imports = [
@@ -57,9 +55,9 @@ in {
   modules = {
     editors = {
       vscode = {
+        inherit extensions;
         configPath = "${config.home.homeDirectory}/.local/nix-config/homes/scotte/editors/vscode/settings.json";
         keybindingsPath = "${config.home.homeDirectory}/.local/nix-config/homes/scotte/editors/vscode/keybindings.json";
-        extensions = extensions;
       };
     };
 

@@ -104,9 +104,9 @@ in {
     networking.firewall.allowedTCPPorts = [6443];
 
     services.k3s = {
+      inherit (cfg) package;
       enable = true;
       role = "server";
-      package = cfg.package;
     };
 
     services.k3s.extraFlags = toString ([

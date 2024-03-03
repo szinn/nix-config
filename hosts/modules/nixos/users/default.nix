@@ -17,9 +17,9 @@ in {
     };
   };
 
-  config = {
-    users.mutableUsers = false;
-    users.groups = cfg.groups;
-    users.users = cfg.additionalUsers;
+  config.users = {
+    inherit (cfg) groups;
+    mutableUsers = false;
+    users = cfg.additionalUsers;
   };
 }
