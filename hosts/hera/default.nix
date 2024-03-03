@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   config,
   ...
@@ -16,10 +17,34 @@ in {
     firewall.enable = false;
   };
 
-  hardware.opengl.extraPackages = with pkgs; [
-    intel-compute-runtime
-    intel-media-driver
-  ];
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-compute-runtime
+      intel-media-driver
+    ];
+  };
+
+  programs = {
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    };
+
+    regreet = {
+      enable = true;
+      cageArgs = ["-dsmlast"];
+      settings = {
+        GTK.applicationprefer_dark_theme = true;
+
+        commands = {
+          reboot = ["systemctl" "reboot"];
+          poweroff = ["systemctl" "poweroff"];
+        };
+      };
+    };
+  };
 
   users.users.scotte = {
     uid = 1000;
