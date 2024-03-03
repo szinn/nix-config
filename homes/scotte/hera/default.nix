@@ -1,9 +1,11 @@
 {
+  inputs,
   pkgs,
   config,
   ...
 }: {
   imports = [
+    inputs.hyprland.homeManagerModules.default
     ./hyprland
   ];
 

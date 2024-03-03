@@ -149,7 +149,7 @@ key = "Key9"
 mods = "Command"
 
 [window]
-decorations = "buttonless"
+decorations = "full"
 dynamic_padding = false
 
 [window.padding]

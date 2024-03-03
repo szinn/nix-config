@@ -8,6 +8,7 @@
 in {
   imports = [
     ./hardware-configuration.nix
+    ./hyprland.nix
   ];
 
   networking = {
@@ -22,42 +23,6 @@ in {
     extraPackages = with pkgs; [
       intel-compute-runtime
       intel-media-driver
-    ];
-  };
-
-  programs = {
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    };
-
-    regreet = {
-      enable = true;
-      cageArgs = ["-dsmlast"];
-      settings = {
-        GTK.applicationprefer_dark_theme = true;
-
-        commands = {
-          reboot = ["systemctl" "reboot"];
-          poweroff = ["systemctl" "poweroff"];
-        };
-      };
-    };
-  };
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-gtk
-  ];
-
-  environment = {
-    sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
-    sessionVariables.NIXOS_OZONE_WL = "1";
-
-    systemPackages = with pkgs; [
-      waybar
-      wayvnc
     ];
   };
 
