@@ -8,7 +8,7 @@ repos:
       - id: alejandra-system
 
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.32.0
+    rev: v1.35.1
     hooks:
       - args:
           - --config-file
