@@ -46,6 +46,21 @@ in {
     };
   };
 
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = with pkgs; [
+    xdg-desktop-portal-gtk
+  ];
+
+  environment = {
+    sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+    sessionVariables.NIXOS_OZONE_WL = "1";
+
+    systemPackages = with pkgs; [
+      waybar
+      wayvnc
+    ];
+  };
+
   users.users.scotte = {
     uid = 1000;
     name = "scotte";

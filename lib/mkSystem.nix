@@ -21,6 +21,7 @@ in {
         }
         inputs.home-manager.nixosModules.home-manager
         inputs.sops-nix.nixosModules.sops
+        inputs.hyprland.nixosModules.default
         {
           home-manager = {
             useUserPackages = true;

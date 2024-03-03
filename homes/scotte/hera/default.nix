@@ -3,6 +3,10 @@
   config,
   ...
 }: {
+  imports = [
+    ./hyprland
+  ];
+
   home = {
     username = "scotte";
     homeDirectory = "/home/scotte";
@@ -11,13 +15,14 @@
     };
   };
 
-  wayland.windowManager.hyprland.enable = true;
-  programs.waybar.enable = true;
-
   modules = {
     editors = {
       neovim.enable = true;
       vscode.server-enable = true;
+    };
+    shell = {
+      tmux.enable = true;
+      alacritty.enable = true;
     };
   };
 }
