@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./config.nix
+    ./config
     ./waybar
   ];
 
