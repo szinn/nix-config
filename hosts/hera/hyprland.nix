@@ -47,8 +47,6 @@
     # hyprpicker #TODO: remove this, we dont really need it
     # eww-wayland
     xdg-utils
-    waybar
-    wayvnc
     # mate.mate-polkit #TODO: fix polkit not autostarting
     openssl
     wlr-randr

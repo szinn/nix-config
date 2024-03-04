@@ -5,7 +5,24 @@
   ];
 
   wayland.windowManager.hyprland.enable = true;
-  programs.waybar.enable = true;
+
+  systemd.user.services.wayVNC = {
+    Unit = {
+      Description = "VNC server for Wayland.";
+      Documentation = "https://github.com/any1/wayvnc";
+      PartOf = ["graphical-session.target"];
+      After = ["graphical-session-pre.target"];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.wayvnc}/bin/wayvnc -g 0.0.0.0";
+      ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";
+      Restart = "on-failure";
+      KillMode = "mixed";
+    };
+
+    Install = {WantedBy = ["hyprland-session.target"];};
+  };
 
   gtk = {
     enable = true;
