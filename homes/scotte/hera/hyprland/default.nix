@@ -7,11 +7,34 @@
   wayland.windowManager.hyprland.enable = true;
   programs.waybar.enable = true;
 
-  # gtk = {
-  #   enable = true;
-  #   gtk.cursorTheme.name = "Adwaita";
-  #   gtk.cursorTheme.package = pkgs.gnome.adwaita-icon-theme;
-  #   gtk.theme.name = "adw-gtk3-dark";
-  #   gtk.theme.package = pkgs.adw-gtk3;
-  # };
+  gtk = {
+    enable = true;
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    theme = {
+      name = "palenight";
+      package = pkgs.palenight-theme;
+    };
+
+    cursorTheme = {
+      name = "Numix-Cursor";
+      package = pkgs.numix-cursor-theme;
+    };
+
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+  };
 }

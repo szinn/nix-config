@@ -52,6 +52,8 @@
     # mate.mate-polkit #TODO: fix polkit not autostarting
     openssl
     wlr-randr
+    rofi-wayland # App launcher
+    firefox
   ];
 
   environment.sessionVariables = {
@@ -66,12 +68,12 @@
       noto-fonts-cjk
       noto-fonts-emoji
 
-      (nerdfonts.override {fonts = ["FiraMono"];})
+      (nerdfonts.override {fonts = ["FiraCode"];})
     ];
 
     fontconfig = {
       enable = true;
-      defaultFonts.monospace = ["FiraMono Nerd Font Mono"];
+      defaultFonts.monospace = ["FiraCode Nerd Font"];
       defaultFonts.serif = ["Noto Serif"];
       defaultFonts.sansSerif = ["Noto Sans"];
     };
