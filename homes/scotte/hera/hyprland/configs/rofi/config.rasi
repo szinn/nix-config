@@ -1,0 +1,4 @@
+/*
+@theme "~/nixcfg/configs/rofi/theme.rasi"
+*/
+@theme "~/.config/rofi/theme.rasi"
