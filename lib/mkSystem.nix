@@ -1,7 +1,7 @@
 {inputs, ...}: let
   inherit (inputs.nixpkgs) lib;
 in {
-  mkNixosSystem = system: hostname: overlays:
+  mkNixosSystem = system: hostname: overlays: flake-packages:
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       pkgs = import inputs.nixpkgs {
@@ -27,7 +27,7 @@ in {
             useUserPackages = true;
             useGlobalPkgs = true;
             extraSpecialArgs = {
-              inherit inputs hostname;
+              inherit inputs hostname system flake-packages;
             };
             users.scotte = ../. + "/homes/scotte";
           };
@@ -41,7 +41,7 @@ in {
       };
     };
 
-  mkDarwinSystem = system: hostname: overlays:
+  mkDarwinSystem = system: hostname: overlays: flake-packages:
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       pkgs = import inputs.nixpkgs {
@@ -65,7 +65,7 @@ in {
             useUserPackages = true;
             useGlobalPkgs = true;
             extraSpecialArgs = {
-              inherit inputs hostname;
+              inherit inputs hostname system flake-packages;
             };
             users.scotte = ../. + "/homes/scotte";
           };

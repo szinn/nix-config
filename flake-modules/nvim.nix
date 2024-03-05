@@ -19,7 +19,7 @@ in {
     packages = {
       # nix run github:szinn/nix-config#nvim
       # nix run .#nvim
-      nvim = nvim;
+      inherit nvim;
     };
   };
 }

@@ -71,9 +71,11 @@
 
     fontconfig = {
       enable = true;
-      defaultFonts.monospace = ["FiraCode Nerd Font"];
-      defaultFonts.serif = ["Noto Serif"];
-      defaultFonts.sansSerif = ["Noto Sans"];
+      defaultFonts = {
+        monospace = ["FiraCode Nerd Font"];
+        serif = ["Noto Serif"];
+        sansSerif = ["Noto Sans"];
+      };
     };
   };
 }
