@@ -18,7 +18,6 @@
     homebrew = {
       taps = [
         "epk/epk" # font-sf-mono-nerd-font
-        "homebrew/cask"
         "homebrew/services"
         "siderolabs/talos"
       ];
