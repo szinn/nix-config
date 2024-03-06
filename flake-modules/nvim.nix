@@ -7,7 +7,6 @@ in {
     system,
     ...
   }: let
-    nixvimLib = inputs'.nixvim.lib;
     nixvim' = inputs'.nixvim.legacyPackages;
     nvim = nixvim'.makeNixvimWithModule {
       inherit pkgs;
