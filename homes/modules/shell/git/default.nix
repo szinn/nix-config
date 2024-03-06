@@ -87,6 +87,9 @@ in {
             body = "git checkout main && git pull && git checkout -b $argv";
           };
         };
+        shellAliases = {
+          gl = "git lg";
+        };
       };
 
       home.packages = with pkgs; [delta fzf];
