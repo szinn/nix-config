@@ -6,8 +6,8 @@ BACKUP_NFS="ragnar:/mnt/atlas/backup/scotte"
 #RSYNC='rsync -vrlt --exclude=".*" --modify-window=2 --chmod=Dog+rx,Fog+r'
 RSYNC='rsync -rvulz --exclude=".*" --modify-window=2 --chmod=Dog+rwx,Fog+r'
 LOGFILE="/Users/Scotte/Downloads/rsync.log"
-YEARS="2022 2023"
-IMMICH_YEARS="2022 2023"
+YEARS="2023 2024"
+IMMICH_YEARS="2023 2024"
 
 MUSIC="/Users/scotte/Music/Music/Media.localized/Music"
 PHOTOS="/Users/scotte/Multimedia/Photos"
