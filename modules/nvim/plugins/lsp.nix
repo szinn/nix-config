@@ -64,9 +64,6 @@
 
     lsp-format = {
       enable = true;
-      lspServersToEnable = [
-        "rust-analyzer"
-      ];
     };
   };
 }

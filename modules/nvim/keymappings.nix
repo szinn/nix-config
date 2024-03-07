@@ -77,10 +77,34 @@
     ++ [
       {
         mode = "n";
-        key = "<leader>s";
-        action = ":w<CR>";
+        key = "[d";
+        action = "<CMD>lua vim.diagnostic.goto_prev<CR>";
         options = {
-          desc = "Save";
+          desc = "Go to previous [D]iagnostic message";
+        };
+      }
+      {
+        mode = "n";
+        key = "]d";
+        action = "<CMD>lua vim.diagnostic.goto_nect<CR>";
+        options = {
+          desc = "Go to next [D]iagnostic message";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>E";
+        action = "<CMD>lua vim.diagnostic.open_float<CR>";
+        options = {
+          desc = "Show diagnostic [E]rror messages";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>q";
+        action = "<CMD>lua vim.diagnostic.setloclist<CR>";
+        options = {
+          desc = "Open diagnostic [Q]uickfix list";
         };
       }
     ];

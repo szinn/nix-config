@@ -4,38 +4,52 @@
       enable = true;
       extensions = {
         fzf-native.enable = true;
+        ui-select = {
+          enable = true;
+        };
       };
 
       keymaps = {
-        # Find files using Telescope command-line sugar.
-        "<leader>ff" = {
-          action = "find_files";
-          desc = "Find File";
-        };
-        "<leader>fg" = {
-          action = "live_grep";
-          desc = "Live Grep";
-        };
-        "<leader>b" = {
-          action = "buffers";
-          desc = "Find Buffer";
-        };
-        "<leader>fh" = {
+        "<leader>sh" = {
           action = "help_tags";
-          desc = "Help tags";
+          desc = "[S]earch [H]elp";
         };
-        "<leader>fd" = {
+        "<leader>sk" = {
+          action = "keymaps";
+          desc = "[S]earch [K]eymaps";
+        };
+        "<leader>sf" = {
+          action = "find_files";
+          desc = "[S]earch [F]iles";
+        };
+        "<leader>ss" = {
+          action = "builtin";
+          desc = "[S]earch [S]elect Telescope";
+        };
+        "<leader>sw" = {
+          action = "grep_string";
+          desc = "[S]earch Current [W]ord";
+        };
+        "<leader>sg" = {
+          action = "live_grep";
+          desc = "[S]earch by [G]rep";
+        };
+        "<leader>sd" = {
           action = "diagnostics";
-          desc = "Diagnostics";
+          desc = "[S]earch [D]iagnostics";
         };
-
-        # FZF like bindings
-        "<C-p>" = "git_files";
-        "<leader>p" = {
+        "<leader>sr" = {
+          action = "resume";
+          desc = "[S]earch [R]esume";
+        };
+        "<leader>s." = {
           action = "oldfiles";
-          desc = "Find Old File";
+          desc = "[S]earch Recent Files (. for repeat)";
         };
-        "<C-f>" = "live_grep";
+        "<leader><leader>" = {
+          action = "buffers";
+          desc = "[] Find existing buffers";
+        };
       };
 
       keymapsSilent = true;
@@ -51,9 +65,6 @@
         ];
         set_env.COLORTERM = "truecolor";
       };
-    };
-    which-key.registrations = {
-      "<leader>f" = "Find Files";
     };
   };
 }
