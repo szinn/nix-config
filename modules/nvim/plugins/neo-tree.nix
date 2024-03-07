@@ -8,6 +8,14 @@
         desc = "Neotree";
       };
     }
+    {
+      mode = "n";
+      key = "<leader>e";
+      action = "<CMD>Neotree action=focus reveal<CR>";
+      options = {
+        desc = "Neotree";
+      };
+    }
   ];
 
   plugins.neo-tree = {

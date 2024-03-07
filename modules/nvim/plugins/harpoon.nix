@@ -17,13 +17,8 @@
       };
     };
 
-    which-key = {
-      enable = true;
-
-      registrations = {
-        "<leader>f" = "Find Files";
-        "<leader>a" = "Harpoon Add";
-      };
+    which-key.registrations = {
+      "<leader>a" = "Harpoon Add";
     };
   };
 }

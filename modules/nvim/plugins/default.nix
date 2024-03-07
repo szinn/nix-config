@@ -1,9 +1,14 @@
 {
   imports = [
+    ./barbar.nix
+    ./comment.nix
+    ./floaterm.nix
     ./harpoon.nix
     ./lsp.nix
     ./lualine.nix
     ./neo-tree.nix
+    ./startify.nix
+    ./tagbar.nix
     ./telescope.nix
     ./treesitter.nix
   ];
@@ -25,5 +30,7 @@
     };
 
     oil.enable = true;
+
+    which-key.enable = true;
   };
 }
