@@ -3,6 +3,7 @@
     ./barbar.nix
     ./comment.nix
     ./floaterm.nix
+    ./gitsigns.nix
     ./harpoon.nix
     ./lsp.nix
     ./lualine.nix
@@ -11,20 +12,10 @@
     ./tagbar.nix
     ./telescope.nix
     ./treesitter.nix
+    ./trouble.nix
   ];
 
   plugins = {
-    gitsigns = {
-      enable = true;
-      signs = {
-        add.text = "+";
-        change.text = "~";
-        delete.text = "_";
-        topdelete.text = "‾";
-        changedelete.text = "~";
-      };
-    };
-
     nvim-autopairs.enable = true;
 
     nvim-colorizer = {

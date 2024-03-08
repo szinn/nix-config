@@ -1,8 +1,4 @@
-{
-  self,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./autocommands.nix
     ./completion.nix
