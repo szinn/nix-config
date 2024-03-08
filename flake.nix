@@ -28,6 +28,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # nh from the source
+    nh = {
+      url = "github:viperML/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # VSCode community extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";

@@ -1,7 +1,8 @@
 {
-  config,
+  inputs,
   lib,
   pkgs,
+  system,
   ...
 }:
 with lib; let
@@ -94,7 +95,7 @@ in {
     })
     (mkIf pkgs.stdenv.isLinux {
       home.packages = with pkgs; [
-        nh
+        inputs.nh.packages.${system}.default
       ];
     })
   ];
