@@ -36,5 +36,18 @@
       ];
       command = "setlocal spell spelllang=en,fr";
     }
+
+    # Highlight when yanking (copying) text
+    #  See `:help vim.highlight.on_yank()`
+    {
+      event = "TextYankPost";
+      callback = {
+        __raw = ''
+          function()
+            vim.highlight.on_yank()
+          end
+        '';
+      };
+    }
   ];
 }

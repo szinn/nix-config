@@ -23,13 +23,6 @@
       # providers.wl-copy.enable = true;
     };
 
-    colorschemes = {
-      tokyonight = {
-        enable = true;
-        style = "night";
-      };
-    };
-
     options = {
       updatetime = 100; # Faster completion
 
@@ -75,6 +68,14 @@
 
       # Folding
       foldlevel = 99; # Folds with a level higher than this number will be closed
+
+      # Completions
+      completeopt = ["menu" "menuone" "noselect"];
     };
+
+    # Not configured in nixvim
+    extraConfigLua = ''
+      vim.g.have_nerd_font = true
+    '';
   };
 }

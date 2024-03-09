@@ -8,7 +8,7 @@
     {
       mode = "n";
       key = "<C-g>";
-      action = ":TagbarToggle<cr>";
+      action = ":TagbarToggle<CR>";
       options = {
         desc = "Toggle tagbar";
         silent = true;

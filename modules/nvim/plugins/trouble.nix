@@ -7,7 +7,7 @@
     {
       mode = "n";
       key = "<leader>xx";
-      action = "<cmd>TroubleToggle<cr>";
+      action = "<CMD>TroubleToggle<CR>";
       options = {
         desc = "Toggle Trouble";
       };
@@ -15,7 +15,7 @@
     {
       mode = "n";
       key = "<leader>xw";
-      action = "<cmd>TroubleToggle workspace_diagnostics<cr>";
+      action = "<CMD>TroubleToggle workspace_diagnostics<CR>";
       options = {
         desc = "Trouble Workspace Diagnostics";
       };
@@ -23,7 +23,7 @@
     {
       mode = "n";
       key = "<leader>xd";
-      action = "<cmd>TroubleToggle document_diagnostics<cr>";
+      action = "<CMD>TroubleToggle document_diagnostics<CR>";
       options = {
         desc = "Trouble Document Diagnostics";
       };
@@ -31,7 +31,7 @@
     {
       mode = "n";
       key = "<leader>xq";
-      action = "<cmd>TroubleToggle quickfix<cr>";
+      action = "<CMD>TroubleToggle quickfix<CR>";
       options = {
         desc = "Trouble Quick Fix";
       };
@@ -39,7 +39,7 @@
     {
       mode = "n";
       key = "<leader>xl";
-      action = "<cmd>TroubleToggle loclist<cr>";
+      action = "<CMD>TroubleToggle loclist<CR>";
       options = {
         desc = "Trouble Toggle LocList";
       };
@@ -47,7 +47,7 @@
     {
       mode = "n";
       key = "gR";
-      action = "<cmd>TroubleToggle lsp_references<cr>";
+      action = "<CMD>TroubleToggle lsp_references<CR>";
       options = {
         desc = "Trouble LSP References";
       };

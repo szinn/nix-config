@@ -1,13 +1,10 @@
 {
   imports = [
-    ./barbar.nix
     ./comment.nix
     ./floaterm.nix
-    ./gitsigns.nix
     ./harpoon.nix
     ./lsp.nix
     ./lualine.nix
-    ./neo-tree.nix
     ./startify.nix
     ./tagbar.nix
     ./telescope.nix
