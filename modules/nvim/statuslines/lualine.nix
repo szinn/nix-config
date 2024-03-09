@@ -2,7 +2,15 @@
   plugins.lualine = {
     enable = true;
 
+    alwaysDivideMiddle = true;
     globalstatus = true;
+    ignoreFocus = ["neo-tree"];
+    extensions = ["fzf"];
+    theme = "auto";
+    componentSeparators = {
+      left = "|";
+      right = "|";
+    };
 
     # +-------------------------------------------------+
     # | A | B | C                             X | Y | Z |

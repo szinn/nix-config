@@ -1,4 +1,10 @@
 {
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.plugins.trouble;
+in {
   plugins.trouble = {
     enable = true;
   };
@@ -17,7 +23,7 @@
       key = "<leader>xw";
       action = "<CMD>TroubleToggle workspace_diagnostics<CR>";
       options = {
-        desc = "Trouble Workspace Diagnostics";
+        desc = "Trouble [W]orkspace Diagnostics";
       };
     }
     {
@@ -25,7 +31,7 @@
       key = "<leader>xd";
       action = "<CMD>TroubleToggle document_diagnostics<CR>";
       options = {
-        desc = "Trouble Document Diagnostics";
+        desc = "Trouble [D]ocument Diagnostics";
       };
     }
     {
@@ -33,7 +39,7 @@
       key = "<leader>xq";
       action = "<CMD>TroubleToggle quickfix<CR>";
       options = {
-        desc = "Trouble Quick Fix";
+        desc = "Trouble [Q]uick Fix";
       };
     }
     {
@@ -41,16 +47,25 @@
       key = "<leader>xl";
       action = "<CMD>TroubleToggle loclist<CR>";
       options = {
-        desc = "Trouble Toggle LocList";
+        desc = "Trouble Toggle [L]ocList";
       };
     }
     {
       mode = "n";
-      key = "gR";
+      key = "xr";
       action = "<CMD>TroubleToggle lsp_references<CR>";
       options = {
-        desc = "Trouble LSP References";
+        desc = "Trouble LSP [R]eferences";
       };
     }
   ];
+
+  extraConfigLua = lib.mkIf cfg.enable ''
+    require('which-key').register {
+      ['<leader>x'] = {
+          name = 'Trouble',
+          _ = 'which_key_ignore'
+      },
+    }
+  '';
 }
