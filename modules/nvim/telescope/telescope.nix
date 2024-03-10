@@ -16,7 +16,7 @@
           enable = true;
           mappings = {
             i = {
-              "<cr>" = "yank_additions";
+              "<CR>" = "yank_additions";
               "<s-cr>" = "yank_deletions";
               "<c-cr>" = "restore";
             };

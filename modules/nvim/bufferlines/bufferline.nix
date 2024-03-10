@@ -66,14 +66,14 @@ in {
       };
     }
 
-    {
-      mode = "n";
-      key = "<leader>bd";
-      action = "<CMD>bdelete<CR>";
-      options = {
-        desc = "[D]elete Buffer";
-      };
-    }
+    # {
+    #   mode = "n";
+    #   key = "<leader>bd";
+    #   action = "<CMD>bdelete<CR>";
+    #   options = {
+    #     desc = "[D]elete Buffer";
+    #   };
+    # }
 
     {
       mode = "n";

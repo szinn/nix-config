@@ -34,6 +34,7 @@
 
     ./ui/dressing-nvim.nix
     ./ui/noice.nix
+    ./ui/nui.nix
 
     ./utils/better-escape.nix
     ./utils/comment-nvim.nix
@@ -47,6 +48,7 @@
     ./utils/oil.nix
     ./utils/startify.nix
     ./utils/todo-comments.nix
+    ./utils/vim-bbye.nix
     ./utils/which-key.nix
 
     ./autocommands.nix

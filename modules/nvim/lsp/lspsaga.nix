@@ -67,7 +67,7 @@
     {
       mode = "n";
       key = "gd";
-      action = "<cmd>Lspsaga finder def<CR>";
+      action = "<CMD>Lspsaga finder def<CR>";
       options = {
         desc = "[G]oto [D]efinition";
         silent = true;
@@ -76,7 +76,7 @@
     {
       mode = "n";
       key = "gr";
-      action = "<cmd>Lspsaga finder ref<CR>";
+      action = "<CMD>Lspsaga finder ref<CR>";
       options = {
         desc = "[G]oto [R]eferences";
         silent = true;
@@ -86,7 +86,7 @@
     # {
     #   mode = "n";
     #   key = "gD";
-    #   action = "<cmd>Lspsaga show_line_diagnostics<CR>";
+    #   action = "<CMD>Lspsaga show_line_diagnostics<CR>";
     #   options = {
     #     desc = "Goto Declaration";
     #     silent = true;
@@ -96,7 +96,7 @@
     {
       mode = "n";
       key = "gi";
-      action = "<cmd>Lspsaga finder imp<CR>";
+      action = "<CMD>Lspsaga finder imp<CR>";
       options = {
         desc = "[G]oto [I]mplementation";
         silent = true;
@@ -106,7 +106,7 @@
     {
       mode = "n";
       key = "gt";
-      action = "<cmd>Lspsaga peek_type_definition<CR>";
+      action = "<CMD>Lspsaga peek_type_definition<CR>";
       options = {
         desc = "[G]oto [T]ype Definition";
         silent = true;
@@ -116,7 +116,7 @@
     {
       mode = "n";
       key = "K";
-      action = "<cmd>Lspsaga hover_doc<CR>";
+      action = "<CMD>Lspsaga hover_doc<CR>";
       options = {
         desc = "Hover";
         silent = true;
@@ -126,7 +126,7 @@
     {
       mode = "n";
       key = "<leader>cw";
-      action = "<cmd>Lspsaga outline<CR>";
+      action = "<CMD>Lspsaga outline<CR>";
       options = {
         desc = "Outline";
         silent = true;
@@ -136,7 +136,7 @@
     {
       mode = "n";
       key = "<leader>cr";
-      action = "<cmd>Lspsaga rename<CR>";
+      action = "<CMD>Lspsaga rename<CR>";
       options = {
         desc = "[C]ode [R]ename";
         silent = true;
@@ -146,7 +146,7 @@
     {
       mode = "n";
       key = "<leader>ca";
-      action = "<cmd>Lspsaga code_action<CR>";
+      action = "<CMD>Lspsaga code_action<CR>";
       options = {
         desc = "[C]ode [A]ction";
         silent = true;
@@ -156,7 +156,7 @@
     {
       mode = "n";
       key = "<leader>cd";
-      action = "<cmd>Lspsaga show_line_diagnostics<CR>";
+      action = "<CMD>Lspsaga show_line_diagnostics<CR>";
       options = {
         desc = "[C]ode Line [D]iagnostics";
         silent = true;
@@ -166,7 +166,7 @@
     {
       mode = "n";
       key = "[D";
-      action = "<cmd>Lspsaga diagnostic_jump_next<CR>";
+      action = "<CMD>Lspsaga diagnostic_jump_next<CR>";
       options = {
         desc = "Next [D]iagnostic";
         silent = true;
@@ -176,7 +176,7 @@
     {
       mode = "n";
       key = "]D";
-      action = "<cmd>Lspsaga diagnostic_jump_prev<CR>";
+      action = "<CMD>Lspsaga diagnostic_jump_prev<CR>";
       options = {
         desc = "Previous [D]iagnostic";
         silent = true;

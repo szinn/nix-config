@@ -12,7 +12,7 @@
       mode = "n";
       key = "<leader>un";
       action = ''
-        <cmd>lua require("notify").dismiss({ silent = true, pending = true })<cr>
+        <CMD>lua require("notify").dismiss({ silent = true, pending = true })<CR>
       '';
       options = {
         desc = "Dismiss All Notifications";
