@@ -52,7 +52,7 @@ in {
     }
     {
       mode = "n";
-      key = "xr";
+      key = "<leader>xr";
       action = "<CMD>TroubleToggle lsp_references<CR>";
       options = {
         desc = "Trouble LSP [R]eferences";

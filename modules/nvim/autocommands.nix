@@ -23,7 +23,21 @@
     {
       event = "FileType";
       pattern = "nix";
-      command = "setlocal tabstop=2 shiftwidth=2";
+      command = "setlocal expandtab tabstop=2 shiftwidth=2";
+    }
+
+    # Set indentation to 4 spaces (but use tabs) for go files
+    {
+      event = "FileType";
+      pattern = "go";
+      command = "setlocal noexpandtab tabstop=4 shiftwidth=4";
+    }
+
+    # Set indentation to 4 spaces for rust files
+    {
+      event = "FileType";
+      pattern = "rs";
+      command = "setlocal expandtab tabstop=4 shiftwidth=4";
     }
 
     # Enable spellcheck for some filetypes
