@@ -93,6 +93,7 @@ in {
           update_path /etc/profiles/per-user/${username}/bin
           update_path /run/wrappers/bin
           update_path ${homeDirectory}/.nix-profile/bin
+          update_path ${homeDirectory}/go/bin
           update_path ${homeDirectory}/.local/bin
 
           set -gx EDITOR "nvim"

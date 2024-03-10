@@ -12,8 +12,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      go
-    ];
+    programs.go = {
+      enable = true;
+      goPath = "go";
+      goBin = "go/bin";
+    };
   };
 }
