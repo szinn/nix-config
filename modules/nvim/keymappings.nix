@@ -107,5 +107,21 @@
           desc = "Open diagnostic [Q]uickfix list";
         };
       }
+      {
+        mode = "n";
+        key = "x";
+        options = {
+          noremap = true;
+        };
+        action = "\"_x";
+      }
+      {
+        mode = "n";
+        key = "d";
+        options = {
+          noremap = true;
+        };
+        action = "\"_d";
+      }
     ];
 }
