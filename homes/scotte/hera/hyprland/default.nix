@@ -46,14 +46,14 @@ in {
   gtk = {
     enable = true;
 
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
     };
 
-    theme = {
-      name = "palenight";
-      package = pkgs.palenight-theme;
+    iconTheme = {
+      name = "Dracula";
+      package = pkgs.dracula-icon-theme;
     };
 
     cursorTheme = {
@@ -73,6 +73,8 @@ in {
       '';
     };
   };
+
+  home.sessionVariables.GTK_THEME = "Dracula";
 
   xdg.configFile = {
     "hypr/hyprland.conf" = {
