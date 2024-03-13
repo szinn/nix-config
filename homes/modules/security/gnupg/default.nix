@@ -23,7 +23,6 @@ in {
           use-agent = true;
         };
       };
-      home.packages = with pkgs; [pinentry];
     })
     (mkIf (cfg.enable && pkgs.stdenv.isDarwin) {
       home.packages = with pkgs; [pinentry_mac];
