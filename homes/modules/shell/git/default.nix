@@ -89,6 +89,7 @@ in {
         };
         shellAliases = {
           gl = "git lg";
+          gst = "git status";
         };
       };
 
