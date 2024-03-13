@@ -24,7 +24,7 @@ if test $command = "fish"
         set -f git_root (dirname $git_dir)/
       end
       set -l current_git_branch (git -C "$1" branch | sed  '/^\*/!d;s/\* //')
-      if test $current_git_branch = "main"
+      if test -z $current_git_branch || test $current_git_branch = "main"
         echo "$(hostname -s): $(string replace $git_root "" $PWD)"
       else
         echo "$(hostname -s): $(string replace $git_root "" $PWD) ($current_git_branch)"
