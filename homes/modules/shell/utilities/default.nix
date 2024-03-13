@@ -31,6 +31,7 @@ in {
           gh
           go-task
           jq
+          nodePackages.prettier
           nvd
           pre-commit
           protobuf

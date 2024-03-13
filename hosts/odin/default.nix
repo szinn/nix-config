@@ -23,7 +23,6 @@
       ];
       brews = [
         "postgresql@16"
-        "prettier"
         "talhelper"
         "talosctl"
       ];
