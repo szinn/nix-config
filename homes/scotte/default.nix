@@ -9,42 +9,44 @@
 with lib; let
   extensions = let
     inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system}) vscode-marketplace open-vsx;
-  in [
-    vscode-marketplace.aaron-bond.better-comments
-    vscode-marketplace.alefragnani.bookmarks
-    vscode-marketplace.alefragnani.project-manager
-    vscode-marketplace.belfz.search-crates-io
-    vscode-marketplace.bmalehorn.vscode-fish
-    vscode-marketplace.davidanson.vscode-markdownlint
-    vscode-marketplace.esbenp.prettier-vscode
-    vscode-marketplace.fcrespo82.markdown-table-formatter
-    vscode-marketplace.foxundermoon.shell-format
-    vscode-marketplace.github.vscode-github-actions
-    vscode-marketplace.github.vscode-pull-request-github
-    vscode-marketplace.golang.go
-    vscode-marketplace.gruntfuggly.todo-tree
-    vscode-marketplace.hashicorp.terraform
-    vscode-marketplace.ieni.glimpse
-    vscode-marketplace.jnoortheen.nix-ide
-    vscode-marketplace.kamadorueda.alejandra
-    vscode-marketplace.mhutchie.git-graph
-    vscode-marketplace.mikestead.dotenv
-    vscode-marketplace.ms-kubernetes-tools.vscode-kubernetes-tools
-    vscode-marketplace.ms-vscode-remote.remote-ssh
-    vscode-marketplace.ms-vscode-remote.remote-ssh-edit
-    vscode-marketplace.ms-vscode.remote-explorer
-    vscode-marketplace.oderwat.indent-rainbow
-    vscode-marketplace.pkief.material-icon-theme
-    vscode-marketplace.redhat.vscode-yaml
-    vscode-marketplace.rust-lang.rust-analyzer
-    vscode-marketplace.serayuzgur.crates
-    vscode-marketplace.signageos.signageos-vscode-sops
-    vscode-marketplace.tamasfe.even-better-toml
-    vscode-marketplace.usernamehw.errorlens
-    vscode-marketplace.vadimcn.vscode-lldb
-    vscode-marketplace.yinfei.luahelper
-    vscode-marketplace.yzhang.markdown-all-in-one
-  ];
+  in
+    with vscode-marketplace; [
+      aaron-bond.better-comments
+      alefragnani.bookmarks
+      alefragnani.project-manager
+      belfz.search-crates-io
+      bmalehorn.vscode-fish
+      davidanson.vscode-markdownlint
+      esbenp.prettier-vscode
+      fcrespo82.markdown-table-formatter
+      foxundermoon.shell-format
+      github.vscode-github-actions
+      github.vscode-pull-request-github
+      golang.go
+      gruntfuggly.todo-tree
+      hashicorp.terraform
+      ieni.glimpse
+      jnoortheen.nix-ide
+      kamadorueda.alejandra
+      mhutchie.git-graph
+      mikestead.dotenv
+      ms-kubernetes-tools.vscode-kubernetes-tools
+      ms-vscode-remote.remote-ssh
+      ms-vscode-remote.remote-ssh-edit
+      ms-vscode.remote-explorer
+      oderwat.indent-rainbow
+      pkief.material-icon-theme
+      redhat.vscode-yaml
+      rust-lang.rust-analyzer
+      serayuzgur.crates
+      signageos.signageos-vscode-sops
+      svelte.svelte-vscode
+      tamasfe.even-better-toml
+      usernamehw.errorlens
+      vadimcn.vscode-lldb
+      yinfei.luahelper
+      yzhang.markdown-all-in-one
+    ];
 in {
   imports = [
     ../modules
