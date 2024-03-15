@@ -118,6 +118,12 @@
   "editor.overviewRulerBorder": false,
   "editor.tabSize": 2,
 
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "svelte"
+  ],
+
   "explorer.autoReveal": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,

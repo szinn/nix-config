@@ -31,6 +31,7 @@ with lib; let
       mhutchie.git-graph
       mikestead.dotenv
       ms-kubernetes-tools.vscode-kubernetes-tools
+      ms-playwright.playwright
       ms-vscode-remote.remote-ssh
       ms-vscode-remote.remote-ssh-edit
       ms-vscode.remote-explorer

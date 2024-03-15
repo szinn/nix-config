@@ -14,6 +14,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       cargo-machete
+      git-cliff
       rustup
       sccache
       sea-orm-cli
