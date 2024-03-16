@@ -298,5 +298,6 @@
   "sops.binPath": "/etc/profiles/per-user/scotte/bin/sops",
   "sops.defaults.ageKeyFile": "/Users/scotte/.config/sops/age/keys.txt",
   "sops.configPath": "./.sops.yaml",
-  "svelte.enable-ts-plugin": true
+  "svelte.enable-ts-plugin": true,
+  "playwright.reuseBrowser": true
 }
