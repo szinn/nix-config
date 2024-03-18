@@ -15,6 +15,7 @@ with lib; let
       alefragnani.bookmarks
       alefragnani.project-manager
       belfz.search-crates-io
+      bierner.markdown-mermaid
       bmalehorn.vscode-fish
       davidanson.vscode-markdownlint
       esbenp.prettier-vscode
