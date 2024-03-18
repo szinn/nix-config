@@ -11,6 +11,7 @@
     ./filetrees/neo-tree.nix
 
     ./git/gitsigns.nix
+    ./git/neogit.nix
 
     ./languages/nvim-lint.nix
     ./languages/tagbar.nix
