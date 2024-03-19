@@ -1,35 +1,20 @@
 {
   "extends": [
-    "config:recommended",
-    "docker:enableMajor",
-    ":disableRateLimiting",
-    ":dependencyDashboard",
-    ":semanticCommits",
-    ":enablePreCommit",
-    ":automergeDigest",
-    ":automergeBranch",
-    ":separatePatchReleases",
+    "github>szinn/renovate-config",
     "github>szinn/nix-config//.github/renovate/allowedVersions.json5",
     "github>szinn/nix-config//.github/renovate/autoMerge.json5",
-    "github>szinn/nix-config//.github/renovate/commitMessage.json5",
     "github>szinn/nix-config//.github/renovate/disabledDatasources.json5",
     "github>szinn/nix-config//.github/renovate/generic-regex-manager.json5",
     "github>szinn/nix-config//.github/renovate/groups.json5",
-    "github>szinn/nix-config//.github/renovate/labels.json5",
-    "github>szinn/nix-config//.github/renovate/semanticCommits.json5",
-    "helpers:pinGitHubActionDigests"
   ],
-  "username": "repo-jeeves[bot]",
-  "repositories": ["szinn/nix-config"],
-  "gitAuthor": "repo-jeeves <106431701+repo-jeeves[bot]@users.noreply.github.com>",
-  "timezone": "America/Toronto",
-  "dependencyDashboardTitle": "Renovate Dashboard",
-  "suppressNotifications": ["prIgnoreNotification"],
+  "ignorePaths": [
+    "result"
+  ],
 
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": [
-      "before 11am"
+      "before 11pm"
     ]
   },
   "nix": {
