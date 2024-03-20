@@ -22,7 +22,6 @@
         "siderolabs/talos"
       ];
       brews = [
-        "helmfile"
         "postgresql@16"
         "talhelper"
         "talosctl"
