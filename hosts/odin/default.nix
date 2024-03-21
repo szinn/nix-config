@@ -18,12 +18,9 @@
     homebrew = {
       taps = [
         "epk/epk" # font-sf-mono-nerd-font
-        "homebrew/services"
-        "siderolabs/talos"
       ];
       brews = [
         "postgresql@16"
-        "talhelper"
       ];
       casks = [
         "1password"

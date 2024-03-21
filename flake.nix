@@ -56,6 +56,11 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
+    # Talhelper
+    talhelper = {
+      url = "github:budimanjojo/talhelper";
+    };
   };
 
   outputs = {

@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 with lib; let
@@ -31,6 +30,7 @@ in {
       minio-client
       opentofu
       pulumi-bin
+      talhelper
       talosctl
       terraform
     ];

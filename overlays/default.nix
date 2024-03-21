@@ -1,5 +1,9 @@
 inputs: let
-  additions = final: _prev: import ../pkgs {pkgs = final;};
+  additions = final: _prev:
+    import ../pkgs {
+      inherit inputs;
+      pkgs = final;
+    };
 in [
   additions
 ]

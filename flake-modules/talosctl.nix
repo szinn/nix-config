@@ -13,7 +13,7 @@
     packages = {
       # nix run github:szinn/nix-config#talosctl
       # nix run .#talosctl
-      talosctl = pkgs.talosctl;
+      inherit (pkgs) talosctl;
     };
   };
 }
