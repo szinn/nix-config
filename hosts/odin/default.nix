@@ -24,7 +24,6 @@
       brews = [
         "postgresql@16"
         "talhelper"
-        "talosctl"
       ];
       casks = [
         "1password"
