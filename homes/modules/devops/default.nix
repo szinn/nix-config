@@ -31,6 +31,7 @@ in {
       minio-client
       opentofu
       pulumi-bin
+      talosctl
       terraform
     ];
 
