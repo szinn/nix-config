@@ -24,9 +24,7 @@ buildGo122Module rec {
 
   # This is needed to deal with workspace issues during the build
   overrideModAttrs = _: {
-    preConfigure = ''
-      export GOWORK=off
-    '';
+    GOWORK = "off";
   };
   GOWORK = "off";
 
