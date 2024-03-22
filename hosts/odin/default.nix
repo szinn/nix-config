@@ -18,6 +18,7 @@
     homebrew = {
       taps = [
         "epk/epk" # font-sf-mono-nerd-font
+        # "homebrew/services" # to use `brew services``
       ];
       brews = [
         "postgresql@16"
