@@ -38,6 +38,7 @@
     };
 
     shell = {
+      # starship.enable = true;
       wezterm = {
         enable = true;
         configPath = "${config.home.homeDirectory}/.local/nix-config/homes/scotte/shell/wezterm.lua";
