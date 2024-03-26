@@ -38,7 +38,7 @@
     ./ui/nui.nix
 
     ./utils/better-escape.nix
-    ./utils/comment-nvim.nix
+    ./utils/comment.nix
     ./utils/floaterm.nix
     ./utils/harpoon.nix
     ./utils/indent-blankline.nix
