@@ -8,7 +8,7 @@
         };
         scope = {
           enabled = true;
-          # showStart = true;
+          show_start = true;
         };
         exclude = {
           buftypes = ["terminal" "nofile"];
