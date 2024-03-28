@@ -83,6 +83,12 @@ in {
             user = "scotte";
             identityFile = "~/.ssh/id_ed25519";
           };
+          hades = {
+            hostname = "hades.zinn.tech";
+            port = 22;
+            user = "scotte";
+            identityFile = "~/.ssh/id_ed25519";
+          };
           octo = {
             hostname = "octo.zinn.tech";
             port = 22;
