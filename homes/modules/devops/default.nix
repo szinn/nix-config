@@ -41,7 +41,8 @@ in {
         tf = "terraform";
       };
       interactiveShellInit = ''
-        flux completion fish | source
+        ${pkgs.fluxcd}/bin/flux completion fish > ${config.home.homeDirectory}/.config/fish/completions/flux.fish
+        # ${pkgs.fluxcd}/bin/flux completion fish | source
       '';
       functions = {
         flretry = {
