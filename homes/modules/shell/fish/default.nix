@@ -21,7 +21,6 @@ in {
           m = "less";
           ls = "${pkgs.eza}/bin/eza --group";
           ll = "${pkgs.eza}/bin/eza --long --all --group --header";
-          tm = "tmux attach -t (basename $PWD) || tmux new -s (basename $PWD)";
           x = "exit";
         };
 
@@ -36,6 +35,7 @@ in {
           gfp = "git fetch -p && git pull";
           gitp = "git push";
           gitpf = "git push -f";
+          t = "task";
           tf = "terraform";
         };
 
