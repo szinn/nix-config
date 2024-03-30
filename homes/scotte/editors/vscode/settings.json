@@ -253,6 +253,10 @@
     "editor.defaultFormatter": "golang.go"
   },
 
+  "[json]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
   "[lua]": {
     "editor.defaultFormatter": "yinfei.luahelper",
     "editor.formatOnSave": false,
