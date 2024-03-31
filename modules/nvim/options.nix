@@ -23,7 +23,7 @@
       # providers.wl-copy.enable = true;
     };
 
-    options = {
+    opts = {
       updatetime = 100; # Faster completion
 
       # Line numbers
