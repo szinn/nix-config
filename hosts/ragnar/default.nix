@@ -58,13 +58,13 @@ in {
     };
 
     services = {
-      k3s = {
-        enable = true;
-        package = pkgs.k3s_1_29;
-        extraFlags = [
-          "--tls-san=nas.zinn.ca"
-        ];
-      };
+      # k3s = {
+      #   enable = true;
+      #   package = pkgs.k3s_1_29;
+      #   extraFlags = [
+      #     "--tls-san=nas.zinn.ca"
+      #   ];
+      # };
 
       minio = {
         enable = true;
