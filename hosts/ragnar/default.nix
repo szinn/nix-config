@@ -74,6 +74,10 @@ in {
         ];
       };
 
+      prometheus = {
+        enable = true;
+      };
+
       nfs = {
         enable = true;
         exports = ''
