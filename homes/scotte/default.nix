@@ -20,6 +20,7 @@ with lib; let
       davidanson.vscode-markdownlint
       esbenp.prettier-vscode
       fcrespo82.markdown-table-formatter
+      fnando.linter
       foxundermoon.shell-format
       github.vscode-github-actions
       github.vscode-pull-request-github
