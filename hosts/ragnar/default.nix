@@ -101,6 +101,8 @@ in {
           };
         };
       };
+
+      zenstate.enable = true;
     };
 
     users = {

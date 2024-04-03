@@ -8,5 +8,6 @@
     ./rclone-backup
     ./samba
     ./sops
+    ./zenstate
   ];
 }
