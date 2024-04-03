@@ -52,7 +52,7 @@ with lib; let
     ];
 in {
   imports = [
-    ../modules
+    ../_modules
     ./editors/neovim
     ./${hostname}
   ];

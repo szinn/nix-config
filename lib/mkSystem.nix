@@ -32,8 +32,8 @@ in {
             users.scotte = ../. + "/homes/scotte";
           };
         }
-        ../hosts/modules/common
-        ../hosts/modules/nixos
+        ../hosts/_modules/common
+        ../hosts/_modules/nixos
         ../hosts/${hostname}
       ];
       specialArgs = {
@@ -70,8 +70,8 @@ in {
             users.scotte = ../. + "/homes/scotte";
           };
         }
-        ../hosts/modules/common
-        ../hosts/modules/darwin
+        ../hosts/_modules/common
+        ../hosts/_modules/darwin
         ../hosts/${hostname}
       ];
       specialArgs = {
