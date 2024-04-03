@@ -21,8 +21,8 @@ in {
         Type = "oneshot";
         ExecStart = "${before-sleep}";
       };
-      wantedBy = ["sleep.target"];
-      before = ["sleep.target"];
+      wantedBy = ["multi-user.target"];
+      # before = ["sleep.target"];
     };
   };
 }
