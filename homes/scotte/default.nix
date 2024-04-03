@@ -53,7 +53,6 @@ with lib; let
 in {
   imports = [
     ../_modules
-    ./editors/neovim
     ./${hostname}
   ];
 
@@ -61,8 +60,8 @@ in {
     editors = {
       vscode = {
         inherit extensions;
-        configPath = "${config.home.homeDirectory}/.local/nix-config/homes/scotte/editors/vscode/settings.json";
-        keybindingsPath = "${config.home.homeDirectory}/.local/nix-config/homes/scotte/editors/vscode/keybindings.json";
+        configPath = "${config.home.homeDirectory}/.local/nix-config/homes/scotte/config/editors/vscode/settings.json";
+        keybindingsPath = "${config.home.homeDirectory}/.local/nix-config/homes/scotte/config/editors/vscode/keybindings.json";
       };
     };
 
@@ -147,7 +146,7 @@ in {
         enable = true;
         username = "Scotte Zinn";
         email = "scotte@zinn.ca";
-        allowedSigners = builtins.readFile ./ssh/allowed_signers;
+        allowedSigners = builtins.readFile ./config/ssh/allowed_signers;
       };
     };
   };

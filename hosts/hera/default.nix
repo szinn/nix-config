@@ -35,7 +35,7 @@ in {
     group = "scotte";
     shell = pkgs.fish;
     packages = [pkgs.home-manager];
-    openssh.authorizedKeys.keys = [(builtins.readFile ../../homes/scotte/ssh/ssh.pub)];
+    openssh.authorizedKeys.keys = [(builtins.readFile ../../homes/scotte/config/ssh/ssh.pub)];
     hashedPasswordFile = config.sops.secrets.scotte-password.path;
     isNormalUser = true;
     extraGroups =
