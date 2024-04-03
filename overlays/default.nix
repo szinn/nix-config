@@ -6,4 +6,5 @@ inputs: let
     };
 in [
   additions
+  inputs.rust-overlay.overlays.default
 ]
