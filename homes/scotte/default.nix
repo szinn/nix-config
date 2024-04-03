@@ -53,7 +53,7 @@ with lib; let
 in {
   imports = [
     ../_modules
-    ./${hostname}
+    ./hosts/${hostname}
   ];
 
   modules = {

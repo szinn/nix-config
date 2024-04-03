@@ -38,7 +38,7 @@ in {
   };
 
   sops.secrets.scotte-password = {
-    sopsFile = ../../homes/scotte/nixvm/secrets.sops.yaml;
+    sopsFile = ../../homes/scotte/hosts/nixvm/secrets.sops.yaml;
     neededForUsers = true;
   };
 

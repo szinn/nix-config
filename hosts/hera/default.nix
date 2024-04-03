@@ -50,7 +50,7 @@ in {
   };
 
   sops.secrets.scotte-password = {
-    sopsFile = ../../homes/scotte/hera/secrets.sops.yaml;
+    sopsFile = ../../homes/scotte/hosts/hera/secrets.sops.yaml;
     neededForUsers = true;
   };
 

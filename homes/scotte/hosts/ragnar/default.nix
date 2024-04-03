@@ -1,14 +1,8 @@
 {
-  inputs,
   pkgs,
   config,
   ...
 }: {
-  imports = [
-    inputs.hyprland.homeManagerModules.default
-    ./hyprland
-  ];
-
   home = {
     username = "scotte";
     homeDirectory = "/home/scotte";
@@ -20,15 +14,14 @@
   modules = {
     editors = {
       neovim.enable = true;
-      vscode.server-enable = true;
+      # vscode.server-enable = true;
     };
-    shell = {
-      tmux.enable = true;
-      alacritty.enable = true;
-    };
-    devops.colima = {
-      enable = true;
-      startService = true;
+  };
+
+  programs.fish.functions = {
+    zstat = {
+      description = "Statistics on atlas zpool";
+      body = builtins.readFile ./functions/zstat.fish;
     };
   };
 }

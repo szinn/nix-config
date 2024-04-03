@@ -38,7 +38,7 @@ in {
   };
 
   sops.secrets.scotte-password = {
-    sopsFile = ../../homes/scotte/ragnar/secrets.sops.yaml;
+    sopsFile = ../../homes/scotte/hosts/ragnar/secrets.sops.yaml;
     neededForUsers = true;
   };
 
