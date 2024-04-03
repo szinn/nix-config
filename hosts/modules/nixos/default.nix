@@ -5,7 +5,10 @@
     ./users
   ];
 
-  nix.gc.dates = "weekly";
+  nix = {
+    gc.dates = "weekly";
+    settings.trusted-users = ["root" "@wheel"];
+  };
 
   # Increase open file limit for sudoers
   security.pam.loginLimits = [
