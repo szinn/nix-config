@@ -16,10 +16,6 @@
       neovim.enable = true;
       vscode.server-enable = true;
     };
-
-    devops = {
-      enable = true;
-    };
   };
 
   programs.fish.functions = {

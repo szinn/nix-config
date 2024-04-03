@@ -100,6 +100,16 @@
           # $ git add . ; darwin-rebuild --flake . switch
           odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" overlays flake-packages;
         };
+
+        # Convenience output that aggregates the outputs for home, nixos.
+        # Also used in ci to build targets generally.
+        ciSystems = let
+          nixos =
+            inputs.nixpkgs.lib.genAttrs
+            (builtins.attrNames self.nixosConfigurations)
+            (attr: self.nixosConfigurations.${attr}.config.system.build.toplevel);
+        in
+          nixos;
       };
     };
 }
