@@ -9,6 +9,8 @@ with lib; let
 in {
   imports = [
     ./colima
+    ./fluxcd
+    ./k9s
   ];
 
   options.modules.devops = {
@@ -19,9 +21,7 @@ in {
     home.packages = with pkgs; [
       cilium-cli
       cloudflared
-      fluxcd
       hubble
-      k9s
       krew
       kubectl
       kubectl-cnpg
@@ -40,22 +40,14 @@ in {
         k = "kubectl";
         tf = "terraform";
       };
-      interactiveShellInit = ''
-        # ${pkgs.fluxcd}/bin/flux completion fish > ${config.home.homeDirectory}/.config/fish/completions/flux.fish
-        eval (${pkgs.fluxcd}/bin/flux completion fish)
-      '';
       functions = {
-        flretry = {
-          description = "Retry a flux update";
-          body = builtins.readFile ./functions/flretry.fish;
-        };
         kcon = {
           description = "Switch active talos/kubctl environments";
-          body = builtins.readFile ./functions/kcon.fish;
+          body = builtins.readFile ./_functions/kcon.fish;
         };
         leases = {
           description = "Show VyOS DHCP leases";
-          body = builtins.readFile ./functions/leases.fish;
+          body = builtins.readFile ./_functions/leases.fish;
         };
       };
     };
