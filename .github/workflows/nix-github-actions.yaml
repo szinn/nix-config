@@ -25,8 +25,8 @@ jobs:
             os: ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: cachix/install-nix-action@v26
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: cachix/install-nix-action@8887e596b4ee1134dae06b98d573bd674693f47c # v26
         with:
           extra_nix_config: |
             auto-optimise-store = true
@@ -34,7 +34,7 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             experimental-features = nix-command flakes
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: cachix/cachix-action@v14
+      - uses: cachix/cachix-action@18cf96c7c98e048e10a83abd92116114cd8504be # v14
         if: ${{ !github.event.pull_request.head.repo.fork }}
         with:
           name: szinn
