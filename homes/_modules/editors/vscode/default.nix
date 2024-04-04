@@ -41,7 +41,7 @@ in {
         ];
       };
       home.packages = with pkgs; [
-        nixpkgs-fmt
+        nixfmt-rfc-style
       ];
     })
     (mkIf (cfg.enable && pkgs.stdenv.isDarwin) {

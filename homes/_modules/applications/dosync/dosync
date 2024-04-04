@@ -6,8 +6,8 @@ BACKUP_NFS="ragnar:/mnt/atlas/backup/scotte"
 #RSYNC='rsync -vrlt --exclude=".*" --modify-window=2 --chmod=Dog+rx,Fog+r'
 RSYNC='rsync -rvulz --exclude=".*" --modify-window=2 --chmod=Dog+rwx,Fog+r'
 LOGFILE="/Users/Scotte/Downloads/rsync.log"
-YEARS="2023 2024"
-IMMICH_YEARS="2023 2024"
+YEARS="2024"
+IMMICH_YEARS="2024"
 
 MUSIC="/Users/scotte/Music/Music/Media.localized/Music"
 PHOTOS="/Users/scotte/Multimedia/Photos"
@@ -77,7 +77,7 @@ echo " " | tee -a ${LOGFILE}
 echo "*** Syncing mobile pictures" | tee -a ${LOGFILE}
 echo " " | tee -a ${LOGFILE}
 for year in ${IMMICH_YEARS}; do
-  ${RSYNC} ${LOCAL_MEDIA}/Immich/library/2064a6dd-2175-4e81-8de9-d8fa7b6378f5/${year}/ ${PHOTOS}/${year}/Phone/. | tee -a ${LOGFILE}
+  ${RSYNC} ${LOCAL_MEDIA}/Immich/library/admin/${year}/ ${PHOTOS}/${year}/Phone/. | tee -a ${LOGFILE}
 done
 
 # Sync pictures
