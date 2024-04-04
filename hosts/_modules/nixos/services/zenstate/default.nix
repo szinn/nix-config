@@ -22,6 +22,7 @@ in {
         ExecStart = "${before-sleep}";
       };
       wantedBy = ["multi-user.target"];
+      after = ["network.target"];
       # before = ["sleep.target"];
     };
   };
