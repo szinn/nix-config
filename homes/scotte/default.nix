@@ -34,6 +34,7 @@ with lib; let
       mikestead.dotenv
       ms-kubernetes-tools.vscode-kubernetes-tools
       ms-playwright.playwright
+      # ms-vscode-remote.remote-containers
       ms-vscode-remote.remote-ssh
       ms-vscode-remote.remote-ssh-edit
       ms-vscode.remote-explorer
