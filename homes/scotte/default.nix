@@ -22,8 +22,8 @@ with lib; let
       fcrespo82.markdown-table-formatter
       fnando.linter
       foxundermoon.shell-format
-      github.vscode-github-actions
-      github.vscode-pull-request-github
+      # github.vscode-github-actions
+      # github.vscode-pull-request-github
       golang.go
       gruntfuggly.todo-tree
       hashicorp.terraform
