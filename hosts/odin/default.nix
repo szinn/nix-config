@@ -50,6 +50,7 @@
         "plex"
         "private-internet-access"
         "rectangle-pro"
+        # "resilio-sync"
         "raspberry-pi-imager"
         "sonos"
         "spotify"
