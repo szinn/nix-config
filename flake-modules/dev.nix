@@ -5,8 +5,10 @@ _: {
         age
         git
         gnupg
+        go-task
         jq
         nix
+        pre-commit
         sops
         ssh-to-age
         statix
