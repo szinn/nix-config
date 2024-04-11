@@ -7,16 +7,23 @@ includes:
     dir: .taskfiles/sops
 
 tasks:
+  default:
+    silent: true
+    cmds:
+      - task -l
+
+  bootstrap:
+    desc: Bootstrap installation
+    cmds:
+      - task: fix-git
+      - task: pc-init
+      - task: fetch-secrets
+
   fix-git:
     desc: Set the git remote URL to be used via ssh
     silent: true
     cmds:
       - git remote set-url origin git@github.com:szinn/nix-config.git
-
-  default:
-    silent: true
-    cmds:
-      - task -l
 
   pc-init:
     desc: Initialize pre-commit hooks
@@ -32,6 +39,10 @@ tasks:
     desc: Run pre-commit
     cmds:
       - pre-commit run --all-files
+
+  fetch-secrets:
+    desc: Fetch secrets from 1P
+    cmd: ./scripts/fetch-secrets
 
   gc:
     desc: Garbage collect Nix
