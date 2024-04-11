@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    inputs.nix-index-database.hmModules.nix-index
     ./applications
     ./development
     ./devops
@@ -17,6 +18,7 @@
 
     programs = {
       home-manager.enable = true;
+      nix-index-database.comma.enable = true;
       git.enable = true;
     };
 

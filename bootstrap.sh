@@ -84,15 +84,6 @@ fi
 #     sudo mkdir -p /nix/var/nix/profiles/per-user/root/channels
 # fi
 
-# log "Checking if nix-index is installed..."
-# if ! [ -f ~/.cache/nix-index/files ]; then
-#     filename="index-$(uname -m | sed 's/^arm64$/aarch64/')-$(uname | tr A-Z a-z)"
-#     mkdir -p ~/.cache/nix-index && cd ~/.cache/nix-index
-#     # -N will only download a new version if there is an update.
-#     wget -q -N https://github.com/Mic92/nix-index-database/releases/latest/download/$filename
-#     ln -f $filename files
-# fi
-
 log "Configuring environment..."
 set +o nounset
 # shellcheck disable=SC1091
