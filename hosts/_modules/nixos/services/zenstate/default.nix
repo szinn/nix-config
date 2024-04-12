@@ -6,24 +6,23 @@
 }:
 with lib; let
   cfg = config.modules.services.zenstate;
-  before-sleep = pkgs.writeScript "before-sleep" ''
+  disable-c6 = pkgs.writeScript "disable-c6" ''
     #!${pkgs.bash}/bin/bash
-    modprobe msr
+    ${pkgs.kmod}/bin/modprobe msr
     ${pkgs.zenstates}/bin/zenstates --c6-disable
   '';
 in {
   options.modules.services.zenstate.enable = mkEnableOption "zenstate";
 
   config = mkIf cfg.enable {
-    systemd.services.before-sleep = {
-      description = "Jobs to run before going to sleep";
+    systemd.services.disable-c6 = {
+      description = "Disable C6 state";
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${before-sleep}";
+        ExecStart = "${disable-c6}";
       };
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
-      # before = ["sleep.target"];
     };
   };
 }
