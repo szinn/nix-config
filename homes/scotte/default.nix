@@ -32,6 +32,7 @@ with lib; let
       kamadorueda.alejandra
       mhutchie.git-graph
       mikestead.dotenv
+      mrmlnc.vscode-json5
       ms-kubernetes-tools.vscode-kubernetes-tools
       ms-playwright.playwright
       # ms-vscode-remote.remote-containers
