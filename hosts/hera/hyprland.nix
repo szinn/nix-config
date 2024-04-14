@@ -13,19 +13,6 @@ in {
       xwayland.enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
-
-    # regreet = {
-    #   enable = true;
-    #   # cageArgs = ["-dsmlast"];
-    #   settings = {
-    #     GTK.application_prefer_dark_theme = false;
-
-    #     commands = {
-    #       reboot = ["systemctl" "reboot"];
-    #       poweroff = ["systemctl" "poweroff"];
-    #     };
-    #   };
-    # };
   };
 
   services.greetd = {
@@ -52,17 +39,6 @@ in {
     TTYVHangup = true;
     TTYVTDisallocate = true;
   };
-
-  # services.xserver.displayManager.session = [
-  #   {
-  #     manage = "desktop";
-  #     name = "hyprland";
-  #     start = ''
-  #       ${lib.getExe pkgs.hyprland} &
-  #       waitPID=$!
-  #     '';
-  #   }
-  # ];
 
   xdg.portal = {
     enable = true;

@@ -1,9 +1,20 @@
 {
   "layer": "top",
   "height": 45,
-  "modules-left": ["cpu", "memory", "disk"],
-  "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["network", "clock"],
+  "width": 1900,
+  "margin": "0 0 0 0",
+  "spacing": 0,
+
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": [
+    "tray",
+    "network",
+    "cpu",
+    "memory",
+    "clock"
+  ],
+
   "cpu": {
     "format": "󰻠 {usage}%",
     "tooltip": true,
@@ -21,6 +32,9 @@
     "tooltip": true,
     "interval": 2,
     "on-click": "kitty sh -c 'ranger'"
+  },
+  "hyprland/window": {
+    "format": "{}"
   },
   "hyprland/workspaces": {
     "tooltip": false,
@@ -54,6 +68,10 @@
     "on-scroll-up": "hyprctl dispatch workspace e-1",
     "on-scroll-down": "hyprctl dispatch workspace e+1",
     "on-click": "activate"
+  },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 10
   },
   "network": {
     "interface": "enp*",
