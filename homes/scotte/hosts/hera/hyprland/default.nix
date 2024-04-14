@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  config,
   lib,
   ...
 }: let
@@ -11,7 +12,28 @@
     '';
   });
 in {
-  wayland.windowManager.hyprland.enable = true;
+  imports = [
+    ./hyprlock.nix
+    ./wlogout.nix
+  ];
+
+  services.hypridle = {
+    enable = true;
+    beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
+    # lockCmd = "pidof hyprlock || ${lib.getExe config.programs.hyprlock.package}";
+    lockCmd = "${lib.getExe config.programs.hyprlock.package}";
+  };
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd = {
+      variables = ["--all"];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+    };
+  };
 
   programs.waybar = {
     enable = true;
@@ -61,17 +83,17 @@ in {
       package = pkgs.numix-cursor-theme;
     };
 
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
+    # gtk3.extraConfig = {
+    #   Settings = ''
+    #     gtk-application-prefer-dark-theme=1
+    #   '';
+    # };
 
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
+    # gtk4.extraConfig = {
+    #   Settings = ''
+    #     gtk-application-prefer-dark-theme=1
+    #   '';
+    # };
   };
 
   home.sessionVariables.GTK_THEME = "Dracula";
