@@ -3,7 +3,10 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  hyprland-session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions";
+in {
   programs = {
     hyprland = {
       enable = true;
@@ -11,30 +14,55 @@
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
-    regreet = {
-      enable = true;
-      # cageArgs = ["-dsmlast"];
-      settings = {
-        GTK.application_prefer_dark_theme = false;
+    # regreet = {
+    #   enable = true;
+    #   # cageArgs = ["-dsmlast"];
+    #   settings = {
+    #     GTK.application_prefer_dark_theme = false;
 
-        commands = {
-          reboot = ["systemctl" "reboot"];
-          poweroff = ["systemctl" "poweroff"];
-        };
+    #     commands = {
+    #       reboot = ["systemctl" "reboot"];
+    #       poweroff = ["systemctl" "poweroff"];
+    #     };
+    #   };
+    # };
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
+        user = "greeter";
       };
     };
   };
 
-  services.xserver.displayManager.session = [
-    {
-      manage = "desktop";
-      name = "hyprland";
-      start = ''
-        ${lib.getExe pkgs.hyprland} &
-        waitPID=$!
-      '';
-    }
-  ];
+  # this is a life saver.
+  # literally no documentation about this anywhere.
+  # might be good to write about this...
+  # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
+
+  # services.xserver.displayManager.session = [
+  #   {
+  #     manage = "desktop";
+  #     name = "hyprland";
+  #     start = ''
+  #       ${lib.getExe pkgs.hyprland} &
+  #       waitPID=$!
+  #     '';
+  #   }
+  # ];
 
   xdg.portal = {
     enable = true;
