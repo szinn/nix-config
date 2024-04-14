@@ -19,9 +19,14 @@ in {
 
   services.hypridle = {
     enable = true;
-    beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
-    # lockCmd = "pidof hyprlock || ${lib.getExe config.programs.hyprlock.package}";
-    lockCmd = "${lib.getExe config.programs.hyprlock.package}";
+
+    listeners = [
+      {
+        timeout = 300;
+        onTimeout = "${lib.getExe config.programs.hyprlock.package}";
+        onResume = "${pkgs.libnotify}/bin/notify-send \"Welcome back ${config.home.username}!\"";
+      }
+    ];
   };
 
   wayland.windowManager.hyprland = {
@@ -82,18 +87,6 @@ in {
       name = "Numix-Cursor";
       package = pkgs.numix-cursor-theme;
     };
-
-    # gtk3.extraConfig = {
-    #   Settings = ''
-    #     gtk-application-prefer-dark-theme=1
-    #   '';
-    # };
-
-    # gtk4.extraConfig = {
-    #   Settings = ''
-    #     gtk-application-prefer-dark-theme=1
-    #   '';
-    # };
   };
 
   home.sessionVariables.GTK_THEME = "Dracula";

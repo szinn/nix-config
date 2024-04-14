@@ -5,8 +5,18 @@
   lib,
   ...
 }: let
-  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  hyprland-session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions";
+  homeCfgs = config.home-manager.users;
+  homeSharePaths = lib.mapAttrsToList (_: v: "${v.home.path}/share") homeCfgs;
+  vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${lib.concatStringsSep ":" homeSharePaths}" GTK_USE_PORTAL=0'';
+
+  sway-kiosk = command: "${lib.getExe pkgs.sway} --unsupported-gpu --config ${pkgs.writeText "kiosk.config" ''
+    output * bg #000000 solid_color
+    xwayland disable
+    input "type:touchpad" {
+      tap enabled
+    }
+    exec '${vars} ${command}; ${pkgs.sway}/bin/swaymsg exit'
+  ''}";
 in {
   programs = {
     hyprland = {
@@ -16,18 +26,37 @@ in {
     };
   };
 
-  # greetd display manager
-  services.greetd = let
-    session = {
-      command = "${lib.getExe config.programs.hyprland.package}";
-      user = "scotte";
-    };
-  in {
+  services.xserver.displayManager.session = [
+    {
+      manage = "desktop";
+      name = "hyprland";
+      start = ''
+        ${lib.getExe pkgs.hyprland} &
+        waitPID=$!
+      '';
+    }
+  ];
+
+  services.greetd = {
+    enable = true;
+    settings.default_session.command = sway-kiosk (lib.getExe config.programs.regreet.package);
+  };
+
+  programs.regreet = {
     enable = true;
     settings = {
-      terminal.vt = 1;
-      default_session = session;
-      initial_session = session;
+      GTK = {
+        # Whether to use the dark theme
+        application_prefer_dark_theme = false;
+      };
+
+      commands = {
+        # The command used to reboot the system
+        reboot = ["systemctl" "reboot"];
+
+        # The command used to shut down the system
+        poweroff = ["systemctl" "poweroff"];
+      };
     };
   };
 
