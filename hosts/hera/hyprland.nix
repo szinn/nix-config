@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   programs = {
@@ -12,9 +13,9 @@
 
     regreet = {
       enable = true;
-      cageArgs = ["-dsmlast"];
+      # cageArgs = ["-dsmlast"];
       settings = {
-        GTK.applicationprefer_dark_theme = true;
+        GTK.application_prefer_dark_theme = false;
 
         commands = {
           reboot = ["systemctl" "reboot"];
@@ -23,6 +24,17 @@
       };
     };
   };
+
+  services.xserver.displayManager.session = [
+    {
+      manage = "desktop";
+      name = "hyprland";
+      start = ''
+        ${lib.getExe pkgs.hyprland} &
+        waitPID=$!
+      '';
+    }
+  ];
 
   xdg.portal = {
     enable = true;
