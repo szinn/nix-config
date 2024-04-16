@@ -35,6 +35,8 @@ with lib; let
       mrmlnc.vscode-json5
       ms-kubernetes-tools.vscode-kubernetes-tools
       ms-playwright.playwright
+      ms-python.vscode-pylance
+      ms-python.python
       # ms-vscode-remote.remote-containers
       ms-vscode-remote.remote-ssh
       ms-vscode-remote.remote-ssh-edit
