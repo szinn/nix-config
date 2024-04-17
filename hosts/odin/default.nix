@@ -71,6 +71,7 @@
         "forScore" = 363738376;
         "GarageBand" = 682658836;
         "iMovie" = 408981434;
+        "iRealPro" = 409035833;
         "KeyMapp" = 6472865291;
         "Keynote" = 409183694;
         "LogicPro" = 634148309;
