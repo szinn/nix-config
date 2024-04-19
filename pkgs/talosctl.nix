@@ -7,18 +7,18 @@
 buildGo122Module rec {
   pname = "talosctl";
   # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-  version = "1.6.7";
+  version = "1.7.0";
 
   src = fetchFromGitHub {
     owner = "siderolabs";
     repo = "talos";
     rev = "v${version}";
     # hash = lib.fakeHash;
-    hash = "sha256-94oQe0wmrDU9MDWA1IdHDXu6ECtzQFHPh6dZhOvidUg==";
+    hash = "sha256-E5pu37R2y0hQezM/p6LJXZv2L6QnV89Ir2HoKaqcOqI=";
   };
 
-  # vendorHash = lib.fakeHash;
-  vendorHash = "sha256-raBqjLoH7DwA8ZaO1tIR1JRWb27lHusHAwqJ5UQhxt4=";
+  # vendorHash = lib.fakeHash;nix flake upd
+  vendorHash = "sha256-5vWAZsLQxPZGpTiT/OowCLNPdE5e+HrAGXpFRw6jgbU=";
 
   ldflags = ["-s" "-w"];
 

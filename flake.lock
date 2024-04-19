@@ -228,11 +228,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1713536783,
-        "narHash": "sha256-NMUg0BYh1mHhkObOkpaThlliPWl/5seoiMB/EOFCDlc=",
+        "lastModified": 1713547559,
+        "narHash": "sha256-zju60y4pyYQoRmqhbgkw+jwmKZReVsCNvb8mZxID2Do=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7ca7025cf2fa88bebc2190955c44263c3989b706",
+        "rev": "938357cb234e85da37109df2cdd9cc59ab9c1cc0",
         "type": "github"
       },
       "original": {
@@ -324,11 +324,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1713491091,
-        "narHash": "sha256-h1EOEKFLaJdLQrKLDmZpH24TlHk3wQG5x8O896hF2o8=",
+        "lastModified": 1713548776,
+        "narHash": "sha256-sWAcP8KMiZN7CYEGj2I+JmUIcWB8GHU1+NH/99eCfqc=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "4d0a63523751a590a521fd873f770825023069ae",
+        "rev": "dd39cd7e420750ac832e1c3e51fac87c16ae8ea3",
         "type": "github"
       },
       "original": {
@@ -503,11 +503,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1713492497,
-        "narHash": "sha256-FifiHvYmHL7BEOaQorHjHRaW3SJj2qYCdxUmCETAQl4=",
+        "lastModified": 1713543876,
+        "narHash": "sha256-olEWxacm1xZhAtpq+ZkEyQgR4zgfE7ddpNtZNvubi3g=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "eb25dc61a62efcdf47efce6cb17cd5cb3c8f2719",
+        "rev": "9e7c20ffd056e406ddd0276ee9d89f09c5e5f4ed",
         "type": "github"
       },
       "original": {
@@ -566,16 +566,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1713537985,
-        "narHash": "sha256-cbAHikDKzU5Tnb1SR/VCVCidh4EIIfF70EWrZTdbgHo=",
-        "owner": "szinn",
+        "lastModified": 1713549455,
+        "narHash": "sha256-wMHTvhl7Yl+nNVspchN7e337DBAM2LhHlcHnfAPhGEY=",
+        "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "2481dea02e4e944ff3a99221b755c9cbad857359",
+        "rev": "15529741a0f9c2b90a725ef5eb2262468a2f40a6",
         "type": "github"
       },
       "original": {
-        "owner": "szinn",
-        "ref": "fix-patchelf-reference",
+        "owner": "nix-community",
         "repo": "nix-vscode-extensions",
         "type": "github"
       }
