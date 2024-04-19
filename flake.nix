@@ -43,7 +43,8 @@
 
     # VSCode community extensions
     nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
+      url = "github:szinn/nix-vscode-extensions/fix-patchelf-reference";
+      # url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
