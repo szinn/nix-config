@@ -324,11 +324,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1713568129,
-        "narHash": "sha256-0PkS5bBIDPaQvbtbIz51uJdduH9QymqGYUuFbxBIp+Y=",
+        "lastModified": 1713576016,
+        "narHash": "sha256-myIH+dRrr4PX8CEeWqHY+FsV86yxqaux7uDw1JPbly8=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "1ebc32f5f4b04c913fb6301b886e016afec4c20e",
+        "rev": "10caa03ce5bc2ce8238c494d59405213d32ddead",
         "type": "github"
       },
       "original": {
@@ -566,11 +566,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1713549455,
-        "narHash": "sha256-wMHTvhl7Yl+nNVspchN7e337DBAM2LhHlcHnfAPhGEY=",
+        "lastModified": 1713576043,
+        "narHash": "sha256-3O6IFwE+fSy4netGsrTFLJ7Eu3BwMR/LEI0BbJfxvPI=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "15529741a0f9c2b90a725ef5eb2262468a2f40a6",
+        "rev": "bf06843f43adfb47596499ed8b3f5bdfe4c26658",
         "type": "github"
       },
       "original": {
@@ -964,11 +964,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1713488271,
-        "narHash": "sha256-6+V7G/UUei3tsZn9pD76xWl0rnn77k3p+jvniohwYbQ=",
+        "lastModified": 1713574676,
+        "narHash": "sha256-lLMQejrZIgETItwDvfEE8/NNbZB+ffAMnmbZiqMzFbE=",
         "owner": "budimanjojo",
         "repo": "talhelper",
-        "rev": "f2e0d2281b94b8e8e09616cf11154649146fabf9",
+        "rev": "17547ad75d793fcf0b596a48c5bc617ce05cdd05",
         "type": "github"
       },
       "original": {
