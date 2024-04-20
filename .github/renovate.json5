@@ -4,17 +4,21 @@
     "github>szinn/renovate-config",
     "github>szinn/nix-config//.github/renovate/customManagers.json5"
   ],
-  "ignorePaths": [
-    "result"
-  ],
+  "ignorePaths": ["result"],
 
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": [
-      "before 11pm"
-    ]
+    "schedule": ["before 11pm"]
   },
   "nix": {
     "enabled": true
-  }
+  },
+  "packageRules": [
+    {
+      "description": "Auto digest pins",
+      "matchUpdateTypes": ["pinDigest"],
+      "automerge": true,
+      "ignoreTests": true
+    }
+  ]
 }
