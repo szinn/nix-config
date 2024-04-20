@@ -75,6 +75,7 @@ jobs:
         run: nix-collect-garbage
 
       - name: Build previous ${{ matrix.system }} system
+        if: github.event_name == 'pull_request'
         run: |
           nix build \
             "github:szinn/nix-config#ciSystems.${{ matrix.system }}" \
@@ -103,6 +104,7 @@ jobs:
           exit 1
 
       - name: Diff profile
+        if: github.event_name == 'pull_request'
         id: diff
         run: |
           nix profile diff-closures --profile ./profile
@@ -112,6 +114,7 @@ jobs:
           echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
       - name: Comment report in pr
+        if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
