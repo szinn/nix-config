@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - name: Install Nix
-        uses: cachix/install-nix-action@v26
+        uses: cachix/install-nix-action@8887e596b4ee1134dae06b98d573bd674693f47c # v26
         with:
           nix_path: nixpkgs=channel:nixos-unstable
           extra_nix_config: |
@@ -24,7 +24,7 @@ jobs:
             experimental-features = nix-command flakes
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
-      - uses: yaxitech/nix-install-pkgs-action@v3
+      - uses: yaxitech/nix-install-pkgs-action@d90d994d1fc5e593a4d9b60bf5c01c10ad4ac423 # v3
         with:
           packages: "nixpkgs#statix"
 
@@ -32,7 +32,7 @@ jobs:
         run: statix fix
 
       - name: Nix Flake Checker
-        uses: DeterminateSystems/flake-checker-action@v5
+        uses: DeterminateSystems/flake-checker-action@4b90f9fc724969ff153fe1803460917c84fe00a3 # v5
 
       - name: Show changes
         run: git diff
