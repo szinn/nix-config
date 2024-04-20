@@ -13,3 +13,7 @@ creation_rules:
           - *hera
           - *nixvm
           - *ragnar
+  - path_regex: .*\.sops\.env
+    key_groups:
+      - age:
+          - *scotte

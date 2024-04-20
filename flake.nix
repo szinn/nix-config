@@ -122,8 +122,12 @@
             inputs.nixpkgs.lib.genAttrs
             (builtins.attrNames self.nixosConfigurations)
             (attr: self.nixosConfigurations.${attr}.config.system.build.toplevel);
+          darwin =
+            inputs.nixpkgs.lib.genAttrs
+            (builtins.attrNames self.darwinConfigurations)
+            (attr: self.darwinConfigurations.${attr}.system);
         in
-          nixos;
+          nixos // darwin;
       };
     };
 }

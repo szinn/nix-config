@@ -13,6 +13,7 @@ inputs: let
       }))
       prev.go_1_22;
   };
+
   additions = final: _prev:
     import ../pkgs {
       inherit inputs;

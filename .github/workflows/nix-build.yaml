@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: Nix Flake Actions
+name: Build Nix Systems
 
 on:
   workflow_dispatch:
@@ -19,6 +19,8 @@ jobs:
       fail-fast: false # let it build all the targets
       matrix:
         include:
+          - system: odin
+            os: macos-14
           - system: hera
             os: ubuntu-latest
           - system: ragnar
