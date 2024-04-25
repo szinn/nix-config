@@ -7,6 +7,9 @@ if count $argv > /dev/null
     case staging
       talosctl config context staging
       kubectl config use-context staging
+    case titan
+      talosctl config context titan
+      kubectl config use-context titan
     case nas
       kubectl config use-context nas
     case merge
@@ -19,5 +22,5 @@ if count $argv > /dev/null
       popd 2>&1 >/dev/null
   end
 else
-  echo "kcon main | staging"
+  echo "kcon main | staging | titan"
 end
