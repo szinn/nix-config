@@ -56,6 +56,12 @@ in {
         enable = true;
         config = import ./config/bind.nix {inherit config;};
       };
+
+      blocky = {
+        enable = true;
+        package = pkgs.blocky;
+        config = import ./config/blocky.nix;
+      };
     };
 
     # users = {

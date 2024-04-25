@@ -57,7 +57,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: cachix/install-nix-action@8887e596b4ee1134dae06b98d573bd674693f47c # v26
+      - name: Install Nix
+        uses: cachix/install-nix-action@8887e596b4ee1134dae06b98d573bd674693f47c # v26
         with:
           extra_nix_config: |
             auto-optimise-store = true

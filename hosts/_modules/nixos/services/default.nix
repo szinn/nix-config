@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./bind
+    ./blocky
     ./k3s
     ./minio
     ./monitoring
