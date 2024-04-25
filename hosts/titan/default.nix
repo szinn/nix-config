@@ -7,6 +7,7 @@
 in {
   imports = [
     ./hardware-configuration.nix
+    ./secrets.nix
   ];
 
   networking = {
@@ -50,6 +51,11 @@ in {
   modules = {
     services = {
       openssh.enable = true;
+
+      bind = {
+        enable = true;
+        config = import ./config/bind.nix {inherit config;};
+      };
     };
 
     # users = {

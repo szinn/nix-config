@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./bind
     ./k3s
     ./minio
     ./monitoring
