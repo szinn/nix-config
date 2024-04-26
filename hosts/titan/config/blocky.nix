@@ -1,10 +1,34 @@
 let
-  kubernetes-blacklist = builtins.toFile "kubernetes-blacklist" ''
-    slack.com
+  default-whitelist = builtins.toFile "default-whitelist" ''
+    t.co
+    slackb.com
+    keybr.com
+    is1-ssl.mzstatic.com
+    cc-api-data.adobe.io
+    ups.analytics.yahoo.com
   '';
-  sophie-whitelist =
-    builtins.toFile "sophie-whitelist" ''
-    '';
+
+  kubernetes-blacklist = builtins.toFile "kubernetes-blacklist" ''
+    www.slack.com
+  '';
+
+  sophie-whitelist = builtins.toFile "sophie-whitelist" ''
+    assets.adobedtm.com
+    elink.clickdimensions.com
+    www.googleadservices.com
+    fls-na.amazon.ca
+    r20.rs6.net
+    go.pardot.com
+    ssl.google-analytics.com
+    notify.bugsnag.com
+    click.emm.hermanmiller.com
+    ads.google.com
+    adwords.google.com
+    app-measurement.com
+    nexusrules.officeapps.live.com
+    clickserve.dartsearch.net
+    ad.doubleclick.net
+  '';
 in {
   ports = {
     dns = "0.0.0.0:5353";
@@ -19,6 +43,16 @@ in {
   # configuration of client name resolution
   clientLookup = {
     upstream = "127.0.0.1:5354";
+    clients = {
+      kubernetes = [
+        "10.11.0.16"
+        "10.11.0.17"
+        "10.11.0.18"
+        "10.11.0.19"
+        "10.11.0.20"
+        "10.11.0.21"
+      ];
+    };
   };
 
   ecs.useAsClient = true;
@@ -29,10 +63,9 @@ in {
   };
 
   queryLog = {
-    type = "csv";
-    target = "/tmp/blocky";
-    logRetentionDays = 7;
-    flushInterval = "30s";
+    type = "console";
+    # target = "/tmp";
+    # logRetentionDays = 7;
   };
 
   blocking = {
@@ -47,6 +80,9 @@ in {
     };
 
     whiteLists = {
+      default-whitelist = [
+        "file://${default-whitelist}"
+      ];
       sophie = [
         "file://${sophie-whitelist}"
       ];
@@ -55,12 +91,13 @@ in {
     clientGroupsBlock = {
       default = [
         "ads"
+        "default-whitelist"
       ];
       "sophie*" = [
         "ads"
         "sophie"
       ];
-      "k8s-*" = [
+      kubernetes = [
         "kubernetes"
       ];
     };
