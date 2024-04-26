@@ -5,19 +5,20 @@
   ...
 }: let
   cfg = config.modules.services.podman;
-in {
-  options.modules.services.podman = {
-    enable = lib.mkEnableOption "podman";
-  };
-
-  config = lib.mkIf cfg.enable {
-    virtualisation = {
-      podman = {
-        enable = true;
-        dockerCompat = true;
-        autoPrune.enable = true;
-      };
-      oci-containers.backend = "podman";
+in
+  with lib; {
+    options.modules.services.podman = {
+      enable = mkEnableOption "podman";
     };
-  };
-}
+
+    config = mkIf cfg.enable {
+      virtualisation = {
+        podman = {
+          enable = true;
+          dockerCompat = true;
+          autoPrune.enable = true;
+        };
+        oci-containers.backend = "podman";
+      };
+    };
+  }
