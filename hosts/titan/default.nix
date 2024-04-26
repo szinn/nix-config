@@ -56,6 +56,12 @@ in {
       openssh.enable = true;
       prometheus.enable = true;
 
+      cloudflare-dyndns = {
+        enable = true;
+        apiTokenFile = config.sops.secrets."networking/cloudflare-dyndns/api-token".path;
+        domains = ["zinn.tech" "vpn.zinn.tech"];
+      };
+
       dnsdist = {
         enable = true;
         config = builtins.readFile ./config/dnsdist.conf;

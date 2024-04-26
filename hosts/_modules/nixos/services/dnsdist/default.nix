@@ -22,9 +22,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.dnsdist.enable = true;
-    services.dnsdist.listenAddress = cfg.listenAddress;
-    services.dnsdist.listenPort = cfg.listenPort;
-    services.dnsdist.extraConfig = cfg.config;
+    services.dnsdist = {
+      enable = true;
+      listenAddress = cfg.listenAddress;
+      listenPort = cfg.listenPort;
+      extraConfig = cfg.config;
+    };
   };
 }
