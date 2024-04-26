@@ -51,6 +51,7 @@ in {
   modules = {
     services = {
       openssh.enable = true;
+      prometheus.enable = true;
 
       bind = {
         enable = true;
@@ -66,6 +67,7 @@ in {
       onepassword-connect = {
         enable = true;
         credentialsFile = config.sops.secrets.onepassword-credentials.path;
+        port = 8438;
       };
     };
 
