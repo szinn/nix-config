@@ -1,5 +1,5 @@
 let
-  default-whitelist = builtins.toFile "default-whitelist" ''
+  ads-whitelist = builtins.toFile "default-whitelist" ''
     t.co
     slackb.com
     keybr.com
@@ -31,7 +31,7 @@ let
   '';
 in {
   ports = {
-    dns = "0.0.0.0:5353";
+    dns = "0.0.0.0:5390";
     http = 4000;
   };
   upstreams.groups.default = [
@@ -42,7 +42,7 @@ in {
 
   # configuration of client name resolution
   clientLookup = {
-    upstream = "127.0.0.1:5354";
+    upstream = "127.0.0.1:5391";
     clients = {
       kubernetes = [
         "10.11.0.16"
@@ -80,8 +80,8 @@ in {
     };
 
     whiteLists = {
-      default-whitelist = [
-        "file://${default-whitelist}"
+      ads = [
+        "file://${ads-whitelist}"
       ];
       sophie = [
         "file://${sophie-whitelist}"

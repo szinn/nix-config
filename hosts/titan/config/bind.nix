@@ -25,7 +25,7 @@ in ''
   acl badnetworks {  };
 
   options {
-    listen-on port 5354 { any; };
+    listen-on port 5391 { any; };
     directory "${config.services.bind.directory}";
     pid-file "${config.services.bind.directory}/named.pid";
 
