@@ -28,7 +28,10 @@ in {
     hashedPasswordFile = config.sops.secrets.scotte-password.path;
     isNormalUser = true;
     extraGroups =
-      ["wheel"]
+      [
+        "wheel"
+        "users"
+      ]
       ++ ifGroupsExist [
         "network"
         "samba-users"
@@ -52,6 +55,11 @@ in {
     services = {
       openssh.enable = true;
       prometheus.enable = true;
+
+      dnsdist = {
+        enable = true;
+        config = builtins.readFile ./config/dnsdist.conf;
+      };
 
       bind = {
         enable = true;

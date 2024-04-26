@@ -2,6 +2,7 @@
   imports = [
     ./bind
     ./blocky
+    ./dnsdist
     ./k3s
     ./minio
     ./monitoring

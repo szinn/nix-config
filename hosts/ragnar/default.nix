@@ -27,7 +27,10 @@ in {
     hashedPasswordFile = config.sops.secrets.scotte-password.path;
     isNormalUser = true;
     extraGroups =
-      ["wheel"]
+      [
+        "wheel"
+        "users"
+      ]
       ++ ifGroupsExist [
         "network"
         "samba-users"
