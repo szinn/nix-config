@@ -62,6 +62,11 @@ in {
         package = pkgs.blocky;
         config = import ./config/blocky.nix;
       };
+
+      onepassword-connect = {
+        enable = true;
+        credentialsFile = config.sops.secrets.onepassword-credentials.path;
+      };
     };
 
     # users = {
