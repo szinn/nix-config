@@ -18,10 +18,7 @@
         onepassword-credentials = {
           mode = "0444";
         };
-        "networking/cloudflare-dyndns/api-token" = {
-          restartUnits = ["cloudflare-dyndns.service"];
-        };
-        "networking/cloudflare-dyndns/domains" = {
+        "networking/cloudflare/api-token" = {
           restartUnits = ["cloudflare-dyndns.service"];
         };
         "networking/bind/rndc-key" = {

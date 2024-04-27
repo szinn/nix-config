@@ -64,7 +64,7 @@ in {
 
       cloudflare-dyndns = {
         enable = true;
-        apiTokenFile = config.sops.secrets."networking/cloudflare-dyndns/api-token".path;
+        apiTokenFile = config.sops.secrets."networking/cloudflare/api-token".path;
         domains = ["zinn.tech" "vpn.zinn.tech"];
       };
 
