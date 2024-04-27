@@ -56,6 +56,12 @@ in {
       openssh.enable = true;
       prometheus.enable = true;
 
+      ntpd = {
+        enable = true;
+        metrics.enable = true;
+        settings = builtins.fromTOML (builtins.readFile ./config/ntp.toml);
+      };
+
       cloudflare-dyndns = {
         enable = true;
         apiTokenFile = config.sops.secrets."networking/cloudflare-dyndns/api-token".path;
