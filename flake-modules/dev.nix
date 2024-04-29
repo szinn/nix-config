@@ -3,6 +3,7 @@ _: {
     devShells.default = pkgs.mkShellNoCC {
       packages = with pkgs; [
         age
+        deploy-rs
         git
         gnupg
         go-task

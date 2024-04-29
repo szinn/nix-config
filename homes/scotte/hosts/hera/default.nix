@@ -29,8 +29,8 @@
       alacritty.enable = true;
     };
     devops.colima = {
-      enable = true;
-      startService = true;
+      enable = false;
+      startService = false;
     };
   };
 }

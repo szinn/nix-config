@@ -29,6 +29,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # deploy-rs
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     # sops-nix
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -131,5 +139,6 @@
         in
           nixos // darwin;
       };
-    };
+    }
+    // import ./deploy.nix inputs;
 }

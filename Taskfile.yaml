@@ -88,3 +88,20 @@ tasks:
     cmds:
       - scp hosts/titan/configuration.nix root@titan:/mnt/etc/nixos/configuration.nix
       - scp root@titan:/mnt/etc/nixos/hardware-configuration.nix hosts/titan/hardware-configuration.nix
+
+  deploy-nixos:
+    desc: Build and deploy nixos configuration using deploy-rs
+    silent: true
+    summary: |
+      Args:
+        host: Host to build and deploy to (required)
+    requires:
+      vars:
+        - host
+    cmds:
+      - deploy "{{.ROOT_DIR}}/#{{.host}}" --interactive --skip-checks
+    preconditions:
+      - sh: which nix
+        msg: "nix not found"
+      - sh: which deploy
+        msg: "deploy-rs not found"
