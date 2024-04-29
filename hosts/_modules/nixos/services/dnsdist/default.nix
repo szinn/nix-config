@@ -24,9 +24,8 @@ in
 
     config = mkIf cfg.enable {
       services.dnsdist = {
+        inherit (cfg) listenAddress listenPort;
         enable = true;
-        listenAddress = cfg.listenAddress;
-        listenPort = cfg.listenPort;
         extraConfig = cfg.config;
       };
     };

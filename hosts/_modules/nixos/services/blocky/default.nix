@@ -13,7 +13,7 @@ in
       enable = mkEnableOption "blocky";
       package = mkPackageOption pkgs "blocky" {};
       config = mkOption {
-        type = yamlFormat.type;
+        inherit (yamlFormat) type;
         default = {};
       };
     };

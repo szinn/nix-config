@@ -1,5 +1,5 @@
 inputs: let
-  pickLatest = (import ./utils.nix).pickLatest;
+  inherit (import ./utils.nix) pickLatest;
 
   overrides = final: prev: {
     # go_1_22 =

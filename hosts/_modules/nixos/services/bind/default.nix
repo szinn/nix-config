@@ -27,8 +27,8 @@ in
       };
 
       services.bind = {
+        inherit (cfg) package;
         enable = true;
-        package = cfg.package;
         ipv4Only = true;
         configFile = pkgs.writeText "bind.cfg" cfg.config;
       };

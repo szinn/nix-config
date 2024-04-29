@@ -35,11 +35,9 @@ in
 
     config = mkIf cfg.enable {
       services.ntpd-rs = {
+        inherit (cfg) package settings useNetworkingTimeServers;
         enable = true;
         metrics.enable = cfg.metrics.enable;
-        package = cfg.package;
-        useNetworkingTimeServers = cfg.useNetworkingTimeServers;
-        settings = cfg.settings;
       };
     };
   }

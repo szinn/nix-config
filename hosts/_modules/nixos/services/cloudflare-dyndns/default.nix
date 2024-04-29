@@ -20,9 +20,8 @@ in
 
     config = mkIf cfg.enable {
       services.cloudflare-dyndns = {
+        inherit (cfg) apiTokenFile domains;
         enable = true;
-        apiTokenFile = cfg.apiTokenFile;
-        domains = cfg.domains;
       };
     };
   }
