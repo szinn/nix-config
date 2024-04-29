@@ -1,5 +1,5 @@
 let
-  ads-whitelist = builtins.toFile "default-whitelist" ''
+  ads-whitelist = builtins.toFile "ads-whitelist" ''
     t.co
     slackb.com
     keybr.com
@@ -52,6 +52,12 @@ in {
         "10.11.0.20"
         "10.11.0.21"
       ];
+      sophie = [
+        "10.20.0.16"
+        "10.20.0.18"
+        "10.20.0.19"
+        "10.20.0.20"
+      ];
     };
   };
 
@@ -93,7 +99,7 @@ in {
         "ads"
         "default-whitelist"
       ];
-      "sophie*" = [
+      sophie = [
         "ads"
         "sophie"
       ];
