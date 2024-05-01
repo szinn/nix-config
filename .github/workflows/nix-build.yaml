@@ -32,6 +32,8 @@ jobs:
             os: ubuntu-latest
           - system: ragnar
             os: ubuntu-latest
+          - system: titan
+            os: ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
       - name: Create nix mount point

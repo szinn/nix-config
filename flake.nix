@@ -115,7 +115,7 @@
           # $ git add . ; sudo nixos-rebuild --flake . switch
           ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar" overlays flake-packages;
           # $ git add . ; sudo nixos-rebuild --flake . switch
-          titan = mkSystemLib.mkNixosSystem "aarch64-linux" "titan" overlays flake-packages;
+          titan = mkSystemLib.mkNixosSystem "x86_64-linux" "titan" overlays flake-packages;
         };
 
         darwinConfigurations = {
