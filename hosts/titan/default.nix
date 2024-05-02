@@ -12,7 +12,7 @@ in {
 
   networking = {
     hostName = "titan";
-    hostId = "10000008";
+    hostId = "10000007";
     useDHCP = true;
     firewall.enable = false;
   };

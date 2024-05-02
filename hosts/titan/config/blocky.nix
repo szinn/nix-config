@@ -80,6 +80,7 @@ in {
       ads = [
         "https://github.com/szinn/k8s-homelab/releases/download/pi-hole/hosts.blacklist"
       ];
+      sophie = [];
       kubernetes = [
         "file://${kubernetes-blacklist}"
       ];
@@ -92,12 +93,12 @@ in {
       sophie = [
         "file://${sophie-whitelist}"
       ];
+      kubernetes = [];
     };
 
     clientGroupsBlock = {
       default = [
         "ads"
-        "default-whitelist"
       ];
       sophie = [
         "ads"

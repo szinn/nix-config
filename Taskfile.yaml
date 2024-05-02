@@ -86,8 +86,8 @@ tasks:
   get-titan-config:
     desc: Fetch titan configuration
     cmds:
-      - scp hosts/titan/configuration.nix root@titan:/mnt/etc/nixos/configuration.nix
-      - scp root@titan:/mnt/etc/nixos/hardware-configuration.nix hosts/titan/hardware-configuration.nix
+      - scp hosts/titan/configuration.nix root@10.0.0.7:/mnt/etc/nixos/configuration.nix
+      - scp root@10.0.0.7:/mnt/etc/nixos/hardware-configuration.nix hosts/titan/hardware-configuration.nix
 
   deploy-nixos:
     desc: Build and deploy nixos configuration using deploy-rs
