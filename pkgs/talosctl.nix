@@ -14,11 +14,11 @@ buildGo122Module rec {
     repo = "talos";
     rev = "v${version}";
     # hash = lib.fakeHash;
-    hash = "sha256-E5pu37R2y0hQezM/p6LJXZv2L6QnV89Ir2HoKaqcOqI=";
+    hash = "sha256-1UDPpavDjWoM5kSfyaT4H5y5ax/vVlfqpzN9U2sTVuk=";
   };
 
-  # vendorHash = lib.fakeHash;nix flake upd
-  vendorHash = "sha256-5vWAZsLQxPZGpTiT/OowCLNPdE5e+HrAGXpFRw6jgbU=";
+  # vendorHash = lib.fakeHash;
+  vendorHash = "sha256-52RaQOJ2KTuc8wdk7vv5XsynKdMOwZ1LaqiPdB+jXPw=";
 
   ldflags = ["-s" "-w"];
 

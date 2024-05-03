@@ -29,7 +29,10 @@ in {
       sshUser = "scotte";
       remoteBuild = true;
     };
-    # titan = deployConfig "titan" "x86_64-linux" {sshUser = "scotte"; remoteBuild = true;};
+    titan = deployConfig "titan" "x86_64-linux" {
+      sshUser = "scotte";
+      remoteBuild = true;
+    };
   };
   checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 }

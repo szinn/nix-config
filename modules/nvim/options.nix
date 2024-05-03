@@ -3,6 +3,8 @@
     viAlias = true;
     vimAlias = true;
 
+    enableMan = false;
+
     luaLoader.enable = true;
 
     highlight.ExtraWhitespace.bg = "red";
