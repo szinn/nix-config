@@ -44,10 +44,10 @@ in {
             description = "Update homebrew applications";
             body = builtins.readFile ./functions/brewup.fish;
           };
-          fish_prompt = {
-            description = "Set the fish prompt";
-            body = builtins.readFile ./functions/fish_prompt.fish;
-          };
+          # fish_prompt = {
+          #   description = "Set the fish prompt";
+          #   body = builtins.readFile ./functions/fish_prompt.fish;
+          # };
           fish_right_prompt = {
             description = "Set the right prompt";
             body = builtins.readFile ./functions/fish_right_prompt.fish;
