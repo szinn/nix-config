@@ -4,12 +4,12 @@
   lib,
   ...
 }: let
-  cfg = config.modules.services.ntpd;
+  cfg = config.modules.services.ntp.ntpd-rs;
   format = pkgs.formats.toml {};
 in
   with lib; {
-    options.modules.services.ntpd = {
-      enable = mkEnableOption "ntpd";
+    options.modules.services.ntp.ntpd-rs = {
+      enable = mkEnableOption "ntpd-rs";
       metrics.enable = mkEnableOption "ntpd-rs Prometheus Metrics Exporter";
       package = lib.mkPackageOption pkgs "ntpd-rs" {};
       useNetworkingTimeServers = lib.mkOption {

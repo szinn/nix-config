@@ -8,7 +8,7 @@
     ./minio
     ./monitoring
     ./nfs
-    ./ntpd
+    ./ntp
     ./onepassword-connect
     ./openssh
     ./podman

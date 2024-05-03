@@ -56,10 +56,14 @@ in {
       openssh.enable = true;
       prometheus.enable = true;
 
-      ntpd = {
+      ntp.chrony = {
         enable = true;
-        metrics.enable = true;
-        settings = builtins.fromTOML (builtins.readFile ./config/ntp.toml);
+        servers = [
+          "0.ca.pool.ntp.org"
+          "1.ca.pool.ntp.org"
+          "2.ca.pool.ntp.org"
+          "3.ca.pool.ntp.org"
+        ];
       };
 
       cloudflare-dyndns = {
