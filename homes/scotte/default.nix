@@ -117,6 +117,12 @@ in {
             user = "root";
             identityFile = "~/.ssh/id_ed25519";
           };
+          styx = {
+            hostname = "styx.zinn.tech";
+            port = 22;
+            user = "root";
+            identityFile = "~/.ssh/id_ed25519";
+          };
           "github.com" = {
             hostname = "ssh.github.com";
             port = 443;
