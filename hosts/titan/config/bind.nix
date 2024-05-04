@@ -17,7 +17,8 @@ in ''
     10.10.0.0/16;    # SERVERS
     10.11.0.0/16;    # HOMELAB
     10.12.0.0/16;    # STAGING
-    10.20.0.0/16;    # TRUSTED/WIREGUARD
+    10.20.0.0/16;    # TRUSTED
+    10.21.0.0/16;    # WIREGUARD
     10.88.0.0/24;    # PODMAN
     192.168.1.0/24;  # IOT
     192.168.2.0/24;  # GUEST
