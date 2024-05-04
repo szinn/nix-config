@@ -20,7 +20,6 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      minio
       minio-client
     ];
 
