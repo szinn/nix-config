@@ -24,9 +24,9 @@ in {
         #   "systemd"
         # ];
       };
-      smartctl = {
-        enable = true;
-      };
+      # smartctl = {
+      #   enable = true;
+      # };
     };
   };
 }
