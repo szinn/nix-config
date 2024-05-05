@@ -76,8 +76,12 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    hyprlock.url = "github:hyprwm/hyprlock";
-    hypridle.url = "github:hyprwm/hypridle";
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+    };
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+    };
 
     # Talhelper
     talhelper = {

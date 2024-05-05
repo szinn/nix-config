@@ -13,6 +13,9 @@
   });
 in {
   imports = [
+    inputs.hyprland.homeManagerModules.default
+    inputs.hyprlock.homeManagerModules.default
+    inputs.hypridle.homeManagerModules.default
     ./hyprlock.nix
     ./wlogout.nix
   ];
