@@ -4,10 +4,10 @@
   config,
   ...
 }: let
-  cfg = config.modules.services.bind;
+  cfg = config.modules.services.dns.bind;
 in
   with lib; {
-    options.modules.services.bind = {
+    options.modules.services.dns.bind = {
       enable = mkEnableOption "bind";
       package = mkPackageOption pkgs "bind" {};
       config = mkOption {

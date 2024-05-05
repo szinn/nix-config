@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.services.openssh;
+  cfg = config.modules.services.security.openssh;
 in {
-  options.modules.services.openssh = {
+  options.modules.services.security.openssh = {
     enable = mkEnableOption "openssh";
   };
 

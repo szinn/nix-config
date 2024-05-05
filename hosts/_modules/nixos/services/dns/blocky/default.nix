@@ -4,12 +4,12 @@
   config,
   ...
 }: let
-  cfg = config.modules.services.blocky;
+  cfg = config.modules.services.dns.blocky;
   yamlFormat = pkgs.formats.yaml {};
   configFile = yamlFormat.generate "config.yaml" cfg.config;
 in
   with lib; {
-    options.modules.services.blocky = {
+    options.modules.services.dns.blocky = {
       enable = mkEnableOption "blocky";
       package = mkPackageOption pkgs "blocky" {};
       config = mkOption {

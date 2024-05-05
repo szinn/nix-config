@@ -4,10 +4,10 @@
   config,
   ...
 }: let
-  cfg = config.modules.services.onepassword-connect;
+  cfg = config.modules.services.security.onepassword-connect;
 in
   with lib; {
-    options.modules.services.onepassword-connect = {
+    options.modules.services.security.onepassword-connect = {
       enable = mkEnableOption "onepassword-connect";
       credentialsFile = mkOption {
         type = types.path;

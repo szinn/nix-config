@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.services.samba;
+  cfg = config.modules.filesystems.samba;
 in {
-  options.modules.services.samba = {
+  options.modules.filesystems.samba = {
     enable = mkEnableOption "samba";
     shares = mkOption {
       type = types.attrs;

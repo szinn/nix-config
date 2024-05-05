@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.services.nfs;
+  cfg = config.modules.filesystems.nfs;
 in {
-  options.modules.services.nfs = {
+  options.modules.filesystems.nfs = {
     enable = mkEnableOption "nfs";
     exports = mkOption {
       type = types.str;

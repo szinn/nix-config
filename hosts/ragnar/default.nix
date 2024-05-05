@@ -58,6 +58,26 @@ in {
           "atlas"
         ];
       };
+
+      nfs = {
+        enable = true;
+        exports = ''
+          /mnt/nvme 10.0.0.0/8(rw,insecure,all_squash,anonuid=65534,anongid=65534,no_subtree_check)
+        '';
+      };
+
+      samba = {
+        enable = true;
+        shares = {
+          homes = {
+            browseable = "no";
+            "read only" = "no";
+            "guest ok" = "no";
+            "create mask" = "0664";
+            "directory mask" = "0775";
+          };
+        };
+      };
     };
 
     services = {
@@ -81,29 +101,9 @@ in {
         enable = true;
       };
 
-      nfs = {
-        enable = true;
-        exports = ''
-          /mnt/nvme 10.0.0.0/8(rw,insecure,all_squash,anonuid=65534,anongid=65534,no_subtree_check)
-        '';
-      };
-
-      openssh.enable = true;
+      security.openssh.enable = true;
 
       rclone-backup.enable = true;
-
-      samba = {
-        enable = true;
-        shares = {
-          homes = {
-            browseable = "no";
-            "read only" = "no";
-            "guest ok" = "no";
-            "create mask" = "0664";
-            "directory mask" = "0775";
-          };
-        };
-      };
 
       zenstate.enable = true;
     };

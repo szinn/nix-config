@@ -48,35 +48,17 @@ in {
   '';
 
   modules = {
-    filesystems.zfs = {
-      enable = true;
-      mountPoolsAtBoot = [
-        "groucho"
-      ];
-    };
-
-    services = {
-      k3s = {
+    filesystems = {
+      zfs = {
         enable = true;
-        package = pkgs.k3s_1_29;
-        # extraFlags = [
-        #   "--tls_san=${config.networking.hostName}.zinn.tech"
-        # ];
-      };
-
-      minio = {
-        enable = true;
-        root-credentials = ./minio.sops.yaml;
-        dataDirs = [
-          "/mnt/groucho/s3"
+        mountPoolsAtBoot = [
+          "groucho"
         ];
       };
 
       nfs = {
         enable = true;
       };
-
-      openssh.enable = true;
 
       samba = {
         enable = true;
@@ -96,6 +78,26 @@ in {
           };
         };
       };
+    };
+
+    services = {
+      k3s = {
+        enable = true;
+        package = pkgs.k3s_1_29;
+        # extraFlags = [
+        #   "--tls_san=${config.networking.hostName}.zinn.tech"
+        # ];
+      };
+
+      minio = {
+        enable = true;
+        root-credentials = ./minio.sops.yaml;
+        dataDirs = [
+          "/mnt/groucho/s3"
+        ];
+      };
+
+      security.openssh.enable = true;
     };
 
     users = {

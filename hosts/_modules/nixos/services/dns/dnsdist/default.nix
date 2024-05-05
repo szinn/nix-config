@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  cfg = config.modules.services.dnsdist;
+  cfg = config.modules.services.dns.dnsdist;
 in
   with lib; {
-    options.modules.services.dnsdist = {
+    options.modules.services.dns.dnsdist = {
       enable = mkEnableOption "dnsdist";
       listenAddress = mkOption {
         type = types.str;

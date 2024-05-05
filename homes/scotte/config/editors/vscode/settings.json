@@ -241,7 +241,7 @@
 
   "yaml.format.enable": true,
   "yaml.schemas": {
-    "https://taskfile.dev/schema.json": ["Taskfile.yaml", ".taskfiles/*.yaml"]
+    "https://taskfile.dev/schema.json": ["Taskfile.yaml"]
   },
 
   "zenMode.fullScreen": false,

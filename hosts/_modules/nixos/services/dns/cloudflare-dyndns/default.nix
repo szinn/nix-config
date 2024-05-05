@@ -3,10 +3,10 @@
   lib,
   ...
 }: let
-  cfg = config.modules.services.cloudflare-dyndns;
+  cfg = config.modules.services.dns.cloudflare-dyndns;
 in
   with lib; {
-    options.modules.services.cloudflare-dyndns = {
+    options.modules.services.dns.cloudflare-dyndns = {
       enable = mkEnableOption "cloudflare-dyndns";
       domains = mkOption {
         type = types.listOf types.str;

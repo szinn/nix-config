@@ -69,7 +69,7 @@ in {
         ];
       };
 
-      openssh.enable = true;
+      security.openssh.enable = true;
     };
 
     users = {
