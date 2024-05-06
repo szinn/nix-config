@@ -15,7 +15,6 @@ in {
   imports = [
     inputs.hyprland.homeManagerModules.default
     inputs.hyprlock.homeManagerModules.default
-    inputs.hypridle.homeManagerModules.default
     ./hyprlock.nix
     ./wlogout.nix
   ];
@@ -23,7 +22,7 @@ in {
   services.hypridle = {
     enable = true;
 
-    listeners = [
+    settings.listeners = [
       {
         timeout = 300;
         onTimeout = "${lib.getExe config.programs.hyprlock.package}";
