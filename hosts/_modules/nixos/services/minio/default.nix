@@ -33,6 +33,7 @@ in {
 
     sops.secrets.root-credentials = {
       sopsFile = cfg.root-credentials;
+      restartUnits = ["minio.service"];
     };
   };
 }
