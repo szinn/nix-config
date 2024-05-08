@@ -97,7 +97,7 @@ in {
         ];
       };
 
-      prometheus = {
+      monitoring.prometheus = {
         enable = true;
       };
 

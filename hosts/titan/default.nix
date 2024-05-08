@@ -53,7 +53,9 @@ in {
 
   modules = {
     services = {
-      prometheus.enable = true;
+      monitoring = {
+        prometheus.enable = true;
+      };
 
       ntp.chrony = {
         enable = true;
