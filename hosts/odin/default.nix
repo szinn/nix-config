@@ -59,6 +59,7 @@
         "visual-studio-code"
         "vnc-viewer"
         "wezterm"
+        "wireshark"
         "yubico-authenticator"
         "zoom"
       ];
