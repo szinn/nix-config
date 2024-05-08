@@ -49,6 +49,10 @@
           restartUnits = ["bind.service"];
           owner = config.users.users.named.name;
         };
+        "gatus/config.yaml" = {
+          restartUnits = ["gatus.service"];
+          owner = "gatus";
+        };
       };
     };
   };

@@ -30,7 +30,8 @@ in ''
     directory "${config.services.bind.directory}";
     pid-file "${config.services.bind.directory}/named.pid";
 
-    allow-recursion { trusted; };
+    # allow-recursion { trusted; };
+    recursion true;
     allow-transfer { none; };
     allow-update { none; };
     blackhole { badnetworks; };

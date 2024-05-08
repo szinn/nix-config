@@ -55,6 +55,10 @@ in {
     services = {
       monitoring = {
         prometheus.enable = true;
+        gatus = {
+          enable = true;
+          configFile = config.sops.secrets."gatus/config.yaml".path;
+        };
       };
 
       ntp.chrony = {
