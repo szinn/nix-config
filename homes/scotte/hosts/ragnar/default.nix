@@ -16,6 +16,10 @@
       neovim.enable = true;
       # vscode.server-enable = true;
     };
+
+    shell = {
+      starship.enable = true;
+    };
   };
 
   programs.fish.functions = {

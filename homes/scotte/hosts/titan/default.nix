@@ -15,5 +15,9 @@
     editors = {
       neovim.enable = true;
     };
+
+    shell = {
+      starship.enable = true;
+    };
   };
 }
