@@ -99,7 +99,7 @@ in {
 
         character = {
           success_symbol = "[](green)";
-          error_symbol = "[](green)";
+          error_symbol = "[](red)";
           vicmd_symbol = "[](purple)";
         };
 
