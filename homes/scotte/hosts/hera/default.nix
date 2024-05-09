@@ -19,10 +19,7 @@
     shell = {
       tmux.enable = true;
       alacritty.enable = true;
-
-      shell = {
-        starship.enable = true;
-      };
+      starship.enable = true;
     };
     devops.colima = {
       enable = false;
