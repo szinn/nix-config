@@ -46,8 +46,9 @@ in
       };
 
       users.users.gatus = {
+        inherit (cfg) uid;
+
         group = "gatus";
-        uid = cfg.uid;
         isSystemUser = true;
       };
 
