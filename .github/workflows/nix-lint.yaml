@@ -32,7 +32,7 @@ jobs:
         run: statix fix
 
       - name: Nix Flake Checker
-        uses: DeterminateSystems/flake-checker-action@4b90f9fc724969ff153fe1803460917c84fe00a3 # v5
+        uses: DeterminateSystems/flake-checker-action@8b835765e5dc9bd4ad43dd9493eb594f313f4b7d # v7
 
       - name: Show changes
         run: git diff
