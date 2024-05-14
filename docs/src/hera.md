@@ -27,7 +27,6 @@ parted /dev/nvme0n1 -- set 3 esp on
 
 # Enabling Swap
 mkswap -L swap /dev/nvme0n1p2
-swapon /dev/nvme0n1p2
 
 # Format Boot Drive
 mkfs.fat -F 32 -n boot /dev/nvme0n1p3
