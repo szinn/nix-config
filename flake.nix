@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # impermanence
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+
     # nix-darwin
     nix-darwin = {
       url = "github:LnL7/nix-darwin";

@@ -16,10 +16,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "hera"; # Define your hostname.
+  networking = {
+    hostName = "hera"; # Define your hostname.
+    hostId = "decaf108";
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  };
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
@@ -56,9 +59,13 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.scotte = {
     isNormalUser = true;
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN7T92EOEawunpuGClUPZtjl6gLjqz+X2xvLuvmk0UFn"];
     extraGroups = ["wheel"];
     packages = with pkgs; [
     ];
+  };
+  users.users.root = {
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN7T92EOEawunpuGClUPZtjl6gLjqz+X2xvLuvmk0UFn"];
   };
 
   # List packages installed in system profile. To search, run:
@@ -74,6 +81,17 @@
     settings = {
       experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
+      substituters = [
+        "https://szinn.cachix.org"
+        "https://hyprland.cachix.org"
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "szinn.cachix.org-1:9gbZrHCd1BYMUuMCinvG2fTu98Jubp8y8tLE3jipABM="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+      builders-use-substitutes = true;
     };
   };
 
@@ -95,7 +113,26 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    hostKeys = [
+      {
+        path = "/persist/etc/ssh/ssh_host_ed25519_key";
+        type = "ed25519";
+      }
+      {
+        path = "/persist/etc/ssh/ssh_host_rsa_key";
+        type = "rsa";
+        bits = 4096;
+      }
+    ];
+  };
+
+  fileSystems."/persist".neededForBoot = true;
+
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r rpool/local/root@blank
+  '';
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

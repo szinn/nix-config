@@ -8,9 +8,8 @@
 in {
   imports = [
     ./hardware-configuration.nix
-    ./hyprland.nix
+    # ./hyprland.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
-    # inputs.nixos-hardware.nixosModules.common-gpu-intel
   ];
 
   networking = {
@@ -61,31 +60,10 @@ in {
 
   modules = {
     services = {
-      minio = {
-        enable = true;
-        root-credentials = ./minio.sops.yaml;
-        dataDirs = [
-          "/mnt/atlas/s3"
-        ];
-      };
-
       security.openssh.enable = true;
     };
-
-    users = {
-      groups = {
-        homelab = {
-          gid = 568;
-          members = ["scotte"];
-        };
-      };
-      additionalUsers = {
-        homelab = {
-          uid = 568;
-          group = "homelab";
-          isNormalUser = false;
-        };
-      };
+    system = {
+      impermanence.enable = true;
     };
   };
 

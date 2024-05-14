@@ -89,6 +89,18 @@ tasks:
       - scp hosts/titan/configuration.nix root@10.0.0.7:/mnt/etc/nixos/configuration.nix
       - scp root@10.0.0.7:/mnt/etc/nixos/hardware-configuration.nix hosts/titan/hardware-configuration.nix
 
+  get-hera-config:
+    desc: Fetch titan configuration
+    cmds:
+      - scp hosts/hera/configuration.nix root@hera.zinn.tech:/mnt/etc/nixos/configuration.nix
+      - scp root@hera.zinn.tech:/mnt/etc/nixos/hardware-configuration.nix hosts/hera/hardware-configuration.nix
+
+  get-hera-key:
+    desc: Get ssh key for sops
+    cmds:
+      - scp root@hera.zinn.tech:/mnt/persist/etc/ssh/ssh_host_ed25519_key.pub /tmp/ssh_host_ed25519_key.pub
+      - ssh-to-age < /tmp/ssh_host_ed25519_key.pub
+
   deploy-nixos:
     desc: Build and deploy nixos configuration using deploy-rs
     silent: true

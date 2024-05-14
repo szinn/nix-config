@@ -1,7 +1,7 @@
 {config, ...}: {
-  imports = [
-    ./hyprland
-  ];
+  # imports = [
+  #   ./hyprland
+  # ];
 
   home = {
     username = "scotte";
