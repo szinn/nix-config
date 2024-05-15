@@ -74,9 +74,12 @@ mount -t zfs rpool/safe/persist /mnt/persist
 # Required directories
 mkdir -p /mnt/persist/etc/NetworkManager/system-connections
 mkdir -p /mnt/persist/var/lib/bluetooth
+mkdir -p /mnt/persist/etc/users
 ```
 
-* Prepare ssh keys
+The hashed password for each user should go in `/mnt/persist/etc/users/<user>`.
+
+### Prepare ssh keys
 
 ```sh
 mkdir -p /mnt/persist/etc/ssh
@@ -96,6 +99,8 @@ Update `.sops.yaml` and then `task sops:re-encrypt`
 
 Commit and push the changes.
 
+### Config Generation
+
 Generate the configuration with:
 
 ```sh
@@ -113,5 +118,5 @@ from the host machine.
 Finally, install via
 
 ```sh
-nixos-install
+nixos-install --no-root-passwd
 ```

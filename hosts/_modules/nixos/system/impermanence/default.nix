@@ -25,8 +25,8 @@ in
     config = lib.mkIf cfg.enable {
       # move ssh keys
 
-      # bind a initrd command to rollback to blank root after boot
       boot = {
+        # bind a initrd command to rollback to blank root after boot
         initrd.postDeviceCommands = lib.mkAfter ''
           zfs rollback -r ${cfg.rootPoolName}@${cfg.rootBlankSnapshotName}
         '';

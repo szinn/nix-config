@@ -35,7 +35,7 @@ in {
     shell = pkgs.fish;
     packages = [pkgs.home-manager];
     openssh.authorizedKeys.keys = [(builtins.readFile ../../homes/scotte/config/ssh/ssh.pub)];
-    hashedPasswordFile = config.sops.secrets.scotte-password.path;
+    passwordFile = "/persist/etc/users/scotte";
     isNormalUser = true;
     extraGroups =
       ["wheel"]
@@ -46,11 +46,6 @@ in {
   };
   users.groups.scotte = {
     gid = 1000;
-  };
-
-  sops.secrets.scotte-password = {
-    sopsFile = ../../homes/scotte/hosts/hera/secrets.sops.yaml;
-    neededForUsers = true;
   };
 
   system.activationScripts.postActivation.text = ''
