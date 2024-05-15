@@ -94,6 +94,9 @@ tasks:
     cmds:
       - scp hosts/hera/configuration.nix root@hera.zinn.tech:/mnt/etc/nixos/configuration.nix
       - scp root@hera.zinn.tech:/mnt/etc/nixos/hardware-configuration.nix hosts/hera/hardware-configuration.nix
+      - sops -d homes/scotte/hosts/hera/secrets.sops.yaml | sed 's/scotte-password:\ //' > /tmp/password_hash
+      - scp /tmp/password_hash root@hera.zinn.tech:/mnt/persist/etc/users/scotte
+      - rm /tmp/password_hash
 
   get-hera-key:
     desc: Get ssh key for sops
