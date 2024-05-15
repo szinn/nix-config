@@ -70,6 +70,10 @@ mount -t zfs rpool/safe/home /mnt/home
 zfs create -p -o mountpoint=legacy rpool/safe/persist
 mkdir /mnt/persist
 mount -t zfs rpool/safe/persist /mnt/persist
+
+# Required directories
+mkdir -p /mnt/persist/etc/NetworkManager/system-connections
+mkdir -p /mnt/persist/var/lib/bluetooth
 ```
 
 * Prepare ssh keys
