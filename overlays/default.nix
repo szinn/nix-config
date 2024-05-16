@@ -2,6 +2,18 @@ inputs: let
   inherit (import ./utils.nix) pickLatest;
 
   overrides = final: prev: {
+    lua-language-server =
+      pickLatest (prev.lua-language-server.overrideAttrs (old: {
+        version = "3.9.1";
+        src = prev.fetchFromGitHub {
+          owner = "luals";
+          repo = "lua-language-server";
+          rev = "3.9.1";
+          hash = "sha256-M4eTrs5Ue2+b40TPdW4LZEACGYCE/J9dQodEk9d+gpY=";
+          fetchSubmodules = true;
+        };
+      }))
+      prev.lua-language-server;
     # go_1_22 =
     #   pickLatest (prev.go_1_22.overrideAttrs (old: {
     #     version = "1.22.2";
