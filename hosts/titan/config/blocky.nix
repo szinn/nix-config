@@ -34,11 +34,14 @@ in {
     dns = "0.0.0.0:5390";
     http = 4000;
   };
+
   upstreams.groups.default = [
     # Cloudflare
     "tcp-tls:1.1.1.1:853"
     "tcp-tls:1.0.0.1:853"
   ];
+
+  caching.cacheTimeNegative = -1;
 
   # configuration of client name resolution
   clientLookup = {
