@@ -1,0 +1,9 @@
+#!/usr/bin/env fish
+
+direnv allow
+task fix-git
+op account add
+eval (op signin)
+task fetch-secrets
+agent
+ssh-add

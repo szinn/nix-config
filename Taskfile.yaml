@@ -65,6 +65,31 @@ tasks:
       - task: lint
       - task: pc-run
 
+  host-configure:
+    desc: Configure a host
+    cmds:
+      - ssh-copy-id -f -i ~/.ssh/id_ed25519.pub root@{{.host}}
+      - scp ./hosts/{{.host}}/disks.sh root@{{.host}}:/root/disks.sh
+      - ssh root@{{.host}} "/root/disks.sh"
+      - task: get-key
+        vars:
+          host: "{{.host}}"
+    requires:
+      vars:
+        - host
+
+  host-install:
+    desc: Install on the host
+    cmds:
+      - ssh root@hera "nix-shell -p git --run 'nixos-install --impure --flake github:szinn/nix-config#{{.host}}'"
+    requires:
+      vars:
+        - host
+
+  finalize-install:
+    desc: Run final installation steps
+    cmd: ./scripts/finalize-install
+
   create-titan:
     desc: Create titan VM
     cmds:
@@ -98,11 +123,15 @@ tasks:
       - scp /tmp/password_hash root@hera.zinn.tech:/mnt/persist/etc/users/scotte
       - rm /tmp/password_hash
 
-  get-hera-key:
+  get-key:
     desc: Get ssh key for sops
     cmds:
-      - scp root@hera.zinn.tech:/mnt/persist/etc/ssh/ssh_host_ed25519_key.pub /tmp/ssh_host_ed25519_key.pub
+      - scp root@{{.host}}:/mnt/persist/etc/ssh/ssh_host_ed25519_key.pub /tmp/ssh_host_ed25519_key.pub
       - ssh-to-age < /tmp/ssh_host_ed25519_key.pub
+      - rm /tmp/ssh_host_ed25519_key.pub
+    requires:
+      vars:
+        - host
 
   deploy-nixos:
     desc: Build and deploy nixos configuration using deploy-rs

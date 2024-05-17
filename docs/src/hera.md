@@ -11,112 +11,36 @@ sudo su
 passwd
 ```
 
-Now you can ssh into hera for the remainder of the bringup with `ssh hera -l root`.
+## Configuration
 
-## Disk partitioning and formatting
-
-The disk will get partitioned into boot, NixOS, and an 8Gb swap space.
+From the workstation, configure the host with
 
 ```sh
-# Partitioning
-parted /dev/nvme0n1 -- mklabel gpt
-parted /dev/nvme0n1 -- mkpart root ext4 512MB -8GB        # /dev/nvme0n1p1 for NixOS
-parted /dev/nvme0n1 -- mkpart swap linux-swap -8GB 100%   # /dev/nvme0n1p2 for swap space
-parted /dev/nvme0n1 -- mkpart ESP fat32 1MB 512MB         # /dev/nvme0n1p3 for boot
-parted /dev/nvme0n1 -- set 3 esp on
-
-# Enabling Swap
-mkswap -L swap /dev/nvme0n1p2
-
-# Format Boot Drive
-mkfs.fat -F 32 -n boot /dev/nvme0n1p3
+task configure-host host=hera
 ```
 
-## Prepping For Impermanence
+Update `.sops.yaml` with the displayed sops-age key and then `task sops:re-encrypt`
 
-When Hera reboots, it will always come online with the same root filesystem, and all temporary data reset.
+Commit and push the changes from the workstation.
 
-### Grab the machine identifier
+## Installation
 
-The machine identifier needs to be grabbed and must be unique across all machines on the network.
-
-Run `head -c 8 /etc/machine-id` and copy into networking.hostId to ensure ZFS doesnt get borked on reboot.
-
-### Create the root drive with an empty snapshot
+From the workstation, install nix with
 
 ```sh
-zpool create -O mountpoint=none rpool /dev/nvme0n1p1 -f
-zfs create -p -o mountpoint=legacy rpool/local/root
-zfs snapshot rpool/local/root@blank
-mount -t zfs rpool/local/root /mnt
-
-### Create the various partitions
-
-# Boot partition
-mkdir /mnt/boot
-mount /dev/nvme0n1p3 /mnt/boot
-
-# /nix partition
-zfs create -p -o mountpoint=legacy rpool/local/nix
-mkdir /mnt/nix
-mount -t zfs rpool/local/nix /mnt/nix
-
-# /home partition
-zfs create -p -o mountpoint=legacy rpool/safe/home
-mkdir /mnt/home
-mount -t zfs rpool/safe/home /mnt/home
-
-# /persist partition
-zfs create -p -o mountpoint=legacy rpool/safe/persist
-mkdir /mnt/persist
-mount -t zfs rpool/safe/persist /mnt/persist
-
-# Required directories
-mkdir -p /mnt/persist/etc/NetworkManager/system-connections
-mkdir -p /mnt/persist/var/lib/bluetooth
-mkdir -p /mnt/persist/etc/users
+task host-install host=hera
 ```
 
-The hashed password for each user should go in `/mnt/persist/etc/users/<user>`.
+When complete, reboot the host and ensure the ISO image has been unmounted.
 
-### Prepare ssh keys
+## Final Configuration
 
-```sh
-mkdir -p /mnt/persist/etc/ssh
-ssh-keygen -b 4096 -t rsa -f /mnt/persist/etc/ssh/ssh_host_rsa_key
-ssh-keygen -t ed25519 -f /mnt/persist/etc/ssh/ssh_host_ed25519_key
-```
+The final step is to bring the configuration locally and fetch secrets from 1Password.
 
-Now run
+ssh into hera and
 
 ```sh
-task get-hera-key
-```
-
-to fetch the ssh key that will be used for sops encryption.
-
-Update `.sops.yaml` and then `task sops:re-encrypt`
-
-Commit and push the changes.
-
-### Config Generation
-
-Generate the configuration with:
-
-```sh
-nixos-generate-config --root /mnt
-```
-
-followed by
-
-```sh
-task get-hera-config
-```
-
-from the host machine.
-
-Finally, install via
-
-```sh
-nixos-install --no-root-passwd
+git clone https://github.com/szinn/nix-config.git .local/nix-config
+cd .local/nix-config
+task finalize-install
 ```
