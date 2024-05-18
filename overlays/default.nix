@@ -2,16 +2,16 @@ inputs: let
   inherit (import ./utils.nix) pickLatest;
 
   overrides = final: prev: {
-    # go_1_22 =
-    #   pickLatest (prev.go_1_22.overrideAttrs (old: {
-    #     version = "1.22.2";
-    #     src = prev.fetchurl {
-    #       url = "https://go.dev/dl/go1.22.2.src.tar.gz";
-    #       # hash = lib.fakeHash;
-    #       hash = "sha256-N06oKyiexzjpaCZ8rFnH1f8YD5SSJQJUeEsgROkN9ak=";
-    #     };
-    #   }))
-    #   prev.go_1_22;
+    go_1_22 =
+      pickLatest (prev.go_1_22.overrideAttrs (old: {
+        version = "1.22.3";
+        src = prev.fetchurl {
+          url = "https://go.dev/dl/go1.22.3.src.tar.gz";
+          # hash = prev.lib.fakeHash;
+          hash = "sha256-gGSO80+QMZPXKlnA3/AZ9fmK4MmqE63gsOy/+ZGnb2g=";
+        };
+      }))
+      prev.go_1_22;
 
     lua-language-server =
       pickLatest (prev.lua-language-server.overrideAttrs (old: {
@@ -20,6 +20,7 @@ inputs: let
           owner = "luals";
           repo = "lua-language-server";
           rev = "3.9.1";
+          # hash = prev.lib.fakeHash;
           hash = "sha256-M4eTrs5Ue2+b40TPdW4LZEACGYCE/J9dQodEk9d+gpY=";
           fetchSubmodules = true;
         };
