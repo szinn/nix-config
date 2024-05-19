@@ -30,7 +30,7 @@ in {
     interfaces = {
       vlan11.ipv4.addresses = [
         {
-          address = "10.11.0.7";
+          address = "10.11.0.15";
           prefixLength = 16;
         }
       ];
