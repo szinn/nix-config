@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   ifGroupsExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
@@ -13,7 +14,7 @@ in {
   networking = {
     hostName = "titan";
     hostId = "10000007";
-    useDHCP = true;
+    useDHCP = lib.mkDefault true;
     firewall.enable = false;
 
     vlans = {
