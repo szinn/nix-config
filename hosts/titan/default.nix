@@ -124,6 +124,13 @@ in {
         };
       };
 
+      networking = {
+        haproxy = {
+          enable = true;
+          config = builtins.readFile ./config/haproxy.cfg;
+        };
+      };
+
       security = {
         openssh.enable = true;
         onepassword-connect = {
