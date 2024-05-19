@@ -36,7 +36,7 @@ in {
       ];
       vlan12.ipv4.addresses = [
         {
-          address = "10.12.0.7";
+          address = "10.12.0.15";
           prefixLength = 16;
         }
       ];
