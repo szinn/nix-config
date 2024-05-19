@@ -4,7 +4,7 @@ keys:
   - &hera age13v6gz4l83lx70s20sy2rzqg0skmzp7dk9yjeeq673ka8gtx9tvwqk9nxut
   - &nixvm age12cwljj0azxcsre5kmf8hpmvt9m9lszmpwhp08794c5wd78ckne3qhh89cz
   - &ragnar age159dryl0uvkx3pjr0n36lf3cx0wqx96a4dpjgxmezpc8tlzppas0sdazq5h
-  - &titan age1fhf28zp4cy08qytac54jc5xqz2rvudvxv23law2krl78ltyqmdyq37vaaf
+  - &titan age1fe333dnvpvf83ec736nyfrc3q2qq6xzjm4z3nlsgauzn9xa92vwqkvrudd
 
 creation_rules:
   - path_regex: .*\.sops\.yaml$

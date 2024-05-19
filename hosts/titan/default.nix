@@ -41,9 +41,12 @@ in {
     gid = 1000;
   };
 
-  sops.secrets.scotte-password = {
-    sopsFile = ../../homes/scotte/hosts/titan/secrets.sops.yaml;
-    neededForUsers = true;
+  sops = {
+    secrets.scotte-password = {
+      sopsFile = ../../homes/scotte/hosts/titan/secrets.sops.yaml;
+      neededForUsers = true;
+    };
+    age.sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
   };
 
   system.activationScripts.postActivation.text = ''
@@ -105,6 +108,9 @@ in {
       };
     };
 
+    system = {
+      impermanence.enable = true;
+    };
     # users = {
     #   groups = {
     #   };

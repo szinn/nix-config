@@ -18,18 +18,33 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/81d5ed81-bdea-496f-92c5-75d179b92efd";
-    fsType = "ext4";
+    device = "rpool/local/root";
+    fsType = "zfs";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/FEC3-EF94";
+    device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];
   };
 
+  fileSystems."/nix" = {
+    device = "rpool/local/nix";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home" = {
+    device = "rpool/safe/home";
+    fsType = "zfs";
+  };
+
+  fileSystems."/persist" = {
+    device = "rpool/safe/persist";
+    fsType = "zfs";
+  };
+
   swapDevices = [
-    {device = "/dev/disk/by-uuid/2b8303da-cf3c-4e74-a971-c49989ed7b30";}
+    {device = "/dev/disk/by-label/SWAP";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

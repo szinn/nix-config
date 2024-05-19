@@ -69,7 +69,7 @@ tasks:
     desc: Configure a host
     cmds:
       - ssh-copy-id -f -i ~/.ssh/id_ed25519.pub root@{{.host}}
-      - scp ./hosts/{{.host}}/disks.sh root@{{.host}}:/root/disks.sh
+      - scp ./hosts/titan/disks.sh root@{{.host}}:/root/disks.sh
       - ssh root@{{.host}} "/root/disks.sh"
       - task: get-key
         vars:
@@ -81,7 +81,7 @@ tasks:
   host-install:
     desc: Install on the host
     cmds:
-      - ssh root@hera "nix-shell -p git --run 'nixos-install --impure --flake github:szinn/nix-config#{{.host}}'"
+      - ssh root@{{.host}} "nix-shell -p git --run 'nixos-install --impure --flake github:szinn/nix-config#titan'"
     requires:
       vars:
         - host
