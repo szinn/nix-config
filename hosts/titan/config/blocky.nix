@@ -96,11 +96,35 @@ in {
     # logRetentionDays = 7;
   };
 
+  bootstrapDns = [
+    {
+      upstream = "https://one.one.one.one/dns-query";
+      ips = ["1.1.1.1" "1.0.0.1"];
+    }
+    {
+      upstream = "https://dns.quad9.net/dns-query";
+      ips = ["9.9.9.9" "149.112.112.112"];
+    }
+  ];
+
+  filtering.queryTypes = ["AAAA"];
+
   blocking = {
-    loading.downloads.timeout = "4m";
+    blockType = "zeroIp";
+
+    loading = {
+      refreshPeriod = "4h";
+      downloads = {
+        timeout = "4m";
+        attempts = 5;
+      };
+    };
+
     blackLists = {
       ads = [
         "https://github.com/szinn/k8s-homelab/releases/download/pi-hole/hosts.blacklist"
+        "https://blocklistproject.github.io/Lists/ads.txt"
+        "https://blocklistproject.github.io/Lists/malware.txt"
       ];
       sophie = [];
       kubernetes = [
