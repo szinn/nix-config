@@ -29,12 +29,15 @@ in {
     };
 
     interfaces = {
+      enp1s0.useDHCP = lib.mkDefault true;
+
       vlan11.ipv4.addresses = [
         {
           address = "10.11.0.15";
           prefixLength = 16;
         }
       ];
+
       vlan12.ipv4.addresses = [
         {
           address = "10.12.0.15";
@@ -73,7 +76,7 @@ in {
       sopsFile = ../../homes/scotte/hosts/titan/secrets.sops.yaml;
       neededForUsers = true;
     };
-    age.sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
+    # age.sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
   };
 
   system.activationScripts.postActivation.text = ''
@@ -142,9 +145,10 @@ in {
       };
     };
 
-    system = {
-      impermanence.enable = true;
-    };
+    # system = {
+    #   impermanence.enable = true;
+    # };
+
     # users = {
     #   groups = {
     #   };

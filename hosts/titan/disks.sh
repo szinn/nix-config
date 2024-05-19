@@ -80,7 +80,7 @@ parted "${DISK_PATH}" -- mkpart swap linux-swap "-${SWAPSIZE}" 100%   # p2 for s
 parted "${DISK_PATH}" -- mkpart ESP fat32 1MB 512MB                   # p3 for boot
 parted "${DISK_PATH}" -- set 3 esp on
 
-export ZFS="${DISK_PATH}1"
+export ROOT="${DISK_PATH}1"
 export SWAP="${DISK_PATH}2"
 export BOOT="${DISK_PATH}3"
 
@@ -89,49 +89,61 @@ mkfs.fat -F 32 -n BOOT "${BOOT}"
 
 info "Creating swap partition ${SWAP}..."
 mkswap -L SWAP "${SWAP}"
+swapon "${SWAP}"
 
-info "Creating ${ZFS_POOL} ZFS pool for ${ZFS}..."
-zpool create -O mountpoint=none "${ZFS_POOL}" "${ZFS}" -f
+info "Formatting root partition"
+mkfs.ext4 -L NIXOS "${ROOT}"
 
-info "Creating ${ZFS_DS_ROOT} dataset..."
-zfs create -p -o mountpoint=legacy "${ZFS_DS_ROOT}"
-
-info "Creating ${ZFS_DS_ROOT}@blank ZFS snapshot..."
-zfs snapshot "${ZFS_DS_ROOT}@blank"
-
-info "Mounting ${ZFS_DS_ROOT} to /mnt..."
-mount -t zfs "${ZFS_DS_ROOT}" /mnt
+info "Mounting ${ROOT} to /mnt..."
+mount -t ext4 "${ROOT}" /mnt
 
 info "Mounting ${BOOT} to /mnt/boot..."
 mkdir -p /mnt/boot
 mount "${BOOT}" /mnt/boot
 
-info "Creating ${ZFS_DS_NIX} ZFS dataset..."
-zfs create -p -o mountpoint=legacy "${ZFS_DS_NIX}"
-
-info "Mounting ${ZFS_DS_NIX} to /mnt/nix..."
-mkdir -p /mnt/nix
-mount -t zfs "${ZFS_DS_NIX}" /mnt/nix
-
-info "Creating ${ZFS_DS_HOME} ZFS dataset..."
-zfs create -p -o mountpoint=legacy "${ZFS_DS_HOME}"
-
-info "Mounting ${ZFS_DS_HOME} to /mnt/home..."
-mkdir -p /mnt/home
-mount -t zfs "${ZFS_DS_HOME}" /mnt/home
-
-info "Creating ${ZFS_DS_PERSIST} ZFS dataset..."
-zfs create -p -o mountpoint=legacy "${ZFS_DS_PERSIST}"
-
-info "Mounting ${ZFS_DS_PERSIST} to /mnt/persist..."
-mkdir -p /mnt/persist
-mount -t zfs "${ZFS_DS_PERSIST}" /mnt/persist
-
-info "Creating required directories in ${ZFS_DS_PERSIST}"
-mkdir -p /mnt/persist/etc/NetworkManager/system-connections
-mkdir -p /mnt/persist/var/lib/bluetooth
-
 info "Creating ssh keys"
-mkdir -p /mnt/persist/etc/ssh
-ssh-keygen -b 4096 -t rsa -N "" -f /mnt/persist/etc/ssh/ssh_host_rsa_key
-ssh-keygen -t ed25519 -N "" -f /mnt/persist/etc/ssh/ssh_host_ed25519_key
+mkdir -p /mnt/etc/ssh
+ssh-keygen -b 4096 -t rsa -N "" -f /mnt/etc/ssh/ssh_host_rsa_key
+ssh-keygen -t ed25519 -N "" -f /mnt/etc/ssh/ssh_host_ed25519_key
+
+# info "Creating ${ZFS_POOL} ZFS pool for ${ROOT}..."
+# zpool create -O mountpoint=none "${ZFS_POOL}" "${ROOT}" -f
+
+# info "Creating ${ZFS_DS_ROOT} dataset..."
+# zfs create -p -o mountpoint=legacy "${ZFS_DS_ROOT}"
+
+# info "Creating ${ZFS_DS_ROOT}@blank ZFS snapshot..."
+# zfs snapshot "${ZFS_DS_ROOT}@blank"
+
+# info "Mounting ${ZFS_DS_ROOT} to /mnt..."
+# mount -t zfs "${ZFS_DS_ROOT}" /mnt
+
+# info "Creating ${ZFS_DS_NIX} ZFS dataset..."
+# zfs create -p -o mountpoint=legacy "${ZFS_DS_NIX}"
+
+# info "Mounting ${ZFS_DS_NIX} to /mnt/nix..."
+# mkdir -p /mnt/nix
+# mount -t zfs "${ZFS_DS_NIX}" /mnt/nix
+
+# info "Creating ${ZFS_DS_HOME} ZFS dataset..."
+# zfs create -p -o mountpoint=legacy "${ZFS_DS_HOME}"
+
+# info "Mounting ${ZFS_DS_HOME} to /mnt/home..."
+# mkdir -p /mnt/home
+# mount -t zfs "${ZFS_DS_HOME}" /mnt/home
+
+# info "Creating ${ZFS_DS_PERSIST} ZFS dataset..."
+# zfs create -p -o mountpoint=legacy "${ZFS_DS_PERSIST}"
+
+# info "Mounting ${ZFS_DS_PERSIST} to /mnt/persist..."
+# mkdir -p /mnt/persist
+# mount -t zfs "${ZFS_DS_PERSIST}" /mnt/persist
+
+# info "Creating required directories in ${ZFS_DS_PERSIST}"
+# mkdir -p /mnt/persist/etc/NetworkManager/system-connections
+# mkdir -p /mnt/persist/var/lib/bluetooth
+
+# info "Creating ssh keys"
+# mkdir -p /mnt/persist/etc/ssh
+# ssh-keygen -b 4096 -t rsa -N "" -f /mnt/persist/etc/ssh/ssh_host_rsa_key
+# ssh-keygen -t ed25519 -N "" -f /mnt/persist/etc/ssh/ssh_host_ed25519_key

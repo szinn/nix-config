@@ -126,7 +126,8 @@ tasks:
   get-key:
     desc: Get ssh key for sops
     cmds:
-      - scp root@{{.host}}:/mnt/persist/etc/ssh/ssh_host_ed25519_key.pub /tmp/ssh_host_ed25519_key.pub
+      - scp root@{{.host}}:/mnt/etc/ssh/ssh_host_ed25519_key.pub /tmp/ssh_host_ed25519_key.pub
+      # - scp root@{{.host}}:/mnt/persist/etc/ssh/ssh_host_ed25519_key.pub /tmp/ssh_host_ed25519_key.pub
       - ssh-to-age < /tmp/ssh_host_ed25519_key.pub
       - rm /tmp/ssh_host_ed25519_key.pub
     requires:
