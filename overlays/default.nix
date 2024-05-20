@@ -13,19 +13,19 @@ inputs: let
       }))
       prev.go_1_22;
 
-    # lua-language-server =
-    #   pickLatest (prev.lua-language-server.overrideAttrs (old: {
-    #     version = "3.9.1";
-    #     src = prev.fetchFromGitHub {
-    #       owner = "luals";
-    #       repo = "lua-language-server";
-    #       rev = "3.9.1";
-    #       # hash = prev.lib.fakeHash;
-    #       hash = "sha256-M4eTrs5Ue2+b40TPdW4LZEACGYCE/J9dQodEk9d+gpY=";
-    #       fetchSubmodules = true;
-    #     };
-    #   }))
-    #   prev.lua-language-server;
+    lua-language-server =
+      pickLatest (prev.lua-language-server.overrideAttrs (old: {
+        version = "3.9.1";
+        src = prev.fetchFromGitHub {
+          owner = "luals";
+          repo = "lua-language-server";
+          rev = "3.9.1";
+          # hash = prev.lib.fakeHash;
+          hash = "sha256-M4eTrs5Ue2+b40TPdW4LZEACGYCE/J9dQodEk9d+gpY=";
+          fetchSubmodules = true;
+        };
+      }))
+      prev.lua-language-server;
 
     atuin = prev.atuin.overrideAttrs (_old: {
       patches = [./patches/0001-make-atuin-on-zfs-fast-again.patch];
