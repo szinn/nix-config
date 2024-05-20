@@ -96,17 +96,6 @@ in {
     # logRetentionDays = 7;
   };
 
-  bootstrapDns = [
-    {
-      upstream = "https://one.one.one.one/dns-query";
-      ips = ["1.1.1.1" "1.0.0.1"];
-    }
-    {
-      upstream = "https://dns.quad9.net/dns-query";
-      ips = ["9.9.9.9" "149.112.112.112"];
-    }
-  ];
-
   filtering.queryTypes = ["AAAA"];
 
   blocking = {
