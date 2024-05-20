@@ -50,8 +50,8 @@ in
 
       users.users.${user} = {
         inherit (cfg) uid;
+        inherit group;
 
-        group = group;
         isSystemUser = true;
       };
 

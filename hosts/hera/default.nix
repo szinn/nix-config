@@ -2,9 +2,11 @@
   inputs,
   pkgs,
   config,
+  lib,
   ...
 }: let
   ifGroupsExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  impermanence = true;
 in {
   imports = [
     ./hardware-configuration.nix
@@ -53,7 +55,7 @@ in {
       sopsFile = ../../homes/scotte/hosts/hera/secrets.sops.yaml;
       neededForUsers = true;
     };
-    age.sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
+    age.sshKeyPaths = lib.mkIf impermanence ["/persist/etc/ssh/ssh_host_ed25519_key"];
   };
 
   system.activationScripts.postActivation.text = ''
@@ -66,7 +68,7 @@ in {
       security.openssh.enable = true;
     };
     system = {
-      impermanence.enable = true;
+      impermanence.enable = impermanence;
     };
   };
 

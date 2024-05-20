@@ -5,6 +5,7 @@
   ...
 }: let
   ifGroupsExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  impermanence = false;
 in {
   imports = [
     ./hardware-configuration.nix
@@ -82,7 +83,7 @@ in {
       sopsFile = ../../homes/scotte/hosts/titan/secrets.sops.yaml;
       neededForUsers = true;
     };
-    # age.sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
+    age.sshKeyPaths = lib.mkIf impermanence ["/persist/etc/ssh/ssh_host_ed25519_key"];
   };
 
   system.activationScripts.postActivation.text = ''
@@ -151,9 +152,9 @@ in {
       };
     };
 
-    # system = {
-    #   impermanence.enable = true;
-    # };
+    system = {
+      impermanence.enable = impermanence;
+    };
 
     # users = {
     #   groups = {
