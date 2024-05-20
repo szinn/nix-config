@@ -3,6 +3,7 @@
 set -euo pipefail
 
 DISK=nvme0n1
+DISK_IS_NVME=yes
 SWAPSIZE="8G"
 
 export ZFS_POOL="rpool"
@@ -80,9 +81,15 @@ parted "${DISK_PATH}" -- mkpart swap linux-swap "-${SWAPSIZE}" 100%   # p2 for s
 parted "${DISK_PATH}" -- mkpart ESP fat32 1MB 512MB                   # p3 for boot
 parted "${DISK_PATH}" -- set 3 esp on
 
-export ZFS="${DISK_PATH}p1"
-export SWAP="${DISK_PATH}p2"
-export BOOT="${DISK_PATH}p3"
+if [[ "${DISK_IS_NVME}" = "yes" ]]; then
+    export ZFS="${DISK_PATH}p1"
+    export SWAP="${DISK_PATH}p2"
+    export BOOT="${DISK_PATH}p3"
+else
+    export ROOT="${DISK_PATH}1"
+    export SWAP="${DISK_PATH}2"
+    export BOOT="${DISK_PATH}3"
+fi
 
 info "Formatting boot partition ${BOOT}..."
 mkfs.fat -F 32 -n BOOT "${BOOT}"
@@ -96,6 +103,12 @@ zpool create -O mountpoint=none "${ZFS_POOL}" "${ZFS}" -f
 info "Creating ${ZFS_DS_ROOT} dataset..."
 zfs create -p -o mountpoint=legacy "${ZFS_DS_ROOT}"
 
+info "Configuring extended attributes setting for ${ZFS_DS_ROOT} ZFS dataset..."
+zfs set xattr=sa "${ZFS_DS_ROOT}"
+
+info "Configuring access control list setting for ${ZFS_DS_ROOT} ZFS dataset..."
+zfs set acltype=posixacl "${ZFS_DS_ROOT}"
+
 info "Creating ${ZFS_DS_ROOT}@blank ZFS snapshot..."
 zfs snapshot "${ZFS_DS_ROOT}@blank"
 
@@ -108,6 +121,9 @@ mount "${BOOT}" /mnt/boot
 
 info "Creating ${ZFS_DS_NIX} ZFS dataset..."
 zfs create -p -o mountpoint=legacy "${ZFS_DS_NIX}"
+
+info "Disabling access time setting for ${ZFS_DS_NIX} ZFS dataset..."
+zfs set atime=off "${ZFS_DS_NIX}"
 
 info "Mounting ${ZFS_DS_NIX} to /mnt/nix..."
 mkdir -p /mnt/nix

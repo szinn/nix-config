@@ -17,7 +17,7 @@ in {
   networking = {
     hostName = "hera";
     hostId = "decaf108";
-    useDHCP = true;
+    useDHCP = lib.mkDefault true;
     firewall.enable = false;
   };
 

@@ -30,10 +30,9 @@ in {
     };
 
     interfaces = {
-      enp1s0.useDHCP = lib.mkDefault true;
+      enp1s0.useDHCP = true;
 
       vlan11 = {
-        useDHCP = false;
         ipv4.addresses = [
           {
             address = "10.11.0.15";
@@ -43,7 +42,6 @@ in {
       };
 
       vlan12 = {
-        useDHCP = false;
         ipv4.addresses = [
           {
             address = "10.12.0.15";
