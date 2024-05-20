@@ -8,26 +8,32 @@ in
   with lib; {
     options.modules.system.impermanence = {
       enable = mkEnableOption "system impermanence";
-      rootBlankSnapshotName = lib.mkOption {
-        type = lib.types.str;
+
+      # Rollback the root filesystem on boot to a blank snapshot
+      rollback = mkOption {
+        type = types.bool;
+        default = true;
+      };
+      rootBlankSnapshotName = mkOption {
+        type = types.str;
         default = "blank";
       };
-      rootPoolName = lib.mkOption {
-        type = lib.types.str;
+      rootPoolName = mkOption {
+        type = types.str;
         default = "rpool/local/root";
       };
-      persistPath = lib.mkOption {
-        type = lib.types.str;
+      persistPath = mkOption {
+        type = types.str;
         default = "/persist";
       };
     };
 
-    config = lib.mkIf cfg.enable {
+    config = mkIf cfg.enable {
       # move ssh keys
 
-      boot = {
+      boot = mkIf cfg.rollback {
         # bind a initrd command to rollback to blank root after boot
-        initrd.postDeviceCommands = lib.mkAfter ''
+        initrd.postDeviceCommands = mkAfter ''
           zfs rollback -r ${cfg.rootPoolName}@${cfg.rootBlankSnapshotName}
         '';
         kernelParams = ["elevator=none"];
