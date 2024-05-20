@@ -14,7 +14,7 @@ in {
   networking = {
     hostName = "titan";
     hostId = "10000007";
-    useDHCP = lib.mkDefault true;
+    useDHCP = lib.mkDefault false;
     firewall.enable = false;
 
     vlans = {
@@ -31,19 +31,25 @@ in {
     interfaces = {
       enp1s0.useDHCP = lib.mkDefault true;
 
-      vlan11.ipv4.addresses = [
-        {
-          address = "10.11.0.15";
-          prefixLength = 16;
-        }
-      ];
+      vlan11 = {
+        useDHCP = false;
+        ipv4.addresses = [
+          {
+            address = "10.11.0.15";
+            prefixLength = 16;
+          }
+        ];
+      };
 
-      vlan12.ipv4.addresses = [
-        {
-          address = "10.12.0.15";
-          prefixLength = 16;
-        }
-      ];
+      vlan12 = {
+        useDHCP = false;
+        ipv4.addresses = [
+          {
+            address = "10.12.0.15";
+            prefixLength = 16;
+          }
+        ];
+      };
     };
   };
 
