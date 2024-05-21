@@ -15,43 +15,8 @@ in {
   networking = {
     hostName = "titan";
     hostId = "10000007";
-    useDHCP = lib.mkDefault false;
+    useDHCP = lib.mkDefault true;
     firewall.enable = false;
-
-    # TODO
-    # vlans = {
-    #   vlan11 = {
-    #     id = 11;
-    #     interface = "enp1s0";
-    #   };
-    #   vlan12 = {
-    #     id = 12;
-    #     interface = "enp1s0";
-    #   };
-    # };
-
-    interfaces = {
-      enp1s0.useDHCP = true;
-
-      # TODO
-      # vlan11 = {
-      #   ipv4.addresses = [
-      #     {
-      #       address = "10.11.0.15";
-      #       prefixLength = 16;
-      #     }
-      #   ];
-      # };
-
-      # vlan12 = {
-      #   ipv4.addresses = [
-      #     {
-      #       address = "10.12.0.15";
-      #       prefixLength = 16;
-      #     }
-      #   ];
-      # };
-    };
   };
 
   users.users.scotte = {
@@ -135,13 +100,12 @@ in {
         };
       };
 
-      # TODO
-      # networking = {
-      #   haproxy = {
-      #     enable = true;
-      #     config = builtins.readFile ./config/haproxy.cfg;
-      #   };
-      # };
+      networking = {
+        haproxy = {
+          enable = true;
+          config = builtins.readFile ./config/haproxy.cfg;
+        };
+      };
 
       security = {
         openssh.enable = true;
