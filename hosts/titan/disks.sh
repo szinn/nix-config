@@ -82,7 +82,7 @@ parted "${DISK_PATH}" -- mkpart ESP fat32 1MB 512MB                   # p3 for b
 parted "${DISK_PATH}" -- set 3 esp on
 
 if [[ "${DISK_IS_NVME}" = "yes" ]]; then
-    export ZFS="${DISK_PATH}p1"
+    export ROOT="${DISK_PATH}p1"
     export SWAP="${DISK_PATH}p2"
     export BOOT="${DISK_PATH}p3"
 else
@@ -98,68 +98,59 @@ info "Creating swap partition ${SWAP}..."
 mkswap -L SWAP "${SWAP}"
 swapon "${SWAP}"
 
-info "Formatting root partition"
-mkfs.ext4 -L NIXOS "${ROOT}"
+info "Creating ${ZFS_POOL} ZFS pool for ${ROOT}..."
+zpool create -O mountpoint=none "${ZFS_POOL}" "${ROOT}" -f
 
-info "Mounting ${ROOT} to /mnt..."
-mount -t ext4 "${ROOT}" /mnt
+info "Creating ${ZFS_DS_ROOT} dataset..."
+zfs create -p -o mountpoint=legacy "${ZFS_DS_ROOT}"
+
+info "Configuring extended attributes setting for ${ZFS_DS_ROOT} ZFS dataset..."
+zfs set xattr=sa "${ZFS_DS_ROOT}"
+
+info "Configuring access control list setting for ${ZFS_DS_ROOT} ZFS dataset..."
+zfs set acltype=posixacl "${ZFS_DS_ROOT}"
+
+info "Creating ${ZFS_DS_ROOT}@blank ZFS snapshot..."
+zfs snapshot "${ZFS_DS_ROOT}@blank"
+
+info "Mounting ${ZFS_DS_ROOT} to /mnt..."
+mount -t zfs "${ZFS_DS_ROOT}" /mnt
 
 info "Mounting ${BOOT} to /mnt/boot..."
 mkdir -p /mnt/boot
 mount "${BOOT}" /mnt/boot
 
-info "Creating ssh keys"
-mkdir -p /mnt/etc/ssh
-ssh-keygen -b 4096 -t rsa -N "" -f /mnt/etc/ssh/ssh_host_rsa_key
-ssh-keygen -t ed25519 -N "" -f /mnt/etc/ssh/ssh_host_ed25519_key
+info "Creating ${ZFS_DS_NIX} ZFS dataset..."
+zfs create -p -o mountpoint=legacy "${ZFS_DS_NIX}"
 
-# info "Creating ${ZFS_POOL} ZFS pool for ${ROOT}..."
-# zpool create -O mountpoint=none "${ZFS_POOL}" "${ROOT}" -f
+info "Disabling access time setting for ${ZFS_DS_NIX} ZFS dataset..."
+zfs set atime=off "${ZFS_DS_NIX}"
 
-# info "Creating ${ZFS_DS_ROOT} dataset..."
-# zfs create -p -o mountpoint=legacy "${ZFS_DS_ROOT}"
+info "Mounting ${ZFS_DS_NIX} to /mnt/nix..."
+mkdir -p /mnt/nix
+mount -t zfs "${ZFS_DS_NIX}" /mnt/nix
 
-# info "Configuring extended attributes setting for ${ZFS_DS_ROOT} ZFS dataset..."
-# zfs set xattr=sa "${ZFS_DS_ROOT}"
+info "Creating ${ZFS_DS_HOME} ZFS dataset..."
+zfs create -p -o mountpoint=legacy "${ZFS_DS_HOME}"
 
-# info "Configuring access control list setting for ${ZFS_DS_ROOT} ZFS dataset..."
-# zfs set acltype=posixacl "${ZFS_DS_ROOT}"
+info "Mounting ${ZFS_DS_HOME} to /mnt/home..."
+mkdir -p /mnt/home
+mount -t zfs "${ZFS_DS_HOME}" /mnt/home
 
-# info "Creating ${ZFS_DS_ROOT}@blank ZFS snapshot..."
-# zfs snapshot "${ZFS_DS_ROOT}@blank"
+info "Creating ${ZFS_DS_PERSIST} ZFS dataset..."
+zfs create -p -o mountpoint=legacy "${ZFS_DS_PERSIST}"
 
-# info "Mounting ${ZFS_DS_ROOT} to /mnt..."
-# mount -t zfs "${ZFS_DS_ROOT}" /mnt
+info "Mounting ${ZFS_DS_PERSIST} to /mnt/persist..."
+mkdir -p /mnt/persist
+mount -t zfs "${ZFS_DS_PERSIST}" /mnt/persist
 
-# info "Creating ${ZFS_DS_NIX} ZFS dataset..."
-# zfs create -p -o mountpoint=legacy "${ZFS_DS_NIX}"
+info "Creating required directories in ${ZFS_DS_PERSIST}..."
+mkdir -p /mnt/persist/etc/NetworkManager/system-connections
+mkdir -p /mnt/persist/var/lib/bluetooth
 
-# info "Disabling access time setting for ${ZFS_DS_NIX} ZFS dataset..."
-# zfs set atime=off "${ZFS_DS_NIX}"
-
-# info "Mounting ${ZFS_DS_NIX} to /mnt/nix..."
-# mkdir -p /mnt/nix
-# mount -t zfs "${ZFS_DS_NIX}" /mnt/nix
-
-# info "Creating ${ZFS_DS_HOME} ZFS dataset..."
-# zfs create -p -o mountpoint=legacy "${ZFS_DS_HOME}"
-
-# info "Mounting ${ZFS_DS_HOME} to /mnt/home..."
-# mkdir -p /mnt/home
-# mount -t zfs "${ZFS_DS_HOME}" /mnt/home
-
-# info "Creating ${ZFS_DS_PERSIST} ZFS dataset..."
-# zfs create -p -o mountpoint=legacy "${ZFS_DS_PERSIST}"
-
-# info "Mounting ${ZFS_DS_PERSIST} to /mnt/persist..."
-# mkdir -p /mnt/persist
-# mount -t zfs "${ZFS_DS_PERSIST}" /mnt/persist
-
-# info "Creating required directories in ${ZFS_DS_PERSIST}"
-# mkdir -p /mnt/persist/etc/NetworkManager/system-connections
-# mkdir -p /mnt/persist/var/lib/bluetooth
-
-# info "Creating ssh keys"
-# mkdir -p /mnt/persist/etc/ssh
-# ssh-keygen -b 4096 -t rsa -N "" -f /mnt/persist/etc/ssh/ssh_host_rsa_key
-# ssh-keygen -t ed25519 -N "" -f /mnt/persist/etc/ssh/ssh_host_ed25519_key
+info "Creating ssh keys..."
+mkdir -p /mnt/persist/etc/ssh
+ssh-keygen -b 4096 -t rsa -N "" -f /mnt/persist/etc/ssh/ssh_host_rsa_key
+ssh-keygen -t ed25519 -N "" -f /mnt/persist/etc/ssh/ssh_host_ed25519_key
+nix-shell -p ssh-to-age --run "ssh-to-age < /mnt/persist/etc/ssh/ssh_host_ed25519_key.pub"
+info "Save age key to .sops.yaml"

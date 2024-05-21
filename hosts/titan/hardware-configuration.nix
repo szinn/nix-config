@@ -18,40 +18,30 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/NIXOS";
-    fsType = "ext4";
+    device = "rpool/local/root";
+    fsType = "zfs";
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
   };
 
-  # fileSystems."/" = {
-  #   device = "rpool/local/root";
-  #   fsType = "zfs";
-  # };
+  fileSystems."/nix" = {
+    device = "rpool/local/nix";
+    fsType = "zfs";
+  };
 
-  # fileSystems."/boot" = {
-  #   device = "/dev/disk/by-label/BOOT";
-  #   fsType = "vfat";
-  #   options = ["fmask=0022" "dmask=0022"];
-  # };
+  fileSystems."/home" = {
+    device = "rpool/safe/home";
+    fsType = "zfs";
+  };
 
-  # fileSystems."/nix" = {
-  #   device = "rpool/local/nix";
-  #   fsType = "zfs";
-  # };
-
-  # fileSystems."/home" = {
-  #   device = "rpool/safe/home";
-  #   fsType = "zfs";
-  # };
-
-  # fileSystems."/persist" = {
-  #   device = "rpool/safe/persist";
-  #   fsType = "zfs";
-  # };
+  fileSystems."/persist" = {
+    device = "rpool/safe/persist";
+    fsType = "zfs";
+  };
 
   swapDevices = [
     {device = "/dev/disk/by-label/SWAP";}

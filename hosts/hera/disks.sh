@@ -82,7 +82,7 @@ parted "${DISK_PATH}" -- mkpart ESP fat32 1MB 512MB                   # p3 for b
 parted "${DISK_PATH}" -- set 3 esp on
 
 if [[ "${DISK_IS_NVME}" = "yes" ]]; then
-    export ZFS="${DISK_PATH}p1"
+    export ROOT="${DISK_PATH}p1"
     export SWAP="${DISK_PATH}p2"
     export BOOT="${DISK_PATH}p3"
 else
@@ -98,8 +98,8 @@ info "Creating swap partition ${SWAP}..."
 mkswap -L SWAP "${SWAP}"
 swapon "${SWAP}"
 
-info "Creating ${ZFS_POOL} ZFS pool for ${ZFS}..."
-zpool create -O mountpoint=none "${ZFS_POOL}" "${ZFS}" -f
+info "Creating ${ZFS_POOL} ZFS pool for ${ROOT}..."
+zpool create -O mountpoint=none "${ZFS_POOL}" "${ROOT}" -f
 
 info "Creating ${ZFS_DS_ROOT} dataset..."
 zfs create -p -o mountpoint=legacy "${ZFS_DS_ROOT}"
