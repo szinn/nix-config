@@ -11,6 +11,8 @@ in {
   imports = [
     ./hardware-configuration.nix
     # ./hyprland.nix
+    ./secrets.nix
+    ./services.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
   ];
 

@@ -96,6 +96,7 @@ mkfs.fat -F 32 -n BOOT "${BOOT}"
 
 info "Creating swap partition ${SWAP}..."
 mkswap -L SWAP "${SWAP}"
+swapon "${SWAP}"
 
 info "Creating ${ZFS_POOL} ZFS pool for ${ZFS}..."
 zpool create -O mountpoint=none "${ZFS_POOL}" "${ZFS}" -f
@@ -143,11 +144,13 @@ info "Mounting ${ZFS_DS_PERSIST} to /mnt/persist..."
 mkdir -p /mnt/persist
 mount -t zfs "${ZFS_DS_PERSIST}" /mnt/persist
 
-info "Creating required directories in ${ZFS_DS_PERSIST}"
+info "Creating required directories in ${ZFS_DS_PERSIST}..."
 mkdir -p /mnt/persist/etc/NetworkManager/system-connections
 mkdir -p /mnt/persist/var/lib/bluetooth
 
-info "Creating ssh keys"
+info "Creating ssh keys..."
 mkdir -p /mnt/persist/etc/ssh
 ssh-keygen -b 4096 -t rsa -N "" -f /mnt/persist/etc/ssh/ssh_host_rsa_key
 ssh-keygen -t ed25519 -N "" -f /mnt/persist/etc/ssh/ssh_host_ed25519_key
+nix-shell -p ssh-to-age --run "ssh-to-age < /mnt/persist/etc/ssh/ssh_host_ed25519_key.pub"
+info "Save age key to .sops.yaml"

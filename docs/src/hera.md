@@ -16,7 +16,7 @@ passwd
 From the workstation, configure the host with
 
 ```sh
-task configure-host host=hera
+task configure-host ip=10.10.0.8 host=hera
 ```
 
 Update `.sops.yaml` with the displayed sops-age key and then `task sops:re-encrypt`
@@ -28,7 +28,7 @@ Commit and push the changes from the workstation.
 From the workstation, install nix with
 
 ```sh
-task host-install host=hera
+task host-install ip=10.10.0.8 host=hera
 ```
 
 When complete, reboot the host and ensure the ISO image has been unmounted.

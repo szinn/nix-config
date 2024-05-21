@@ -68,51 +68,28 @@ tasks:
   host-configure:
     desc: Configure a host
     cmds:
-      - ssh-copy-id -f -i ~/.ssh/id_ed25519.pub root@{{.host}}
-      - scp ./hosts/titan/disks.sh root@{{.host}}:/root/disks.sh
-      - ssh root@{{.host}} "/root/disks.sh"
-      - task: get-key
-        vars:
-          host: "{{.host}}"
+      - ssh-copy-id -f -i ~/.ssh/id_ed25519.pub root@{{.ip}}
+      - scp ./hosts/{{.host}}/disks.sh root@{{.ip}}:/root/disks.sh
+      - ssh root@{{.ip}} "/root/disks.sh"
     requires:
       vars:
         - host
+        - ip
 
   host-install:
     desc: Install on the host
     cmds:
-      - ssh root@{{.host}} "nix-shell -p git --run 'nixos-install --impure --flake github:szinn/nix-config#titan'"
+      - ssh root@{{.ip}} "mkdir -p /root/.config/nix"
+      - scp ./hosts/{{.host}}/nix.conf root@{{.ip}}:/root/.config/nix/nix.conf
+      - ssh root@{{.ip}} "nix-shell -p git --run 'nixos-install --impure --flake github:szinn/nix-config#{{.host}}'"
     requires:
       vars:
         - host
+        - ip
 
   finalize-install:
     desc: Run final installation steps
     cmd: ./scripts/finalize-install
-
-  create-titan:
-    desc: Create titan VM
-    cmds:
-      - prlctl create titan -o other
-      - prlctl set titan --device-set cdrom0 --image ~/Downloads/nixos-minimal-23.11.6621.dd37924974b9-aarch64-linux.iso  --connect
-      - prlctl set titan --device-set net0 --type bridged
-      - prlctl set titan --device-set net0 --mac DECAFF20001F
-      - prlctl set titan --memsize 16384
-      - prlctl set titan --cpus 4
-      - prlctl set titan --device-set hdd0 --size 128G
-      - prlctl start titan
-
-  destroy-titan:
-    desc: Destroy titan VM
-    cmds:
-      - prlctl stop titan --kill
-      - prlctl delete titan
-
-  get-titan-config:
-    desc: Fetch titan configuration
-    cmds:
-      - scp hosts/titan/configuration.nix root@10.0.0.7:/mnt/etc/nixos/configuration.nix
-      - scp root@10.0.0.7:/mnt/etc/nixos/hardware-configuration.nix hosts/titan/hardware-configuration.nix
 
   get-hera-config:
     desc: Fetch titan configuration
@@ -122,17 +99,6 @@ tasks:
       - sops -d homes/scotte/hosts/hera/secrets.sops.yaml | sed 's/scotte-password:\ //' > /tmp/password_hash
       - scp /tmp/password_hash root@hera.zinn.tech:/mnt/persist/etc/users/scotte
       - rm /tmp/password_hash
-
-  get-key:
-    desc: Get ssh key for sops
-    cmds:
-      - scp root@{{.host}}:/mnt/etc/ssh/ssh_host_ed25519_key.pub /tmp/ssh_host_ed25519_key.pub
-      # - scp root@{{.host}}:/mnt/persist/etc/ssh/ssh_host_ed25519_key.pub /tmp/ssh_host_ed25519_key.pub
-      - ssh-to-age < /tmp/ssh_host_ed25519_key.pub
-      - rm /tmp/ssh_host_ed25519_key.pub
-    requires:
-      vars:
-        - host
 
   deploy-nixos:
     desc: Build and deploy nixos configuration using deploy-rs
