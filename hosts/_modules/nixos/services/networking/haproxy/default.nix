@@ -24,5 +24,11 @@ in
         inherit (cfg) config;
         enable = true;
       };
+
+      systemd.services.haproxy.serviceConfig = {
+        RestartSec = 5;
+        RestartSteps = 5;
+        RestartMaxDelaySec = 30;
+      };
     };
   }
