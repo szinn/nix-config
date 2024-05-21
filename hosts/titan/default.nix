@@ -18,37 +18,39 @@ in {
     useDHCP = lib.mkDefault false;
     firewall.enable = false;
 
-    vlans = {
-      vlan11 = {
-        id = 11;
-        interface = "enp1s0";
-      };
-      vlan12 = {
-        id = 12;
-        interface = "enp1s0";
-      };
-    };
+    # TODO
+    # vlans = {
+    #   vlan11 = {
+    #     id = 11;
+    #     interface = "enp1s0";
+    #   };
+    #   vlan12 = {
+    #     id = 12;
+    #     interface = "enp1s0";
+    #   };
+    # };
 
     interfaces = {
       enp1s0.useDHCP = true;
 
-      vlan11 = {
-        ipv4.addresses = [
-          {
-            address = "10.11.0.15";
-            prefixLength = 16;
-          }
-        ];
-      };
+      # TODO
+      # vlan11 = {
+      #   ipv4.addresses = [
+      #     {
+      #       address = "10.11.0.15";
+      #       prefixLength = 16;
+      #     }
+      #   ];
+      # };
 
-      vlan12 = {
-        ipv4.addresses = [
-          {
-            address = "10.12.0.15";
-            prefixLength = 16;
-          }
-        ];
-      };
+      # vlan12 = {
+      #   ipv4.addresses = [
+      #     {
+      #       address = "10.12.0.15";
+      #       prefixLength = 16;
+      #     }
+      #   ];
+      # };
     };
   };
 
@@ -133,12 +135,13 @@ in {
         };
       };
 
-      networking = {
-        haproxy = {
-          enable = true;
-          config = builtins.readFile ./config/haproxy.cfg;
-        };
-      };
+      # TODO
+      # networking = {
+      #   haproxy = {
+      #     enable = true;
+      #     config = builtins.readFile ./config/haproxy.cfg;
+      #   };
+      # };
 
       security = {
         openssh.enable = true;
