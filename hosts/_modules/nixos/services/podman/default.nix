@@ -16,9 +16,14 @@ in
         podman = {
           enable = true;
           dockerCompat = true;
-          autoPrune.enable = true;
+          autoPrune = {
+            enable = true;
+            dates = "weekly";
+          };
         };
-        oci-containers.backend = "podman";
+        oci-containers = {
+          backend = "podman";
+        };
       };
     };
   }
