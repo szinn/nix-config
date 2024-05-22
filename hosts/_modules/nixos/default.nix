@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./filesystems
     ./services
@@ -25,6 +25,10 @@
       type = "hard";
       value = "1048576";
     }
+  ];
+
+  environment.systemPackages = with pkgs; [
+    deploy-rs
   ];
 
   # don't ask for password for wheel group
