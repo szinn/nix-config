@@ -82,7 +82,7 @@
         "Save to Reader" = 1640236961;
         "Slack" = 803453959;
         "Spark Desktop" = 6445813049;
-        "WhatsApp" = 1147396723;
+        "WhatsApp" = 310633997;
         "Wireguard" = 1451685025;
         "XCode" = 497799835;
       };

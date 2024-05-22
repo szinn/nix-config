@@ -98,14 +98,27 @@ in {
 
   filtering.queryTypes = ["AAAA"];
 
+  # optional: use these DNS servers to resolve blacklist urls and upstream DNS servers. It is useful if no system DNS resolver is configured, and/or to encrypt the bootstrap queries.
+  bootstrapDns = [
+    {
+      upstream = "https://one.one.one.one/dns-query";
+      ips = ["1.1.1.1" "1.0.0.1"];
+    }
+    {
+      upstream = "https://dns.quad9.net/dns-query";
+      ips = ["9.9.9.9" "149.112.112.112"];
+    }
+  ];
+
   blocking = {
     blockType = "zeroIp";
 
     loading = {
       refreshPeriod = "4h";
       downloads = {
-        timeout = "4m";
-        attempts = 5;
+        timeout = "5s";
+        attempts = 50;
+        cooldown = "5s";
       };
     };
 
