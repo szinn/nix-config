@@ -2,16 +2,16 @@ inputs: let
   inherit (import ./utils.nix) pickLatest;
 
   overrides = final: prev: {
-    go_1_22 =
-      pickLatest (prev.go_1_22.overrideAttrs (old: {
-        version = "1.22.3";
-        src = prev.fetchurl {
-          url = "https://go.dev/dl/go1.22.3.src.tar.gz";
-          # hash = prev.lib.fakeHash;
-          hash = "sha256-gGSO80+QMZPXKlnA3/AZ9fmK4MmqE63gsOy/+ZGnb2g=";
-        };
-      }))
-      prev.go_1_22;
+    # go_1_22 =
+    #   pickLatest (prev.go_1_22.overrideAttrs (old: {
+    #     version = "1.22.3";
+    #     src = prev.fetchurl {
+    #       url = "https://go.dev/dl/go1.22.3.src.tar.gz";
+    #       # hash = prev.lib.fakeHash;
+    #       hash = "sha256-gGSO80+QMZPXKlnA3/AZ9fmK4MmqE63gsOy/+ZGnb2g=";
+    #     };
+    #   }))
+    #   prev.go_1_22;
 
     # lua-language-server =
     #   pickLatest (prev.lua-language-server.overrideAttrs (old: {
