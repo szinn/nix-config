@@ -1,5 +1,5 @@
 {lib, ...}: let
-  port_dns = 5392;
+  port_dns = 53;
   yaml_schema_version = 28;
 in {
   schema_version = yaml_schema_version;
@@ -14,7 +14,7 @@ in {
   ];
 
   log = {
-    verbose = true;
+    verbose = false;
   };
 
   auth_attempts = 3;
@@ -67,7 +67,7 @@ in {
           ];
         }
         {
-          name = "k8s-stagin";
+          name = "k8s-staging";
           ids = [
             "10.12.0.16"
             "10.12.0.17"
@@ -112,12 +112,21 @@ in {
 
     # upstream DNS
     upstream_dns = [
+      "[/zinn.ca/]127.0.0.1:5391"
+      "[/zinn.tech/]127.0.0.1:5391"
+      "[/10.in-addr.arpa/]127.0.0.1:5391"
+
       "https://dns.cloudflare.com/dns-query"
     ];
 
     # resolving local addresses
     local_ptr_upstreams = ["127.0.0.1:5391"];
     use_private_ptr_resolvers = true;
+    edns_client_subnet = {
+      custom_ip = "";
+      enabled = true;
+      use_custom = false;
+    };
 
     # security
     enable_dnssec = true;

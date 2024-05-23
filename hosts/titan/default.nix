@@ -133,7 +133,7 @@ in {
         };
 
         dnsdist = {
-          enable = true;
+          enable = false;
           config = builtins.readFile ./config/dnsdist.conf;
         };
 
