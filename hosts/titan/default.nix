@@ -15,8 +15,57 @@ in {
   networking = {
     hostName = "titan";
     hostId = "10000007";
-    useDHCP = lib.mkDefault true;
+    useDHCP = lib.mkDefault false;
     firewall.enable = false;
+
+    interfaces = {
+      enp1s0.useDHCP = true;
+    };
+  };
+
+  services.resolved.enable = false;
+
+  systemd = {
+    network = {
+      enable = true;
+      networks = {
+        "11-vlan" = {
+          matchConfig.Name = "enp2s0";
+          DHCP = "no";
+          networkConfig = {
+            IPv4ProxyARP = true;
+          };
+          address = [
+            "10.11.0.15/16"
+          ];
+          linkConfig = {
+            RequiredForOnline = "routable";
+          };
+        };
+        "12-vlan" = {
+          matchConfig.Name = "enp3s0";
+          DHCP = "no";
+          networkConfig = {
+            IPv4ProxyARP = true;
+          };
+          address = [
+            "10.12.0.15/16"
+          ];
+          linkConfig = {
+            RequiredForOnline = "routable";
+          };
+        };
+      };
+    };
+
+    services.sshd = {
+      wants = ["network-online.target"];
+      after = ["network-online.target"];
+    };
+    services.haproxy = {
+      wants = ["multi-user.target"];
+      after = ["multi-user.target"];
+    };
   };
 
   users.users.scotte = {

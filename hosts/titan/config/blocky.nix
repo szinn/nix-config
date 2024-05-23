@@ -115,6 +115,10 @@ in {
 
     loading = {
       refreshPeriod = "4h";
+
+      # optional: if failOnError, application startup will fail if at least one list can't be downloaded / opened. Default: blocking
+      strategy = "fast";
+
       downloads = {
         timeout = "5s";
         attempts = 50;
