@@ -147,6 +147,15 @@ in {
           package = pkgs.blocky;
           config = import ./config/blocky.nix;
         };
+
+        adguardhome = {
+          enable = true;
+          host = "10.0.0.7";
+          port = 3000;
+          mutableSettings = false;
+          passwordPath = config.sops.secrets.adguardhome-password.path;
+          settings = import ./config/adguardhome.nix {inherit lib;};
+        };
       };
 
       networking = {

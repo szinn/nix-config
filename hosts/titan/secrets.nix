@@ -15,6 +15,10 @@
         "/etc/ssh/ssh_host_ed25519_key"
       ];
       secrets = {
+        adguardhome-password = {
+          owner = "adguardhome";
+          restartUnits = ["adguardhome.service"];
+        };
         onepassword-credentials = {
           mode = "0444";
         };
