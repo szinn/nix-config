@@ -108,6 +108,8 @@ in {
       # cloudflare
       "1.1.1.1"
       "1.0.0.1"
+      # quad9
+      "9.9.9.9"
     ];
 
     # upstream DNS
@@ -118,6 +120,7 @@ in {
       "[/1.168.192.in-addr.arpa/]127.0.0.1:5391"
 
       "https://dns.cloudflare.com/dns-query"
+      "https://dns.quad9.net/dns-query"
     ];
 
     # resolving local addresses
