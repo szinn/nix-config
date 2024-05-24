@@ -143,7 +143,7 @@ in {
         };
 
         blocky = {
-          enable = true;
+          enable = false;
           package = pkgs.blocky;
           config = import ./config/blocky.nix;
         };
