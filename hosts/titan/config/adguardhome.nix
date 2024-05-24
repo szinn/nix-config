@@ -115,6 +115,7 @@ in {
       "[/zinn.ca/]127.0.0.1:5391"
       "[/zinn.tech/]127.0.0.1:5391"
       "[/10.in-addr.arpa/]127.0.0.1:5391"
+      "[/1.168.192.in-addr.arpa/]127.0.0.1:5391"
 
       "https://dns.cloudflare.com/dns-query"
     ];
