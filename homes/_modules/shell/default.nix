@@ -2,10 +2,10 @@
   imports = [
     ./alacritty
     ./fish
-    ./git
-    ./starship
     ./tmux
-    ./utilities
-    ./wezterm
+    ./git.nix
+    ./starship.nix
+    ./utilities.nix
+    ./wezterm.nix
   ];
 }

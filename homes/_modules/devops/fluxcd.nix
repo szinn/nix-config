@@ -20,7 +20,11 @@ in {
       functions = {
         flretry = {
           description = "Retry a flux update";
-          body = builtins.readFile ./_functions/flretry.fish;
+          body = ''
+            flux suspend $argv
+            flux resume $argv
+            flux reconcile $argv
+          '';
         };
       };
     };

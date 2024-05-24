@@ -1,7 +1,7 @@
 {...}: {
   imports = [
-    ./one-password
-    ./gnupg
-    ./ssh
+    ./one-password.nix
+    ./gnupg.nix
+    ./ssh.nix
   ];
 }

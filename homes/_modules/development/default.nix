@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
-    ./go
-    ./mdbook
+    ./go.nix
+    ./mdbook.nix
     ./postgres
     ./rust
   ];
