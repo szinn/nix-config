@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./gatus
-    ./prometheus
+    ./gatus.nix
+    ./prometheus.nix
   ];
 }

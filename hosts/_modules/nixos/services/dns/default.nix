@@ -1,9 +1,9 @@
 {...}: {
   imports = [
-    ./adguardhome
-    ./bind
-    ./blocky
-    ./cloudflare-dyndns
-    ./dnsdist
+    ./adguardhome.nix
+    ./bind.nix
+    ./blocky.nix
+    ./cloudflare-dyndns.nix
+    ./dnsdist.nix
   ];
 }

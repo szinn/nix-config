@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ./haproxy
+    ./haproxy.nix
   ];
 }

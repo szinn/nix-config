@@ -3,7 +3,7 @@
     ./filesystems
     ./services
     ./system
-    ./users
+    ./users.nix
   ];
 
   nix = {

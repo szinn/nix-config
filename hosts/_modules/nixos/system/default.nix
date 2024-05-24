@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ./impermanence
+    ./impermanence.nix
   ];
 }

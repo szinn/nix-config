@@ -1,7 +1,7 @@
 {...}: {
   imports = [
-    ./chrony
-    ./ntpd-rs
-    ./openntpd
+    ./chrony.nix
+    ./ntpd-rs.nix
+    ./openntpd.nix
   ];
 }

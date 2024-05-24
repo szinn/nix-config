@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
-    ./nfs
-    ./samba
-    ./zfs
+    ./nfs.nix
+    ./samba.nix
+    ./zfs.nix
   ];
 }

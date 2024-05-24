@@ -1,7 +1,7 @@
 {...}: {
   imports = [
-    ./onepassword-connect
-    ./openssh
-    ./sops
+    ./onepassword-connect.nix
+    ./openssh.nix
+    ./sops.nix
   ];
 }

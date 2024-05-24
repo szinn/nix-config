@@ -1,14 +1,14 @@
 {...}: {
   imports = [
     ./dns
-    ./k3s
-    ./minio
     ./monitoring
     ./networking
     ./ntp
-    ./podman
-    ./rclone-backup
     ./security
-    ./zenstate
+    ./k3s.nix
+    ./minio.nix
+    ./podman.nix
+    ./rclone-backup.nix
+    ./zenstate.nix
   ];
 }
