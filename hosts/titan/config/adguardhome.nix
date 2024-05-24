@@ -140,6 +140,9 @@ in {
     cache_ttl_min = 60;
     cache_optimistic = true;
 
+    # rate limiting
+    ratelimit = 200;
+
     theme = "auto";
   };
 
