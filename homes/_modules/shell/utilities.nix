@@ -21,6 +21,7 @@ in {
         packages = with pkgs; [
           age
           alejandra
+          any-nix-shell
           bat
           dig
           du-dust

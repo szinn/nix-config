@@ -91,6 +91,11 @@ in {
           gl = "git lg";
           gst = "git status";
         };
+        shellAbbrs = {
+          gfp = "git fetch -p && git pull";
+          gitp = "git push";
+          gitpf = "git push -f";
+        };
       };
 
       home.packages = with pkgs; [delta fzf];
