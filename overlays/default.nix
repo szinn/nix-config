@@ -20,6 +20,7 @@ inputs: let
     #       owner = "luals";
     #       repo = "lua-language-server";
     #       rev = "3.9.1";
+    #       # nix-shell -p nix-prefetch-github --run "nix-prefetch-github luals lua-language-server --rev 3.9.1"
     #       # hash = prev.lib.fakeHash;
     #       hash = "sha256-M4eTrs5Ue2+b40TPdW4LZEACGYCE/J9dQodEk9d+gpY=";
     #       fetchSubmodules = true;
