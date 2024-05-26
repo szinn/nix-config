@@ -23,7 +23,7 @@ in {
         plugins = [
           {
             name = "autopair";
-            src = pkgs.fishPlugins.autopair.src;
+            inherit (pkgs.fishPlugins.autopair) src;
           }
         ];
 

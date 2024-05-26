@@ -99,8 +99,8 @@
     flake-parts,
     ...
   } @ inputs: let
-    mkSystemLib = import ./lib/mkSystem.nix {inherit inputs;};
     overlays = import ./overlays inputs;
+    mkSystemLib = import ./lib/mkSystem.nix {inherit inputs overlays;};
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
@@ -119,20 +119,20 @@
         {
           nixosConfigurations = {
             # $ git add . ; sudo nixos-rebuild --flake . switch
-            hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera" overlays flake-packages;
+            hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera" flake-packages;
             # $ git add . ; sudo nixos-rebuild --flake . switch
-            nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm" overlays flake-packages;
+            nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm" flake-packages;
             # $ git add . ; sudo nixos-rebuild --flake . switch
-            ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar" overlays flake-packages;
+            ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar" flake-packages;
             # $ git add . ; sudo nixos-rebuild --flake . switch
-            titan = mkSystemLib.mkNixosSystem "x86_64-linux" "titan" overlays flake-packages;
+            titan = mkSystemLib.mkNixosSystem "x86_64-linux" "titan" flake-packages;
           };
 
           darwinConfigurations = {
             # $ git add . ; darwin-rebuild --flake . switch
-            macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm" overlays flake-packages;
+            macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm" flake-packages;
             # $ git add . ; darwin-rebuild --flake . switch
-            odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" overlays flake-packages;
+            odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" flake-packages;
           };
 
           # Convenience output that aggregates the outputs for home, nixos.
