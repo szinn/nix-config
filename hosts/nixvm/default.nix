@@ -1,9 +1,11 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   ifGroupsExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  impermanence = true;
 in {
   imports = [
     ./hardware-configuration.nix
@@ -37,9 +39,12 @@ in {
     gid = 1000;
   };
 
-  sops.secrets.scotte-password = {
-    sopsFile = ../../homes/scotte/hosts/nixvm/secrets.sops.yaml;
-    neededForUsers = true;
+  sops = {
+    secrets.scotte-password = {
+      sopsFile = ../../homes/scotte/hosts/nixvm/secrets.sops.yaml;
+      neededForUsers = true;
+    };
+    age.sshKeyPaths = lib.mkIf impermanence ["/persist/etc/ssh/ssh_host_ed25519_key"];
   };
 
   system.activationScripts.postActivation.text = ''
@@ -48,81 +53,85 @@ in {
   '';
 
   modules = {
-    filesystems = {
-      zfs = {
-        enable = true;
-        mountPoolsAtBoot = [
-          "groucho"
-        ];
-      };
+    # filesystems = {
+    #   zfs = {
+    #     enable = true;
+    #     mountPoolsAtBoot = [
+    #       "groucho"
+    #     ];
+    #   };
 
-      nfs = {
-        enable = true;
-      };
+    #   nfs = {
+    #     enable = true;
+    #   };
 
-      samba = {
-        enable = true;
-        shares = {
-          homes = {
-            browseable = "no";
-            "read only" = "no";
-            "guest ok" = "no";
-            "create mask" = "0664";
-            "directory mask" = "0775";
-          };
-          Media = {
-            path = "/mnt/groucho/media";
-            "read only" = "no";
-            "force user" = "media";
-            "force group" = "media";
-          };
-        };
-      };
-    };
+    #   samba = {
+    #     enable = true;
+    #     shares = {
+    #       homes = {
+    #         browseable = "no";
+    #         "read only" = "no";
+    #         "guest ok" = "no";
+    #         "create mask" = "0664";
+    #         "directory mask" = "0775";
+    #       };
+    #       Media = {
+    #         path = "/mnt/groucho/media";
+    #         "read only" = "no";
+    #         "force user" = "media";
+    #         "force group" = "media";
+    #       };
+    #     };
+    #   };
+    # };
 
     services = {
-      k3s = {
-        enable = true;
-        package = pkgs.k3s_1_29;
-        # extraFlags = [
-        #   "--tls_san=${config.networking.hostName}.zinn.tech"
-        # ];
-      };
+      # k3s = {
+      #   enable = true;
+      #   package = pkgs.k3s_1_29;
+      #   # extraFlags = [
+      #   #   "--tls_san=${config.networking.hostName}.zinn.tech"
+      #   # ];
+      # };
 
-      minio = {
-        enable = true;
-        root-credentials = ./minio.sops.yaml;
-        dataDirs = [
-          "/mnt/groucho/s3"
-        ];
-      };
+      # minio = {
+      #   enable = true;
+      #   root-credentials = ./minio.sops.yaml;
+      #   dataDirs = [
+      #     "/mnt/groucho/s3"
+      #   ];
+      # };
 
       security.openssh.enable = true;
     };
 
-    users = {
-      groups = {
-        homelab = {
-          gid = 568;
-          members = ["scotte"];
-        };
-        media = {
-          gid = 569;
-          members = ["scotte"];
-        };
-      };
-      additionalUsers = {
-        homelab = {
-          uid = 568;
-          group = "homelab";
-          isNormalUser = false;
-        };
-        media = {
-          uid = 569;
-          group = "media";
-          isNormalUser = false;
-        };
-      };
+    # users = {
+    #   groups = {
+    #     homelab = {
+    #       gid = 568;
+    #       members = ["scotte"];
+    #     };
+    #     media = {
+    #       gid = 569;
+    #       members = ["scotte"];
+    #     };
+    #   };
+    #   additionalUsers = {
+    #     homelab = {
+    #       uid = 568;
+    #       group = "homelab";
+    #       isNormalUser = false;
+    #     };
+    #     media = {
+    #       uid = 569;
+    #       group = "media";
+    #       isNormalUser = false;
+    #     };
+    #   };
+    # };
+
+    system = {
+      impermanence.enable = impermanence;
     };
   };
 
