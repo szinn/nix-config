@@ -70,7 +70,6 @@
           options.desc = "[] Find existing buffers";
         };
       };
-      keymapsSilent = true;
 
       settings = {
         defaults = {
