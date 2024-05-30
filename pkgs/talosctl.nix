@@ -13,12 +13,12 @@ buildGo122Module rec {
     owner = "siderolabs";
     repo = "talos";
     rev = "v${version}";
-    # nix-shell -p nix-prefetch-github --run "nix-prefetch-github siderolabs talos --rev v1.7.2"
-    hash = "sha256-hYfh/faOQtN1MTnaCHsdogzBU3Xf6BY4apK+VuVCh6E=";
+    # nix-shell -p nix-prefetch-github --run "nix-prefetch-github siderolabs talos --rev v1.7.3"
+    hash = "sha256-YAfAw5F9rEHsVsJu0sS/+VxOhthFBt+IRarwdwXacvU=";
   };
 
   # vendorHash = lib.fakeHash;
-  vendorHash = "sha256-5Dxtwu+PM0TbznIPTl8QxgOvNsQZUDMGY2kf+PSfCqo=";
+  vendorHash = "sha256-GxUO+aWx4p31PWbpPmKzTqWuv683l8bkPr+3tzmZR9I=";
 
   ldflags = ["-s" "-w"];
 
