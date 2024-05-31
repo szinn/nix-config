@@ -7,7 +7,7 @@
 buildGo122Module rec {
   pname = "talosctl";
   # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-  version = "1.7.3";
+  version = "1.7.4";
 
   src = fetchFromGitHub {
     owner = "siderolabs";
