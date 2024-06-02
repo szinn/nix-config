@@ -89,8 +89,7 @@ in
         directories = [
           {
             directory = appFolder;
-            inherit user;
-            inherit group;
+            inherit user group;
             mode = "750";
           }
         ];
