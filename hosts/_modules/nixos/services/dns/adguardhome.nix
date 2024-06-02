@@ -6,7 +6,9 @@
 }: let
   cfg = config.modules.services.dns.adguardhome;
   settingsFormat = pkgs.formats.yaml {};
-  adguardUser = "adguardhome";
+  appFolder = "/var/lib/private/AdGuardHome";
+  user = "adguardhome";
+  group = "adguardhome";
 in
   with lib; {
     options.modules.services.dns.adguardhome = {
@@ -77,11 +79,22 @@ in
       };
 
       # add user, needed to access the secret
-      users.users.${adguardUser} = {
+      users.users.${user} = {
         isSystemUser = true;
-        group = adguardUser;
+        inherit group;
       };
-      users.groups.${adguardUser} = {};
+      users.groups.${group} = {};
+
+      environment.persistence."${config.modules.system.impermanence.persistPath}" = mkIf config.modules.system.impermanence.enable {
+        directories = [
+          {
+            directory = appFolder;
+            inherit user;
+            inherit group;
+            mode = "750";
+          }
+        ];
+      };
 
       # insert password before service starts
       # password in sops is unencrypted, so we bcrypt it
@@ -91,7 +104,7 @@ in
           HASH=$(cat ${cfg.passwordPath} | ${pkgs.apacheHttpd}/bin/htpasswd -niB "" | cut -c 2-)
           ${pkgs.gnused}/bin/sed -i "s,ADGUARDPASS,$HASH," "$STATE_DIRECTORY/AdGuardHome.yaml"
         '';
-        serviceConfig.User = adguardUser;
+        serviceConfig.User = user;
       };
     };
   }

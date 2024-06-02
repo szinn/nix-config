@@ -25,5 +25,10 @@ in
           backend = "podman";
         };
       };
+
+      systemd.services.podman = {
+        wants = ["network-online.target"];
+        after = ["network-online.target"];
+      };
     };
   }

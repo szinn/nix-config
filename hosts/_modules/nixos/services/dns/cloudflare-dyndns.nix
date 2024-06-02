@@ -20,8 +20,14 @@ in
 
     config = mkIf cfg.enable {
       services.cloudflare-dyndns = {
-        inherit (cfg) apiTokenFile domains;
         enable = true;
+
+        inherit (cfg) apiTokenFile domains;
+      };
+
+      systemd.services.cloudflare-dyndns = {
+        wants = ["multi-user.target"];
+        after = ["multi-user.target"];
       };
     };
   }
