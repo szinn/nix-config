@@ -18,6 +18,7 @@ with lib; let
       bierner.markdown-mermaid
       bmalehorn.vscode-fish
       davidanson.vscode-markdownlint
+      donjayamanne.githistory
       esbenp.prettier-vscode
       fcrespo82.markdown-table-formatter
       fnando.linter
