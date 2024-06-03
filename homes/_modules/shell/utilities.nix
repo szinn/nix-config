@@ -23,7 +23,7 @@ in {
           alejandra
           any-nix-shell
           bat
-          dig
+          doggo
           du-dust
           duf
           eza
@@ -63,6 +63,11 @@ in {
         direnv = {
           enable = true;
           nix-direnv.enable = true;
+        };
+        fish = {
+          shellAliases = {
+            dig = "doggo";
+          };
         };
         lazygit = {
           enable = true;
