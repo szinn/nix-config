@@ -357,17 +357,21 @@
 
     # See https://github.com/mathiasbynens/dotfiles/blob/master/.macos
     activationScripts.postUserActivation.text = ''
+        # echo "setting ui defaults..."
+
         mkdir -p /Users/scotte/Downloads/Screenshots
 
         # Never go into computer sleep mode
-        sudo /usr/sbin/systemsetup -setcomputersleep Off > /dev/null
+        sudo /usr/sbin/systemsetup -setcomputersleep Off 2> /dev/null 1>&2
 
         # Restart automatically if the computer freezes
-        sudo /usr/sbin/systemsetup -setrestartfreeze on
+        sudo /usr/sbin/systemsetup -setrestartfreeze on 2> /dev/null 1>&2
 
         ###############################################################################
         # General UI/UX                                                               #
         ###############################################################################
+        # echo "setting general ui/ux..."
+
         # Automatically quit printer app once the print jobs complete
         defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
@@ -377,6 +381,8 @@
       #   ###############################################################################
       #   # Screen                                                                      #
       #   ###############################################################################
+      #   echo "setting screen..."
+
       #   # Require password immediately after sleep or screen saver begins
       #   defaults write com.apple.screensaver askForPassword -int 1
       #   defaults write com.apple.screensaver askForPasswordDelay -int 0
@@ -387,6 +393,8 @@
         ###############################################################################
         # Finder                                                                      #
         ###############################################################################
+        # echo "setting finder..."
+
         # Finder: disable window animations and Get Info animations
         defaults write com.apple.finder DisableAllAnimations -bool true
         # Set HOME as the default location for new Finder windows
@@ -427,6 +435,8 @@
       #   ###############################################################################
       #   # Safari & WebKit                                                             #
       #   ###############################################################################
+      #   echo "setting safari/webkit..."
+
       #   # Privacy: don’t send search queries to Apple
       #   defaults write com.apple.Safari UniversalSearchEnabled -bool false
       #   defaults write com.apple.Safari SuppressSearchSuggestions -bool true
@@ -474,6 +484,8 @@
       #   ###############################################################################
       #   # Spotlight                                                                   #
       #   ###############################################################################
+      #   echo "setting spotlight..."
+
       #   # Disable Spotlight indexing for any volume that gets mounted and has not yet
       #   # been indexed before.
       #   # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
@@ -518,6 +530,8 @@
       #   ###############################################################################
       #   # Time Machine                                                                #
       #   ###############################################################################
+      #   echo "setting time machine..."
+
       #   # Prevent Time Machine from prompting to use new hard drives as backup volume
       #   defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
       #   # Disable local Time Machine backups
@@ -525,6 +539,8 @@
       #   ###############################################################################
       #   # Mac App Store                                                               #
       #   ###############################################################################
+      #   echo "setting mac app store..."
+
       #   # Enable the WebKit Developer Tools in the Mac App Store
       #   defaults write com.apple.appstore WebKitDeveloperExtras -bool true
       #   # Enable Debug Menu in the Mac App Store
@@ -553,6 +569,8 @@
       #   ###############################################################################
       #   # Don't check the use keychain for PGP
       #   defaults write org.gpgtools.common UseKeychain -bool false
+
+      # echo "ui defaults complete"
     '';
   };
 }
