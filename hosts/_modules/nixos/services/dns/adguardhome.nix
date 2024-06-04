@@ -90,7 +90,7 @@ in
           {
             directory = appFolder;
             inherit user group;
-            mode = "750";
+            mode = "700";
           }
         ];
       };
