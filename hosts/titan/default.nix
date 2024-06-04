@@ -137,10 +137,10 @@ in {
           config = builtins.readFile ./config/dnsdist.conf;
         };
 
-        # bind = {
-        #   enable = true;
-        #   config = import ./config/bind.nix {inherit config;};
-        # };
+        bind = {
+          enable = true;
+          config = import ./config/bind.nix {inherit config;};
+        };
 
         blocky = {
           enable = false;

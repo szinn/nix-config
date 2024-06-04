@@ -114,14 +114,17 @@ in {
 
     # upstream DNS
     upstream_dns = [
-      # "[/zinn.ca/]127.0.0.1:5391"
-      # "[/zinn.tech/]127.0.0.1:5391"
-      # "[/10.in-addr.arpa/]127.0.0.1:5391"
-      # "[/1.168.192.in-addr.arpa/]127.0.0.1:5391"
-      "[/zinn.ca/]10.0.0.1:53"
-      "[/zinn.tech/]10.0.0.1:53"
-      "[/10.in-addr.arpa/]10.0.0.1:53"
-      "[/1.168.192.in-addr.arpa/]10.0.0.1:53"
+      # Bind
+      "[/zinn.ca/]127.0.0.1:5391"
+      "[/zinn.tech/]127.0.0.1:5391"
+      "[/10.in-addr.arpa/]127.0.0.1:5391"
+      "[/1.168.192.in-addr.arpa/]127.0.0.1:5391"
+
+      # UniFi
+      # "[/zinn.ca/]10.0.0.1:53"
+      # "[/zinn.tech/]10.0.0.1:53"
+      # "[/10.in-addr.arpa/]10.0.0.1:53"
+      # "[/1.168.192.in-addr.arpa/]10.0.0.1:53"
 
       "https://dns.cloudflare.com/dns-query"
       "https://dns.quad9.net/dns-query"
