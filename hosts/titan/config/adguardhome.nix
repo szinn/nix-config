@@ -115,16 +115,16 @@ in {
     # upstream DNS
     upstream_dns = [
       # Bind
-      "[/zinn.ca/]127.0.0.1:5391"
-      "[/zinn.tech/]127.0.0.1:5391"
-      "[/10.in-addr.arpa/]127.0.0.1:5391"
-      "[/1.168.192.in-addr.arpa/]127.0.0.1:5391"
+      # "[/zinn.ca/]127.0.0.1:5391"
+      # "[/zinn.tech/]127.0.0.1:5391"
+      # "[/10.in-addr.arpa/]127.0.0.1:5391"
+      # "[/1.168.192.in-addr.arpa/]127.0.0.1:5391"
 
       # UniFi
-      # "[/zinn.ca/]10.0.0.1:53"
-      # "[/zinn.tech/]10.0.0.1:53"
-      # "[/10.in-addr.arpa/]10.0.0.1:53"
-      # "[/1.168.192.in-addr.arpa/]10.0.0.1:53"
+      "[/zinn.ca/]10.0.0.1:53"
+      "[/zinn.tech/]10.0.0.1:53"
+      "[/10.in-addr.arpa/]10.0.0.1:53"
+      "[/1.168.192.in-addr.arpa/]10.0.0.1:53"
 
       "https://dns.cloudflare.com/dns-query"
       "https://dns.quad9.net/dns-query"
@@ -144,7 +144,8 @@ in {
 
     # local cache settings
     cache_size = 100000000; # 100MB - unnessecary but hey
-    cache_ttl_min = 60;
+    cache_ttl_min = 30;
+    cache_ttl_max = 60;
     cache_optimistic = true;
 
     # rate limiting
