@@ -1045,11 +1045,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1717301018,
-        "narHash": "sha256-G4LO182Z1BP64aNiavS2cstdHZQlpq8BQjHkXstxhm8=",
+        "lastModified": 1717498640,
+        "narHash": "sha256-2TpEPWjMGs/VO+wyNL/8X6FzunKV2ORRTPtsd/YBaQE=",
         "owner": "budimanjojo",
         "repo": "talhelper",
-        "rev": "bf948023af1a79b13fc03ad2ccdae56765b2be03",
+        "rev": "05fe63460129a04f14e6e54a0906d01555a1d9e9",
         "type": "github"
       },
       "original": {
