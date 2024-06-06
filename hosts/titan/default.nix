@@ -138,7 +138,7 @@ in {
         };
 
         bind = {
-          enable = true;
+          enable = false;
           config = import ./config/bind.nix {inherit config;};
         };
 
