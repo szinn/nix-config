@@ -11,6 +11,8 @@ in {
   config = mkIf cfg.enable {
     programs.starship = {
       enable = true;
+      enableTransience = true;
+
       settings = {
         add_newline = false;
         command_timeout = 1000;
@@ -110,6 +112,12 @@ in {
           when = "env | grep -E '^DIRENV_FILE='";
         };
       };
+    };
+
+    programs.fish = {
+      functions.starship_transient_prompt_func.body = ''
+        starship module character
+      '';
     };
   };
 }
