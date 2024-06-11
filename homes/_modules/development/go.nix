@@ -12,6 +12,13 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      golangci-lint
+      protobuf
+      protoc-gen-go
+      protoc-gen-go-grpc
+    ];
+
     programs.go = {
       enable = true;
       goPath = "go";
