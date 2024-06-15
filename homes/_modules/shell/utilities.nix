@@ -35,7 +35,6 @@ in {
           nodePackages.prettier
           nvd
           pre-commit
-          protobuf
           python3
           qrencode
           redis
