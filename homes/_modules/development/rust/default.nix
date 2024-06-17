@@ -15,14 +15,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs;
-      [
-        cargo-machete
-        git-cliff
-        sccache
-        sea-orm-cli
-      ]
-      ++ [rustc];
+    home.packages = with pkgs; [
+      cargo-machete
+      git-cliff
+      sccache
+      rustc
+    ];
 
     home.file.".cargo/config.toml".source = ./cargo.toml;
   };
