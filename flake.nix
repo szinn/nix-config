@@ -71,6 +71,12 @@
       url = "github:oxalica/rust-overlay";
     };
 
+    # Rust via Fenix
+    # fenix = {
+    #   url = "github:nix-community/fenix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     # Hyprland
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";

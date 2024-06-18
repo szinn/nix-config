@@ -2,6 +2,8 @@
   config,
   pkgs,
   lib,
+  # inputs,
+  # system,
   ...
 }:
 with lib; let
@@ -9,6 +11,7 @@ with lib; let
   rustc = pkgs.rust-bin.stable.latest.default.override {
     extensions = ["rust-src"];
   };
+  # f = inputs.fenix.packages.${system};
 in {
   options.modules.development.rust = {
     enable = mkEnableOption "rust";
@@ -19,6 +22,7 @@ in {
       cargo-machete
       git-cliff
       sccache
+      # f.complete.toolchain
       rustc
     ];
 
