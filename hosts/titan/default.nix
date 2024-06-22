@@ -17,10 +17,6 @@ in {
     hostId = "10000007";
     useDHCP = lib.mkDefault false;
     firewall.enable = false;
-
-    interfaces = {
-      enp1s0.useDHCP = true;
-    };
   };
 
   services.resolved.enable = false;
@@ -29,14 +25,28 @@ in {
     network = {
       enable = true;
       networks = {
+        "00-vlan" = {
+          matchConfig.Name = "enp1s0";
+          networkConfig = {
+            DHCP = "yes";
+          };
+          linkConfig = {
+            RequiredForOnline = "routable";
+          };
+        };
         "11-vlan" = {
           matchConfig.Name = "enp2s0";
-          DHCP = "no";
           networkConfig = {
+            DHCP = "no";
             IPv4ProxyARP = true;
           };
           address = [
             "10.11.0.15/16"
+          ];
+          routes = [
+            {
+              routeConfig.Gateway = "10.11.0.1";
+            }
           ];
           linkConfig = {
             RequiredForOnline = "routable";
@@ -46,10 +56,16 @@ in {
           matchConfig.Name = "enp3s0";
           DHCP = "no";
           networkConfig = {
+            DHCP = "no";
             IPv4ProxyARP = true;
           };
           address = [
             "10.12.0.15/16"
+          ];
+          routes = [
+            {
+              routeConfig.Gateway = "10.12.0.1";
+            }
           ];
           linkConfig = {
             RequiredForOnline = "routable";

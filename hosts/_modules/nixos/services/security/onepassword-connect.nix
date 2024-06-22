@@ -51,5 +51,25 @@ in
           ];
         };
       };
+      systemd.services = {
+        podman-onepassword-connect-api = {
+          wants = ["multi-user.target"];
+          after = ["multi-user.target"];
+          serviceConfig = {
+            RestartSec = 5;
+            RestartSteps = 5;
+            RestartMaxDelaySec = 30;
+          };
+        };
+        podman-onepassword-connect-sync = {
+          wants = ["multi-user.target"];
+          after = ["multi-user.target"];
+          serviceConfig = {
+            RestartSec = 5;
+            RestartSteps = 5;
+            RestartMaxDelaySec = 30;
+          };
+        };
+      };
     };
   }

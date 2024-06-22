@@ -28,6 +28,11 @@ in
       systemd.services.cloudflare-dyndns = {
         wants = ["multi-user.target"];
         after = ["multi-user.target"];
+        serviceConfig = {
+          RestartSec = 5;
+          RestartSteps = 5;
+          RestartMaxDelaySec = 30;
+        };
       };
     };
   }

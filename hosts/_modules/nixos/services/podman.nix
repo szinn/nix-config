@@ -27,8 +27,13 @@ in
       };
 
       systemd.services.podman = {
-        wants = ["network-online.target"];
-        after = ["network-online.target"];
+        wants = ["multi-user.target"];
+        after = ["multi-user.target"];
+        serviceConfig = {
+          RestartSec = 5;
+          RestartSteps = 5;
+          RestartMaxDelaySec = 30;
+        };
       };
     };
   }
