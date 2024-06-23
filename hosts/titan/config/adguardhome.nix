@@ -131,7 +131,10 @@ in {
     ];
 
     # resolving local addresses
-    local_ptr_upstreams = ["127.0.0.1:5391"];
+    local_ptr_upstreams = [
+      # "127.0.0.1:5391"
+      "10.0.0.1:53"
+    ];
     use_private_ptr_resolvers = true;
     edns_client_subnet = {
       custom_ip = "";
