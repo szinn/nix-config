@@ -29,6 +29,7 @@
         "adobe-creative-cloud"
         "alfred"
         "arq"
+        "autodesk-fusion"
         "bartender"
         "bettertouchtool"
         "caldigit-docking-utility"
