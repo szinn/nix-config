@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "description": ["1Password Connect"],
+      "groupName": "1Password Connect",
+      "matchPackagePatterns": ["docker.io/1password/connect"],
+      "matchDatasources": ["docker"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} Group"
+      },
+      "separateMinorPatch": true
+    }
+  ]
+}

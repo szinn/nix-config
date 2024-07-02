@@ -5,6 +5,10 @@
   ...
 }: let
   cfg = config.modules.services.security.onepassword-connect;
+  # renovate: datasource=docker depName=docker.io/1password/connect-api
+  api-version = "1.7.2";
+  # renovate: datasource=docker depName=docker.io/1password/connect-sync
+  sync-version = "1.7.2";
 in
   with lib; {
     options.modules.services.security.onepassword-connect = {
@@ -32,7 +36,7 @@ in
 
       virtualisation.oci-containers.containers = {
         onepassword-connect-api = {
-          image = "docker.io/1password/connect-api:1.7.2";
+          image = "docker.io/1password/connect-api:${api-version}";
           autoStart = true;
           ports = ["${builtins.toString cfg.port}:8080"];
           volumes = [
@@ -42,7 +46,7 @@ in
         };
 
         onepassword-connect-sync = {
-          image = "docker.io/1password/connect-sync:1.7.2";
+          image = "docker.io/1password/connect-sync:${sync-version}";
           autoStart = true;
           ports = ["${builtins.toString (cfg.port + 1)}:8080"];
           volumes = [
