@@ -8,7 +8,7 @@
   # renovate: datasource=docker depName=docker.io/1password/connect-api
   api-version = "1.7.2";
   # renovate: datasource=docker depName=docker.io/1password/connect-sync
-  sync-version = "1.7.2";
+  sync-version = "1.7.3";
 in
   with lib; {
     options.modules.services.security.onepassword-connect = {
