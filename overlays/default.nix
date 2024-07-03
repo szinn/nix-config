@@ -4,11 +4,11 @@ inputs: let
   overrides = final: prev: {
     go_1_22 =
       pickLatest (prev.go_1_22.overrideAttrs (old: {
-        version = "1.22.4";
+        version = "1.22.5";
         src = prev.fetchurl {
-          url = "https://go.dev/dl/go1.22.4.src.tar.gz";
+          url = "https://go.dev/dl/go1.22.5.src.tar.gz";
           # hash = prev.lib.fakeHash;
-          hash = "sha256-/tcgZ45yinyjC6jR3tHKr+J9FgKPqwIyuLqOIgCPt4Q=";
+          hash = "sha256-rJxyPyJJaa7mJLw0/TTJ4T8qIS11xxyAfeZEu0bhEvY=";
         };
       }))
       prev.go_1_22;
