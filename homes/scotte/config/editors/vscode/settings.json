@@ -229,12 +229,12 @@
     "editorCursor.background": "#ff930f",
     "editorCursor.foreground": "#ff930f"
   },
+  "workbench.colorTheme": "Dracula Pro (Van Helsing)",
   "workbench.layoutControl.enabled": false,
   "workbench.sideBar.location": "left",
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 6,
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Dracula Pro (Van Helsing)",
 
   "window.menuBarVisibility": "compact",
   "window.commandCenter": true,
