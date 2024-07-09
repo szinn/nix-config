@@ -45,7 +45,7 @@ in {
           ];
           routes = [
             {
-              routeConfig.Gateway = "10.11.0.1";
+              Gateway = "10.11.0.1";
             }
           ];
           linkConfig = {
@@ -64,7 +64,7 @@ in {
           ];
           routes = [
             {
-              routeConfig.Gateway = "10.12.0.1";
+              Gateway = "10.12.0.1";
             }
           ];
           linkConfig = {
