@@ -21,6 +21,7 @@ with lib; let
       donjayamanne.githistory
       esbenp.prettier-vscode
       fcrespo82.markdown-table-formatter
+      fill-labs.dependi
       fnando.linter
       foxundermoon.shell-format
       # github.vscode-github-actions
@@ -46,7 +47,6 @@ with lib; let
       pkief.material-icon-theme
       redhat.vscode-yaml
       rust-lang.rust-analyzer
-      serayuzgur.crates
       signageos.signageos-vscode-sops
       svelte.svelte-vscode
       tamasfe.even-better-toml
