@@ -277,11 +277,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721799448,
-        "narHash": "sha256-oh5XwyHB9ExuEW3Jcq7ABAHEYf9LShWn7vddamSYYPY=",
+        "lastModified": 1721804110,
+        "narHash": "sha256-i4jINRazBKPqlaS+qhlP+kV/UHEq3vs5itfpblqu4ZM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "465ea1f994a4e2b498b847c35caa205af7b261df",
+        "rev": "af70fc502a15d7e1e4c5a4c4fc8e06c2ec561e0c",
         "type": "github"
       },
       "original": {
@@ -375,11 +375,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1721774535,
-        "narHash": "sha256-wdoC7Mahvl8230NY7m3aDIQRe3+7kZBbyKDt8g7h91g=",
+        "lastModified": 1721812048,
+        "narHash": "sha256-a2PGpaw4gYI6VjKLcY7Zyl/pbFWCTN4hBowZ3sc1giM=",
         "ref": "refs/heads/main",
-        "rev": "e2efecc24e6534f46352cab13975778e3f0b5735",
-        "revCount": 4968,
+        "rev": "99088eaed806d9268967baf09bc09cdb987c5357",
+        "revCount": 4970,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -925,11 +925,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1721772245,
-        "narHash": "sha256-//9p3Qm8gLbPUTsSGN2EMYkDwE5Sqq9B9P2X/z2+npw=",
+        "lastModified": 1721812551,
+        "narHash": "sha256-XRvi70E7/87VhZzHQSHBbtbAQQizf1hgRdVZkV1X+8c=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "ab67ee7e8b33e788fc53d26dc6f423f9358e3e66",
+        "rev": "638729936455e26dcd2a13e25b96ac79891bc9af",
         "type": "github"
       },
       "original": {
@@ -965,11 +965,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1721701191,
-        "narHash": "sha256-nM4szL90VeZHZEC5rFfaiiPNTVOmsihdtk2QSP1l37I=",
+        "lastModified": 1721810656,
+        "narHash": "sha256-33UCMmgPL+sz06+iupNkl99hcBABP56ENcxSoKqr0TY=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "4674ff2c2e5423a0cebe16e61aa874c359306af4",
+        "rev": "a6afdaab4a47d6ecf647a74968e92a51c4a18e5a",
         "type": "github"
       },
       "original": {
