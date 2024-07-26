@@ -103,6 +103,7 @@ in {
       home.packages = with pkgs; [
         inputs.nh.packages.${system}.default
       ];
+      programs.atuin.settings.daemon.enabled = "true";
       systemd.user.services.atuind = {
         Install = {
           WantedBy = ["default.target"];
