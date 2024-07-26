@@ -27,10 +27,6 @@ inputs: let
     #     };
     #   }))
     #   prev.lua-language-server;
-
-    atuin = prev.atuin.overrideAttrs (_old: {
-      patches = [./patches/0001-make-atuin-on-zfs-fast-again.patch];
-    });
   };
 
   additions = final: _prev:
