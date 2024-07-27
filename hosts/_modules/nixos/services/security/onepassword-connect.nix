@@ -6,9 +6,9 @@
 }: let
   cfg = config.modules.services.security.onepassword-connect;
   # renovate: depName=docker.io/1password/connect-api datasource=docker
-  api-version = "1.7.2";
+  api-version = "1.7.3";
   # renovate: depName=docker.io/1password/connect-sync datasource=docker
-  sync-version = "1.7.2";
+  sync-version = "1.7.3";
 in
   with lib; {
     options.modules.services.security.onepassword-connect = {
