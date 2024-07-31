@@ -11,8 +11,11 @@
       keymaps.toggle = "<leader>,";
     };
 
-    which-key.registrations = {
-      "<leader>," = "Toggle float terminal";
-    };
+    which-key.settings.spec = [
+      {
+        __unkeyed-1 = "<leader>,";
+        desc = "Toggle float terminal";
+      }
+    ];
   };
 }

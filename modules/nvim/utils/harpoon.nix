@@ -17,8 +17,11 @@
       };
     };
 
-    which-key.registrations = {
-      "<leader>a" = "Harpoon Add";
-    };
+    which-key.settings.spec = [
+      {
+        __unkeyed-1 = "<leader>a";
+        desc = "Harpoon Add";
+      }
+    ];
   };
 }
