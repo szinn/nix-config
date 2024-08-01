@@ -37,6 +37,7 @@
         "devonthink"
         "discord"
         "font-sf-mono-nerd-font"
+        "gitbutler"
         "google-chrome"
         "google-drive"
         "hazel"
