@@ -1,11 +1,13 @@
 {
   plugins.which-key = {
     enable = true;
-    ignoreMissing = false;
-    icons = {
-      breadcrumb = "»";
-      group = "+";
-      separator = ""; # ➜
+    settings = {
+      ignoreMissing = false;
+      icons = {
+        breadcrumb = "»";
+        group = "+";
+        separator = ""; # ➜
+      };
     };
   };
 
