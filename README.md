@@ -52,4 +52,4 @@ git add . ; home-manager switch --flake.#$(whoami)@(hostname -s)
 
 ## Bootstrapping NixOS Machines
 
-The process for bootstrapping a NixOS machine is essentially following the [VM process](vm-playgrounds.md#nixos)
+The process for bootstrapping a NixOS machine is essentially following the [VM process](https://szinn.github.io/nix-config/vm-playgrounds.html#nixos)
