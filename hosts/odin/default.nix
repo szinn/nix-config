@@ -43,7 +43,7 @@
         "iina"
         "jetbrains-toolbox"
         "lens"
-        "logi-options-plus"
+        "logi-options+"
         "navigraph-charts"
         "navigraph-simlink"
         "obsidian"
