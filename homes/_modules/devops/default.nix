@@ -29,7 +29,6 @@ in {
       kustomize_4
       minio-client
       opentofu
-      pulumi-bin
       talhelper
       talosctl
       terraform
