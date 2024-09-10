@@ -276,11 +276,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1725863249,
-        "narHash": "sha256-v5wzHOorcvLPkQDFEuvQG0q/TVIW948NMJxwMUK73WQ=",
+        "lastModified": 1725948275,
+        "narHash": "sha256-4QOPemDQ9VRLQaAdWuvdDBhh+lEUOAnSMHhdr4nS1mk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "77c94148285563113246eaf9f8df5488e00c81d0",
+        "rev": "e5fa72bad0c6f533e8d558182529ee2acc9454fe",
         "type": "github"
       },
       "original": {
@@ -374,11 +374,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1725829447,
-        "narHash": "sha256-Q1GqTtcLcw26bsF8pWW7Ah/V3/c8F3wDuyVykUBxmL0=",
+        "lastModified": 1725913740,
+        "narHash": "sha256-Fa3hcydGj16itZx7Q8zWfRUz6WZus+ZBXYHj8qAYIuM=",
         "ref": "refs/heads/main",
-        "rev": "7c4c402bd7f24241c096d809cc80408a469f15cb",
-        "revCount": 5200,
+        "rev": "8237d7e1a4994f70636b2e91584775308f24a584",
+        "revCount": 5206,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -757,11 +757,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1725846341,
-        "narHash": "sha256-9dM10K+/UjUced7QMIypJYO+9Ak7W4oQla0bxlHUkXw=",
+        "lastModified": 1725932651,
+        "narHash": "sha256-TQXR4UbFegmFqOTmD1zvhlsKecZUcRmI+lKFh4yM+8M=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "cbede7bd47cea4f713d44f360fe2516f2dd733e2",
+        "rev": "fd9e191cbc65896105d9eb0647a6023b631a12e4",
         "type": "github"
       },
       "original": {
@@ -772,11 +772,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1725716377,
-        "narHash": "sha256-7NzW9O/cAw7iWzRfh7Oo/SuSudL4a1YTKS6yoh3tMck=",
+        "lastModified": 1725885300,
+        "narHash": "sha256-5RLEnou1/GJQl+Wd+Bxaj7QY7FFQ9wjnFq1VNEaxTmc=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "04a1cda0c1725094a4db703cccbb956b7558f5a6",
+        "rev": "166dee4f88a7e3ba1b7a243edb1aca822f00680e",
         "type": "github"
       },
       "original": {
@@ -925,11 +925,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1725841817,
-        "narHash": "sha256-7OE2bJDI7ZT+y3YYySDgIqep/dBhTT+G4Fmwh5hMg8s=",
+        "lastModified": 1725921389,
+        "narHash": "sha256-RBpN0ToD8O3qniBjqUiB1d2/LQJt5kH5P3Gt6dF91L0=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "68aeb57a3500c609852157ba4283137da7a2bac7",
+        "rev": "facf6b2d0c9e22d858956d1d458eac6baf155a08",
         "type": "github"
       },
       "original": {
@@ -987,11 +987,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1725848835,
-        "narHash": "sha256-u4lCr+tOEWhsFiww5G04U5jUNzaQJi0/ZMIDGiLeT14=",
+        "lastModified": 1725935143,
+        "narHash": "sha256-mVtTVQMlXkydSXVwFClE0ckxHrOQ9nb2DrCjNwW5pUE=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "2ef910a6276a2f34513d18f2f826a8dea72c3b3f",
+        "rev": "c3c175c74cd0e8c2c40a0e22bc6e3005c4d28d64",
         "type": "github"
       },
       "original": {
@@ -1008,11 +1008,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1725765163,
-        "narHash": "sha256-rfd2c47iVSFI6bRYy5l8wRijRBaYDeU7dM8XCDUGqlA=",
+        "lastModified": 1725922448,
+        "narHash": "sha256-ruvh8tlEflRPifs5tlpa0gkttzq4UtgXkJQS7FusgFE=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "b68757cd2c3fa66d6ccaa0d046ce42a9324e0070",
+        "rev": "cede1a08039178ac12957733e97ab1006c6b6892",
         "type": "github"
       },
       "original": {
@@ -1117,11 +1117,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1725681270,
-        "narHash": "sha256-iZ5uJrv3hxA4zJ42UuVllRUlU4EDWrq2eVXWGbPLx4k=",
+        "lastModified": 1725948566,
+        "narHash": "sha256-J1R+TJ4C/YIk0/h/wZcJ+lXrY4yf9WeKRMyhPIOjJ5k=",
         "owner": "budimanjojo",
         "repo": "talhelper",
-        "rev": "cd712e93be9fde11a75e1aa847425d6ddcffc7c9",
+        "rev": "38c65aba6915f3b62326751c71b75e4ecd20807b",
         "type": "github"
       },
       "original": {
