@@ -38,10 +38,10 @@
     fsType = "zfs";
   };
 
-  fileSystems."/persist" = {
-    device = "rpool/safe/persist";
-    fsType = "zfs";
-  };
+  # fileSystems."/persist" = {
+  #   device = "rpool/safe/persist";
+  #   fsType = "zfs";
+  # };
 
   swapDevices = [
     {device = "/dev/disk/by-label/SWAP";}

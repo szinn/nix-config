@@ -16,7 +16,7 @@ passwd
 From the workstation, configure the host with
 
 ```sh
-task configure-host ip=10.10.0.8 host=hera
+task host-configure ip=10.10.0.8 host=hera
 ```
 
 Update `.sops.yaml` with the displayed sops-age key and then `task sops:re-encrypt`

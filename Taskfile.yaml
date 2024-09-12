@@ -92,7 +92,7 @@ tasks:
     cmd: ./scripts/finalize-install
 
   get-hera-config:
-    desc: Fetch titan configuration
+    desc: Fetch hera configuration
     cmds:
       - scp hosts/hera/configuration.nix root@hera.zinn.tech:/mnt/etc/nixos/configuration.nix
       - scp root@hera.zinn.tech:/mnt/etc/nixos/hardware-configuration.nix hosts/hera/hardware-configuration.nix

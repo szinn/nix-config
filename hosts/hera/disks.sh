@@ -15,6 +15,8 @@ export ZFS_SAFE="${ZFS_POOL}/safe"
 export ZFS_DS_HOME="${ZFS_SAFE}/home"
 export ZFS_DS_PERSIST="${ZFS_SAFE}/persist"
 
+export IMPERMANENCE="no"
+
 ################################################################################
 
 export COLOR_RESET="\033[0m"
@@ -66,7 +68,7 @@ if [[ "${EUID}" -gt 0 ]]; then
     exit 1
 fi
 
-prompt_danger "This will destroy all partitions and data on the root disk ${DISK_PATH} irrevoably."
+prompt_danger "This will destroy all partitions and data on the root disk ${DISK_PATH} irrevocably."
 
 info "Running the UEFI (GPT) partitioning for the root disk"
 
@@ -140,17 +142,23 @@ mount -t zfs "${ZFS_DS_HOME}" /mnt/home
 info "Creating ${ZFS_DS_PERSIST} ZFS dataset..."
 zfs create -p -o mountpoint=legacy "${ZFS_DS_PERSIST}"
 
-info "Mounting ${ZFS_DS_PERSIST} to /mnt/persist..."
-mkdir -p /mnt/persist
-mount -t zfs "${ZFS_DS_PERSIST}" /mnt/persist
+if [[ "${IMPERMANENCE}" = "yes" ]]; then
+    info "Mounting ${ZFS_DS_PERSIST} to /mnt/persist..."
+    mkdir -p /mnt/persist
+    mount -t zfs "${ZFS_DS_PERSIST}" /mnt/persist
 
-info "Creating required directories in ${ZFS_DS_PERSIST}..."
-mkdir -p /mnt/persist/etc/NetworkManager/system-connections
-mkdir -p /mnt/persist/var/lib/bluetooth
+    info "Creating required directories in ${ZFS_DS_PERSIST}..."
+    mkdir -p /mnt/persist/etc/NetworkManager/system-connections
+    mkdir -p /mnt/persist/var/lib/bluetooth
+
+    export SSH_BASE="/mnt/persist/etc/ssh"
+else
+    export SSH_BASE="/etc/ssh"
+fi
 
 info "Creating ssh keys..."
-mkdir -p /mnt/persist/etc/ssh
-ssh-keygen -b 4096 -t rsa -N "" -f /mnt/persist/etc/ssh/ssh_host_rsa_key
-ssh-keygen -t ed25519 -N "" -f /mnt/persist/etc/ssh/ssh_host_ed25519_key
-nix-shell -p ssh-to-age --run "ssh-to-age < /mnt/persist/etc/ssh/ssh_host_ed25519_key.pub"
+mkdir -p "${SSH_BASE}"
+ssh-keygen -b 4096 -t rsa -N "" -f "${SSH_BASE}/ssh_host_rsa_key"
+ssh-keygen -t ed25519 -N "" -f "${SSH_BASE}/ssh_host_ed25519_key"
+nix-shell -p ssh-to-age --run "ssh-to-age < ${SSH_BASE}/ssh_host_ed25519_key.pub"
 info "Save age key to .sops.yaml"
