@@ -139,10 +139,10 @@ info "Mounting ${ZFS_DS_HOME} to /mnt/home..."
 mkdir -p /mnt/home
 mount -t zfs "${ZFS_DS_HOME}" /mnt/home
 
-info "Creating ${ZFS_DS_PERSIST} ZFS dataset..."
-zfs create -p -o mountpoint=legacy "${ZFS_DS_PERSIST}"
-
 if [[ "${IMPERMANENCE}" = "yes" ]]; then
+    info "Creating ${ZFS_DS_PERSIST} ZFS dataset..."
+    zfs create -p -o mountpoint=legacy "${ZFS_DS_PERSIST}"
+
     info "Mounting ${ZFS_DS_PERSIST} to /mnt/persist..."
     mkdir -p /mnt/persist
     mount -t zfs "${ZFS_DS_PERSIST}" /mnt/persist
@@ -158,7 +158,9 @@ fi
 
 info "Creating ssh keys..."
 mkdir -p "${SSH_BASE}"
-ssh-keygen -b 4096 -t rsa -N "" -f "${SSH_BASE}/ssh_host_rsa_key"
-ssh-keygen -t ed25519 -N "" -f "${SSH_BASE}/ssh_host_ed25519_key"
+if [[ "${IMPERMANENCE}" = "yes" ]]; then
+    ssh-keygen -b 4096 -t rsa -N "" -f "${SSH_BASE}/ssh_host_rsa_key"
+    ssh-keygen -t ed25519 -N "" -f "${SSH_BASE}/ssh_host_ed25519_key"
+fi
 nix-shell -p ssh-to-age --run "ssh-to-age < ${SSH_BASE}/ssh_host_ed25519_key.pub"
 info "Save age key to .sops.yaml"

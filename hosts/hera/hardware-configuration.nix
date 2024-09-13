@@ -38,6 +38,7 @@
     fsType = "zfs";
   };
 
+  # Required to enable impermanence
   # fileSystems."/persist" = {
   #   device = "rpool/safe/persist";
   #   fsType = "zfs";

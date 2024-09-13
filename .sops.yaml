@@ -4,7 +4,7 @@ keys:
   - &hera age1edungwt89xu4rnxac75rz94uach5ll09e20pulepnauxg2jlnf9s6xmgu6
   - &nixvm age1n535v3x2yt26j6vfg4n8sxlrf5thm6rnqqcy3aew09cm2m5gmukqyjj0n0
   - &ragnar age159dryl0uvkx3pjr0n36lf3cx0wqx96a4dpjgxmezpc8tlzppas0sdazq5h
-  - &titan age1ygngxp36ztfy6elgnukf9cwk9vprdsxu2ht2xer9h6s87adssepquy25x5
+  - &titan age1pmlxqpau22yhfqga77ctpugmf4uagpedz6x8jspdmeam6h46dp7s4ts23q
 
 creation_rules:
   - path_regex: .*\.sops\.yaml$
