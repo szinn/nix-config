@@ -71,6 +71,12 @@
       url = "github:oxalica/rust-overlay";
     };
 
+    # Krewfile
+    krewfile = {
+      url = "github:brumhard/krewfile";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Rust via Fenix
     # fenix = {
     #   url = "github:nix-community/fenix";

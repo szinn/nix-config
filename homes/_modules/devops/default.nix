@@ -22,7 +22,6 @@ in {
       cilium-cli
       cloudflared
       hubble
-      krew
       kubectl
       kubectl-cnpg
       kubernetes-helm
@@ -34,15 +33,26 @@ in {
       terraform
     ];
 
-    programs.fish = {
-      shellAliases = {
-        k = "kubectl";
-        tf = "terraform";
+    programs = {
+      krewfile = {
+        enable = true;
+        krewPackage = pkgs.krew;
+        plugins = [
+          "browse-pvc"
+          "rook-ceph"
+        ];
       };
-      functions = {
-        kcon = {
-          description = "Switch active talos/kubctl environments";
-          body = builtins.readFile ./_functions/kcon.fish;
+
+      fish = {
+        shellAliases = {
+          k = "kubectl";
+          tf = "terraform";
+        };
+        functions = {
+          kcon = {
+            description = "Switch active talos/kubctl environments";
+            body = builtins.readFile ./_functions/kcon.fish;
+          };
         };
       };
     };

@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    inputs.krewfile.homeManagerModules.krewfile
     inputs.nix-index-database.hmModules.nix-index
     ./applications
     ./development
