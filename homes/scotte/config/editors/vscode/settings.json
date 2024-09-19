@@ -227,7 +227,10 @@
   "workbench.hover.delay": 1,
   "workbench.colorCustomizations": {
     "editorCursor.background": "#ff930f",
-    "editorCursor.foreground": "#ff930f"
+    "editorCursor.foreground": "#ff930f",
+    "input.background": "#22212C",
+    "editorWidget.background": "#151320",
+    "quickInputList.focusBackground": "#454158"
   },
   "workbench.colorTheme": "Dracula Pro (Van Helsing)",
   "workbench.layoutControl.enabled": false,
