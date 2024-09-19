@@ -43,7 +43,6 @@ with lib; let
       ms-vscode-remote.remote-ssh
       ms-vscode-remote.remote-ssh-edit
       ms-vscode.remote-explorer
-      oderwat.indent-rainbow
       pkief.material-icon-theme
       redhat.vscode-yaml
       rust-lang.rust-analyzer
