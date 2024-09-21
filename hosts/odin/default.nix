@@ -28,6 +28,7 @@
         "adobe-acrobat-reader"
         "adobe-creative-cloud"
         "alfred"
+        "arc"
         "arq"
         "autodesk-fusion"
         "bartender"
