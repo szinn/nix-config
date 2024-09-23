@@ -36,6 +36,7 @@
     ./ui/dressing-nvim.nix
     ./ui/noice.nix
     ./ui/nui.nix
+    ./ui/web-devicons.nix
 
     ./utils/better-escape.nix
     ./utils/comment.nix
