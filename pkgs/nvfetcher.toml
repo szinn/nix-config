@@ -1,3 +1,6 @@
 [talosctl]
 src.github = "siderolabs/talos"
 fetch.github = "siderolabs/talos"
+[tesla-auth]
+src.github = "adriankumpf/tesla_auth"
+fetch.github = "adriankumpf/tesla_auth"

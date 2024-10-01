@@ -1,50 +1,45 @@
 {
+  pkgs,
   lib,
-  buildGo122Module,
-  fetchFromGitHub,
+  buildGo123Module,
   installShellFiles,
-}:
-buildGo122Module rec {
-  pname = "talosctl";
-  # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-  version = "1.8.0";
+}: let
+  sourceData = pkgs.callPackage ./_sources/generated.nix {};
+  packageData = sourceData.talosctl;
+in
+  buildGo123Module rec {
+    inherit (packageData) pname src;
+    version = lib.strings.removePrefix "v" packageData.version;
 
-  src = fetchFromGitHub {
-    owner = "siderolabs";
-    repo = "talos";
-    rev = "v${version}";
-    # nix-shell -p nix-prefetch-github --run "nix-prefetch-github siderolabs talos --rev v1.8.0"
-    hash = "sha256-Ezie6RQsigmJgdvnSVk6awuUu2kODSio9DNg4bow76M=";
-  };
+    # vendorHash = lib.fakeHash;
+    vendorHash = "sha256-9qkealjjdBO659fdWdgFii3ThPRwKpYasB03L3Bktqs=";
 
-  # vendorHash = lib.fakeHash;
-  vendorHash = "sha256-9qkealjjdBO659fdWdgFii3ThPRwKpYasB03L3Bktqs=";
+    ldflags = ["-s" "-w"];
 
-  ldflags = ["-s" "-w"];
-
-  # This is needed to deal with workspace issues during the build
-  overrideModAttrs = _: {
+    # This is needed to deal with workspace issues during the build
+    overrideModAttrs = _: {
+      GOWORK = "off";
+    };
     GOWORK = "off";
-  };
-  GOWORK = "off";
 
-  subPackages = ["cmd/talosctl"];
+    subPackages = ["cmd/talosctl"];
 
-  nativeBuildInputs = [installShellFiles];
+    nativeBuildInputs = [installShellFiles];
 
-  postInstall = ''
-    installShellCompletion --cmd talosctl \
-      --bash <($out/bin/talosctl completion bash) \
-      --fish <($out/bin/talosctl completion fish) \
-      --zsh <($out/bin/talosctl completion zsh)
-  '';
+    postInstall = ''
+      installShellCompletion --cmd talosctl \
+        --bash <($out/bin/talosctl completion bash) \
+        --fish <($out/bin/talosctl completion fish) \
+        --zsh <($out/bin/talosctl completion zsh)
+    '';
 
-  doCheck = false; # no tests
+    doCheck = false; # no tests
 
-  meta = with lib; {
-    description = "A CLI for out-of-band management of Kubernetes nodes created by Talos";
-    homepage = "https://www.talos.dev/";
-    license = licenses.mpl20;
-    maintainers = with maintainers; [flokli];
-  };
-}
+    meta = with lib; {
+      description = "A CLI for out-of-band management of Kubernetes nodes created by Talos";
+      homepage = "https://www.talos.dev/";
+      license = licenses.mpl20;
+      mainProgram = "talosctl";
+      maintainers = with maintainers; [flokli];
+    };
+  }
