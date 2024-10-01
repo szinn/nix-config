@@ -12,4 +12,15 @@
       sha256 = "sha256-Ezie6RQsigmJgdvnSVk6awuUu2kODSio9DNg4bow76M=";
     };
   };
+  tesla-auth = {
+    pname = "tesla-auth";
+    version = "v0.9.0";
+    src = fetchFromGitHub {
+      owner = "adriankumpf";
+      repo = "tesla_auth";
+      rev = "v0.9.0";
+      fetchSubmodules = false;
+      sha256 = "sha256-lvuX6KjYeE8JXuH/GSmHNV9flfp1r0vk33FO33ZhIak=";
+    };
+  };
 }

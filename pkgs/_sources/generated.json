@@ -18,5 +18,25 @@
             "type": "github"
         },
         "version": "v1.8.0"
+    },
+    "tesla-auth": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "tesla-auth",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "adriankumpf",
+            "repo": "tesla_auth",
+            "rev": "v0.9.0",
+            "sha256": "sha256-lvuX6KjYeE8JXuH/GSmHNV9flfp1r0vk33FO33ZhIak=",
+            "type": "github"
+        },
+        "version": "v0.9.0"
     }
 }
