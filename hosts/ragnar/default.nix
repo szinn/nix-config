@@ -1,12 +1,16 @@
 {
+  inputs,
   pkgs,
   config,
+  lib,
   ...
 }: let
   ifGroupsExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  impermanence = false;
 in {
   imports = [
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
   ];
 
   networking = {
@@ -40,9 +44,12 @@ in {
     gid = 1000;
   };
 
-  sops.secrets.scotte-password = {
-    sopsFile = ../../homes/scotte/hosts/ragnar/secrets.sops.yaml;
-    neededForUsers = true;
+  sops = {
+    secrets.scotte-password = {
+      sopsFile = ../../homes/scotte/hosts/ragnar/secrets.sops.yaml;
+      neededForUsers = true;
+    };
+    age.sshKeyPaths = lib.mkIf impermanence ["/persist/etc/ssh/ssh_host_ed25519_key"];
   };
 
   system.activationScripts.postActivation.text = ''
@@ -72,14 +79,6 @@ in {
     };
 
     services = {
-      # k3s = {
-      #   enable = true;
-      #   package = pkgs.k3s_1_29;
-      #   extraFlags = [
-      #     "--tls-san=nas.zinn.ca"
-      #   ];
-      # };
-
       minio = {
         enable = true;
         root-credentials = ./minio.sops.yaml;
