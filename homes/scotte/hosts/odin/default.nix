@@ -27,6 +27,7 @@
 
     development = {
       go.enable = true;
+      java.enable = true;
       mdbook.enable = true;
       postgres.enable = true;
       rust.enable = true;
