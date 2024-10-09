@@ -49,9 +49,9 @@
       servers = {
         bashls.enable = true;
         gopls.enable = true;
-        lua-ls.enable = true;
-        nil-ls.enable = true;
-        rust-analyzer = {
+        lua_ls.enable = true;
+        nil_ls.enable = true;
+        rust_analyzer = {
           enable = true;
           installCargo = true;
           installRustc = false;
