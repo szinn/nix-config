@@ -39,6 +39,8 @@ in {
           tags = [
             "user_admin"
           ];
+          use_global_settings = true;
+          filtering_enabled = true;
         }
         {
           name = "Sophie";
@@ -51,6 +53,8 @@ in {
           tags = [
             "user_regular"
           ];
+          use_global_settings = false;
+          filtering_enabled = false;
         }
         {
           name = "k8s-main";
@@ -65,6 +69,8 @@ in {
           tags = [
             "user_regular"
           ];
+          use_global_settings = true;
+          filtering_enabled = true;
         }
         {
           name = "k8s-staging";
@@ -79,14 +85,14 @@ in {
           tags = [
             "user_regular"
           ];
+          use_global_settings = true;
+          filtering_enabled = true;
         }
       ];
 
       buildClient = info: {
-        inherit (info) name ids tags;
+        inherit (info) name ids tags filtering_enabled use_global_settings;
 
-        use_global_settings = true;
-        filtering_enabled = true;
         safe_search.enabled = false;
         blocked_services.schedule.time_zone = "Local";
       };
