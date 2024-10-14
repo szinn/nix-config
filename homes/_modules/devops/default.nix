@@ -11,6 +11,7 @@ in {
     ./colima.nix
     ./fluxcd.nix
     ./k9s.nix
+    ./krewfile.nix
   ];
 
   options.modules.devops = {
@@ -34,15 +35,6 @@ in {
     ];
 
     programs = {
-      krewfile = {
-        enable = true;
-        krewPackage = pkgs.krew;
-        plugins = [
-          "browse-pvc"
-          "rook-ceph"
-        ];
-      };
-
       fish = {
         shellAliases = {
           k = "kubectl";
