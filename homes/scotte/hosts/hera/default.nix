@@ -17,7 +17,7 @@
       # vscode.server-enable = true;
     };
     shell = {
-      tmux.enable = true;
+      # tmux.enable = true;
       alacritty.enable = true;
       starship.enable = true;
     };
