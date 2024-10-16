@@ -27,10 +27,6 @@ inputs: let
     #     };
     #   }))
     #   prev.lua-language-server;
-
-    go-task = prev.go-task.overrideAttrs (old: {
-      patches = [];
-    });
   };
 
   additions = final: _prev:
