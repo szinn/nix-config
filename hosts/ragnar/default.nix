@@ -44,6 +44,8 @@ in {
     gid = 1000;
   };
 
+  nix.settings.trusted-users = ["scotte"];
+
   sops = {
     secrets.scotte-password = {
       sopsFile = ../../homes/scotte/hosts/ragnar/secrets.sops.yaml;
