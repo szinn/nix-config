@@ -48,6 +48,7 @@
         "navigraph-charts"
         "navigraph-simlink"
         "obsidian"
+        "orbstack"
         "parallels"
         "plex"
         "private-internet-access"
