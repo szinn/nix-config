@@ -35,11 +35,12 @@ with lib; let
       mhutchie.git-graph
       mikestead.dotenv
       mrmlnc.vscode-json5
+      ms-azuretools.vscode-docker
       ms-kubernetes-tools.vscode-kubernetes-tools
       ms-playwright.playwright
       ms-python.vscode-pylance
       ms-python.python
-      # ms-vscode-remote.remote-containers
+      ms-vscode-remote.remote-containers
       ms-vscode-remote.remote-ssh
       ms-vscode-remote.remote-ssh-edit
       ms-vscode.remote-explorer
