@@ -98,7 +98,7 @@ in {
         };
       };
 
-      home.packages = with pkgs; [delta fzf jujutsu];
+      home.packages = with pkgs; [delta fzf];
       home.file.".ssh/allowed_signers".text = cfg.allowedSigners;
     })
     (mkIf (cfg.enable && pkgs.stdenv.isDarwin) {
