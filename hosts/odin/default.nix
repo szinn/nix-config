@@ -21,7 +21,7 @@
         # "homebrew/services" # to use `brew services``
       ];
       brews = [
-        "postgresql@16"
+        "postgresql@17"
       ];
       casks = [
         "1password"

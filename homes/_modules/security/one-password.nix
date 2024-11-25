@@ -13,7 +13,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      _1password
+      _1password-cli
     ];
   };
 }
