@@ -32,6 +32,7 @@ in {
           gh
           go-task
           jq
+          minijinja
           nodePackages.prettier
           nvd
           pre-commit
