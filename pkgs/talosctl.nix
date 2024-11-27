@@ -5,6 +5,7 @@
   installShellFiles,
 }: let
   sourceData = pkgs.callPackage ./_sources/generated.nix {};
+  vendorHash = lib.importJSON ./_sources/vendorhash.json;
   packageData = sourceData.talosctl;
 in
   buildGo123Module rec {
@@ -12,7 +13,7 @@ in
     version = lib.strings.removePrefix "v" packageData.version;
 
     # vendorHash = lib.fakeHash;
-    vendorHash = "sha256-/Xt/WZ+5ptxsiUkm6mplilB9gqv3mz+j7tyNikzJtkA=";
+    vendorHash = vendorHash.talosctl;
 
     ldflags = ["-s" "-w"];
 
