@@ -1,6 +1,6 @@
 {
   inputs,
-  overlays,
+  mkPkgsWithSystem,
   ...
 }: let
   inherit (inputs.nixpkgs) lib;
@@ -8,13 +8,7 @@ in {
   mkNixosSystem = system: hostname: flake-packages:
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
-      pkgs = import inputs.nixpkgs {
-        inherit system overlays;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
-      };
+      pkgs = mkPkgsWithSystem system;
       modules = [
         {
           nixpkgs.hostPlatform = system;
@@ -49,13 +43,7 @@ in {
   mkDarwinSystem = system: hostname: flake-packages:
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
-      pkgs = import inputs.nixpkgs {
-        inherit system overlays;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
-      };
+      pkgs = mkPkgsWithSystem system;
       modules = [
         {
           nixpkgs.hostPlatform = system;

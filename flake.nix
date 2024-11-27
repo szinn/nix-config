@@ -110,8 +110,14 @@
     flake-parts,
     ...
   } @ inputs: let
-    overlays = import ./overlays inputs;
-    mkSystemLib = import ./lib/mkSystem.nix {inherit inputs overlays;};
+    mkPkgsWithSystem = system:
+      import inputs.nixpkgs {
+        inherit system;
+
+        overlays = import ./overlays inputs;
+        config.allowUnfree = true;
+      };
+    mkSystemLib = import ./lib/mkSystem.nix {inherit inputs mkPkgsWithSystem;};
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
@@ -119,6 +125,18 @@
         "aarch64-linux"
         "x86_64-linux"
       ];
+
+      perSystem = {
+        system,
+        inputs',
+        pkgs,
+        ...
+      }: {
+        # override pkgs used by everything in `perSystem` to have my overlays
+        _module.args.pkgs = mkPkgsWithSystem system;
+        # accessible via `nix build .#<name>`
+        packages = import ./pkgs {inherit pkgs inputs;};
+      };
 
       imports = [
         ./flake-modules
