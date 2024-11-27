@@ -120,6 +120,16 @@
         "x86_64-linux"
       ];
 
+      perSystem = {
+        system,
+        inputs',
+        pkgs,
+        ...
+      }: {
+        # accessible via `nix build .#<name>`
+        packages = import ./pkgs {inherit pkgs inputs;};
+      };
+
       imports = [
         ./flake-modules
       ];
