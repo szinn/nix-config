@@ -10,21 +10,23 @@ repos:
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.35.1
     hooks:
-      - args:
+      - id: yamllint
+        args:
           - --config-file
           - .github/lint/.yamllint.yaml
-        id: yamllint
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
-        #- id: end-of-file-fixer
+      # - id: end-of-file-fixer
       - id: fix-byte-order-marker
       - id: mixed-line-ending
       - id: check-added-large-files
         args: [--maxkb=2048]
       - id: check-merge-conflict
       - id: check-executables-have-shebangs
+
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.5
     hooks:

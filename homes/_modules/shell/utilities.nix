@@ -44,6 +44,7 @@ in {
           sops
           unixtools.watch
           wget
+          yamllint
           yq-go
         ];
 
