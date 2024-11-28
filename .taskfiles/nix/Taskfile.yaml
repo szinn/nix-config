@@ -1,0 +1,56 @@
+---
+version: "3"
+
+tasks:
+  update:
+    desc: Update flake
+    cmd: nix flake update
+
+  gc:
+    desc: Garbage collect Nix
+    cmds:
+      - home-manager expire-generations "-3 days"
+      - nix-store --gc
+
+  host-configure:
+    desc: Configure a host
+    cmds:
+      - ssh-copy-id -f -i ~/.ssh/id_ed25519.pub root@{{.ip}}
+      - scp ./hosts/{{.host}}/disks.sh root@{{.ip}}:/root/disks.sh
+      - ssh root@{{.ip}} "/root/disks.sh"
+    requires:
+      vars:
+        - host
+        - ip
+
+  host-install:
+    desc: Install on the host
+    cmds:
+      - ssh root@{{.ip}} "mkdir -p /root/.config/nix"
+      - scp ./hosts/{{.host}}/nix.conf root@{{.ip}}:/root/.config/nix/nix.conf
+      - ssh root@{{.ip}} "nix-shell -p git --run 'nixos-install --impure --flake github:szinn/nix-config#{{.host}}'"
+    requires:
+      vars:
+        - host
+        - ip
+
+  finalize-install:
+    desc: Run final installation steps
+    cmd: ./scripts/finalize-install
+
+  deploy-nixos:
+    desc: Build and deploy nixos configuration using deploy-rs
+    silent: true
+    summary: |
+      Args:
+        host: Host to build and deploy to (required)
+    requires:
+      vars:
+        - host
+    cmds:
+      - deploy "{{.ROOT_DIR}}/#{{.host}}" --interactive --skip-checks
+    preconditions:
+      - sh: which nix
+        msg: "nix not found"
+      - sh: which deploy
+        msg: "deploy-rs not found"

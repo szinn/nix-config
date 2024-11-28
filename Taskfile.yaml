@@ -2,6 +2,12 @@
 version: "3"
 
 includes:
+  nix:
+    taskfile: ".taskfiles/nix"
+    dir: "{{.ROOT_DIR}}"
+  pc:
+    taskfile: ".taskfiles/pre-commit"
+    dir: "{{.ROOT_DIR}}"
   sops:
     taskfile: ".taskfiles/sops"
     dir: .taskfiles/sops
@@ -16,12 +22,8 @@ tasks:
     desc: Bootstrap installation
     cmds:
       - task: fix-git
-      - task: pc-init
+      - task: pc:init
       - task: fetch-secrets
-
-  update:
-    desc: Update flake
-    cmd: nix flake update
 
   fix-git:
     desc: Set the git remote URL to be used via ssh
@@ -29,30 +31,9 @@ tasks:
     cmds:
       - git remote set-url origin git@github.com:szinn/nix-config.git
 
-  pc-init:
-    desc: Initialize pre-commit hooks
-    cmds:
-      - pre-commit install --install-hooks
-
-  pc-update:
-    desc: Update pre-commit dependencies
-    cmds:
-      - pre-commit autoupdate
-
-  pc-run:
-    desc: Run pre-commit
-    cmds:
-      - pre-commit run --all-files
-
   fetch-secrets:
     desc: Fetch secrets from 1P
     cmd: ./scripts/fetch-secrets
-
-  gc:
-    desc: Garbage collect Nix
-    cmds:
-      - home-manager expire-generations "-3 days"
-      - nix-store --gc
 
   lint:
     desc: Run statix lint
@@ -63,56 +44,4 @@ tasks:
     desc: Check project files
     cmds:
       - task: lint
-      - task: pc-run
-
-  host-configure:
-    desc: Configure a host
-    cmds:
-      - ssh-copy-id -f -i ~/.ssh/id_ed25519.pub root@{{.ip}}
-      - scp ./hosts/{{.host}}/disks.sh root@{{.ip}}:/root/disks.sh
-      - ssh root@{{.ip}} "/root/disks.sh"
-    requires:
-      vars:
-        - host
-        - ip
-
-  host-install:
-    desc: Install on the host
-    cmds:
-      - ssh root@{{.ip}} "mkdir -p /root/.config/nix"
-      - scp ./hosts/{{.host}}/nix.conf root@{{.ip}}:/root/.config/nix/nix.conf
-      - ssh root@{{.ip}} "nix-shell -p git --run 'nixos-install --impure --flake github:szinn/nix-config#{{.host}}'"
-    requires:
-      vars:
-        - host
-        - ip
-
-  finalize-install:
-    desc: Run final installation steps
-    cmd: ./scripts/finalize-install
-
-  get-hera-config:
-    desc: Fetch hera configuration
-    cmds:
-      - scp hosts/hera/configuration.nix root@hera.zinn.tech:/mnt/etc/nixos/configuration.nix
-      - scp root@hera.zinn.tech:/mnt/etc/nixos/hardware-configuration.nix hosts/hera/hardware-configuration.nix
-      - sops -d homes/scotte/hosts/hera/secrets.sops.yaml | sed 's/scotte-password:\ //' > /tmp/password_hash
-      - scp /tmp/password_hash root@hera.zinn.tech:/mnt/persist/etc/users/scotte
-      - rm /tmp/password_hash
-
-  deploy-nixos:
-    desc: Build and deploy nixos configuration using deploy-rs
-    silent: true
-    summary: |
-      Args:
-        host: Host to build and deploy to (required)
-    requires:
-      vars:
-        - host
-    cmds:
-      - deploy "{{.ROOT_DIR}}/#{{.host}}" --interactive --skip-checks
-    preconditions:
-      - sh: which nix
-        msg: "nix not found"
-      - sh: which deploy
-        msg: "deploy-rs not found"
+      - task: pc:run
