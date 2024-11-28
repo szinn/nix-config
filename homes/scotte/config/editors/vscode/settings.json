@@ -146,6 +146,19 @@
     "ui.semanticTokens": true
   },
 
+  "linter": {
+    "linters": {
+      "yamllint": {
+        "configFiles": [
+          ".yamllint.yml",
+          ".yamllint.yaml",
+          ".yamllint",
+          ".ci/yamllint/.yamllint.yaml"
+        ]
+      }
+    }
+  },
+
   "prettier": {
     "printWidth": 120
   },
