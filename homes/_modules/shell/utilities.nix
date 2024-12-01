@@ -98,7 +98,10 @@ in {
     }
     (mkIf pkgs.stdenv.isDarwin {
       home.packages = with pkgs; [
-        (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "DejaVuSansMono" "DroidSansMono"];})
+        nerd-fonts.fira-code
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.dejavu-sans-mono
+        nerd-fonts.droid-sans-mono
       ];
     })
     (mkIf pkgs.stdenv.isLinux {

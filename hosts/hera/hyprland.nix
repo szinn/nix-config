@@ -104,8 +104,7 @@ in {
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-
-      (nerdfonts.override {fonts = ["FiraCode"];})
+      nerd-fonts.fira-code
     ];
 
     fontconfig = {
