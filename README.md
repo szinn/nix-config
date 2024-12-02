@@ -44,11 +44,7 @@ Afterwards, if the configuration is touched, darwin-rebuild is required to run t
 git add . ; darwin-rebuild switch --flake .#$(hostname -s)
 ```
 
-If just the `home` tree is touched, then home-manager is sufficient to run the updates.
-
-```sh
-git add . ; home-manager switch --flake.#$(whoami)@(hostname -s)
-```
+I have MacOS aliases `dupb` (darwin update build) to do a build only and show what changes. `dup` (darwin update) does the build and an install.
 
 ## Bootstrapping NixOS Machines
 
