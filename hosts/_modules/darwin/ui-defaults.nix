@@ -125,7 +125,7 @@
         # Expose dock animation delay
         expose-animation-duration = 0.1;
         # Expose applications by group
-        expose-group-by-app = true;
+        expose-group-apps = true;
         # Launch animation
         launchanim = false;
         # Set the minimize/maximize window effect. The default is genie
