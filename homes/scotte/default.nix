@@ -47,6 +47,7 @@ with lib; let
       pkief.material-icon-theme
       redhat.vscode-yaml
       rust-lang.rust-analyzer
+      samuelcolvin.jinjahtml
       signageos.signageos-vscode-sops
       svelte.svelte-vscode
       tamasfe.even-better-toml
