@@ -2,13 +2,12 @@
   plugins = {
     floaterm = {
       enable = true;
-
-      width = 0.8;
-      height = 0.8;
-
-      title = "";
-
-      keymaps.toggle = "<leader>,";
+      settings = {
+        width = 0.8;
+        height = 0.8;
+        title = "";
+        keymap_toggle = "<leader>,";
+      };
     };
 
     which-key.settings.spec = [
