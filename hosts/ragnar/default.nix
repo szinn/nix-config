@@ -103,24 +103,24 @@ in {
     users = {
       groups = {
         homelab = {
-          gid = 568;
+          gid = 4000;
           members = ["scotte"];
         };
         media = {
-          gid = 569;
+          gid = 4001;
           members = ["scotte"];
         };
       };
       additionalUsers = {
         homelab = {
-          uid = 568;
+          uid = 4000;
           group = "homelab";
-          isNormalUser = false;
+          isSystemUser = true;
         };
         media = {
-          uid = 569;
+          uid = 4001;
           group = "media";
-          isNormalUser = false;
+          isSystemUser = true;
         };
       };
     };
