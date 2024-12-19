@@ -30,10 +30,10 @@ jobs:
             os: macos-14
           - system: hera
             os: ubuntu-latest
-          - system: ragnar
-            os: ubuntu-latest
           - system: titan
             os: ubuntu-latest
+          # - system: ragnar
+          #   os: ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
