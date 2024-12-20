@@ -185,11 +185,11 @@ in {
 
       security = {
         openssh.enable = true;
-        onepassword-connect = {
-          enable = true;
-          credentialsFile = config.sops.secrets.onepassword-credentials.path;
-          port = 8438;
-        };
+        # onepassword-connect = {
+        #   enable = true;
+        #   credentialsFile = config.sops.secrets.onepassword-credentials.path;
+        #   port = 8438;
+        # };
       };
     };
 
