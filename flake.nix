@@ -159,9 +159,9 @@
 
           darwinConfigurations = {
             # $ git add . ; darwin-rebuild --flake . switch
-            macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm" flake-packages;
+            # macvm = mkSystemLib.mkDarwinSystem "aarch64-darwin" "macvm" flake-packages;
             # $ git add . ; darwin-rebuild --flake . switch
-            odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" flake-packages;
+            # odin = mkSystemLib.mkDarwinSystem "aarch64-darwin" "odin" flake-packages;
           };
 
           # Convenience output that aggregates the outputs for home, nixos.

@@ -26,8 +26,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - system: odin
-            os: macos-14
+          # - system: odin
+          #   os: macos-14
           - system: hera
             os: ubuntu-latest
           - system: titan
