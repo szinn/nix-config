@@ -13,12 +13,10 @@
       substituters = [
         "https://szinn.cachix.org?priority=1"
         "https://nix-community.cachix.org?priority=2"
-        "https://hyprland.cachix.org?priority=3"
       ];
       trusted-public-keys = [
         "szinn.cachix.org-1:9gbZrHCd1BYMUuMCinvG2fTu98Jubp8y8tLE3jipABM="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
 
       # The default at 10 is rarely enough.

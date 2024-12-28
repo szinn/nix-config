@@ -83,22 +83,6 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    # Hyprland
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-    };
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-    };
-
     # Talhelper
     talhelper = {
       url = "github:budimanjojo/talhelper";

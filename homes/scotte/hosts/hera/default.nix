@@ -1,8 +1,4 @@
 {config, ...}: {
-  # imports = [
-  #   ./hyprland
-  # ];
-
   home = {
     username = "scotte";
     homeDirectory = "/home/scotte";
