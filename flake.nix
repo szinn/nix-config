@@ -23,10 +23,10 @@
     };
 
     # nix-darwin
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-darwin = {
+    #   url = "github:LnL7/nix-darwin";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # nix-index
     nix-index-database = {
@@ -55,10 +55,10 @@
     };
 
     # VSCode community extensions
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-vscode-extensions = {
+    #   url = "github:nix-community/nix-vscode-extensions";
+    #   # inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # nixvim configuration
     nixvim = {
