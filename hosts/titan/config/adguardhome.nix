@@ -166,6 +166,10 @@ in {
   filters = let
     urls = [
       {
+        name = "Local allowed list";
+        url = "https://raw.githubusercontent.com/szinn/nix-config/refs/heads/main/hosts/titan/config/local-whitelist-filter.txt";
+      }
+      {
         name = "Scotte's list";
         url = "https://github.com/szinn/k8s-homelab/releases/download/adguard/hosts-adguard.blacklist";
       }

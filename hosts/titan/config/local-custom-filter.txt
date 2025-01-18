@@ -1,28 +1,3 @@
-# All clients have these unblocked
-@@||t.co^
-@@||slackb.com^
-@@||keybr.com^
-@@||is1-ssl.mzstatic.com^
-@@||cc-api-data.adobe.io^
-@@||ups.analytics.yahoo.com^
-
 # Kubernetes should not be talking to Slack at all
 ||slack.com^$client='k8s-main'
 ||slack.com^$client='k8s-staging'
-
-# Sophie's whitelist
-@@||assets.adobedtm.com^$client=Sophie
-@@||elink.clickdimensions.com^$client=Sophie
-@@||www.googleadservices.com^$client=Sophie
-@@||fls-na.amazon.ca^$client=Sophie
-@@||r20.rs6.net^$client=Sophie
-@@||go.pardot.com^$client=Sophie
-@@||ssl.google-analytics.com^$client=Sophie
-@@||notify.bugsnag.com^$client=Sophie
-@@||click.emm.hermanmiller.com^$client=Sophie
-@@||ads.google.com^$client=Sophie
-@@||adwords.google.com^$client=Sophie
-@@||app-measurement.com^$client=Sophie
-@@||nexusrules.officeapps.live.com^$client=Sophie
-@@||clickserve.dartsearch.net^$client=Sophie
-@@||ad.doubleclick.net^$client=Sophie
