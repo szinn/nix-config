@@ -52,25 +52,25 @@ in {
             RequiredForOnline = "routable";
           };
         };
-        "12-vlan" = {
-          matchConfig.Name = "enp3s0";
-          DHCP = "no";
-          networkConfig = {
-            DHCP = "no";
-            IPv4ProxyARP = true;
-          };
-          address = [
-            "10.12.0.15/16"
-          ];
-          routes = [
-            {
-              Gateway = "10.12.0.1";
-            }
-          ];
-          linkConfig = {
-            RequiredForOnline = "routable";
-          };
-        };
+        # "12-vlan" = {
+        #   matchConfig.Name = "enp3s0";
+        #   DHCP = "no";
+        #   networkConfig = {
+        #     DHCP = "no";
+        #     IPv4ProxyARP = true;
+        #   };
+        #   address = [
+        #     "10.12.0.15/16"
+        #   ];
+        #   routes = [
+        #     {
+        #       Gateway = "10.12.0.1";
+        #     }
+        #   ];
+        #   linkConfig = {
+        #     RequiredForOnline = "routable";
+        #   };
+        # };
       };
     };
 
