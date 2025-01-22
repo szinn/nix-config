@@ -34,24 +34,24 @@ in {
             RequiredForOnline = "routable";
           };
         };
-        "11-vlan" = {
-          matchConfig.Name = "enp2s0";
-          networkConfig = {
-            DHCP = "no";
-            IPv4ProxyARP = true;
-          };
-          address = [
-            "10.11.0.15/16"
-          ];
-          routes = [
-            {
-              Gateway = "10.11.0.1";
-            }
-          ];
-          linkConfig = {
-            RequiredForOnline = "routable";
-          };
-        };
+        # "11-vlan" = {
+        #   matchConfig.Name = "enp2s0";
+        #   networkConfig = {
+        #     DHCP = "no";
+        #     IPv4ProxyARP = true;
+        #   };
+        #   address = [
+        #     "10.11.0.15/16"
+        #   ];
+        #   routes = [
+        #     {
+        #       Gateway = "10.11.0.1";
+        #     }
+        #   ];
+        #   linkConfig = {
+        #     RequiredForOnline = "routable";
+        #   };
+        # };
         # "12-vlan" = {
         #   matchConfig.Name = "enp3s0";
         #   DHCP = "no";
@@ -178,7 +178,7 @@ in {
 
       networking = {
         haproxy = {
-          enable = true;
+          enable = false;
           config = builtins.readFile ./config/haproxy.cfg;
         };
       };
