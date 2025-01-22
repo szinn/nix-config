@@ -133,15 +133,15 @@ in {
         };
       };
 
-      ntp.chrony = {
-        enable = true;
-        servers = [
-          "0.ca.pool.ntp.org"
-          "1.ca.pool.ntp.org"
-          "2.ca.pool.ntp.org"
-          "3.ca.pool.ntp.org"
-        ];
-      };
+      # ntp.chrony = {
+      #   enable = true;
+      #   servers = [
+      #     "0.ca.pool.ntp.org"
+      #     "1.ca.pool.ntp.org"
+      #     "2.ca.pool.ntp.org"
+      #     "3.ca.pool.ntp.org"
+      #   ];
+      # };
 
       dns = {
         cloudflare-dyndns = {
@@ -150,21 +150,21 @@ in {
           domains = ["zinn.tech" "vpn.zinn.tech"];
         };
 
-        dnsdist = {
-          enable = false;
-          config = builtins.readFile ./config/dnsdist.conf;
-        };
+        # dnsdist = {
+        #   enable = false;
+        #   config = builtins.readFile ./config/dnsdist.conf;
+        # };
 
-        bind = {
-          enable = false;
-          config = import ./config/bind.nix {inherit config;};
-        };
+        # bind = {
+        #   enable = false;
+        #   config = import ./config/bind.nix {inherit config;};
+        # };
 
-        blocky = {
-          enable = false;
-          package = pkgs.blocky;
-          config = import ./config/blocky.nix;
-        };
+        # blocky = {
+        #   enable = false;
+        #   package = pkgs.blocky;
+        #   config = import ./config/blocky.nix;
+        # };
 
         adguardhome = {
           enable = true;
@@ -176,12 +176,12 @@ in {
         };
       };
 
-      networking = {
-        haproxy = {
-          enable = false;
-          config = builtins.readFile ./config/haproxy.cfg;
-        };
-      };
+      # networking = {
+      #   haproxy = {
+      #     enable = false;
+      #     config = builtins.readFile ./config/haproxy.cfg;
+      #   };
+      # };
 
       security = {
         openssh.enable = true;
