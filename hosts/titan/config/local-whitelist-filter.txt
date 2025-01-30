@@ -6,6 +6,7 @@
 @@||cc-api-data.adobe.io^$important
 @@||ups.analytics.yahoo.com^$important
 @@||secu100.net^$important
+@@||update.ixsystems.com^$important
 
 # Sophie's whitelist
 @@||assets.adobedtm.com^$important,client=Sophie
