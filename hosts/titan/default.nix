@@ -84,6 +84,10 @@ in {
     };
   };
 
+  users.users.root = {
+    openssh.authorizedKeys.keys = [(builtins.readFile ../../homes/scotte/config/ssh/ssh.pub)];
+  };
+
   users.users.scotte = {
     uid = 1000;
     name = "scotte";
