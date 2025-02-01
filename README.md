@@ -1,18 +1,21 @@
 # nix-config - My Nix Configuration
 
+This is not actively used for all my machines. I've moved back to Chezmoi as a dotfile manager.
+
 See the full documentation at [szinn.github.io/nix-config](https://szinn.github.io/nix-config).
 
 I manage my personal machines using Nix and Home-Manager.
 
 The machines consist of:
 
-| Machine | System         | Purpose |
-| ------- | -------------- | ------- |
-| hera    | x86_64-linux   | Intel NUC for running NixOS bare metal |
-| macvm   | aarch64-darwin | Nix-Darwin VM running in Parallels on MacBook |
-| nixvm   | aarch64-linux  | NixOS VM running in Parallels on MacBook |
-| odin    | aarch64-darwin | Main MacBook Pro laptop |
-| ragnar  | x86_64-linux   | NAS server |
+| Machine              | System         | Purpose |
+| -------------------- | -------------- | ------- |
+| hera                 | x86_64-linux   | Intel NUC for running NixOS bare metal |
+| titan                | x86_64-linux   | Intel NUC for running NixOS bare metal |
+| macvm (not active)   | aarch64-darwin | Nix-Darwin VM running in Parallels on MacBook |
+| nixvm (not active)   | aarch64-linux  | NixOS VM running in Parallels on MacBook |
+| odin (not active)    | aarch64-darwin | Main MacBook Pro laptop |
+| ragnar (not active)  | x86_64-linux   | NAS server |
 
 ## Bootstrapping MacOS Machines
 
