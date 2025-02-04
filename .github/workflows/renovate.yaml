@@ -41,7 +41,7 @@ env:
   RENOVATE_DRY_RUN: "${{ inputs.dryRun == true }}"
   RENOVATE_PLATFORM: github
   RENOVATE_PLATFORM_COMMIT: true
-  WORKFLOW_RENOVATE_VERSION: "${{ inputs.version || 'latest' }}"
+  WORKFLOW_RENOVATE_VERSION: "${{ inputs.version || '39.146.0' }}"
 
 jobs:
   renovate:
