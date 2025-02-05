@@ -16,7 +16,7 @@ on:
         required: false
       version:
         description: Renovate version
-        default: latest
+        default: '39.146.0'
         required: false
   schedule:
     - cron: "0 6 * * 6"
