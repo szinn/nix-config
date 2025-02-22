@@ -28,8 +28,8 @@ jobs:
         include:
           # - system: odin
           #   os: macos-14
-          - system: hera
-            os: ubuntu-latest
+          # - system: hera
+          #   os: ubuntu-latest
           - system: titan
             os: ubuntu-latest
           # - system: ragnar

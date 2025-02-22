@@ -132,9 +132,9 @@
         {
           nixosConfigurations = {
             # $ git add . ; sudo nixos-rebuild --flake . switch
-            hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera" flake-packages;
+            # hera = mkSystemLib.mkNixosSystem "x86_64-linux" "hera" flake-packages;
             # $ git add . ; sudo nixos-rebuild --flake . switch
-            nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm" flake-packages;
+            # nixvm = mkSystemLib.mkNixosSystem "aarch64-linux" "nixvm" flake-packages;
             # $ git add . ; sudo nixos-rebuild --flake . switch
             # ragnar = mkSystemLib.mkNixosSystem "x86_64-linux" "ragnar" flake-packages;
             # $ git add . ; sudo nixos-rebuild --flake . switch
