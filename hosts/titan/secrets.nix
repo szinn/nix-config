@@ -16,23 +16,23 @@
       ];
 
       secrets = {
-        adguardhome-password = {
-          owner = "adguardhome";
-          restartUnits = ["adguardhome.service"];
-        };
+        # adguardhome-password = {
+        #   owner = "adguardhome";
+        #   restartUnits = ["adguardhome.service"];
+        # };
 
-        onepassword-credentials = {
-          mode = "0444";
-        };
+        # onepassword-credentials = {
+        #   mode = "0444";
+        # };
 
         "networking/cloudflare/api-token" = {
           restartUnits = ["cloudflare-dyndns.service"];
         };
 
-        "gatus/config.yaml" = {
-          restartUnits = ["gatus.service"];
-          owner = "gatus";
-        };
+        # "gatus/config.yaml" = {
+        #   restartUnits = ["gatus.service"];
+        #   owner = "gatus";
+        # };
 
         # "networking/bind/rndc-key" = {
         #   restartUnits = ["bind.service"];
